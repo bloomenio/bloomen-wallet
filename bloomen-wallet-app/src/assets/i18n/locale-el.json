@@ -1,0 +1,142 @@
+{
+  "common": {
+    "to_be_implemented": "To be implemented",
+    "transaction_error": "Error with the transaction",
+    "transaction_success": "Transaction success",
+    "qr_invalid": "Invalid QR",
+    "no_data": "No data",
+    "show_more": "Show more",
+    "back": "Back",
+    "invalid_mnemonic": "Invalid mnemonic",
+    "remove": "Remove",
+    "cancel": "Cancel",
+    "accept": "Accept"
+  },
+  "language": {
+    "en": "English",
+    "de": "Deutsch",
+    "el": "ελληνικά",
+    "es": "Español",
+    "ca": "Català"
+  },
+  "tutorial": {
+    "0": {
+      "title": "Can a complex technology make life simpler for creative people?",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque accumsan."
+    },
+    "1": {
+      "title": "Discovery Dapps & Enrollment",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque accumsan est ultricies dolor vel interdum."
+    },
+    "2": {
+      "title": "Acquiring Tokens",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque accumsan est ultricies dolor vel interdum."
+    },
+    "3": {
+      "title": "Send Cash",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque accumsan est ultricies dolor vel interdum."
+    },
+    "4": {
+      "title": "Purchasing Process",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque accumsan est ultricies dolor vel interdum."
+    },
+    "5": {
+      "title": "Access Authorization",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque accumsan est ultricies dolor vel interdum."
+    },
+    "skip": "Skip",
+    "enter": "Enter"
+  },
+  "home": {
+    "open": "Open",
+    "cleanData": "Clean data",
+    "removeDapp": "Remove",
+    "options_shell": {
+      "tutorial": "Tutorial",
+      "refreshDapps": "Refresh Dapps",
+      "changeLanguage": "Change language"
+    }
+  },
+  "login": {
+    "message": "Please indicate if you want to create a new account, or if you already have an account and you prefer restore it.",
+    "account": {
+      "create": "Create a new account",
+      "restore": "Restore an account"
+    }
+  },
+  "dapp": {
+    "home": {
+      "buy_content": "Buy content",
+      "allow": "Allow",
+      "recent_activity": "Recent activity"
+    },
+    "profile": {
+      "code_copied": "The code has been copied",
+      "send_cash": "Send cash"
+    },
+    "notifications": {
+      "buy_now": "Buy now",
+      "dialog_buy": {
+        "title": "Are you sure?",
+        "description": "You will buy \"{{title}}\" ({{id}}) for {{price}} PT"
+      }
+    },
+    "shopping_list": {
+      "devices": "Devices",
+      "purchases": "Purchases",
+      "remove_device": {
+        "title": "Are you sure?",
+        "text": "You will no longer have access to your data from that device"
+      }
+    },
+    "scanQR": {
+      "increase_balance": "To increase your balance, scan the QR code of the card.",
+      "scan_qr_code": "Scan qr code"
+    },
+    "options_shell": {
+      "change_instance": "Change instance",
+      "refresh_dapp": "Refresh dapp",
+      "last_updated": "Last updated {{date}}"
+    },
+    "credit_header": {
+      "points": "Your credit is {{balance}} points"
+    },
+    "restore_account": {
+      "mnemonic": "Mnemonic",
+      "restore": "Restore",
+      "placeholder_message": "Tap here to paste"
+    },
+    "send_cash": {
+      "to": "To",
+      "address": "Address",
+      "amount": "Amount",
+      "points": "PT"
+    },
+    "remove_dapp": {
+      "title": "Are you sure?",
+      "description": "This will remove your dapp and clean your mnemonic"
+    },
+    "clean_data": {
+      "title": "Are you sure?",
+      "description": "You will clean the mnemonic for this dapp"
+    }
+  },
+  "network_status": {
+    "title": "Internet connection not available",
+    "message": "Please connect your device to the internet to use the app."
+  },
+  "address_popup": {
+    "change_alias": {
+      "title": "Hey!",
+      "message": "Do you want to rename this alias?"
+    },
+    "add_recent_user": {
+      "title": "Hey!",
+      "message": "Do you want to save this new address with an alias?"
+    },
+    "delete_alias": {
+      "title": "Hey!",
+      "message": "Are you sure?"
+    }
+  }
+}

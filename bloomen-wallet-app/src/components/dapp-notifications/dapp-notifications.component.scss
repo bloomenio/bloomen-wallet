@@ -1,0 +1,59 @@
+@import "~scss/variables.scss";
+
+.has-dapp-credit-header {
+  .dapp-notifications {
+    padding-top: $credit-header-height;
+  }
+}
+
+::ng-deep div[class$="theme-light"] {
+  blo-dapp-notifications .no-notifications-image {
+    background-image: url("assets/placeholder/img_placeholder_oops_black.png");
+  }
+}
+
+::ng-deep div[class$="theme-dark"] {
+  blo-dapp-notifications .no-notifications-image {
+    background-image: url("assets/placeholder/img_placeholder_oops_white.png");
+  }
+}
+
+.notification-list {
+  width: 100%;
+  .notification-list-item {
+    min-height: 100px;
+    padding: 8px;
+    border-bottom: 1px solid $light-grey;
+    .notification-image {
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-repeat: no-repeat;
+      // background-position: center;
+    }
+    .notification-info {
+      padding: 0 16px;
+      word-break: break-word;
+    }
+  }
+}
+
+.no-notifications-content {
+  width: 100%;
+  margin: 15vh;
+  .no-notifications-image {
+    width: 80%;
+    margin: auto;
+    height: 25vh;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+  }
+
+  .no-notifications-text {
+    margin-top: 16px;
+    text-align: center;
+  }
+}
+
+

@@ -1,0 +1,22 @@
+<div class="dialog" [ngStyle]="{'background-image': 'url(' + data.laf.backgroundImage +')'}">
+    <div class="dialog-container" fxFlex fxLayout="column">
+        <button mat-icon-button (click)="closeDialog()">
+            <mat-icon>close</mat-icon>
+        </button>
+        <div fxFlex fxLayout="column" fxLayoutAlign="center center">
+            <div class="dialog-logo" [ngStyle]="{'background-image': 'url(' + data.laf.logo +')'}"></div>
+            <div class="dialog-text" fxLayout="column" fxLayoutAlign="center center">
+                {{ 'dapp.scanQR.increase_balance' | translate }}
+            </div>
+            <div class="prepaid-card-container" fxFlex fxLayout="column" fxLayoutAlign="center center">
+                <div class="prepaid-card-image" [ngStyle]="{'background-image': 'url(' + data.laf.prepaidCardImage +')'}"></div>
+            </div>
+            <div class="dialog-buttons" fxLayout="column" fxLayoutAlign="flex-end">
+                <div class="scan-qr-button" fxFlex fxLayout="column" fxLayoutAlign="center center" (click)="scanQR()">
+                    <div class="qr-icon"></div>
+                    {{ 'dapp.scanQR.scan_qr_code' | translate | uppercase }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

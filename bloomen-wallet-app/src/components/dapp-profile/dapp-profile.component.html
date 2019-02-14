@@ -1,0 +1,37 @@
+<div fxFlex class="has-dapp-credit-header" >
+    <div class="dapp-profile" fxFlex>
+        <div class="profile-card" fxLayout="column" fxLayoutAlign="start center">
+            <qrcode *ngIf="userAddress" qrdata="{{prefixDapp + userAddress}}" [size]="180" [level]="'Q'"></qrcode>
+            <div class="string-code">{{userAddress}}</div>
+            <div class="actions">
+                <div class="share-actions" fxLayout="column" fxLayoutAlign="center center">
+                    <div class="share-buttons" fxLayout="row">
+                        <button mat-fab ngxClipboard 
+                            [cbContent]="userAddress" 
+                            (cbOnSuccess)="stringCodeCopy()">
+                            <mat-icon>content_copy</mat-icon>
+                        </button>
+                        <button mat-fab (click)="share()"><mat-icon>share</mat-icon></button>
+                    </div>
+                </div>
+                <div class="send-cash-action" fxLayout="column" fxLayoutAlign="center center">
+                    <button [disabled]="outOfCash" mat-flat-button color="accent" (click)="goToSendCash()">{{ 'dapp.profile.send_cash' | translate | uppercase }}</button>
+                </div>
+                <div class="recent-users">
+                    <ng-container *ngIf="!outOfCash && addressList$ | async as addressList">
+                        <div class="button-users mat-card" 
+                            *ngFor="let user of addressList"
+                            fxLayout="row">
+                            <div class="click-user" fxFlex="1 1 auto" (click)="sendCashToUser(user)">
+                                <div class="icon-users" fxFlex="0 1 auto" fxLayoutAlign="center center"> <mat-icon>perm_identity</mat-icon> </div>
+                                <div fxFlex="1 1 auto" fxLayoutAlign="center center">{{user.alias}}</div>
+                            </div>
+                            <div class="icon-users" fxFlex="0 1 auto" fxLayoutAlign="center center" (click)="openDialog(user)"> <mat-icon>edit</mat-icon> </div>
+                            <div class="icon-users" fxFlex="0 1 auto" fxLayoutAlign="center center" (click)="onDelete(user.address)"> <mat-icon>delete</mat-icon> </div>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

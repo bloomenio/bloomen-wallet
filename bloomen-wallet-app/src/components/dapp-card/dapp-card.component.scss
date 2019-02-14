@@ -1,0 +1,70 @@
+@import "~scss/variables.scss";
+
+.dapp {
+  background-color: $white;
+
+  .dapp-logo-wrapper {
+    min-width: 50vw;
+    min-height: 50vw;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    .dapp-logo {
+      height: 75%;
+      width: 75%;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+    .dapp-required {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      width: 20px;
+      height: 20px;
+      //background-color: black;
+      background-position: left;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-image: url("assets/logo_bloomen.png");
+    }
+  }
+
+  .dapp-content-wrapper {
+    padding: 16px 8px 8px 16px;
+
+    .title {
+      font-size: $font-size-xxxl;
+      font-weight: $font_regular;
+    }
+
+    .subtitle {
+      font-size: $font-size-s;
+      font-weight: $font_regular;
+      color: $grey;
+    }
+
+    .subsubtitle {
+      font-size: $font-size-xs;
+      font-weight: $font_regular;
+      color: $grey;
+    }
+
+    .title,
+    .subtitle,
+    .subsubtitle {
+      margin-bottom: 8px;
+      word-break: break-word;
+    }
+
+    .dapp-open {
+      font-size: $font-size-s;
+      font-weight: $font_medium;
+      color: $blue;
+    }
+
+    .dapp-options {
+      color: $blue;
+    }
+  }
+}

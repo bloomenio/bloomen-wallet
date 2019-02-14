@@ -1,0 +1,39 @@
+// Angular Material custom theme
+// The mixins below must be included once so we separated them from the variables
+@import "~@angular/material/theming";
+
+/*
+ * Blue palette
+ */
+$mat-blue: (
+  50 : #e0f7fa,
+  100 : #b3ebf2,
+  200 : #80deea,
+  300 : #4dd0e1,
+  400 : #26c6da,
+  500 : #00bcd4,
+  600 : #00b6cf,
+  700 : #00adc9,
+  800 : #00a5c3,
+  900 : #0097b9,
+  A100 : #e2f9ff,
+  A200 : #afeeff,
+  A400 : #7ce3ff,
+  A700 : #63ddff,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $dark-primary-text,
+    600: $dark-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $dark-primary-text,
+    A400: $dark-primary-text,
+    A700: $dark-primary-text
+  )
+);

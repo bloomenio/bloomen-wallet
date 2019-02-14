@@ -1,0 +1,19 @@
+@import "~scss/variables.scss";
+
+.mat-toolbar {
+  img {
+    height: 25px;
+  }
+}
+
+div[class$="theme-dark"] {
+  mat-toolbar {
+    background-color: $black;
+  }
+}
+
+div[class$="theme-light"] {
+  mat-toolbar {
+    background-color: $white;
+  }
+}

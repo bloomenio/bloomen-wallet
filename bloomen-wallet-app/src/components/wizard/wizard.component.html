@@ -1,0 +1,22 @@
+<div fxFlex fxLayout="column" (swipeleft)="nextSlide()" (swiperight)="previousSlide()">
+    
+    <div class="wizard-img" fxFlex="40" [ngStyle]="{ 'background-image': 'url(assets/tutorial/' + step + '.png)' }"></div>
+    
+    <div class="wizard-content" fxFlex fxLayout="column">    
+        <div fxFlex fxLayout="column">
+            <div class="wizard-stepper" fxLayout="row" fxLayoutAlign="center center">
+                <div class="item-icon-stepper" [class.active]="step === i" fxLayoutAlign="center" *ngFor="let step of range; index as i; trackBy: trackByFn" (click)="navegateToStep(i)">
+                    <div class="icon-stepper" [ngStyle]="{'background-image': getBullet(i)}"></div>
+                </div>
+            </div>
+        </div>
+        <div class="wizard-scroll-content" fxFlex="70">
+            <div class="wizard-title">{{ 'tutorial.' + step + '.title' | translate }}</div>
+            <div class="wizard-text">{{ 'tutorial.' + step + '.text' | translate }}</div>
+        </div>
+        <div fxFlex fxLayout="row" fxLayoutAlign="end center">
+            <button class="wizard-button" *ngIf="!isLastStep"  [routerLink]="['/home']" mat-button>{{ 'tutorial.skip' | translate | uppercase }}</button>
+            <button class="wizard-button" [routerLink]="['/home']" *ngIf="isLastStep" mat-button>{{ 'tutorial.enter' | translate | uppercase }}</button>
+        </div>
+    </div>
+</div>

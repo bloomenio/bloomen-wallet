@@ -1,0 +1,12 @@
+<div *ngIf="dapp" fxFlex fxLayout="column" fxLayoutAlign="center center">
+    <div class="notification-image" [ngStyle]="{'background-image': 'url(' + dapp?.news[notificationId].img +')'}"></div>
+    <div class="notification-content">
+        <div class="notification-title">{{ dapp?.address + '.news.' + notificationId + '.title' | translate }}</div>
+        <mat-divider></mat-divider>
+        <div class="notification-description">{{ dapp?.address + '.news.' + notificationId + '.description' | translate }}</div>
+    </div>
+    
+    <button [disabled]="outOfCash || alreadyBought" (click)="dialogBuyContent()" color="accent" mat-flat-button fxLayout="row" fxLayoutAlign="center center">
+        {{ 'dapp.notifications.buy_now' | translate | uppercase }} - {{ notification.payment.price }} PT
+    </button>
+</div>

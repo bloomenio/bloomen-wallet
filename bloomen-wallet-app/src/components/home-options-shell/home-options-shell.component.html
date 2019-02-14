@@ -1,0 +1,10 @@
+<button mat-icon-button [matMenuTriggerFor]="menu">
+    <mat-icon class="icon">more_vert</mat-icon>
+</button>
+<mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="goToTutorial()">{{ 'home.options_shell.tutorial' | translate }}</button>
+    <button mat-menu-item (click)="refreshDapps()">{{ 'home.options_shell.refreshDapps' | translate }}</button>
+    <button mat-menu-item (click)="changeLanguage()">{{ 'home.options_shell.changeLanguage' | translate }}</button>
+
+    <div class="version-text">{{ version }}</div>
+</mat-menu>

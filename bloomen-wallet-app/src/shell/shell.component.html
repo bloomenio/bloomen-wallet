@@ -1,0 +1,15 @@
+<div fxFlex>
+  <blo-loader [isLoading]="isLoading"></blo-loader>
+  <mat-toolbar class="app-bar mat-elevation-z8" fxLayout="row" fxLayoutAlign="space-between center">
+    <div fxLayout="row" fxLayoutAlign="start center">
+      <ng-template bloBackButtonHost></ng-template>
+      <img *ngIf="imgToolbar" src="./assets/{{imgToolbar}}.png" />
+    </div>
+    <ng-template bloButtonsHost></ng-template>
+  </mat-toolbar>
+  <mat-sidenav-container class="app-layout">
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

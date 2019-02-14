@@ -1,0 +1,8 @@
+<div class="dialog" fxFlex fxLayout="column" fxLayoutAlign="space-between center">
+    <div class="dialog-title" mat-dialog-title>{{data.title}}</div>
+    <div class="dialog-description" mat-dialog-content>{{data.description}}</div>
+    <div class="dialog-actions" mat-dialog-actions fxLayout="row" fxLayoutAlign="center">
+        <button class="dialog-cancel-action" mat-button (click)="closeDialog()">{{data.buttonCancel}}</button>
+        <button class="dialog-accept-action" mat-button mat-dialog-close="true" cdkFocusInitial>{{data.buttonAccept}}</button>
+    </div>
+</div>

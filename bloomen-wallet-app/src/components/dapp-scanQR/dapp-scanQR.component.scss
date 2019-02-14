@@ -1,0 +1,66 @@
+@import "~scss/variables.scss";
+
+:host {
+  height: 100%;
+}
+
+.dialog {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: bottom;
+}
+
+.dialog-container {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  padding: 16px;
+}
+
+.dialog-logo {
+  width: 100%;
+  height: 20vh;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.dialog-text {
+  margin: 5vh 20px 0;
+  text-align: center;
+}
+
+.prepaid-card-container {
+  width: 100%;
+  margin: 10px;
+  
+  .prepaid-card-image {
+    width: 100%;
+    height: 25vh;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}
+
+.dialog-buttons {
+  width: 100%;
+  font-weight: $font_bold;
+
+  .scan-qr-button {
+    width: 100%;
+    min-height: 125px;
+    font-size: $font-size-l;
+    background-color: rgba($color: $white, $alpha: 0.3);
+    border-radius: 5px;
+
+    .qr-icon {
+      width: 36px;
+      height: 36px;
+      background-repeat: no-repeat;
+      background-size: cover; 
+      margin: 10px;
+    }
+  }
+}

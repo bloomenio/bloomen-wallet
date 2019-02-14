@@ -1,0 +1,6 @@
+<mat-toolbar color="accent" class="mat-elevation-z8 dapp-credit-header" fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+    <div>{{ 'dapp.credit_header.points' | translate: {'balance': balance} }}</div>
+    <button *ngIf="addCash" mat-icon-button (click)="addCreditScan()">
+        <mat-icon md-36>add_circle_outline</mat-icon>
+    </button>
+</mat-toolbar>

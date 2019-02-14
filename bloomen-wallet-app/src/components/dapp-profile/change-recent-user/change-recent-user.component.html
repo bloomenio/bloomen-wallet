@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>{{ 'address_popup.change_alias.title'| translate}}</h1>
+<div mat-dialog-content>
+  <p>{{ 'address_popup.change_alias.message'| translate}}</p>
+  <mat-form-field>
+    <input matInput cdkFocusInitial [(ngModel)]="newAlias">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">{{ 'common.cancel'| translate}}</button>
+  <button mat-button [disabled]="newAlias.length <= 0" (click)="onChangeAlias()">{{ 'common.accept'| translate}}</button>
+</div>

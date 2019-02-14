@@ -1,0 +1,35 @@
+/*
+ * Entry point of global application style.
+ * Component-specific style should not go here and be included directly as part of the components.
+ */
+
+// 3rd party libraries
+@import "~material-design-icons-iconfont/dist/fonts/material-icons.css";
+
+// Angular Material custom theme
+// The mixins below must be included once so we separated them from the variables
+@import "~@angular/material/theming";
+
+// App theme customization
+@import "theme/bloomen/bloomen-theme.scss";
+
+// Dapp theme customization
+@import "theme/ant1/ant1-theme.scss";
+@import "theme/demo/demo-theme.scss";
+
+// Dapp color theme customization
+@import "theme/blue/blue-theme.scss";
+@import "theme/brown/brown-theme.scss";
+@import "theme/green/green-theme.scss";
+@import "theme/grey/grey-theme.scss";
+@import "theme/lilac/lilac-theme.scss";
+@import "theme/orange/orange-theme.scss";
+
+// Roboto fontface
+@import "~roboto-fontface/css/roboto/roboto-fontface.css";
+
+// App global scss
+@import "src/scss/global.scss";
+
+// App hacks scss - Changes that overrides the angular material classes
+@import "src/scss/hacks.scss";

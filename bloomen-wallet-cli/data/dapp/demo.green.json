@@ -1,0 +1,58 @@
+{
+  "dappId": "GREEN",
+  "laf":{
+    "theme": "bloomen-green-theme-light",
+    "backgroundImage": "assets/dapps/img_bg_green_circles.png",
+    "prepaidCardImage": "assets/instances/img_prepaid_card_qr_demo.png",
+    "landingImage": "assets/dapps/img_landing_green_circles.png",
+    "homeImage": "assets/dapps/img_home_green_circles.png",
+    "logo": "assets/dapps/img_logo_gym.png"
+  },
+  "i18n":{
+    "en":{
+      "home": {
+        "title": "Green Demo",
+        "subtitle": "Try a complete experience"
+      },
+      "login": {
+        "title": "Green Demo instance"
+      }
+    },
+    "el":{
+      "home": {
+        "title": "Green Demo",
+        "subtitle": "Try a complete experience"
+      },
+      "login": {
+        "title": "Green Demo instance"
+      }
+    },
+    "es":{
+      "home": {
+        "title": "Green Demo",
+        "subtitle": "Try a complete experience"
+      },
+      "login": {
+        "title": "Green Demo instance"
+      }
+    },
+    "de":{
+      "home": {
+        "title": "Green Demo",
+        "subtitle": "Try a complete experience"
+      },
+      "login": {
+        "title": "Green Demo instance"
+      }
+    },
+    "ca":{
+      "home": {
+        "title": "Green Demo",
+        "subtitle": "Try a complete experience"
+      },
+      "login": {
+        "title": "Green Demo instance"
+      }
+    }
+  }
+}

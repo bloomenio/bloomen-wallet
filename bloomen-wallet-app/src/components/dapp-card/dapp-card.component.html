@@ -1,0 +1,27 @@
+<div fxFlex fxLayout="row" class="dapp" (click)="openLoginDialog()">
+    <div class="dapp-logo-wrapper" [ngStyle]="{'background-image': 'url(' + dapp?.laf.landingImage +')'}" fxLayout="column" fxLayoutAlign="center center">
+        <div class="dapp-logo" [ngStyle]="{'background-image': 'url(' + dapp?.laf.logo +')'}"></div>
+        <div class="dapp-required" *ngIf="dapp?.fromService"></div>
+    </div>
+    <div class="dapp-content-wrapper" fxFlex fxLayout="column" fxLayoutAlign="space-between">
+        <div>
+            <div class="title">{{ dapp.address + '.home.title' | translate }}</div>
+            <div class="subtitle">{{ dapp.address + '.home.subtitle' | translate }}</div>
+            <div class="subsubtitle"
+                translate="dapp.options_shell.last_updated"
+                [translateParams]="{date: dapp?.lastUpdated | date:'short'}"></div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+            <div class="dapp-open">{{ 'home.open' | translate | uppercase }}</div>
+            <div class="dapp-options" fxFlex fxLayoutAlign="flex-end">
+                <button mat-icon-button [matMenuTriggerFor]="optionsDapp" (click)="$event.stopPropagation()">
+                    <mat-icon>settings</mat-icon>
+                </button>
+                <mat-menu #optionsDapp="matMenu">
+                    <button (click)="cleanData()" mat-menu-item>{{ 'home.cleanData' | translate }}</button>
+                    <button (click)="removeDapp()" *ngIf="!dapp.fromService" mat-menu-item>{{ 'home.removeDapp' | translate }}</button>
+                </mat-menu>
+            </div> 
+        </div>
+    </div>
+</div>

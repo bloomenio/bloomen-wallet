@@ -1,0 +1,23 @@
+// Creates a container object for a light theme to be given to individual component theme mixins.
+@function bloomen-light-theme($primary, $accent, $warn, $background, $foreground) {
+  @return (
+    primary: $primary,
+    accent: $accent,
+    warn: $warn,
+    is-dark: false,
+    foreground: $foreground,
+    background: $background
+  );
+}
+
+// Creates a container object for a dark theme to be given to individual component theme mixins.
+@function bloomen-dark-theme($primary, $accent, $warn, $background, $foreground) {
+  @return (
+    primary: $primary,
+    accent: $accent,
+    warn: $warn,
+    is-dark: true,
+    foreground: $foreground,
+    background: $background
+  );
+}

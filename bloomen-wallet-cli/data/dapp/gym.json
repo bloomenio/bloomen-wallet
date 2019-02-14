@@ -1,0 +1,58 @@
+{
+  "dappId": "GYM",
+  "laf":{
+    "theme": "bloomen-blue-theme-light",
+    "backgroundImage": "assets/dapps/img_bg_blue_circles.png",
+    "prepaidCardImage": "assets/instances/img_prepaid_card_qr_demo.png",
+    "landingImage": "assets/dapps/img_landing_blue_circles.png",
+    "homeImage": "assets/dapps/img_home_blue_circles.png",
+    "logo": "assets/dapps/img_logo_gym.png"
+  },
+  "i18n":{
+    "en":{
+      "home": {
+        "title": "Gym Demo",
+        "subtitle": "Try a complete experience"
+      },
+      "login": {
+        "title": "Gym Demo instance"
+      }
+    },
+    "el":{
+      "home": {
+        "title": "Gym Demo",
+        "subtitle": "Try a complete experience"
+      },
+      "login": {
+        "title": "Gym Demo instance"
+      }
+    },
+    "es":{
+      "home": {
+        "title": "Gym Demo",
+        "subtitle": "Try a complete experience"
+      },
+      "login": {
+        "title": "Gym Demo instance"
+      }
+    },
+    "de":{
+      "home": {
+        "title": "Gym Demo",
+        "subtitle": "Try a complete experience"
+      },
+      "login": {
+        "title": "Gym Demo instance"
+      }
+    },
+    "ca":{
+      "home": {
+        "title": "Green Demo",
+        "subtitle": "Try a complete experience"
+      },
+      "login": {
+        "title": "Green Demo instance"
+      }
+    }
+  }
+}

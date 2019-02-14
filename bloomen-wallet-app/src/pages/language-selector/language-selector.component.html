@@ -1,0 +1,4 @@
+<div fxFlex fxLayout="column" fxLayoutAlign="center center">
+    <div class="language-item" *ngFor="let language of languages; trackBy: trackByFn" (click)="setLanguage(language)">{{'language.' +
+        language | translate | uppercase}}</div>
+</div>

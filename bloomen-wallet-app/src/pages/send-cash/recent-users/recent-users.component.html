@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>{{ 'address_popup.add_recent_user.title'| translate}}</h1>
+<div mat-dialog-content>
+  <p>{{ 'address_popup.add_recent_user.message'| translate}}</p>
+  <mat-form-field>
+    <input matInput cdkFocusInitial [(ngModel)]="newUser.alias">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button  (click)="onNoClick()">{{ 'common.cancel'| translate}}</button>
+  <button mat-button [disabled]="newUser.length <= 0" (click)="onYesClick()">{{ 'common.accept'| translate}}</button>
+</div>

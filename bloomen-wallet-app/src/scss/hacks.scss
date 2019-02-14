@@ -1,0 +1,64 @@
+@import "./variables.scss";
+
+.mat-sidenav-container.app-layout {
+  width: 100%;
+  height: calc(100vh - 56px);
+}
+
+@media (min-width: $toolbar-breakpoint) {
+  .mat-sidenav-container.app-layout {
+    height: calc(100vh - 64px);
+  }
+}
+
+.mat-toolbar {
+  z-index: 2;
+
+  &.app-bar {
+    position: relative;
+  }
+}
+
+.fullscreen-dialog {
+  mat-dialog-container {
+    padding: 0;
+    border-radius: 0;
+  }
+}
+
+.qr-icon {
+  width: 24px;
+  height: 24px;
+  margin: auto;
+  background-repeat: no-repeat;
+  background-size: cover; 
+  background-image: url("assets/icons/ic_social_qr_code.svg");
+}
+
+div[class$="theme-dark"] {
+  .create-account-button,
+  .restore-account-button,
+  .scan-qr-button {
+    border: 2px solid $white;
+  }
+  .qr-icon {
+    background-image: url("assets/icons/ic_social_qr_code.svg");
+  }
+}
+
+
+div[class$="theme-light"]{
+  .create-account-button,
+  .restore-account-button,
+  .scan-qr-button {
+    border: 2px solid $black;
+  }
+  .qr-icon {
+    background-image: url("assets/icons/ic_social_qr_code_black.svg");
+  }
+}
+
+mat-tab-group[headerposition="below"] > mat-tab-header {
+  padding-bottom: var(safe-area-inset-bottom);
+  padding-bottom: env(safe-area-inset-bottom);
+}

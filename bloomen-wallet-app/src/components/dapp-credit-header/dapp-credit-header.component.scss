@@ -1,0 +1,7 @@
+@import "~scss/variables.scss";
+
+.mat-toolbar.dapp-credit-header {
+    position: fixed;
+    height: $credit-header-height;
+    font-size: $font-size-xl;
+}

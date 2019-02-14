@@ -1,0 +1,142 @@
+{
+  "common": {
+    "to_be_implemented": "No implementado",
+    "transaction_error": "Error en la transacción",
+    "transaction_success": "Transacción correcta",
+    "qr_invalid": "QR inválido",
+    "no_data": "No hay datos",
+    "show_more": "Mostrar más",
+    "back": "Atrás",
+    "invalid_mnemonic": "Mnemonic inválido",
+    "remove": "Eliminar",
+    "cancel": "Cancelar",
+    "accept": "Aceptar"
+  },
+  "language": {
+    "en": "English",
+    "de": "Deutsch",
+    "el": "ελληνικά",
+    "es": "Español",
+    "ca": "Català"
+  },
+  "tutorial": {
+    "0": {
+      "title": "¿Puede una tecnología compleja simplificar la vida de la gente creativa?",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque accumsan."
+    },
+    "1": {
+      "title": "Descubre Dapps e inscríbete",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque accumsan est ultricies dolor vel interdum."
+    },
+    "2": {
+      "title": "Adquirir Tokens",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque accumsan est ultricies dolor vel interdum."
+    },
+    "3": {
+      "title": "Enviar saldo",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque accumsan est ultricies dolor vel interdum."
+    },
+    "4": {
+      "title": "Proceso de compra",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque accumsan est ultricies dolor vel interdum."
+    },
+    "5": {
+      "title": "Autorización de acceso",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque accumsan est ultricies dolor vel interdum."
+    },
+    "skip": "Skip",
+    "enter": "Enter"
+  },
+  "home": {
+    "open": "Abrir",
+    "cleanData": "Limpiar datos",
+    "removeDapp": "Eliminar",
+    "options_shell": {
+      "tutorial": "Tutorial",
+      "refreshDapps": "Refrescar Dapps",
+      "changeLanguage": "Cambiar idioma"
+    }
+  },
+  "login": {
+    "message": "Por favor indica si quieres crear una nueva cuenta o si tienes una y prefieres restaurarla.",
+    "account": {
+      "create": "Crear una nueva cuenta",
+      "restore": "Restaurar cuenta"
+    }
+  },
+  "dapp": {
+    "home": {
+      "buy_content": "Comprar contenido",
+      "allow": "Autorizar",
+      "recent_activity": "Actividad reciente"
+    },
+    "profile": {
+      "code_copied": "El código se ha copiado",
+      "send_cash": "Enviar saldo"
+    },
+    "notifications": {
+      "buy_now": "Comprar ahora",
+      "dialog_buy": {
+        "title": "¿Estás seguro?",
+        "description": "Comprarás \"{{title}}\" ({{id}}) por {{price}} PT"
+      }
+    },
+    "shopping_list": {
+      "devices": "Dispositivos",
+      "purchases": "Compras",
+      "remove_device": {
+        "title": "¿Estás seguro?",
+        "text": "No tendrás acceso a tu contenido desde ese dispositivo"
+      }
+    },
+    "scanQR": {
+      "increase_balance": "Para incrementar tu saldo escanea el código QR de la tarjeta.",
+      "scan_qr_code": "Escanear código QR"
+    },
+    "options_shell": {
+      "change_instance": "Cambiar instancia",
+      "refresh_dapp": "Refrescar Dapp",
+      "last_updated": "Última actualización {{date}}"
+    },
+    "credit_header": {
+      "points": "Tu saldo es de {{balance}} puntos"
+    },
+    "restore_account": {
+      "mnemonic": "Mnemonic",
+      "restore": "Restaurar",
+      "placeholder_message": "Toca para pegar"
+    },
+    "send_cash": {
+      "to": "Para",
+      "address": "Dirección",
+      "amount": "Cantidad",
+      "points": "PT"
+    },
+    "remove_dapp": {
+      "title": "¿Estás seguro?",
+      "description": "Eliminarás tu Dapp y limpiarás tu mnemonic"
+    },
+    "clean_data": {
+      "title": "¿Estás seguro?",
+      "description": "Limpiarás el mnemonic para esta Dapp"
+    }
+  },
+  "network_status": {
+    "title": "No hay conexión a Internet",
+    "message": "Por favor conecta el dispositivo a Internet para utilizar la app."
+  },
+  "address_popup": {
+    "change_alias": {
+      "title": "¡Oye!",
+      "message": "¿Quieres renombrar este alias?"
+    },
+    "add_recent_user": {
+      "title": "¡Oye!",
+      "message": "¿Quieres guardar esta nueva dirección con un alias?"
+    },
+    "delete_alias": {
+      "title": "¡Oye!",
+      "message": "¿Estás seguro?"
+    }
+  }
+}

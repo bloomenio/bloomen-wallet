@@ -1,0 +1,8 @@
+@import "~scss/variables.scss";
+
+.version, .last_updated {
+    font-size: $font-size-xxxxs;
+    text-align: end;
+    margin: 5px;
+    color: $grey;
+}

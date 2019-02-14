@@ -1,0 +1,8 @@
+<div class="dapp-list">
+  <blo-dapp-card [dapp]="dapp" *ngFor="let dapp of dapps; trackBy: dappTrackByFn;"></blo-dapp-card>
+</div>
+<div class="add-dapp"> 
+    <button color="primary" mat-fab mat-icon-button (click)="clickAddDapp()">
+        <div class="qr-icon"></div>
+    </button>
+</div>

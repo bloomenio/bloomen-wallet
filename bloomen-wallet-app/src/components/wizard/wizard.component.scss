@@ -1,0 +1,56 @@
+@import "~scss/variables.scss";
+
+.wizard-img {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+  max-height: 55% !important;
+}
+
+.wizard-content {
+  padding: 16px;
+
+  .wizard-scroll-content {
+    overflow-y: scroll;
+    touch-action: pan-y;
+
+    .wizard-title {
+      font-size: $font-size-xxxl;
+      font-weight: $font_regular;
+      padding-bottom: 16px;
+      text-align: center;
+    }
+
+    .wizard-text {
+      font-size: $font-size-l;
+      text-align: justify;
+      text-align: center;
+    }
+  }
+
+  .wizard-stepper {
+    margin: 10px 25px;
+
+    .item-icon-stepper {
+      padding: 4px;
+
+      &.active {
+        padding-left: 3px;
+        padding-right: 3px;
+      }
+
+      .icon-stepper {
+        background-size: 100%;
+        width: 12px;
+        height: 12px;
+        fill: $blue-tutorial
+      }
+    }
+  }
+
+  .wizard-button {
+    font-size: $font-size-s;
+    font-weight: $font_regular;
+    color: $blue-tutorial;
+  }
+}

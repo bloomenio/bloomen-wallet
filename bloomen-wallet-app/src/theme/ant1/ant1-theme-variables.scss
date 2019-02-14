@@ -1,0 +1,39 @@
+// Angular Material custom theme
+// The mixins below must be included once so we separated them from the variables
+@import "~@angular/material/theming";
+
+/*
+ * Ant1 palette
+ */
+$mat-ant1: (
+  50 : #fef7ec,
+  100 : #fdead0,
+  200 : #fcdcb0,
+  300 : #fbce90,
+  400 : #fac479,
+  500 : #f9b961,
+  600 : #f8b259,
+  700 : #f7aa4f,
+  800 : #f6a245,
+  900 : #f59333,
+  A100 : #ffffff,
+  A200 : #ffffff,
+  A400 : #ffe8d4,
+  A700 : #ffdbba,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $dark-primary-text,
+    600: $dark-primary-text,
+    700: $dark-primary-text,
+    800: $dark-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $dark-primary-text,
+    A400: $dark-primary-text,
+    A700: $dark-primary-text
+  )
+);

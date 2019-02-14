@@ -1,0 +1,28 @@
+<mat-card class="restore-account" [ngStyle]="{'background-image': 'url(' + dapp?.laf.backgroundImage +')'}" (click)="hideKeyboard($event)">
+    <div class="restore-account-container" fxFlex fxLayout="column">
+        <button mat-icon-button (click)="doBack()">
+            <mat-icon>close</mat-icon>
+        </button>
+        <div fxFlex fxLayout="column" fxLayoutAlign="space-between center">
+            <div class="restore-account-logo" [ngStyle]="{'background-image': 'url(' + dapp?.laf.logo +')'}"></div>
+            <div class="restore-account-text" fxLayout="column" fxLayoutAlign="center center">
+                <div class="title">{{ dapp?.address + '.home.title' | translate }}</div>
+                <!-- TODO: Add literal to rosetta -->
+                <div class="account-message">Please click to paste the mnemonic and restore your account.</div>        
+            </div>
+            <div class="restore-account-form">
+                <form class="form-wrapper" [formGroup]="restoreAccountForm" (ngSubmit)="onSubmit()">
+                    <mat-form-field color="primary" appearance="outline">
+                        <mat-label  floating>{{ 'dapp.restore_account.mnemonic' | translate }}</mat-label>
+                        <!-- TODO: Add literal to rosetta -->
+                        <textarea [readonly]="isCordova" matInput formControlName="mnemonic" rows="4" (click)="paste()" placeholder="Tap here to paste"></textarea>
+                    </mat-form-field>
+                    <button [disabled]="!restoreAccountForm.valid" type="submit" color="accent" mat-flat-button fxLayout="row" fxLayoutAlign="center center">
+                        <div fxFlex>{{ 'dapp.restore_account.restore' | translate | uppercase }}</div>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</mat-card>
+

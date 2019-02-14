@@ -1,0 +1,29 @@
+@import "~scss/variables.scss";
+
+.dapp-list {
+  padding-bottom: 90px;
+
+  blo-dapp-card {
+    margin-bottom: 8px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.add-dapp {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin: 16px;
+
+  .mat-icon-button {
+    width: 58px;
+    height: 58px;
+
+    .qr-icon {
+      background-image: url('assets/icons/ic_social_qr_code.svg');
+    }
+  }
+}

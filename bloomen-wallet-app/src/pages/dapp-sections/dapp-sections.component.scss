@@ -1,0 +1,22 @@
+@import "~scss/variables.scss";
+
+mat-tab-group {
+  height: 100%;
+}
+
+::ng-deep .mat-tab-body-wrapper {
+  height: 100%;
+}
+
+div[class$="theme-dark"] {
+  .mat-tab-group {
+    background-color: $black;
+  }
+}
+
+div[class$="theme-light"] {
+  .mat-tab-group {
+    background-color: $white;
+  }
+}
+

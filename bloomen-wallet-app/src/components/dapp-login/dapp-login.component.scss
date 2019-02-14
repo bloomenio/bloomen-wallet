@@ -1,0 +1,68 @@
+@import "~scss/variables.scss";
+
+:host {
+  height: 100%;
+}
+
+.dialog {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: bottom;
+}
+
+.dialog-container {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  padding: 24px;
+}
+
+.dialog-logo {
+  width: 100%;
+  height: 20vh;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.dialog-text {
+  margin: 5vh 20px;
+  text-align: center;
+
+  .title {
+    font-size: $font-size-xxxl;
+    margin-bottom: 5%;
+  }
+
+  .account-message {
+    font-size: $font-size-l;
+  }
+}
+
+.dialog-buttons {
+  width: 100%;
+  font-weight: $font_bold;
+
+  .create-account-button {
+    margin-bottom: 15px;
+  }
+
+  .create-account-button,
+  .restore-account-button {
+    width: 100%;
+    min-height: 100px;
+    max-height: 125px;
+    font-size: $font-size-l;
+    text-align: center;
+    background-color: rgba($color: $white, $alpha: 0.2);
+    border-radius: 5px;
+
+    mat-icon {
+      font-size: 38px;
+      height: 38px;
+      width: 38px;
+      margin: 10px;
+    }
+  }
+}

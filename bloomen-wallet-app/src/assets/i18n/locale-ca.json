@@ -1,0 +1,142 @@
+{
+  "common": {
+    "to_be_implemented": "No implementat",
+    "transaction_error": "Error a la transacció",
+    "transaction_success": "Transacció correcta",
+    "qr_invalid": "QR invàlid",
+    "no_data": "No hi ha dades",
+    "show_more": "Mostrar més",
+    "back": "Enrere",
+    "invalid_mnemonic": "Mnemonic invàlid",
+    "remove": "Eliminar",
+    "cancel": "Cancel·lar",
+    "accept": "Acceptar"
+  },
+  "language": {
+    "en": "English",
+    "de": "Deutsch",
+    "el": "ελληνικά",
+    "es": "Español",
+    "ca": "Català"
+  },
+  "tutorial": {
+    "0": {
+      "title": "Pot una tecnologia complexa simplificar la vida de la gent creativa?",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque accumsan."
+    },
+    "1": {
+      "title": "Descobreix Dapps e inscriu-te",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque accumsan est ultricies dolor vel interdum."
+    },
+    "2": {
+      "title": "Adquirir Tokens",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque accumsan est ultricies dolor vel interdum."
+    },
+    "3": {
+      "title": "Enviar saldo",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque accumsan est ultricies dolor vel interdum."
+    },
+    "4": {
+      "title": "Procès de compra",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque accumsan est ultricies dolor vel interdum."
+    },
+    "5": {
+      "title": "Autorització d'accés",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque accumsan est ultricies dolor vel interdum."
+    },
+    "skip": "Skip",
+    "enter": "Enter"
+  },
+  "home": {
+    "open": "Obrir",
+    "cleanData": "Netejar dades",
+    "removeDapp": "Eliminar",
+    "options_shell": {
+      "tutorial": "Tutorial",
+      "refreshDapps": "Refrescar Dapps",
+      "changeLanguage": "Canviar idioma"
+    }
+  },
+  "login": {
+    "message": "Si us plau indica si vols crear un nou compte o si en tens un i el vols restaurar.",
+    "account": {
+      "create": "Crear un nou compte",
+      "restore": "Restaurar compte"
+    }
+  },
+  "dapp": {
+    "home": {
+      "buy_content": "Comprar contingut",
+      "allow": "Autoritzar",
+      "recent_activity": "Activitat recent"
+    },
+    "profile": {
+      "code_copied": "El codi s'ha copiat",
+      "send_cash": "Enviar saldo"
+    },
+    "notifications": {
+      "buy_now": "Comprar ara",
+      "dialog_buy": {
+        "title": "Estàs segur?",
+        "description": "Compraràs \"{{title}}\" ({{id}}) per {{price}} PT"
+      }
+    },
+    "shopping_list": {
+      "devices": "Dispositius",
+      "purchases": "Compres",
+      "remove_device": {
+        "title": "Estàs segur?",
+        "text": "No tindràs accés al contingut des d'aquest dispositiu"
+      }
+    },
+    "scanQR": {
+      "increase_balance": "Per incrementar el teu saldo escaneja el codi QR de la targeta.",
+      "scan_qr_code": "Escanejar codi QR"
+    },
+    "options_shell": {
+      "change_instance": "Canviar instància",
+      "refresh_dapp": "Refrescar Dapp",
+      "last_updated": "Darrera actualització {{date}}"
+    },
+    "credit_header": {
+      "points": "El teu saldo és de {{balance}} punts"
+    },
+    "restore_account": {
+      "mnemonic": "Mnemonic",
+      "restore": "Restaurar",
+      "placeholder_message": "Toca per pegar"
+    },
+    "send_cash": {
+      "to": "Per",
+      "address": "Adreça",
+      "amount": "Quantitat",
+      "points": "PT"
+    },
+    "remove_dapp": {
+      "title": "Estàs segur?",
+      "description": "Esborraràs el teu Dapp i netejaràs el teu mnemonic"
+    },
+    "clean_data": {
+      "title": "Estàs segur?",
+      "description": "Netejaràs el teu mnemonic per aquesta Dapp"
+    }
+  },
+  "network_status": {
+    "title": "No hi ha connexió a Internet",
+    "message": "Si us plau connecta el dispositiu a Internet per a fer servir l'app."
+  },
+  "address_popup": {
+    "change_alias": {
+      "title": "Ei!",
+      "message": "Vols reanomenar aquest àlies?"
+    },
+    "add_recent_user": {
+      "title": "Ei!",
+      "message": "Vols guardar aquesta adreça amb un àlies?"
+    },
+    "delete_alias": {
+      "title": "Ei!",
+      "message": "Estàs segur?"
+    }
+  }
+}

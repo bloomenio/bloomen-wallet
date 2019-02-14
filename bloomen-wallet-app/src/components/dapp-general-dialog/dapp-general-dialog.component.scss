@@ -1,0 +1,22 @@
+@import "~scss/variables.scss";
+
+:host {
+    height: 100%;
+}
+
+.dialog {
+    .dialog-title {
+        margin: 0;
+    }
+    .dialog-description {
+        font-weight: $font-light;
+        text-align: center;
+    }
+    .dialog-actions {
+        margin: -14px;
+
+        .dialog-accept-action {
+            font-weight: $font-light;
+        }
+    }
+} 

@@ -1,0 +1,33 @@
+@import "~scss/variables.scss";
+
+.notification-image {
+    width: 100%;
+    height: 30vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    // background-position: center;
+}
+
+.notification-content {
+    width: 100%;
+    padding: 16px;
+
+    .notification-title {
+        width: 100%;
+        padding-bottom: 8px;
+        font-size: $font-size-xl;
+        font-weight: $font-bold;
+    }
+
+    .notification-description {
+        width: 100%;
+        padding-top: 8px;
+        text-align: justify;
+    }
+}
+
+button {
+    font-size: $font-size-xl;
+    padding: 10px 30px;
+    margin: 25px;
+  }

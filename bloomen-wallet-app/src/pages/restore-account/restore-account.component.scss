@@ -1,0 +1,94 @@
+@import "~scss/variables.scss";
+
+:host {
+  height: 100%;
+}
+
+.restore-account {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border-radius: 0;
+  background-size: cover;
+  background-position: bottom;
+}
+
+.restore-account-container {
+  height: 100%;
+  width: 100%;
+  padding: 24px;
+}
+
+.restore-account-logo {
+  width: 100%;
+  height: 20vh;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.restore-account-text {
+  margin: 5vh 20px 0;
+  text-align: center;
+
+  .title {
+    font-size: $font-size-xxxl;
+    margin-bottom: 5%;
+  }
+
+  .account-message {
+    font-size: $font-size-l;
+  }
+}
+
+.restore-account-form {
+  width: 100%;
+  padding: 0;
+
+  .form-wrapper {
+    width: 100%;
+    padding: 25px;
+  
+    mat-form-field {
+      width: 100%;
+    }
+
+    textarea {
+      resize: none;
+    }
+  
+    button {
+      font-size: $font-size-xl;
+      width: 100%;
+      padding: 10px 30px;
+    }
+  }
+
+}
+
+.dialog-buttons {
+  width: 100%;
+  font-weight: $font_bold;
+
+  .create-account-button {
+    margin-bottom: 15px;
+  }
+
+  .create-account-button,
+  .restore-account-button {
+    width: 100%;
+    min-height: 100px;
+    max-height: 125px;
+    font-size: $font-size-l;
+    text-align: center;
+    background-color: rgba($color: $white, $alpha: 0.2);
+    border-radius: 5px;
+
+    mat-icon {
+      font-size: 38px;
+      height: 38px;
+      width: 38px;
+      margin: 10px;
+    }
+  }
+}

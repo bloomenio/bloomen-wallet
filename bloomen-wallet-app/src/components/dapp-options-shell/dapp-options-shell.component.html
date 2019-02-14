@@ -1,0 +1,14 @@
+<div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon class="icon">more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="refreshDapp()">{{ 'dapp.options_shell.refresh_dapp' | translate }}</button>
+        <button mat-menu-item (click)="goToHome()">{{ 'dapp.options_shell.change_instance' | translate }}</button>
+        <div class="version">{{ version }}</div>
+        <div class="last_updated" fxFlex
+            translate="dapp.options_shell.last_updated"
+            [translateParams]="{date: dapp?.lastUpdated | date:'short'}">
+        </div>
+    </mat-menu>
+</div>

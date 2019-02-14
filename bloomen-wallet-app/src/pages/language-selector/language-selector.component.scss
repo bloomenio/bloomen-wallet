@@ -1,0 +1,13 @@
+@import "~scss/variables.scss";
+
+:host {
+  height: 100%;
+
+  .language-item {
+    font-size: $font-size-s;
+    font-weight: $font_medium;
+    padding: 25px;
+    text-align: center;
+    cursor: pointer;
+  }
+}

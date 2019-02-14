@@ -1,0 +1,28 @@
+<blo-dapp-credit-header [dapp]="dapp"></blo-dapp-credit-header>
+<mat-tab-group mat-align-tabs="center" headerPosition="below" color="primary" selectedIndex="{{currentTabIndex}}"
+    (selectedTabChange)="onTabClick($event)">
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <mat-icon color="primary">home</mat-icon>
+        </ng-template>
+        <blo-dapp-home [dapp]="dapp"></blo-dapp-home>
+    </mat-tab>
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <mat-icon color="primary">account_circle</mat-icon>
+        </ng-template>
+        <blo-dapp-profile [dapp]="dapp" [mnemonic]="mnemonic"></blo-dapp-profile>
+    </mat-tab>
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <mat-icon color="primary">notifications</mat-icon>
+        </ng-template>
+        <blo-dapp-notifications [dapp]="dapp"></blo-dapp-notifications>
+    </mat-tab>
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <mat-icon color="primary">shopping_cart</mat-icon>
+        </ng-template>
+        <blo-dapp-shopping-list [dapp]="dapp"></blo-dapp-shopping-list>
+    </mat-tab>
+</mat-tab-group>
