@@ -1,0 +1,21 @@
+@import "./variables.scss";
+
+.mat-sidenav-container.app-layout {
+  height: calc(100vh - 80px);
+}
+
+.mat-toolbar {
+  z-index: 2;
+
+  &.app-bar {
+    position: relative;
+  }
+}
+
+.mat-card.card-wrapper {
+  color: black;
+}
+
+div.card-wrapper .mat-card {
+  color: black;
+}

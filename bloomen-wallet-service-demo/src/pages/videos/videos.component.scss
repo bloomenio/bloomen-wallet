@@ -1,0 +1,49 @@
+@import "~scss/variables.scss";
+
+.card-wrapper {
+  padding: 16px 0;
+  height: unset !important;
+
+  .mat-card {
+    height: 100%;
+
+    .mat-card-title {
+      font-size: $font-size-xxl;
+      font-weight: $font_bold;
+    }
+
+    .mat-card-subtitle {
+      color: #666;
+      font-size: $font-size-s;
+      margin-bottom: 8px;
+    }
+  }
+}
+
+.title-wrapper {
+  margin: 16px 0;
+  word-break: normal;
+}
+
+.image-wrapper {
+  position: relative;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+}
+
+.play-button {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: white;
+  mask: url("assets/icons/ic_play.svg") no-repeat 50% 50%;
+  mask-size: 20%;
+  &.black-icon {
+    background-color: black
+  }
+}

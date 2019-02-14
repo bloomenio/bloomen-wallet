@@ -7,18 +7,13 @@
     "start": "node src/index.js"
   },
   "dependencies": {
-    "canvas": "^1.6.2",
     "commander": "2.15.1",
     "dotenv": "6.0.0",
     "figlet": "1.2.1",
     "inquirer": "5.2.0",
     "json-path-value": "0.0.1-beta8",
-    "merge-images": "^1.1.0",
     "prettyjson": "^1.2.1",
-    "qr-image": "^3.2.0",
     "qrcode-terminal": "^0.12.0",
-    "sharp": "^0.21.0",
-    "text2png": "^2.1.0",
     "truffle-hdwallet-provider": "0.0.6",
     "underscore": "^1.9.1",
     "uuid": "^3.3.2",

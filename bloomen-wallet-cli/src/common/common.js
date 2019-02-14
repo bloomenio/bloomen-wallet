@@ -21,13 +21,6 @@ function _setAddress(_address) {
 function _deleteAllCards() {
     const tmpCards = [];
     fs.writeFileSync(_CARDS_PATH, JSON.stringify(tmpCards), 'utf8');
-    fs.readdir('data/cards', (err, files)=>{
-        for (var i = 0, len = files.length; i < len; i++) {
-           var match = files[i].match(/.*.png/);
-           if(match !== null)
-               fs.unlinkSync('data/cards/'+files[i]);
-        }
-     });
 }
 
 

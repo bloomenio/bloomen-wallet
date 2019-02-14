@@ -1,0 +1,56 @@
+<div fxFlex fxFlexFill fxLayout="row wrap" fxLayoutAlign="space-around">
+    <div fxFlex="30" class="title-wrapper">
+        <h1>Smart Office</h1>
+        <h3>UNICMQUAM EIUS, TEMURER SEHSMUNIM AD MIMHTAS DIPISCIAM ALIUAERIA SMAGSE QUIS NOSTRUM EXTIONE MARSEAM.</h3>
+        <p>Masagni dolores eoquie voluptatequciuo quisuam estqui dolorem ipsumquia dolor sitamnetase adipisci unumquam
+            eiuse. Basmodi temporant laboreas dolore magnam aliquam byrtasa. Lorem ipsum dolor sit amet, consectetuer
+            adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. U
+        </p>
+    </div>
+    <div class="card-wrapper" fxFlex="30">
+        <mat-card [routerLink]="['/smart-office/smart-office-exchange', 3001]">
+            <div mat-card-image>
+                <img [src]="smartOfficeServices['3001'].previewImg">
+            </div>
+                
+            <mat-card-subtitle>
+                <span>{{smartOfficeServices['3001'].subtitle | uppercase}}</span>
+            </mat-card-subtitle>
+            <mat-card-title>
+                <span>{{smartOfficeServices['3001'].title}}</span>
+            </mat-card-title>
+        </mat-card>
+    </div>
+    <div class="card-wrapper" fxFlex="30">
+        <mat-card [routerLink]="['/smart-office/smart-office-exchange', 3002]">
+            <div mat-card-image>
+                <img [src]="smartOfficeServices['3002'].previewImg">
+            </div>
+                
+            <mat-card-subtitle>
+                <span>{{smartOfficeServices['3002'].subtitle | uppercase}}</span>
+            </mat-card-subtitle>
+            <mat-card-title>
+                <span>{{smartOfficeServices['3002'].title}}</span>
+            </mat-card-title>
+        </mat-card>
+    </div>
+    <div class="card-wrapper" fxFlex="30">
+        <mat-card [routerLink]="['/smart-office/smart-office-exchange', 3003]">
+            <div mat-card-image>
+                <img [src]="smartOfficeServices['3003'].previewImg">
+            </div>
+                
+            <mat-card-subtitle>
+                <span>{{smartOfficeServices['3003'].subtitle | uppercase}}</span>
+            </mat-card-subtitle>
+            <mat-card-title>
+                <span>{{smartOfficeServices['3003'].title}}</span>
+            </mat-card-title>
+        </mat-card>
+    </div>
+    <div class="card-wrapper" fxFlex="30" >
+    </div>
+    <div class="card-wrapper" fxFlex="30">
+    </div>
+</div>

@@ -1,0 +1,4 @@
+<div fxFlex fxFlexFill fxLayout="row wrap" fxLayoutAlign="space-around stretch">
+    <img *ngIf="!exchanged" [src]="mobilities[mobilityId].previewImg">
+    <blo-code-exchanged fxFlex *ngIf="exchanged" [mobilityId]="mobilityId"></blo-code-exchanged>
+</div>

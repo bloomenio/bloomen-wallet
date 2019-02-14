@@ -1,0 +1,4 @@
+export const APPLICATION_DATA_CONSTANTS = {
+    FIRST_RUN: 'FIRST_RUN',
+    THEME: 'THEME'
+};

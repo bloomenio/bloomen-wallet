@@ -1,0 +1,57 @@
+$mat-white: (
+  50: #fff,
+  100: #fff,
+  200: #fff,
+  300: #fff,
+  400: #fff,
+  500: #fff,
+  600: #fff,
+  700: #fff,
+  800: #fff,
+  900: #fff,
+  A100: #fff,
+  A200: #fff,
+  A400: #fff,
+  A700: #fff,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $dark-primary-text,
+    600: $dark-primary-text,
+    700: $dark-primary-text,
+    800: $dark-primary-text,
+    900: $dark-primary-text,
+    A100: $dark-primary-text,
+    A200: $dark-primary-text,
+    A400: $dark-primary-text,
+    A700: $dark-primary-text
+  )
+);
+
+
+// Creates a container object for a light theme to be given to individual component theme mixins.
+@function bloomen-light-theme($primary, $accent, $warn, $background, $foreground) {
+  @return (
+    primary: $primary,
+    accent: $accent,
+    warn: $warn,
+    is-dark: false,
+    foreground: $foreground,
+    background: $background
+  );
+}
+
+// Creates a container object for a dark theme to be given to individual component theme mixins.
+@function bloomen-dark-theme($primary, $accent, $warn, $background, $foreground) {
+  @return (
+    primary: $primary,
+    accent: $accent,
+    warn: $warn,
+    is-dark: true,
+    foreground: $foreground,
+    background: $background
+  );
+}

@@ -1,0 +1,177 @@
+{
+    "videos": {
+        "1001": {
+            "title": "Test title",
+            "subtitle": "Test subtitle",
+            "description": "A compilation of found footage featuring music, interviews, and stories of The Beatles' 250 concerts from 1963 to 1966. Director: Ron Howard, Writers: Mark Monroe, P.G. Morgan (story consultant), Stars: The Beatles, John Lennon, George Harrison",
+            "previewImg": "assets/videos/symbiote.png",
+            "media": {
+                "url": "symbiotev6.mp4",
+                "img": "assets/videos/symbiote.png",
+                "type": "video/mp4"
+            }
+        },
+        "1002": {
+            "title": "Test title",
+            "subtitle": "Test subtitle",
+            "description": "A compilation of found footage featuring music, interviews, and stories of The Beatles' 250 concerts from 1963 to 1966. Director: Ron Howard, Writers: Mark Monroe, P.G. Morgan (story consultant), Stars: The Beatles, John Lennon, George Harrison",
+            "previewImg": "assets/videos/ConnectedOffice.png",
+            "media": {
+                "url": "ConnectedOffice.mp4",
+                "img": "assets/videos/ConnectedOffice.png",
+                "type": "video/mp4"
+            }
+        },
+        "1003": {
+            "title": "Test title",
+            "subtitle": "Test subtitle",
+            "description": "A compilation of found footage featuring music, interviews, and stories of The Beatles' 250 concerts from 1963 to 1966. Director: Ron Howard, Writers: Mark Monroe, P.G. Morgan (story consultant), Stars: The Beatles, John Lennon, George Harrison",
+            "previewImg": "assets/videos/hololens.png",
+            "media": {
+                "url": "hololens_on_air.mp4",
+                "img": "assets/videos/hololens.png",
+                "type": "video/mp4"
+            }
+        },
+        "1004": {
+            "title": "Test title",
+            "subtitle": "Test subtitle",
+            "description": "A compilation of found footage featuring music, interviews, and stories of The Beatles' 250 concerts from 1963 to 1966. Director: Ron Howard, Writers: Mark Monroe, P.G. Morgan (story consultant), Stars: The Beatles, John Lennon, George Harrison",
+            "previewImg": "assets/videos/smartretail.png",
+            "media": {
+                "url": "smartretail_video_en.mp4",
+                "img": "assets/videos/smartretail.png",
+                "type": "video/mp4"
+            }
+        },
+        "1005": {
+            "title": "Test title",
+            "subtitle": "Test subtitle",
+            "description": "A compilation of found footage featuring music, interviews, and stories of The Beatles' 250 concerts from 1963 to 1966. Director: Ron Howard, Writers: Mark Monroe, P.G. Morgan (story consultant), Stars: The Beatles, John Lennon, George Harrison",
+            "previewImg": "assets/videos/wearlumb.png",
+            "media": {
+                "url": "wearlumb_video.mp4",
+                "img": "assets/videos/wearlumb.png",
+                "type": "video/mp4"
+            }
+        }
+    },
+    "mobility": {
+        "2001": {
+            "title": "Scooter",
+            "subtitle": "RENTAL",
+            "description": "Scan QR code to reserve or unlock the scooter. Etiam laoreet justo in pellentesque rutrum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consequat ligula vel ante commodo, quis dignissim lectus suscipit. Proin non venenatis felis, eu molestie justo. Etiam consequat nibh vitae posuere ullamcorper. Integer sollicitudin lacus et lobortis egestas.",
+            "previewImg": "assets/mobility/img_background_scooter.png",
+            "dialogContent": {
+                "textBuy": "Reserve the scooter scanning the QR code",
+                "iconBuy": "assets/icons/ic_scooter.svg",
+                "textAllow": "Scan QR to use the scooter"
+            },
+            "exchanged": {
+                "exchangedImg": "assets/mobility/img_detail_scooter.png",
+                "exchangedTitle": "Enjoy your scooter!",
+                "exchangedText": "Less traffic, cleaner air, and safer streets. Scooters cut the use of vehicles and reduce the volume of traffic on the road."
+            }
+            
+        },
+        "2002": {
+            "title": "Motorcycle",
+            "subtitle": "RENTAL",
+            "description": "Scan QR code to reserve or unlock the scooter. Etiam laoreet justo in pellentesque rutrum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consequat ligula vel ante commodo, quis dignissim lectus suscipit. Proin non venenatis felis, eu molestie justo. Etiam consequat nibh vitae posuere ullamcorper. Integer sollicitudin lacus et lobortis egestas.",
+            "previewImg": "assets/mobility/img_background_motorcycle.png",
+            "dialogContent": {
+                "textBuy": "Reserve the motorcycle scanning the QR code",
+                "iconBuy": "assets/icons/ic_motorcycle.svg",
+                "textAllow": "Scan QR to use the motorcycle"
+            },
+            "exchanged": {
+                "exchangedImg": "assets/mobility/img_detail_motorcycle.png",
+                "exchangedTitle": "Enjoy your motorcycle!",
+                "exchangedText": "Motorbikes are environmentally friendly and can provide you with more impressions."
+            }
+        },
+        "2003": {
+            "title": "Green car",
+            "subtitle": "RENTAL",
+            "description": "Scan QR code to reserve or unlock the scooter. Etiam laoreet justo in pellentesque rutrum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consequat ligula vel ante commodo, quis dignissim lectus suscipit. Proin non venenatis felis, eu molestie justo. Etiam consequat nibh vitae posuere ullamcorper. Integer sollicitudin lacus et lobortis egestas.",
+            "previewImg": "assets/mobility/img_background_green_car.png",
+            "dialogContent": {
+                "textBuy": "Reserve the car scanning the QR code",
+                "iconBuy": "assets/icons/ic_car.svg",
+                "textAllow": "Scan QR to unlock and use the car"
+            },
+            "exchanged": {
+                "exchangedImg": "assets/mobility/img_detail_green_car.png",
+                "exchangedTitle": "Enjoy your car!",
+                "exchangedText": "Small cars are the best solution to get around the city and for short trips."
+            }
+        },
+        "2004": {
+            "title": "Yellow car",
+            "subtitle": "RENTAL",
+            "description": "Scan QR code to reserve or unlock the scooter. Etiam laoreet justo in pellentesque rutrum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consequat ligula vel ante commodo, quis dignissim lectus suscipit. Proin non venenatis felis, eu molestie justo. Etiam consequat nibh vitae posuere ullamcorper. Integer sollicitudin lacus et lobortis egestas.",
+            "previewImg": "assets/mobility/img_background_yellow_car.png",
+            "dialogContent": {
+                "textBuy": "Reserve the car scanning the QR code",
+                "iconBuy": "assets/icons/ic_car.svg",
+                "textAllow": "Scan QR unlock and use the car"
+            },
+            "exchanged": {
+                "exchangedImg": "assets/mobility/img_detail_yellow_car.png",
+                "exchangedTitle": "Enjoy your car!",
+                "exchangedText": "Small cars are the best solution to get around the city and for short trips."
+            }
+        }
+    },
+    "smart-office": {
+        "3001": {
+            "title": "Reserve desk",
+            "subtitle": "SMART OFFICE",
+            "description": "Scan QR code to reserve or unlock the desk. Etiam laoreet justo in pellentesque rutrum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consequat ligula vel ante commodo, quis dignissim lectus suscipit. Proin non venenatis felis, eu molestie justo. Etiam consequat nibh vitae posuere ullamcorper. Integer sollicitudin lacus et lobortis egestas.",
+            "previewImg": "assets/smart-office/img_background_reserve_desk.png",
+            "dialogContent": {
+                "textBuy": "Reserve the desk scanning the QR code",
+                "iconBuy": "assets/icons/ic_desktop.svg",
+                "textAllow": "Scan QR to unlock and use the desk"
+            },
+            "exchanged": {
+                "exchangedImg": "assets/smart-office/img_detail_reserve_desk.png",
+                "exchangedTitle": "You can use the desk!",
+                "exchangedText": "A new site every day can lead to conversations with future collaborators. With everything included – high-speed internet, office furniture and utilities - just scan the QR code of the desk and get to work."
+            }
+            
+        },
+        "3002": {
+            "title": "Reserve meeting room",
+            "subtitle": "RENTAL",
+            "description": "Scan QR code to reserve or unlock the meeting room. Etiam laoreet justo in pellentesque rutrum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consequat ligula vel ante commodo, quis dignissim lectus suscipit. Proin non venenatis felis, eu molestie justo. Etiam consequat nibh vitae posuere ullamcorper. Integer sollicitudin lacus et lobortis egestas.",
+            "previewImg": "assets/smart-office/img_background_reserve_meeting_room.png",
+            "dialogContent": {
+                "textBuy": "Reserve the meeting room scanning the QR code",
+                "iconBuy": "assets/icons/ic_calendar.svg",
+                "textAllow": "Scan QR to unlock and use the meeting room"
+            },
+            "exchanged": {
+                "exchangedImg": "assets/smart-office/img_detail_reserve_meeting_room.png",
+                "exchangedTitle": "You can use the room!",
+                "exchangedText": "A new site every day can lead to conversations with future collaborators. With everything included – high-speed internet, office furniture and utilities - just scan the QR code of the desk and get to work."
+            }
+        },
+        "3003": {
+            "title": "Office printer",
+            "subtitle": "RENTAL",
+            "description": "Scan QR code to reserve or unlock the printer. Etiam laoreet justo in pellentesque rutrum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consequat ligula vel ante commodo, quis dignissim lectus suscipit. Proin non venenatis felis, eu molestie justo. Etiam consequat nibh vitae posuere ullamcorper. Integer sollicitudin lacus et lobortis egestas.",
+            "previewImg": "assets/smart-office/img_background_printer.png",
+            "dialogContent": {
+                "textBuy": "Reserve the printer scanning the QR code",
+                "iconBuy": "assets/icons/ic_printer.svg",
+                "textAllow": "Scan QR to unlock and use the printer"
+            },
+            "exchanged": {
+                "exchangedImg": "assets/smart-office/img_detail_printer.png",
+                "exchangedTitle": "You can use the printer!",
+                "exchangedText": "A new site every day can lead to conversations with future collaborators. With everything included – high-speed internet, office furniture and utilities - just scan the QR code of the desk and get to work."
+            }
+        }
+    }
+}

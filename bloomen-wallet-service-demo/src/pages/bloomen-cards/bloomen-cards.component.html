@@ -1,0 +1,4 @@
+<div fxFlex fxFlexFill fxLayout="row wrap" fxLayoutAlign="space-around">
+    <div class="card-wrapper" fxLayoutAlign="center" fxFlex="30" *ngFor="let card of cards" (click)="zoomImage(card)"
+        [ngClass]="{'blur-cards': dialogRef}" [ngStyle]="{'background-image': 'url(' + card + ')'}"></div>
+</div>

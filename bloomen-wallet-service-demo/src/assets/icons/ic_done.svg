@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 53 (72520) - https://sketchapp.com -->
+    <title>ED8EEC04-7F73-471F-A3D5-8396226AE7B3</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <polygon id="path-1" points="5.6 10.3246753 1.4 6.23376623 0 7.5974026 5.6 13.0519481 17.6 1.36363636 16.2 0"></polygon>
+    </defs>
+    <g id="bloomen_desktop" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Assets" transform="translate(-163.000000, -108.000000)">
+            <g id="material_icons" transform="translate(52.000000, 45.000000)">
+                <rect id="bound" stroke="#979797" x="0.5" y="0.5" width="359" height="696"></rect>
+                <g id="ic_done" transform="translate(114.000000, 68.000000)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <use fill="#3F9C35" xlink:href="#path-1"></use>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

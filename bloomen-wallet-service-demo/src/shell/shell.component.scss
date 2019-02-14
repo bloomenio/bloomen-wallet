@@ -1,0 +1,21 @@
+@import "~scss/variables.scss";
+
+:host {
+  height: 100%;
+}
+
+.mat-toolbar {
+  height: 80px;
+  img {
+    height: 80px;
+  }
+}
+
+.mat-sidenav {
+  min-width: 270px;
+  max-width: 28%;
+}
+
+.back-button-wrapper {
+  color: black;
+}

@@ -1,0 +1,17 @@
+<div fxFlex fxFlexFill fxLayout="row wrap">
+  <div fxFlex="55">
+      <img fxFlex [src]="services[id].exchanged.exchangedImg">
+  </div>
+  <div fxFlex="45" fxLayout="column wrap" fxLayoutAlign="space-between" class="info-wrapper">
+    <div fxLayout="column wrap">
+      <span class="title">{{services[id].title}}</span>
+      <span class="subtitle">{{services[id].subtitle}}</span>    
+    </div>
+    <div fxFlex fxLayout="column wrap" fxLayoutAlign="center center">
+      <div class="exchange-icon"></div>
+      <span class="title">Unlocked</span>
+      <span class="exchanged-title">{{services[id].exchanged.exchangedTitle}}</span>
+    </div>
+    <span fxFlex fxLayoutAlign="center start" class="exchanged-text">{{services[id].exchanged.exchangedText}}</span>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+@import "~scss/variables.scss";
+
+img {
+    object-fit: cover;
+}
+
+.info-wrapper {
+    padding: 24px;
+    .title {
+        font-size: $font-size-xxxl;
+        font-weight: $font_medium;
+    }
+
+    .subtitle {
+        font-size: $font-size-s;
+    }
+
+    .exchanged-title {
+        font-size: $font-size-xxl;
+    }
+
+    .exchanged-text {
+        font-size: $font-size-xl;
+    }
+
+    .exchange-icon {
+        width: 40%;
+        height: 40%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-image: url("assets/icons/ic_done.svg");
+    }    
+}
+

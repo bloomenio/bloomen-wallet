@@ -1,0 +1,83 @@
+<div fxFlex fxFlexFill fxLayout="row wrap" fxLayoutAlign="space-around stretch">
+    <div fxFlex="30" class="title-wrapper">
+        <h1>Video</h1>
+        <h3>UNICMQUAM EIUS, TEMURER SEHSMUNIM AD MIMHTAS DIPISCIAM ALIUAERIA SMAGSE QUIS NOSTRUM EXTIONE MARSEAM.</h3>
+        <p>Masagni dolores eoquie voluptatequciuo quisuam estqui dolorem ipsumquia dolor sitamnetase adipisci unumquam
+            eiuse. Basmodi temporant laboreas dolore magnam aliquam byrtasa. Lorem ipsum dolor sit amet, consectetuer
+            adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. U
+        </p>
+    </div>
+    <div class="card-wrapper" fxFlexFill fxFlex="30">
+        <mat-card [routerLink]="['/videos/video-player', 1001]">
+            <div mat-card-image class="image-wrapper">
+                <img [src]="videos['1001'].previewImg" alt="video">
+                <div class="play-button"></div>
+            </div>
+            <mat-card-subtitle>
+                <span>{{videos['1001'].subtitle | uppercase}}</span>
+            </mat-card-subtitle>
+            <mat-card-title>
+                <span>{{videos['1001'].title}}</span>
+            </mat-card-title>
+        </mat-card>
+    </div>
+    <div class="card-wrapper" fxFlexFill fxFlex="30">
+        <mat-card [routerLink]="['/videos/video-player', 1002]">
+            <div mat-card-image class="image-wrapper">
+                <img [src]="videos['1002'].previewImg" alt="video">
+                <div class="play-button"></div>
+            </div>
+            <mat-card-subtitle>
+                <span>{{videos['1002'].subtitle | uppercase}}</span>
+            </mat-card-subtitle>
+            <mat-card-title>
+                <span>{{videos['1002'].title}}</span>
+            </mat-card-title>
+        </mat-card>
+    </div>
+    <div class="card-wrapper" fxFlexFill fxFlex="30">
+        <mat-card [routerLink]="['/videos/video-player', 1003]">
+            <div mat-card-image class="image-wrapper">
+                <img [src]="videos['1003'].previewImg" alt="video">
+                <div class="play-button black-icon"></div>
+            </div>
+            <mat-card-subtitle>
+                <span>{{videos['1003'].subtitle | uppercase}}</span>
+            </mat-card-subtitle>
+            <mat-card-title>
+                <span>{{videos['1003'].title}}</span>
+            </mat-card-title>
+        </mat-card>
+    </div>
+    <div class="card-wrapper" fxFlexFill fxFlex="30">
+        <mat-card [routerLink]="['/videos/video-player', 1004]">
+            <div mat-card-image class="image-wrapper">
+                <img [src]="videos['1004'].previewImg" alt="video">
+                <div class="play-button"></div>
+            </div>
+            
+            <mat-card-subtitle>
+                <span>{{videos['1004'].subtitle | uppercase}}</span>
+            </mat-card-subtitle>
+            <mat-card-title>
+                <span>{{videos['1004'].title}}</span>
+            </mat-card-title>
+        </mat-card>
+    </div>
+    <div class="card-wrapper" fxFlexFill fxFlex="30">
+        <mat-card [routerLink]="['/videos/video-player', 1005]">
+            <div mat-card-image class="image-wrapper">
+                <img [src]="videos['1005'].previewImg" alt="video">
+                <div class="play-button"></div>
+            </div>
+            
+            <mat-card-subtitle>
+                <span>{{videos['1005'].subtitle | uppercase}}</span>
+            </mat-card-subtitle>
+            <mat-card-title>
+                <span>{{videos['1005'].title}}</span>
+            </mat-card-title>
+        </mat-card>
+    </div>
+        
+</div>

@@ -37,7 +37,6 @@ menuCommands['U1'] = {name: '[U1] Test of device access to an asset', value: uti
 menuCommands['U2'] = {name: '[U2] Purge all prepaid card', value: utils.u2 };                
 menuCommands['U3'] = {name: '[U3] Generate 10 random PPC', value: utils.u3 };
 menuCommands['U4'] = {name: '[U4] Re-activate all cards', value: utils.u4 };     
-menuCommands['U5'] = {name: '[U5] Generate all image cards', value: utils.u5 };
 menuCommands['U6'] = {name: '[U6] List user addresses', value: utils.u6 };
 menuCommands['U7'] = {name: '[U7] Add address', value: utils.u7 };
 menuCommands['U8'] = {name: '[U8] Delete address', value: utils.u8 };
@@ -52,7 +51,6 @@ async function prepaidCardMenu() {
         menuCommands['U2'],                
         menuCommands['U3'],
         menuCommands['U4'],
-        menuCommands['U5'],
         menuCommands['BACK_MAIN_MENU'],
         menuCommands['EXIT']
                 
@@ -223,7 +221,6 @@ async function utilsMenu() {
         menuCommands['U2'],                
         menuCommands['U3'], 
         menuCommands['U4'],
-        menuCommands['U5'],
         menuCommands['U6'],
         menuCommands['U7'],
         menuCommands['U8'],

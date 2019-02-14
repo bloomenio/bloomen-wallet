@@ -1,12 +1,12 @@
 const HDWalletProvider = require("truffle-hdwallet-provider");
 
-const Businesscontract = require('../../../bloomen-wallet-app/src/providers/services/web3/contracts/json/PrepaidCardManager.json');
+const Businesscontract = require('../contracts/PrepaidCardManager.json');
 
-const Inventorycontract = require('../../../bloomen-wallet-app/src/providers/services/web3/contracts/json/Bloomen.json');
+const Inventorycontract = require('../contracts/Bloomen.json');
 
-const DappsContract = require('../../../bloomen-wallet-app/src/providers/services/web3/contracts/json/JsonContainerFactory.json');
+const DappsContract = require('../contracts/JsonContainerFactory.json');
 
-const ContainerContrant = require('../../../bloomen-wallet-app/src/providers/services/web3/contracts/json/JsonContainer.json');
+const ContainerContrant = require('../contracts/JsonContainer.json');
 
 
 const GAS = 9999999999;

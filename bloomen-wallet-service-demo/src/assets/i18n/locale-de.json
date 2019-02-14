@@ -1,0 +1,76 @@
+{
+  "common": {
+    "to_be_implemented": "To be implemented"
+  },
+  "language": {
+    "en": "English",
+    "de": "Deutsch",
+    "el": "ελληνικά",
+    "es": "Español",
+    "ca": "Català"
+  },
+  "tutorial": {
+    "0": {
+      "title": "Music",
+      "text": "In the Bloomen music use case, the music industry stakeholders provide their itemised content to a distributed ledger. This offers them a system that supports a decentralised, crowdsourced, auditable and traceable database, where the associated rights to the musical assets reside."
+    },
+    "1": {
+      "title": "News Media Content",
+      "text": "How can we use blockchains to create an “economy of letters“?  An economy of news content where creative writers, photographers, graphic editors who create excellent research and writing on whatever topic are paid through micropayments, not from one publisher, but from social media re-use, e.g. based on quotes and positive feedback."
+    },
+    "2": {
+      "title": "Web TV",
+      "text": "Even after decades of developments in the digital sector, there is still a huge distinction between what and how things are done for television and online portals. The differences in budgets for the two types of media make interoperability almost impossible."
+    },
+    "3": {
+      "title": "Can a complex technology make life simpler for creative people?",
+      "text": "Welcome to Bloomen, an EU-funded research project. The big question we aim to answer: How could blockchain technologies help to compensate creative people for their work?"
+    },
+    "skip": "Skip",
+    "enter": "Enter"
+  },
+  "home": {
+    "open": "Open",
+    "cleanData": "Clean data",
+    "removeDapp": "Remove",
+    "options_shell": {
+      "tutorial": "Tutorial",
+      "refreshDapps": "Refresh Dapps"
+    }
+  },
+  "login": {
+    "message": "Please indicate if you want to create a new account, or if you already have an account and you prefer restore it.",
+    "account": {
+      "create": "Create a new account",
+      "restore": "Restore an account"
+    }
+  },
+  "dapp": {
+    "home": {
+      "buy_content": "Buy content",
+      "allow": "Allow",
+      "recent_activity": "Recent activity",
+      "show_more": "Show more",
+      "no_data": "No data"
+    },
+    "profile": {
+      "code_copied": "The code has been copied",
+      "send_cash": "Send cash"
+    },
+    "scanQR": {
+      "increase_balance": "To increase your balance, scan the QR code of the card.",
+      "scan_qr_code": "Scan qr code"
+    },
+    "options_shell": {
+      "change_instance": "Change instance",
+      "refresh_dapp": "Refresh dapp"
+    },
+    "credit_header": {
+      "points": "Your credit is {{balance}} points"
+    }
+  },
+  "network_status": {
+    "title": "Internet connection not available",
+    "message": "Please connect your device to the internet to use the app."
+  }
+}

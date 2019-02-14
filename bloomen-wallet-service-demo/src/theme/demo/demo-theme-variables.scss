@@ -1,0 +1,74 @@
+// Angular Material custom theme
+// The mixins below must be included once so we separated them from the variables
+@import "~@angular/material/theming";
+
+/*
+ * Demo palette
+ */
+$mat-demo: (
+  50 : #e4f3ff,
+  100 : #bbe2ff,
+  200 : #8ecfff,
+  300 : #60bcff,
+  400 : #3eadff,
+  500 : #1c9fff,
+  600 : #1997ff,
+  700 : #148dff,
+  800 : #1183ff,
+  900 : #0972ff,
+  A100 : #ffffff,
+  A200 : #f5f9ff,
+  A400 : #c2d9ff,
+  A700 : #a8c9ff,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $dark-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $dark-primary-text,
+    A400: $dark-primary-text,
+    A700: $dark-primary-text
+  )
+);
+
+$mat-bloomen-demo-theme-background: (
+  status-bar: white,
+  app-bar:    white,
+  background: #373737,
+  hover:      rgba(white, 0.04), // TODO(kara): check style with Material Design UX
+  card:       white,
+  dialog:     white,
+  disabled-button: rgba(white, 0.12),
+  raised-button: map-get($mat-grey, 800),
+  focused-button: $light-focused,
+  selected-button: map_get($mat-grey, 900),
+  selected-disabled-button: map_get($mat-grey, 800),
+  disabled-button-toggle: black,
+  unselected-chip: map_get($mat-grey, 700),
+  disabled-list-option: black
+);
+
+$mat-bloomen-demo-theme-foreground: (
+  base:              white,
+  divider:           $light-dividers,
+  dividers:          $light-dividers,
+  disabled:          $light-disabled-text,
+  disabled-button:   rgba(white, 0.3),
+  disabled-text:     $light-disabled-text,
+  elevation:         black,
+  hint-text:         $light-disabled-text,
+  secondary-text:    $light-secondary-text,
+  icon:              white,
+  icons:             white,
+  text:              white,
+  slider-min:        white,
+  slider-off:        rgba(white, 0.3),
+  slider-off-active: rgba(white, 0.3)
+);

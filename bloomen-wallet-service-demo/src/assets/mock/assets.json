@@ -1,0 +1,95 @@
+{
+    "videos": {
+        "deviceId": "Player by Worldline",
+        "1001": {
+            "dappId": "Test",
+            "assetKey": "1001",
+            "schemaId": "2",
+            "amount": "100",
+            "description": "Earth miracle"
+        },
+        "1002": {
+            "dappId": "Test",
+            "assetKey": "1002",
+            "schemaId": "2",
+            "amount": "100",
+            "description": "Earth miracle"
+        },
+        "1003": {
+            "dappId": "Test",
+            "assetKey": "1003",
+            "schemaId": "2",
+            "amount": "100",
+            "description": "Earth miracle"
+        },
+        "1004": {
+            "dappId": "Test",
+            "assetKey": "1004",
+            "schemaId": "2",
+            "amount": "100",
+            "description": "Earth miracle"
+        },
+        "1005": {
+            "dappId": "Test",
+            "assetKey": "1005",
+            "schemaId": "2",
+            "amount": "100",
+            "description": "Earth miracle"
+        }
+    },
+    "mobility": {
+        "deviceId": "Mobility Worldline",     
+        "2001": {
+            "dappId": "Test",
+            "assetKey": "2001",
+            "schemaId": "2",
+            "amount": "100",
+            "description": "Scooter test"
+        },
+        "2002": {
+            "dappId": "Test",
+            "assetKey": "2002",
+            "schemaId": "2",
+            "amount": "100",
+            "description": "Motorcycle test"
+        },
+        "2003": {
+            "dappId": "Test",
+            "assetKey": "2003",
+            "schemaId": "2",
+            "amount": "100",
+            "description": "Green car test"
+        },
+        "2004": {
+            "dappId": "Test",
+            "assetKey": "2004",
+            "schemaId": "2",
+            "amount": "100",
+            "description": "Yellow car test"
+        }
+    },
+    "smart-office": {
+        "deviceId": "Smart office Worldline",     
+        "3001": {
+            "dappId": "Test",
+            "assetKey": "3001",
+            "schemaId": "2",
+            "amount": "100",
+            "description": "Reserve desk test"
+        },
+        "3002": {
+            "dappId": "Test",
+            "assetKey": "3002",
+            "schemaId": "2",
+            "amount": "100",
+            "description": "Reserve meeting test"
+        },
+        "3003": {
+            "dappId": "Test",
+            "assetKey": "3003",
+            "schemaId": "2",
+            "amount": "100",
+            "description": "Office printer test"
+        }
+    }
+}

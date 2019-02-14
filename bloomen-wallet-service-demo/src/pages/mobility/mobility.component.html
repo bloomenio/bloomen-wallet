@@ -1,0 +1,67 @@
+<div fxFlex fxFlexFill fxLayout="row wrap" fxLayoutAlign="space-around">
+    <div fxFlex="30" class="title-wrapper">
+        <h1>Mobility</h1>
+        <h3>UNICMQUAM EIUS, TEMURER SEHSMUNIM AD MIMHTAS DIPISCIAM ALIUAERIA SMAGSE QUIS NOSTRUM EXTIONE MARSEAM.</h3>
+        <p>Masagni dolores eoquie voluptatequciuo quisuam estqui dolorem ipsumquia dolor sitamnetase adipisci unumquam
+            eiuse. Basmodi temporant laboreas dolore magnam aliquam byrtasa. Lorem ipsum dolor sit amet, consectetuer
+            adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. U
+        </p>
+    </div>
+    <div class="card-wrapper" fxFlexFill fxFlex="30">
+        <mat-card [routerLink]="['/mobility/mobility-exchange', 2001]">
+            <div mat-card-image>
+                <img [src]="mobilities['2001'].previewImg">
+            </div>
+            
+            <mat-card-subtitle>
+                <span>{{mobilities['2001'].subtitle | uppercase}}</span>
+            </mat-card-subtitle>
+            <mat-card-title>
+                <span>{{mobilities['2001'].title}}</span>
+            </mat-card-title>
+        </mat-card>
+    </div>
+    <div class="card-wrapper" fxFlexFill fxFlex="30">
+        <mat-card [routerLink]="['/mobility/mobility-exchange', 2002]">
+            <div mat-card-image>
+                <img [src]="mobilities['2002'].previewImg">
+            </div>
+            
+            <mat-card-subtitle>
+                <span>{{mobilities['2002'].subtitle | uppercase}}</span>
+            </mat-card-subtitle>
+            <mat-card-title>
+                <span>{{mobilities['2002'].title}}</span>
+            </mat-card-title>
+        </mat-card>
+    </div>
+    <div class="card-wrapper" fxFlexFill fxFlex="30">
+        <mat-card [routerLink]="['/mobility/mobility-exchange', 2003]">
+            <div mat-card-image>
+                <img [src]="mobilities['2003'].previewImg">
+            </div>
+            
+            <mat-card-subtitle>
+                <span>{{mobilities['2003'].subtitle | uppercase}}</span>
+            </mat-card-subtitle>
+            <mat-card-title>
+                <span>{{mobilities['2003'].title}}</span>
+            </mat-card-title>
+        </mat-card>
+    </div>
+    <div class="card-wrapper" fxFlexFill fxFlex="30">
+        <mat-card [routerLink]="['/mobility/mobility-exchange', 2004]">
+            <div mat-card-image>
+                <img [src]="mobilities['2004'].previewImg">
+            </div>
+            
+            <mat-card-subtitle>
+                <span>{{mobilities['2004'].subtitle | uppercase}}</span>
+            </mat-card-subtitle>
+            <mat-card-title>
+                <span>{{mobilities['2004'].title}}</span>
+            </mat-card-title>
+        </mat-card>
+    </div>
+    <div class="card-wrapper" fxFlex="30"></div>
+</div>

@@ -2,14 +2,7 @@ const web3Ctx = require('../web3/web3Ctx');
 const common = require('../common/common');
 const uuidv4 = require('uuid/v4');
 const inquirer = require('inquirer');
-const mergeImages = require( 'merge-images');
 const _ = require( 'underscore');
-
-const text2png = require('text2png');
-
-const Canvas  = require('canvas');
-const sharp = require('sharp');
-const qr = require('qr-image');
 const fs = require('fs');
 
 function getRandomId() {
@@ -150,47 +143,6 @@ async function _u4() {
     }
 }
 
-//[U5] Generate all image cards
-async function _u5() {
-    let cards = common.getCards();
-    for (i = 0; i < cards.length; i++) {
-        await generateQRCard(cards[i].id,cards[i].secret,cards[i].points);
-    }
-}
-
-async function generateQRCard(id,secret,points){
-    
-    const qr_png = qr.imageSync(secret, { type: 'png' , ec_level: 'H',margin: 2 });
-    await sharp(qr_png).resize(185, 185).toFile('./data/tmp/tmp_qr_resized.png');
-
-    fs.writeFileSync('./data/tmp/tmp_points.png', text2png(points + '', {color: 'white',font:'90px Roboto', localFontPath: 'fonts/roboto/Roboto-Regular.ttf',
-    localFontName: 'Roboto' }));
-
-    fs.writeFileSync('./data/tmp/tmp_units.png', text2png('CR', {color: 'white',font:'40px Roboto', localFontPath: 'fonts/roboto/Roboto-Regular.ttf',
-    localFontName: 'Roboto'}));
-
-    const cfgCard=[
-        { src: './img/bloomen_card.png', x: 0, y: 0 },
-        { src: './data/tmp/tmp_qr_resized.png', x: 290, y: 5 },
-        { src: './data/tmp/tmp_points.png', x: 170, y: 205 },
-        { src: './data/tmp/tmp_units.png', x: 400, y: 240 },
-      ];
-
-    let data = await mergeImages(cfgCard, {
-    Canvas: Canvas
-    });
-    
-    data = data.replace(/^data:image\/png;base64,/, '');
-
-    fs.writeFileSync('./data/cards/'+id+'.png', data, 'base64', function(err) {
-        if (err) throw err;
-    });
-    
-    fs.unlinkSync(cfgCard[1].src);
-    fs.unlinkSync(cfgCard[2].src);
-    fs.unlinkSync(cfgCard[3].src);
-}
-
 //[U6] List user addresses
 async function _u6() {
     common.getAddress().forEach(item => {         
@@ -234,7 +186,6 @@ module.exports = {
     u2: _u2,
     u3: _u3,
     u4: _u4,
-    u5: _u5,
     u6: _u6,
     u7: _u7,
     u8: _u8

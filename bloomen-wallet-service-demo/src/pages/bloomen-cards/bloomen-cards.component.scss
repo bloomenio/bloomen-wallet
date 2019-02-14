@@ -1,0 +1,14 @@
+@import "~scss/variables.scss";
+
+.card-wrapper {
+    margin: 16px 0;
+    width: 30vw;
+    height: 30vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.blur-cards {
+  filter: blur(4px);
+}
