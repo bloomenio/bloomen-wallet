@@ -1,6 +1,6 @@
 [![nps friendly](https://img.shields.io/badge/nps-friendly-blue.svg?style=flat-square)](https://github.com/kentcdodds/nps)
 
-# bloomen wallet cli
+# bloomen wallet truffle
 
 
 # Getting started
@@ -10,27 +10,22 @@
  cp .env.example .env && vi .env
  ```
 
-2. Install dependencies (If you prefer to use docker jump to point 4):
+2. Install dependencies :
  ```sh
  npm install
  ```
 
-3. Launch development server, and open `localhost:4200` in your browser:
+3. Launch development task in order to deploy on blockchain (ethereum) new version of contracts:
  ```sh
- npm start
- ```
-
-4. Easy with docker
- ```sh
- docker run  -it -v $(pwd)/.env:/usr/src/bloomen-wallet-cli/.env  -v $(pwd)/data:/usr/src/bloomen-wallet-cli/data bloomenio/bloomen-wallet-cli:1.0.1
- ```
-   
+ npm start development
+ ```   
 
 # Project structure
 
 ```
-data/                        Local storage to maintain application state.
-src/                         project source code
+build/                        Local storage for deployed contracts.
+contracts/                    Contracts source code
+migrations/                   Truffle migrations scripts
 ```
 
 # Main tasks
@@ -39,4 +34,5 @@ Task automation is based on [NPM scripts](https://docs.npmjs.com/misc/scripts).
 
 Task                            | Description
 --------------------------------|--------------------------------------------------------------------------------------
-`npm start`                     | Start command line tool
+`npm start development`         | Launch development task in order to deploy on blockchain
+`npm start export`              | Copy build contracts to app & cli projects

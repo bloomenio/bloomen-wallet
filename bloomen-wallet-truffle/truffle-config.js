@@ -3,9 +3,6 @@ var HDWalletProvider = require("truffle-hdwallet-provider");
 
 var Web3 = require('web3');
 
-
-
-
 module.exports = {
   solc: {
     optimizer: {
