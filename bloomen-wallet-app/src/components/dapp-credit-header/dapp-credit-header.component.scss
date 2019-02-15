@@ -5,3 +5,12 @@
     height: $credit-header-height;
     font-size: $font-size-xl;
 }
+
+.balance-spinner {
+    background-image: url("assets/balance-spinner.svg");
+    height: 20px;
+    width: 20px;
+    background-repeat: no-repeat;
+    margin: 10px auto;
+    margin-left: 5px;
+  }

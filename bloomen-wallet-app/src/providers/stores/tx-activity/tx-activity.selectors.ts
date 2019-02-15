@@ -1,9 +1,11 @@
-import { createFeatureSelector } from '@ngrx/store';
+import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 // Reducer
 import * as fromReducer from './tx-activity.reducer';
 
 
-export const MnemonicState = createFeatureSelector<fromReducer.TxActivityState>('txActivity');
+export const TxActivityState = createFeatureSelector<fromReducer.TxActivityState>('txActivity');
 
-export const { selectAll: selectAllTxActivity, selectIds } = fromReducer.txAdapter.getSelectors(MnemonicState);
+export const { selectAll: selectAllTxActivity, selectIds } = fromReducer.txAdapter.getSelectors(TxActivityState);
+
+export const getIsLoading = createSelector(TxActivityState, fromReducer.getIsLoading);

@@ -12,7 +12,7 @@ import { Store } from '@ngrx/store';
 import * as fromTxActivitySelectors from '@stores/tx-activity/tx-activity.selectors';
 import * as fromTxActivityActions from '@stores/tx-activity/tx-activity.actions';
 
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 import { TxActivityModel } from '@core/models/tx-activity.model';
 import { BarCodeScannerService } from '@services/barcode-scanner/barcode-scanner.service';
 import { QR_VALIDATOR } from '@core/constants/qr-validator.constants';
@@ -21,6 +21,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { DappGeneralDialogComponent } from '@components/dapp-general-dialog/dapp-general-dialog.component';
 
 import { DappInputDialogComponent } from '@components/dapp-input-dialog/dapp-input-dialog.component';
+import { pipe } from '@angular/core/src/render3';
+import { skip } from 'rxjs/operators';
 
 const log = new Logger('dapp-home.component');
 
@@ -44,6 +46,8 @@ export class DappHomeComponent implements OnInit, OnDestroy {
 
   public buyObject: any;
 
+  public isLoading$: Observable<boolean>;
+
   @Input() public dapp: Dapp;
 
   /**
@@ -65,6 +69,7 @@ export class DappHomeComponent implements OnInit, OnDestroy {
       this.txActivityArray = txActivityArray.sort((a, b) => b.epoch - a.epoch);
       this.currentPage = Math.ceil(txActivityArray.length / 10);
     });
+    this.isLoading$ = this.store.select(fromTxActivitySelectors.getIsLoading);
   }
 
   public ngOnDestroy() {

@@ -30,11 +30,6 @@ export class BalanceEffects {
         private erc223: ERC223Contract,
         private web3Service: Web3Service,
     ) {
-
-        this.web3Service.ready(() => {
-            this.store.dispatch(new fromBalanceActions.InitBalanceEvents);
-        });
-
         this.erc223.getEvents().subscribe((event: any) => {
             if (event) {
                 this.web3Service.ready(() => {
