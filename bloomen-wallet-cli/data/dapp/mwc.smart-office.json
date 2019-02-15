@@ -1,0 +1,118 @@
+{
+  "dappId": "MWC-SMART-OFFICE",
+  "laf":{
+    "theme": "bloomen-orange-theme-light",
+    "backgroundImage": "assets/dapps/img_bg_orange_geometrical.png",
+    "prepaidCardImage": "assets/instances/img_prepaid_card_qr_demo.png",
+    "landingImage": "assets/dapps/img_landing_orange_geometrical.png",
+    "homeImage": "assets/dapps/img_home_orange_geometrical.png",    
+    "logo": "https://alastria1.wlilab.eu/video/office.svg"
+  },
+  "i18n":{
+    "en":{
+      "home": {
+        "title": "Smart Office",
+        "subtitle": "Try out a new experience with Smart Office"
+      },
+      "login": {
+        "title": "Smart Office"
+      }
+    },
+    "el":{
+      "home": {
+        "title": "Smart Office",
+        "subtitle": "Try a complete experience"
+      },
+      "login": {
+        "title": "Smart Office"
+      }
+    },
+    "es":{
+      "home": {
+        "title": "Smart Office",
+        "subtitle": "Try a complete experience"
+      },
+      "login": {
+        "title": "Smart Office"
+      }
+    },
+    "de":{
+      "home": {
+        "title": "Smart Office",
+        "subtitle": "Try a complete experience"
+      },
+      "login": {
+        "title": "Smart Office"
+      }
+    },
+    "ca":{
+      "home": {
+        "title": "Smart Office",
+        "subtitle": "Try a complete experience"
+      },
+      "login": {
+        "title": "Smart Office"
+      }
+    }
+  },
+  "news": [
+    { "img" : "https://alastria1.wlilab.eu/bloo-demo/assets/smart-office/img_background_printer.png",
+      "i18n":{
+        "en":{
+          "title": "Office printer",
+          "description": "Get this facility office"
+        },
+        "el":{
+          "title": "EL-News #1",
+          "description": "EL-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed congue velit mi, vitae sodales ligula fermentum ut. Donec vel ornare nibh. Duis scelerisque suscipit arcu, sit amet malesuada orci feugiat sit amet. Vestibulum at efficitur arcu, et tincidunt nunc. Maecenas non ornare lacus, ac egestas magna. In eu mattis neque, at consectetur nunc. In vehicula nec leo semper fringilla. Proin magna urna, suscipit eu maximus non, feugiat ut massa. Nunc vehicula ligula et velit iaculis sodales. Proin at urna nec libero gravida congue. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla faucibus tincidunt ante, convallis aliquet purus rhoncus sit amet. Duis sit amet volutpat risus. Donec et orci nisi. Nullam vulputate lobortis velit ut congue. Maecenas felis lacus, elementum efficitur vehicula quis, pulvinar a elit. Duis gravida arcu non tortor scelerisque, eu cursus purus viverra. Nulla erat lectus, consectetur nec pharetra ornare, imperdiet sit amet enim. Maecenas vehicula mattis libero vitae euismod. Etiam orci mi, venenatis ac enim id, posuere varius velit. Etiam rutrum urna a ante luctus, a efficitur leo rhoncus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer non euismod nisi. Sed id enim diam. Vestibulum ac sollicitudin metus, vitae feugiat orci. Cras eget justo urna." 
+        },
+        "es":{
+          "title": "ES-News #1",
+          "description": "ES-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed congue velit mi, vitae sodales ligula fermentum ut. Donec vel ornare nibh. Duis scelerisque suscipit arcu, sit amet malesuada orci feugiat sit amet. Vestibulum at efficitur arcu, et tincidunt nunc. Maecenas non ornare lacus, ac egestas magna. In eu mattis neque, at consectetur nunc. In vehicula nec leo semper fringilla. Proin magna urna, suscipit eu maximus non, feugiat ut massa. Nunc vehicula ligula et velit iaculis sodales. Proin at urna nec libero gravida congue. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla faucibus tincidunt ante, convallis aliquet purus rhoncus sit amet. Duis sit amet volutpat risus. Donec et orci nisi. Nullam vulputate lobortis velit ut congue. Maecenas felis lacus, elementum efficitur vehicula quis, pulvinar a elit. Duis gravida arcu non tortor scelerisque, eu cursus purus viverra. Nulla erat lectus, consectetur nec pharetra ornare, imperdiet sit amet enim. Maecenas vehicula mattis libero vitae euismod. Etiam orci mi, venenatis ac enim id, posuere varius velit. Etiam rutrum urna a ante luctus, a efficitur leo rhoncus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer non euismod nisi. Sed id enim diam. Vestibulum ac sollicitudin metus, vitae feugiat orci. Cras eget justo urna."
+        },
+        "de":{
+          "title": "DE-News #1",
+          "description": "DE-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed congue velit mi, vitae sodales ligula fermentum ut. Donec vel ornare nibh. Duis scelerisque suscipit arcu, sit amet malesuada orci feugiat sit amet. Vestibulum at efficitur arcu, et tincidunt nunc. Maecenas non ornare lacus, ac egestas magna. In eu mattis neque, at consectetur nunc. In vehicula nec leo semper fringilla. Proin magna urna, suscipit eu maximus non, feugiat ut massa. Nunc vehicula ligula et velit iaculis sodales. Proin at urna nec libero gravida congue. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla faucibus tincidunt ante, convallis aliquet purus rhoncus sit amet. Duis sit amet volutpat risus. Donec et orci nisi. Nullam vulputate lobortis velit ut congue. Maecenas felis lacus, elementum efficitur vehicula quis, pulvinar a elit. Duis gravida arcu non tortor scelerisque, eu cursus purus viverra. Nulla erat lectus, consectetur nec pharetra ornare, imperdiet sit amet enim. Maecenas vehicula mattis libero vitae euismod. Etiam orci mi, venenatis ac enim id, posuere varius velit. Etiam rutrum urna a ante luctus, a efficitur leo rhoncus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer non euismod nisi. Sed id enim diam. Vestibulum ac sollicitudin metus, vitae feugiat orci. Cras eget justo urna."
+        },
+        "ca":{
+          "title": "CA-News #1",
+          "description": "CA-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed congue velit mi, vitae sodales ligula fermentum ut. Donec vel ornare nibh. Duis scelerisque suscipit arcu, sit amet malesuada orci feugiat sit amet. Vestibulum at efficitur arcu, et tincidunt nunc. Maecenas non ornare lacus, ac egestas magna. In eu mattis neque, at consectetur nunc. In vehicula nec leo semper fringilla. Proin magna urna, suscipit eu maximus non, feugiat ut massa. Nunc vehicula ligula et velit iaculis sodales. Proin at urna nec libero gravida congue. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla faucibus tincidunt ante, convallis aliquet purus rhoncus sit amet. Duis sit amet volutpat risus. Donec et orci nisi. Nullam vulputate lobortis velit ut congue. Maecenas felis lacus, elementum efficitur vehicula quis, pulvinar a elit. Duis gravida arcu non tortor scelerisque, eu cursus purus viverra. Nulla erat lectus, consectetur nec pharetra ornare, imperdiet sit amet enim. Maecenas vehicula mattis libero vitae euismod. Etiam orci mi, venenatis ac enim id, posuere varius velit. Etiam rutrum urna a ante luctus, a efficitur leo rhoncus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer non euismod nisi. Sed id enim diam. Vestibulum ac sollicitudin metus, vitae feugiat orci. Cras eget justo urna."
+        }
+      },
+      "payment" : {
+        "asset": "3003",
+        "schema": "2",
+        "price": "100"
+      }
+    },
+    { "img" : "https://alastria1.wlilab.eu/bloo-demo/assets/smart-office/img_background_reserve_desk.png",
+      "i18n":{
+        "en":{
+          "title": "Reserve desk",
+          "description": "Get a desk for your office."
+        },
+        "el":{
+          "title": "EL-News #1",
+          "description": "EL-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed congue velit mi, vitae sodales ligula fermentum ut. Donec vel ornare nibh. Duis scelerisque suscipit arcu, sit amet malesuada orci feugiat sit amet. Vestibulum at efficitur arcu, et tincidunt nunc. Maecenas non ornare lacus, ac egestas magna. In eu mattis neque, at consectetur nunc. In vehicula nec leo semper fringilla. Proin magna urna, suscipit eu maximus non, feugiat ut massa. Nunc vehicula ligula et velit iaculis sodales. Proin at urna nec libero gravida congue. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla faucibus tincidunt ante, convallis aliquet purus rhoncus sit amet. Duis sit amet volutpat risus. Donec et orci nisi. Nullam vulputate lobortis velit ut congue. Maecenas felis lacus, elementum efficitur vehicula quis, pulvinar a elit. Duis gravida arcu non tortor scelerisque, eu cursus purus viverra. Nulla erat lectus, consectetur nec pharetra ornare, imperdiet sit amet enim. Maecenas vehicula mattis libero vitae euismod. Etiam orci mi, venenatis ac enim id, posuere varius velit. Etiam rutrum urna a ante luctus, a efficitur leo rhoncus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer non euismod nisi. Sed id enim diam. Vestibulum ac sollicitudin metus, vitae feugiat orci. Cras eget justo urna." 
+        },
+        "es":{
+          "title": "ES-News #1",
+          "description": "ES-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed congue velit mi, vitae sodales ligula fermentum ut. Donec vel ornare nibh. Duis scelerisque suscipit arcu, sit amet malesuada orci feugiat sit amet. Vestibulum at efficitur arcu, et tincidunt nunc. Maecenas non ornare lacus, ac egestas magna. In eu mattis neque, at consectetur nunc. In vehicula nec leo semper fringilla. Proin magna urna, suscipit eu maximus non, feugiat ut massa. Nunc vehicula ligula et velit iaculis sodales. Proin at urna nec libero gravida congue. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla faucibus tincidunt ante, convallis aliquet purus rhoncus sit amet. Duis sit amet volutpat risus. Donec et orci nisi. Nullam vulputate lobortis velit ut congue. Maecenas felis lacus, elementum efficitur vehicula quis, pulvinar a elit. Duis gravida arcu non tortor scelerisque, eu cursus purus viverra. Nulla erat lectus, consectetur nec pharetra ornare, imperdiet sit amet enim. Maecenas vehicula mattis libero vitae euismod. Etiam orci mi, venenatis ac enim id, posuere varius velit. Etiam rutrum urna a ante luctus, a efficitur leo rhoncus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer non euismod nisi. Sed id enim diam. Vestibulum ac sollicitudin metus, vitae feugiat orci. Cras eget justo urna."
+        },
+        "de":{
+          "title": "DE-News #1",
+          "description": "DE-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed congue velit mi, vitae sodales ligula fermentum ut. Donec vel ornare nibh. Duis scelerisque suscipit arcu, sit amet malesuada orci feugiat sit amet. Vestibulum at efficitur arcu, et tincidunt nunc. Maecenas non ornare lacus, ac egestas magna. In eu mattis neque, at consectetur nunc. In vehicula nec leo semper fringilla. Proin magna urna, suscipit eu maximus non, feugiat ut massa. Nunc vehicula ligula et velit iaculis sodales. Proin at urna nec libero gravida congue. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla faucibus tincidunt ante, convallis aliquet purus rhoncus sit amet. Duis sit amet volutpat risus. Donec et orci nisi. Nullam vulputate lobortis velit ut congue. Maecenas felis lacus, elementum efficitur vehicula quis, pulvinar a elit. Duis gravida arcu non tortor scelerisque, eu cursus purus viverra. Nulla erat lectus, consectetur nec pharetra ornare, imperdiet sit amet enim. Maecenas vehicula mattis libero vitae euismod. Etiam orci mi, venenatis ac enim id, posuere varius velit. Etiam rutrum urna a ante luctus, a efficitur leo rhoncus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer non euismod nisi. Sed id enim diam. Vestibulum ac sollicitudin metus, vitae feugiat orci. Cras eget justo urna."
+        },
+        "ca":{
+          "title": "CA-News #1",
+          "description": "CA-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed congue velit mi, vitae sodales ligula fermentum ut. Donec vel ornare nibh. Duis scelerisque suscipit arcu, sit amet malesuada orci feugiat sit amet. Vestibulum at efficitur arcu, et tincidunt nunc. Maecenas non ornare lacus, ac egestas magna. In eu mattis neque, at consectetur nunc. In vehicula nec leo semper fringilla. Proin magna urna, suscipit eu maximus non, feugiat ut massa. Nunc vehicula ligula et velit iaculis sodales. Proin at urna nec libero gravida congue. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla faucibus tincidunt ante, convallis aliquet purus rhoncus sit amet. Duis sit amet volutpat risus. Donec et orci nisi. Nullam vulputate lobortis velit ut congue. Maecenas felis lacus, elementum efficitur vehicula quis, pulvinar a elit. Duis gravida arcu non tortor scelerisque, eu cursus purus viverra. Nulla erat lectus, consectetur nec pharetra ornare, imperdiet sit amet enim. Maecenas vehicula mattis libero vitae euismod. Etiam orci mi, venenatis ac enim id, posuere varius velit. Etiam rutrum urna a ante luctus, a efficitur leo rhoncus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer non euismod nisi. Sed id enim diam. Vestibulum ac sollicitudin metus, vitae feugiat orci. Cras eget justo urna."
+        }
+      },
+      "payment" : {
+        "asset": "3001",
+        "schema": "2",
+        "price": "100"
+      }
+    }
+  ]
+}
