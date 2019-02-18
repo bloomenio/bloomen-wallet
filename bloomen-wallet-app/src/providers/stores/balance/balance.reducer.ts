@@ -1,11 +1,7 @@
 import { BalanceActionTypes, BalanceActions } from './balance.actions';
 import { BalanceModel } from '@core/models/balance.model';
 
-export const InitialState: BalanceModel = {
-    balance: '0'
-};
-
-export function balanceReducer(state: BalanceModel = InitialState, action: BalanceActions): BalanceModel {
+export function balanceReducer(state: BalanceModel, action: BalanceActions): BalanceModel {
     switch (action.type) {
 
         case BalanceActionTypes.CHANGE_BALANCE: {

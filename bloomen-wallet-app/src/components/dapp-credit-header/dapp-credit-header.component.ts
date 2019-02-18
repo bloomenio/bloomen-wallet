@@ -10,6 +10,7 @@ import { Store } from '@ngrx/store';
 import * as fromSelectors from '@stores/balance/balance.selectors';
 import { BalanceModel } from '@core/models/balance.model';
 import { Subscription } from 'rxjs';
+import { skip } from 'rxjs/operators';
 
 
 /**
@@ -28,6 +29,8 @@ export class DappCreditHeaderComponent implements OnInit, OnDestroy {
 
   public balance$: Subscription;
 
+  public isLoading: boolean;
+
   /**
    * Constructor to declare all the necesary to initialize the component.
    */
@@ -36,11 +39,17 @@ export class DappCreditHeaderComponent implements OnInit, OnDestroy {
     private store: Store<BalanceModel>
   ) {
     this.balance = '0';
-   }
+    this.isLoading = true;
+  }
 
   public ngOnInit() {
-    this.balance$ = this.store.select(fromSelectors.getBalance).subscribe((balance) => {
+    this.balance$ = this.store.select(fromSelectors.getBalance).pipe().subscribe((balance) => {
       this.balance = balance;
+      if (balance !== '-1') {
+        this.isLoading = false;
+      } else {
+        this.isLoading = true;
+      }
     });
   }
 

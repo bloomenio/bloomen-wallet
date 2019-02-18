@@ -12,3 +12,11 @@ body {
   user-select: none;
   overflow: hidden;
 }
+
+.loading-spinner {
+  background-image: url("assets/loading-spinner.svg");
+  height: 100px;
+  width: 100px;
+  background-repeat: no-repeat;
+  margin: 10px auto;
+}

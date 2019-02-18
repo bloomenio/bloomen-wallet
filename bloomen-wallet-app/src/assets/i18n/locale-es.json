@@ -99,7 +99,8 @@
       "last_updated": "Última actualización {{date}}"
     },
     "credit_header": {
-      "points": "Tu saldo es de {{balance}} puntos"
+      "points": "Tu saldo es de {{balance}} puntos",
+      "loading": "Your credit is"
     },
     "restore_account": {
       "mnemonic": "Mnemonic",

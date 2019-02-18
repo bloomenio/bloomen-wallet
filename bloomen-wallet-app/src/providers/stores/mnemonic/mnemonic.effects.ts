@@ -74,7 +74,7 @@ export class MnemonicEffects {
     @Effect({ dispatch: false }) public changeWallet = this.actions$.pipe(
         ofType(fromActions.MnemonicActionTypes.CHANGE_WALLET),
         map((action) => {
-            this.store.dispatch(new fromBalanceAction.ChangeBalance({ balance: '0' })); // TODO: Change this to -1 and put the spinner when value is negative.
+            this.store.dispatch(new fromBalanceAction.ChangeBalance({ balance: '-1' }));
             this.web3Service.ready(() => {
                 this.web3Service.changeWallet(action.payload.randomSeed).then(() => {
                     this.store.dispatch(new fromBalanceAction.InitBalanceEvents());
