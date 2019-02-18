@@ -21,28 +21,28 @@
   },
   "tutorial": {
     "0": {
-      "title": "Pot una tecnologia complexa simplificar la vida de la gent creativa?",
-      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque accumsan."
+      "title": "Pot una tecnologia complexa simplificar la nostre vida?",
+      "text": "This is a blockchain-based wallet to access Bloomen decentralized applications (Dapps)"
     },
     "1": {
-      "title": "Descobreix Dapps e inscriu-te",
-      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque accumsan est ultricies dolor vel interdum."
+      "title": "Descobreix e inscriu-te",
+      "text": "Search for Bloomen Dapps and aggregate them easily with a simple, anonymous sign in"
     },
     "2": {
-      "title": "Adquirir Tokens",
-      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque accumsan est ultricies dolor vel interdum."
+      "title": "Aconsegueix alguns Tokens",
+      "text": "Buy utility crypto-tokens for every Dapp to access their products and services"
     },
     "3": {
-      "title": "Enviar saldo",
-      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque accumsan est ultricies dolor vel interdum."
+      "title": "Procès de compra",
+      "text": "Initiate payments with a simple QR scan"
     },
     "4": {
-      "title": "Procès de compra",
-      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque accumsan est ultricies dolor vel interdum."
+      "title": "Autorització d'accés",
+      "text": "Allow any of your devices to access the purchased content or service"
     },
     "5": {
-      "title": "Autorització d'accés",
-      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque accumsan est ultricies dolor vel interdum."
+      "title": "Intercambi P2P",
+      "text": "Use your wallet to transfer your tokens with other peers"
     },
     "skip": "Skip",
     "enter": "Enter"
@@ -99,7 +99,8 @@
       "last_updated": "Darrera actualització {{date}}"
     },
     "credit_header": {
-      "points": "El teu saldo és de {{balance}} punts"
+      "points": "El teu saldo és de {{balance}} punts",
+      "loading": "Your credit is"
     },
     "restore_account": {
       "mnemonic": "Mnemonic",

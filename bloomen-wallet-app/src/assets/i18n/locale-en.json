@@ -21,28 +21,28 @@
   },
   "tutorial": {
     "0": {
-      "title": "Can a complex technology make life simpler for creative people?",
-      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque accumsan."
+      "title": "Can a complex technology make our life simpler?",
+      "text": "This is a blockchain-based wallet to access Bloomen decentralized applications (Dapps)"
     },
     "1": {
-      "title": "Discovery Dapps & Enrollment",
-      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque accumsan est ultricies dolor vel interdum."
+      "title": "Discovery & Enrollment",
+      "text": "Search for Bloomen Dapps and aggregate them easily with a simple, anonymous sign in"
     },
     "2": {
-      "title": "Acquiring Tokens",
-      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque accumsan est ultricies dolor vel interdum."
+      "title": "Get some Tokens",
+      "text": "Buy utility crypto-tokens for every Dapp to access their products and services"
     },
     "3": {
-      "title": "Send Cash",
-      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque accumsan est ultricies dolor vel interdum."
+      "title": "Purchase process",
+      "text": "Initiate payments with a simple QR scan"
     },
     "4": {
-      "title": "Purchasing Process",
-      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque accumsan est ultricies dolor vel interdum."
+      "title": "Access Authorization",
+      "text": "Allow any of your devices to access the purchased content or service"
     },
     "5": {
-      "title": "Access Authorization",
-      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque accumsan est ultricies dolor vel interdum."
+      "title": "P2P exchange",
+      "text": "Use your wallet to transfer your tokens with other peers"
     },
     "skip": "Skip",
     "enter": "Enter"
@@ -99,7 +99,8 @@
       "last_updated": "Last updated {{date}}"
     },
     "credit_header": {
-      "points": "Your credit is {{balance}} points"
+      "points": "Your credit is {{balance}} points",
+      "loading": "Your credit is"
     },
     "restore_account": {
       "mnemonic": "Mnemonic",
