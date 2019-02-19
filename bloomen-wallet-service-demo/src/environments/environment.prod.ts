@@ -9,9 +9,9 @@ export const environment = {
   defaultLanguage: 'en',
   supportedLanguages: ['ca', 'de', 'el', 'en', 'es'],
   eth: {
-    httpUser: 'bloomen',
-    httpPassword: '12345',
-    ethRpcUrl: 'https://demo2.bloomen.io/alastria',
+    httpUser: 'xxxx',
+    httpPassword: 'xxxx',
+    ethRpcUrl: 'https://alastria1.wlilab.eu/alastria',
     ethBlockPollingTime: 4000,
     transactionStatusPollingTime: 1000,
     transactionCallDelayTime: 2000,
