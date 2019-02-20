@@ -9,14 +9,9 @@
 
             <mat-card-actions class="new-content-actions" fxLayoutAlign="space-between center">
                 <button color="accent" mat-flat-button fxLayout="row" fxFlex="50" fxLayoutAlign="center center"
-                    (click)="buyContent()">
+                    (click)="buyOrAllow()">
                     <div class="qr-icon"></div>
-                    <div class="button-text" fxFlex>{{ 'dapp.home.buy_content' | translate | uppercase }}</div>
-                </button>
-                <button color="accent" mat-flat-button fxLayout="row" fxFlex="50" fxLayoutAlign="center center"
-                    (click)="allowAccess()">
-                    <div class="qr-icon"></div>
-                    <div class="button-text" fxFlex>{{ 'dapp.home.allow' | translate | uppercase }}</div>
+                    <div class="button-text" fxFlex>{{ 'dapp.home.buy_content' | translate | uppercase }} / {{ 'dapp.home.allow' | translate | uppercase }}</div>
                 </button>
             </mat-card-actions>
         </mat-card>
