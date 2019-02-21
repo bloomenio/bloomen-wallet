@@ -18,7 +18,7 @@
 
 
         <mat-card class="recent-activity-card">
-            <div fxFlexLayout="center"*ngIf="isLoading$ | async; else loaded">
+            <div class="loader-recent-activity-card" fxFlexLayout="center" *ngIf="isLoading$ | async; else loaded">
                 <div class="loading-spinner"></div>
             </div>
             <ng-template #loaded>

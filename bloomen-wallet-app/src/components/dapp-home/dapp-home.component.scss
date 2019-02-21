@@ -33,12 +33,14 @@
   .recent-activity-card {
     width: 100%;
     border-radius: 0;
+    .loader-recent-activity-card{
+      margin-top: 20%;
+    }
   }
 
   .new-content-card {
     /*new*/
     position: fixed;
-    top: 100px;
     z-index: 1;
     /*new*/
     padding: 0 0 16px;
@@ -122,11 +124,11 @@
 
   .recent-activity-card {
     /*new*/    
-    margin-top: 230px;
+    margin-top: 250px;
     padding-top: 0px;
     /*new*/
     // margin: 8px 0;
-    .recent-activity-content { 
+    .recent-activity-content {
       .mat-list-item {
         height: auto;
         padding: 16px 0;

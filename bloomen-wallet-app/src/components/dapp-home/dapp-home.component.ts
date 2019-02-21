@@ -15,7 +15,7 @@ import * as fromTxActivityActions from '@stores/tx-activity/tx-activity.actions'
 import { Subscription, Observable } from 'rxjs';
 import { TxActivityModel } from '@core/models/tx-activity.model';
 import { BarCodeScannerService } from '@services/barcode-scanner/barcode-scanner.service';
-import {AllowAndBuy, AllowObject, BuyObject, QR_VALIDATOR} from '@core/constants/qr-validator.constants';
+import { QR_VALIDATOR} from '@core/constants/qr-validator.constants';
 import { AssetsContract, DevicesContract } from '@core/core.module';
 import { TranslateService } from '@ngx-translate/core';
 import { DappGeneralDialogComponent } from '@components/dapp-general-dialog/dapp-general-dialog.component';
@@ -23,6 +23,7 @@ import { DappGeneralDialogComponent } from '@components/dapp-general-dialog/dapp
 import { DappInputDialogComponent } from '@components/dapp-input-dialog/dapp-input-dialog.component';
 import { pipe } from '@angular/core/src/render3';
 import { skip } from 'rxjs/operators';
+import {AllowAndBuy, AllowObject, BuyObject} from "@models/operations.model";
 
 const log = new Logger('dapp-home.component');
 
