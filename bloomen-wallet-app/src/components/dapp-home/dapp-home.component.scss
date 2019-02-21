@@ -36,6 +36,11 @@
   }
 
   .new-content-card {
+    /*new*/
+    position: fixed;
+    top: 100px;
+    z-index: 1;
+    /*new*/
     padding: 0 0 16px;
     .qr-icon {
       background-image: url("assets/icons/ic_social_qr_code.svg");
@@ -68,12 +73,28 @@
       }
     }
 
+    
+
     mat-card-content.recent-activity-content {
       margin-top: 8px;
     }
 
     mat-card-actions.new-content-actions {
       margin: 8px 4px 0;
+      mat-card-subtitle.recent-activity-title {
+        margin: 0px 0px 0px 16px;
+      }
+      button.qrbutton{
+        height: 115px;
+        width: 115px;
+        position: fixed;
+        right: 10px;
+        border-radius: 60px;
+        margin: 0px;
+        padding: 0px;
+        border: 5px solid #424242;
+        
+      }
     }
 
     mat-card-actions.recent-activity-actions {
@@ -87,8 +108,8 @@
         margin: 0 8px;
 
         .qr-icon {
-          width: 24px;
-          height: 24px;
+          width: 70px;
+          height: 70px;
           margin: auto;
         }
 
@@ -100,7 +121,11 @@
   }
 
   .recent-activity-card {
-    margin: 8px 0;
+    /*new*/    
+    margin-top: 230px;
+    padding-top: 0px;
+    /*new*/
+    // margin: 8px 0;
     .recent-activity-content { 
       .mat-list-item {
         height: auto;
@@ -140,3 +165,4 @@
     text-align: center;
   }
 }
+

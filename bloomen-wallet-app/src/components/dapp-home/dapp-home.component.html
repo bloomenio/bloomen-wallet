@@ -1,24 +1,23 @@
 <div fxFlex class="has-dapp-credit-header">
     <div class="dapp-home" fxFlex fxLayout="column">
-        <mat-card class="new-content-card">
+        <mat-card class="new-content-card" #mainScreen>
             <div *ngIf="dapp" class="new-content-wrapper" fxLayout="row" fxLayoutAlign="center center"
                 [ngStyle]="{'background-image': 'url(' + dapp.laf.homeImage +')'}">
                 <div class="new-content-logo" [ngStyle]="{'background-image': 'url(' + dapp.laf.logo +')'}"></div>
                 <div class="new-content-text">{{ dapp?.address + '.home.title' | translate }}</div>
             </div>
-
             <mat-card-actions class="new-content-actions" fxLayoutAlign="space-between center">
-                <button color="accent" mat-flat-button fxLayout="row" fxFlex="50" fxLayoutAlign="center center"
+                <mat-card-subtitle class="recent-activity-title">{{ 'dapp.home.recent_activity' | translate | uppercase }}</mat-card-subtitle>
+                <button class="qrbutton" color="accent" mat-flat-button fxLayout="row" fxLayoutAlign="center center"
                     (click)="buyOrAllow()">
                     <div class="qr-icon"></div>
-                    <div class="button-text" fxFlex>{{ 'dapp.home.buy_content' | translate | uppercase }} / {{ 'dapp.home.allow' | translate | uppercase }}</div>
+                    <!-- <div class="button-text" fxFlex>{{ 'dapp.home.buy_content' | translate | uppercase }} / {{ 'dapp.home.allow' | translate | uppercase }}</div> -->
                 </button>
             </mat-card-actions>
         </mat-card>
+
+
         <mat-card class="recent-activity-card">
-            <mat-card-header>
-                <mat-card-subtitle>{{ 'dapp.home.recent_activity' | translate | uppercase }}</mat-card-subtitle>
-            </mat-card-header>
             <div fxFlexLayout="center"*ngIf="isLoading$ | async; else loaded">
                 <div class="loading-spinner"></div>
             </div>
