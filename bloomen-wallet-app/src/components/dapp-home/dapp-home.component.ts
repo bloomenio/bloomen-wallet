@@ -15,7 +15,7 @@ import * as fromTxActivityActions from '@stores/tx-activity/tx-activity.actions'
 import { Subscription, Observable } from 'rxjs';
 import { TxActivityModel } from '@core/models/tx-activity.model';
 import { BarCodeScannerService } from '@services/barcode-scanner/barcode-scanner.service';
-import { QR_VALIDATOR } from '@core/constants/qr-validator.constants';
+import {AllowAndBuy, AllowObject, BuyObject, QR_VALIDATOR} from '@core/constants/qr-validator.constants';
 import { AssetsContract, DevicesContract } from '@core/core.module';
 import { TranslateService } from '@ngx-translate/core';
 import { DappGeneralDialogComponent } from '@components/dapp-general-dialog/dapp-general-dialog.component';
@@ -113,8 +113,121 @@ export class DappHomeComponent implements OnInit, OnDestroy {
     }
   }
 
+  private doOperation(inputValue: string) {
+    if (inputValue !== null) {
+      const valueCut = inputValue.indexOf('//') + 2;
+      let operation = inputValue.slice(0, valueCut);
+      let params = inputValue.slice(valueCut, ).split('#');
 
-  private doOperation(result: any) {
-
+      switch (operation) {
+        case QR_VALIDATOR.BUY:
+          const buyObject: BuyObject = {
+            assetId: parseInt(params[0], 10),
+            schemaId: parseInt(params[1], 10),
+            amount: parseInt(params[2], 10),
+            dappId: params[3],
+            description: decodeURI(params[4])
+          };
+          console.log('Purchase', buyObject);
+          this.buyObject = buyObject;
+          this.generatePurchase();
+          break;
+        case QR_VALIDATOR.ALLOW:
+          const allowObject: AllowObject = {
+            deviceHash: decodeURI(params[0]),
+            assetId: parseInt(params[1], 10),
+            schemaId: parseInt(params[2], 10),
+            dappId: params[3]
+          };
+          console.log('Allow', allowObject);
+          this.generteAllow(allowObject);
+          break;
+        case QR_VALIDATOR.ALLOW_BUY:
+          const allowBuyObject: AllowAndBuy ={
+            dappId: params[3],
+            assetId: parseInt(params[0], 10),
+            schemaId: parseInt(params[1], 10),
+            amount:  parseInt(params[2], 10),
+            description: decodeURI(params[4]),
+            deviceHash: decodeURI(params[5])
+          };
+          console.log('Allow and Buy', allowBuyObject);
+          this.generteAllow(allowBuyObject);
+          break;
+        default:
+          log.error('KO', 'Bad QR prefix');
+          this.snackBar.open(this.translate.instant('common.qr_invalid'), null, {
+            duration: 2000,
+          });
+          break;
+      }
+    } else {
+      log.error('KO', 'Eny QR prefix');
+      this.snackBar.open(this.translate.instant('common.qr_invalid'), null, {
+        duration: 2000,
+      });
+    }
   }
+
+
+  private generatePurchase() {
+    const dialogRef = this.dialog.open(DappGeneralDialogComponent, {
+      width: '250px',
+      height: '200px',
+      data: {
+        title: this.translate.instant('dapp.notifications.dialog_buy.title'),
+        description: this.translate.instant('dapp.notifications.dialog_buy.description', {
+          id: this.buyObject.assetId,
+          title: this.buyObject.description,
+          price: this.buyObject.amount
+        }),
+        buttonAccept: this.translate.instant('common.accept'),
+        buttonCancel: this.translate.instant('common.cancel')
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(value => {
+      if (value) {
+        this.doBuyTranscation();
+      }
+    });
+  }
+
+  public doBuyTranscation() {
+    console.log(this.buyObject);
+    this.assets.buy(this.buyObject.assetId, this.buyObject.schemaId, this.buyObject.amount, this.buyObject.dappId, this.buyObject.description)
+        .then((result: any) => {
+          log.debug('OK', result);
+          this.snackBar.open(this.translate.instant('common.transaction_success'), null, {
+            duration: 2000,
+          });
+        }, (error: any) => {
+          log.debug('KO', error);
+          this.snackBar.open(this.translate.instant('common.transaction_error'), null, {
+            duration: 2000,
+          });
+        });
+  }
+
+  private generteAllow(allowObject: any) {
+    this.devices.handshake(allowObject.deviceHash, allowObject.assetId, allowObject.schemaId, allowObject.dappId)
+        .then((result: any) => {
+          log.debug('OK', result);
+          this.snackBar.open(this.translate.instant('common.transaction_success'), null, {
+            duration: 2000,
+          });
+        }, (error: any) => {
+          if (allowObject.amount) {
+            console.log('Try to buy asset');
+            this.buyObject = allowObject;
+            this.doBuyTranscation();
+          } else {
+            log.debug('KO', error);
+            this.snackBar.open(this.translate.instant('common.transaction_error'), null, {
+              duration: 2000,
+            });
+          }
+        });
+    }
+
 }
