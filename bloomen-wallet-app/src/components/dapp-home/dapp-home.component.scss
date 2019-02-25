@@ -122,9 +122,10 @@
   }
 
   .recent-activity-card {
-    /*new*/    
     padding-top: 0px;
-    /*new*/
+    .mat-divider.mat-divider.mat-divider-horizontal {
+      display: none;
+    }
     .recent-activity-content {
       .mat-list-item {
         height: auto;
