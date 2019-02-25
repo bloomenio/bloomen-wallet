@@ -13,7 +13,7 @@
         <div [ngSwitch]="group.value" class="shopping-list-container" fxLayout="column">
             <ng-container *ngSwitchCase="'purchases'">
                 <mat-list *ngFor="let purchase of purchaseArray;">
-                    <mat-list-item>
+                    <mat-list-item [ngClass]="{'purchase-container': checkDate(purchase.expirationDate)}">
                         <div fxFlex fxLayout="column">
                             <div class="purchase-id">{{purchase.assetId}}</div>
                             <div fxLayout="row" fxLayoutAlign="space-between end">
