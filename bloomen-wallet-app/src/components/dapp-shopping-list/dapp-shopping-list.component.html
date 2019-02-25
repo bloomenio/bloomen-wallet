@@ -34,7 +34,7 @@
             </ng-container>
             <ng-container *ngSwitchCase="'devices'">
                 <mat-list *ngFor="let device of deviceArray;">
-                    <mat-list-item>
+                    <mat-list-item [ngClass]="{'purchase-container': checkDate(device.expirationDate)}">
                         <div fxFlex fxLayout="column">
                             <div class="device-id">{{device.assetId}}</div>
                             <div fxLayout="row" fxLayoutAlign="space-between end">
