@@ -118,8 +118,8 @@ export class DappShoppingListComponent implements OnInit, OnDestroy {
     });
   }
 
-  checkDate(time: number) {
-    return new Date(time) < new Date();
+  checkDate(time: number): boolean {
+    return (time !== null) ? new Date(time) < new Date() : true;
   }
 
 }

@@ -72,7 +72,9 @@ export class DappHomeComponent implements OnInit, OnDestroy, AfterViewChecked {
     }
 
     public onResize() {
-      document.getElementById('recentActivity').style.marginTop = document.getElementById('newContent').offsetHeight+"px";
+      if(document.getElementById('recentActivity') !== null) {
+        document.getElementById('recentActivity').style.marginTop = document.getElementById('newContent').offsetHeight+"px";
+      }
     }
     public ngAfterViewChecked() {
       this.onResize();
