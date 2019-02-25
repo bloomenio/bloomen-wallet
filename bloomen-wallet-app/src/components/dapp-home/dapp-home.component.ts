@@ -1,5 +1,5 @@
 // Basic
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, AfterViewChecked } from '@angular/core';
 
 import { Dapp } from '@core/models/dapp.model.js';
 
@@ -24,6 +24,8 @@ import { DappInputDialogComponent } from '@components/dapp-input-dialog/dapp-inp
 import { pipe } from '@angular/core/src/render3';
 import { skip } from 'rxjs/operators';
 import {AllowAndBuy, AllowObject, BuyObject} from "@models/operations.model";
+import { InitRecentUsersSuccess } from './../../providers/stores/recent-users/recent-users.actions';
+import { element } from 'protractor';
 
 const log = new Logger('dapp-home.component');
 
@@ -35,7 +37,7 @@ const log = new Logger('dapp-home.component');
   templateUrl: 'dapp-home.component.html',
   styleUrls: ['dapp-home.component.scss']
 })
-export class DappHomeComponent implements OnInit, OnDestroy {
+export class DappHomeComponent implements OnInit, OnDestroy, AfterViewChecked {
 
   public dapp$: Subscription;
 
@@ -50,10 +52,14 @@ export class DappHomeComponent implements OnInit, OnDestroy {
   public isLoading$: Observable<boolean>;
 
   @Input() public dapp: Dapp;
-
+  
+  
+  
   /**
    * Constructor to declare all the necesary to initialize the component.
    */
+  
+  
   constructor(
     public snackBar: MatSnackBar,
     private store: Store<any>,
@@ -62,16 +68,23 @@ export class DappHomeComponent implements OnInit, OnDestroy {
     private barCodeScannerService: BarCodeScannerService,
     private translate: TranslateService,
     private dialog: MatDialog
-  ) {
-  }
+    ) {
+    }
 
-  public ngOnInit() {
-    this.txActivity$ = this.store.select(fromTxActivitySelectors.selectAllTxActivity).subscribe((txActivityArray) => {
+    public onResize() {
+      document.getElementById('recentActivity').style.marginTop = document.getElementById('newContent').offsetHeight+"px";
+    }
+    public ngAfterViewChecked() {
+      this.onResize();
+    }
+
+    public ngOnInit() {
+      this.txActivity$ = this.store.select(fromTxActivitySelectors.selectAllTxActivity).subscribe((txActivityArray) => {
       this.txActivityArray = txActivityArray.sort((a, b) => b.epoch - a.epoch);
       this.currentPage = Math.ceil(txActivityArray.length / 10);
     });
-    this.isLoading$ = this.store.select(fromTxActivitySelectors.getIsLoading);
-  }
+      this.isLoading$ = this.store.select(fromTxActivitySelectors.getIsLoading);
+    }
 
   public ngOnDestroy() {
     this.txActivity$.unsubscribe();

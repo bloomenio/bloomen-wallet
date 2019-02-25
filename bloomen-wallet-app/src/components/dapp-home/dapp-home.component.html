@@ -1,6 +1,6 @@
 <div fxFlex class="has-dapp-credit-header">
     <div class="dapp-home" fxFlex fxLayout="column">
-        <mat-card class="new-content-card" #mainScreen>
+        <mat-card (window:resize)="onResize()" id="newContent" class="new-content-card" #mainScreen>
             <div *ngIf="dapp" class="new-content-wrapper" fxLayout="row" fxLayoutAlign="center center"
                 [ngStyle]="{'background-image': 'url(' + dapp.laf.homeImage +')'}">
                 <div class="new-content-logo" [ngStyle]="{'background-image': 'url(' + dapp.laf.logo +')'}"></div>
@@ -17,7 +17,7 @@
         </mat-card>
 
 
-        <mat-card class="recent-activity-card">
+        <mat-card id="recentActivity" class="recent-activity-card">
             <div class="loader-recent-activity-card" fxFlexLayout="center" *ngIf="isLoading$ | async; else loaded">
                 <div class="loading-spinner"></div>
             </div>
