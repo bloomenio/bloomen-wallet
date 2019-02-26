@@ -1,6 +1,5 @@
 import { IValidator, Validator, ValidationResult } from 'ts.validator.fluent/dist';
 
-
 export interface Dapp {
     theme: string;
     background: string;
@@ -124,7 +123,7 @@ let validateSuperRules =  (validator: IValidator<Dapp>) : ValidationResult => {
             .Matches(field => field.laf.prepaidCardImage, "([0-9a-zA-Z\._-]+.(png|PNG|gif|GIF|jp[e]?g|JP[E]?G))", "Should be an image", "Dapp.laf.prepaidCardImage.Match")
             .Matches(field => field.laf.landingImage, "([0-9a-zA-Z\._-]+.(png|PNG|gif|GIF|jp[e]?g|JP[E]?G))", "Should be an image", "Dapp.laf.landingImage.Match")
             .Matches(field => field.laf.homeImage, "([0-9a-zA-Z\._-]+.(png|PNG|gif|GIF|jp[e]?g|JP[E]?G))", "Should be an image", "Dapp.laf.homeImage.Match")
-            .Matches(field => field.laf.logo, "logo: ([0-9a-zA-Z\._-]+.(png|PNG|gif|GIF|jp[e]?g|JP[E]?G|svg))", "Should be an image/logo", "Dapp.laf.logo.Match")
+            .Matches(field => field.laf.logo, "([0-9a-zA-Z\._-])", "Should be an image/logo", "Dapp.laf.logo.Match")
             .ToResult())
             .If(field => field.news != null && field.news.length > 0, 
                 validator => validator
@@ -177,9 +176,9 @@ let validateNewsFields =  (validator: IValidator<Dapp.News>) : ValidationResult 
 
             validator => validator
             .Matches(field => field.img, "([0-9a-zA-Z\._-]+.(png|PNG|gif|GIF|jp[e]?g|JP[E]?G))", "Should be an image", "Dapp.News.img")
-            .Matches(field => field.payment.asset, "[0-9]", "Should be a number", "Dapp.News.payment.asset")
-            .Matches(field => field.payment.schema , "[0-9]", "Should be a number", "Dapp.News.payment.schema")
-            .Matches(field => field.payment.price, "[0-9]", "Should be a number", "Dapp.News.payment.price")
+            .Matches(field => field.payment.asset, "([0-9])", "Should be a number", "Dapp.News.payment.asset")
+            .Matches(field => field.payment.schema , "([0-9])", "Should be a number", "Dapp.News.payment.schema")
+            .Matches(field => field.payment.price, "([0-9])", "Should be a number", "Dapp.News.payment.price")
             .ToResult()
         ).ToResult();
 }
