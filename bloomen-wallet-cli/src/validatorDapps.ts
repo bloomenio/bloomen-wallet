@@ -1,4 +1,19 @@
 import { IValidator, Validator, ValidationResult } from 'ts.validator.fluent/dist';
+const objectDapp1 = require('../data/dapp/demo.blue.json');
+const objectDapp2 = require('../data/dapp/demo.brown.json');
+const objectDapp3 = require('../data/dapp/demo.green.json');
+const objectDapp4 = require('../data/dapp/demo.grey.json');
+const objectDapp5 = require('../data/dapp/demo.json');
+const objectDapp6 = require('../data/dapp/demo.lilac.json');
+const objectDapp7 = require('../data/dapp/demo.orange.json');
+const objectDapp8 = require('../data/dapp/gym.json');
+const objectDapp9 = require('../data/dapp/mwc.facilities.json');
+const objectDapp10 = require('../data/dapp/mwc.smart-office.json');
+const objectDapp11 = require('../data/dapp/mwc.video.json');
+const objectDapp12 = require('../data/dapp/ant1.json');
+
+let x = [objectDapp1, objectDapp2, objectDapp3, objectDapp4, objectDapp5, objectDapp6, objectDapp7, objectDapp8, objectDapp9, objectDapp10, objectDapp11, objectDapp12];
+
 
 export interface Dapp {
     theme: string;
@@ -136,8 +151,6 @@ let validateNewsFields =  (validator: IValidator<Dapp.News>) : ValidationResult 
     return validator 
 
         .NotNull(field => field.img, "Should not be null", "Dapp.News.img")
-        .NotNull(field => field.title, "Should not be null", "Dapp.News.title")
-        .NotNull(field => field.description, "Should not be null", "Dapp.News.description")
 
         .NotNull(field => field.i18n.en.title, "Should not be null", "Dapp.News.i18n.en.title")
         .NotNull(field => field.i18n.en.description, "Should not be null", "Dapp.News.i18n.en.description")
@@ -155,9 +168,7 @@ let validateNewsFields =  (validator: IValidator<Dapp.News>) : ValidationResult 
         .NotNull(field => field.payment.price, "Should not be null", "Dapp.News.payment.price")
         
         .If( field => 
-            field.img != null && 
-            field.title != null && 
-            field.description != null && 
+            field.img != null &&
 
             field.i18n.en.title != null && 
             field.i18n.en.description != null && 
@@ -181,4 +192,7 @@ let validateNewsFields =  (validator: IValidator<Dapp.News>) : ValidationResult 
             .Matches(field => field.payment.price, "([0-9])", "Should be a number", "Dapp.News.payment.price")
             .ToResult()
         ).ToResult();
-}
+};
+
+
+x.forEach(value => console.log(new Validator(value).Validate(validateSuperRules)));
