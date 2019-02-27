@@ -1,5 +1,5 @@
 // Basic
-import { Component, OnInit, OnDestroy, Input, AfterViewChecked } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, Output, AfterViewChecked } from '@angular/core';
 
 import { Dapp } from '@core/models/dapp.model.js';
 
@@ -52,7 +52,7 @@ export class DappHomeComponent implements OnInit, OnDestroy, AfterViewChecked {
   public isLoading$: Observable<boolean>;
 
   @Input() public dapp: Dapp;
-  
+  @Output() public isLoadingCamera: boolean = false;
   
   
   /**
@@ -98,10 +98,12 @@ export class DappHomeComponent implements OnInit, OnDestroy, AfterViewChecked {
   }
 
   public async buyOrAllow(){
+    this.isLoadingCamera = true;
     if (window['cordova']) {
       try {
         const scannedValue = await this.barCodeScannerService.scan();
         if ((scannedValue) && (!scannedValue.cancelled)) {
+          this.isLoadingCamera = false;
           this.doOperation(scannedValue.text);
         } else {
           log.error('KO', 'Scan cancelled');
@@ -110,22 +112,27 @@ export class DappHomeComponent implements OnInit, OnDestroy, AfterViewChecked {
         log.error('Error scanning the QR');
       }
     } else {
-      const dialogRef = this.dialog.open(DappInputDialogComponent, {
-        width: '250px',
-        data: {
-          // Juan aqui no mires, jordi me ha dicho que no lo traduzca, lo dejo con el instant para que si algun dia lo tenemos que traducir
-          // lo hagamos :(
-          title: this.translate.instant('Buy or Allow'),
-          description: this.translate.instant('Put the date into the input field'),
-          buttonAccept: this.translate.instant('Ok'),
-          buttonCancel: this.translate.instant('Cancel')
-        }
-      });
-      dialogRef.afterClosed().subscribe(result => {
-        if (result) {
-          this.doOperation(result);
-        }
-      });
+      this.isLoadingCamera = true;
+      setTimeout(() =>{
+        const dialogRef = this.dialog.open(DappInputDialogComponent, {
+          width: '250px',
+          data: {
+            // Juan aqui no mires, jordi me ha dicho que no lo traduzca, lo dejo con el instant para que si algun dia lo tenemos que traducir
+            // lo hagamos :(
+            title: this.translate.instant('Buy or Allow'),
+            description: this.translate.instant('Put the date into the input field'),
+            buttonAccept: this.translate.instant('Ok'),
+            buttonCancel: this.translate.instant('Cancel')
+          }
+        });
+        dialogRef.afterClosed().subscribe(result => {
+          if (result) {
+            this.doOperation(result);
+          }
+        });
+
+      }, 3000);
+      
     }
   }
 

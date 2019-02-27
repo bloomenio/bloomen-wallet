@@ -10,6 +10,7 @@ export class LoaderComponent {
   private anim: any;
   private animationSpeed = 1;
   @Input() public isLoading;
+  @Input() public isLoadingCamera;
   @Input() public size = 1;
   @Input() public message: string;
 
@@ -19,7 +20,22 @@ export class LoaderComponent {
       renderer: 'svg',
       autoplay: true,
       loop: true
-  };
+    }
+    if(this.isLoading) {
+      this.lottieConfig = {
+        path: 'assets/animation/animationData.json',
+        renderer: 'svg',
+        autoplay: true,
+        loop: true
+      }
+    }else if(this.isLoadingCamera) {
+      this.lottieConfig = {
+        path: 'assets/animation/loadingCamera.json',
+        renderer: 'svg',
+        autoplay: true,
+        loop: true
+      }
+    }
   }
 
   public handleAnimation(anim: any) {
