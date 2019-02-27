@@ -9,6 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import * as fromDappSelectors from '@stores/dapp/dapp.selectors';
+import * as fromMnemonic from '@stores/mnemonic/mnemonic.selectors';
 
 
 import { Store } from '@ngrx/store';
@@ -31,10 +32,14 @@ export class RestoreAccountComponent implements OnInit, OnDestroy {
   public address: string;
 
   private dapps$: Subscription;
+  private mnemonics$: Subscription;
 
   public dapp: Dapp;
 
   public isCordova: boolean;
+
+  private mnemonic: string[] | number[];
+  private dappsWithMnemonics: any;
 
   constructor(
     private store: Store<any>,
@@ -50,6 +55,11 @@ export class RestoreAccountComponent implements OnInit, OnDestroy {
     this.address = this.activatedRoute.snapshot.paramMap.get('address');
     this.dapps$ = this.store.select(fromDappSelectors.selectAllDapp).subscribe((dapps) => {
       this.dapp = dapps.find(dapp => dapp.address === this.address);
+      this.mnemonics$ = this.store.select(fromMnemonic.selectAllMnemonics).subscribe((mnemonic:any) => {
+        console.log(dapps, mnemonic);
+        this.dappsWithMnemonics = dapps.filter((dapp) => !mnemonic.includes(dapp.address));
+        console.log(this.dappsWithMnemonics)
+      })
     });
 
     this.isCordova = !!window['cordova'];
@@ -57,10 +67,15 @@ export class RestoreAccountComponent implements OnInit, OnDestroy {
     this.restoreAccountForm = new FormGroup({
       mnemonic: new FormControl('', Validators.required),
     });
+
+
+
+
   }
 
   public ngOnDestroy() {
     this.dapps$.unsubscribe();
+    this.mnemonics$.unsubscribe();
   }
 
   public doBack() {
