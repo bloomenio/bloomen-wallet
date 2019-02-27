@@ -21,11 +21,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { DappGeneralDialogComponent } from '@components/dapp-general-dialog/dapp-general-dialog.component';
 
 import { DappInputDialogComponent } from '@components/dapp-input-dialog/dapp-input-dialog.component';
-import { pipe } from '@angular/core/src/render3';
-import { skip } from 'rxjs/operators';
-import {AllowAndBuy, AllowObject, BuyObject} from "@models/operations.model";
-import { InitRecentUsersSuccess } from './../../providers/stores/recent-users/recent-users.actions';
-import { element } from 'protractor';
+import {AllowAndBuy, AllowObject, BuyObject} from '@models/operations.model';
 
 const log = new Logger('dapp-home.component');
 
@@ -52,14 +48,12 @@ export class DappHomeComponent implements OnInit, OnDestroy, AfterViewChecked {
   public isLoading$: Observable<boolean>;
 
   @Input() public dapp: Dapp;
-  @Output() public isLoadingCamera: boolean = false;
-  
-  
+
+
+
   /**
    * Constructor to declare all the necesary to initialize the component.
    */
-  
-  
   constructor(
     public snackBar: MatSnackBar,
     private store: Store<any>,
@@ -68,8 +62,8 @@ export class DappHomeComponent implements OnInit, OnDestroy, AfterViewChecked {
     private barCodeScannerService: BarCodeScannerService,
     private translate: TranslateService,
     private dialog: MatDialog
-    ) {
-    }
+  ) {
+  }
 
     public onResize() {
       if(document.getElementById('recentActivity') !== null) {
@@ -97,8 +91,12 @@ export class DappHomeComponent implements OnInit, OnDestroy, AfterViewChecked {
     this.store.dispatch(new fromTxActivityActions.MoreTxActivity({ page: ++this.currentPage }));
   }
 
+<<<<<<< HEAD
   public async buyOrAllow(){
     this.isLoadingCamera = true;
+=======
+  public async buyOrAllow() {
+>>>>>>> 0e23526043edc41d1a3af718e854307da7f0d481
     if (window['cordova']) {
       try {
         const scannedValue = await this.barCodeScannerService.scan();
@@ -112,6 +110,7 @@ export class DappHomeComponent implements OnInit, OnDestroy, AfterViewChecked {
         log.error('Error scanning the QR');
       }
     } else {
+<<<<<<< HEAD
       this.isLoadingCamera = true;
       setTimeout(() =>{
         const dialogRef = this.dialog.open(DappInputDialogComponent, {
@@ -133,14 +132,30 @@ export class DappHomeComponent implements OnInit, OnDestroy, AfterViewChecked {
 
       }, 3000);
       
+=======
+      const dialogRef = this.dialog.open(DappInputDialogComponent, {
+        width: '250px',
+        data: {
+          title: this.translate.instant('dapp.home.buy_content'),
+          description: this.translate.instant('dapp.home.data'),
+          buttonAccept: this.translate.instant('common.accept'),
+          buttonCancel: this.translate.instant('common.cancel')
+        }
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          this.doOperation(result);
+        }
+      });
+>>>>>>> 0e23526043edc41d1a3af718e854307da7f0d481
     }
   }
 
   private doOperation(inputValue: string) {
     if (inputValue !== null) {
       const valueCut = inputValue.indexOf('//') + 2;
-      let operation = inputValue.slice(0, valueCut);
-      let params = inputValue.slice(valueCut, ).split('#');
+      const operation = inputValue.slice(0, valueCut);
+      const params = inputValue.slice(valueCut, ).split('#');
 
       switch (operation) {
         case QR_VALIDATOR.BUY:
@@ -166,7 +181,7 @@ export class DappHomeComponent implements OnInit, OnDestroy, AfterViewChecked {
           this.generteAllow(allowObject);
           break;
         case QR_VALIDATOR.ALLOW_BUY:
-          const allowBuyObject: AllowAndBuy ={
+          const allowBuyObject: AllowAndBuy = {
             dappId: params[3],
             assetId: parseInt(params[0], 10),
             schemaId: parseInt(params[1], 10),

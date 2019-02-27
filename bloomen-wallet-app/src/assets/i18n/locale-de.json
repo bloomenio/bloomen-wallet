@@ -66,8 +66,8 @@
   },
   "dapp": {
     "home": {
-      "buy_content": "Buy content",
-      "allow": "Allow",
+      "buy_content": "Buy content or Allow",
+      "data": "Put the date into the input field",
       "recent_activity": "Recent activity"
     },
     "profile": {
