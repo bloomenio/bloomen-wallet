@@ -22,11 +22,6 @@ import { DappGeneralDialogComponent } from '@components/dapp-general-dialog/dapp
 
 import { DappInputDialogComponent } from '@components/dapp-input-dialog/dapp-input-dialog.component';
 import {AllowAndBuy, AllowObject, BuyObject} from '@models/operations.model';
-import { pipe } from '@angular/core/src/render3';
-import { skip } from 'rxjs/operators';
-import {AllowAndBuy, AllowObject, BuyObject} from "@models/operations.model";
-import { InitRecentUsersSuccess } from './../../providers/stores/recent-users/recent-users.actions';
-import { element } from 'protractor';
 
 const log = new Logger('dapp-home.component');
 
