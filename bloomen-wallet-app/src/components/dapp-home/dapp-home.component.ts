@@ -21,6 +21,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { DappGeneralDialogComponent } from '@components/dapp-general-dialog/dapp-general-dialog.component';
 
 import { DappInputDialogComponent } from '@components/dapp-input-dialog/dapp-input-dialog.component';
+import {AllowAndBuy, AllowObject, BuyObject} from '@models/operations.model';
 import { pipe } from '@angular/core/src/render3';
 import { skip } from 'rxjs/operators';
 import {AllowAndBuy, AllowObject, BuyObject} from "@models/operations.model";
@@ -52,14 +53,12 @@ export class DappHomeComponent implements OnInit, OnDestroy, AfterViewChecked {
   public isLoading$: Observable<boolean>;
 
   @Input() public dapp: Dapp;
-  
-  
-  
+
+
+
   /**
    * Constructor to declare all the necesary to initialize the component.
    */
-  
-  
   constructor(
     public snackBar: MatSnackBar,
     private store: Store<any>,
@@ -68,8 +67,8 @@ export class DappHomeComponent implements OnInit, OnDestroy, AfterViewChecked {
     private barCodeScannerService: BarCodeScannerService,
     private translate: TranslateService,
     private dialog: MatDialog
-    ) {
-    }
+  ) {
+  }
 
     public onResize() {
       if(document.getElementById('recentActivity') !== null) {
@@ -97,7 +96,7 @@ export class DappHomeComponent implements OnInit, OnDestroy, AfterViewChecked {
     this.store.dispatch(new fromTxActivityActions.MoreTxActivity({ page: ++this.currentPage }));
   }
 
-  public async buyOrAllow(){
+  public async buyOrAllow() {
     if (window['cordova']) {
       try {
         const scannedValue = await this.barCodeScannerService.scan();
@@ -113,12 +112,10 @@ export class DappHomeComponent implements OnInit, OnDestroy, AfterViewChecked {
       const dialogRef = this.dialog.open(DappInputDialogComponent, {
         width: '250px',
         data: {
-          // Juan aqui no mires, jordi me ha dicho que no lo traduzca, lo dejo con el instant para que si algun dia lo tenemos que traducir
-          // lo hagamos :(
-          title: this.translate.instant('Buy or Allow'),
-          description: this.translate.instant('Put the date into the input field'),
-          buttonAccept: this.translate.instant('Ok'),
-          buttonCancel: this.translate.instant('Cancel')
+          title: this.translate.instant('dapp.home.buy_content'),
+          description: this.translate.instant('dapp.home.data'),
+          buttonAccept: this.translate.instant('common.accept'),
+          buttonCancel: this.translate.instant('common.cancel')
         }
       });
       dialogRef.afterClosed().subscribe(result => {
@@ -132,8 +129,8 @@ export class DappHomeComponent implements OnInit, OnDestroy, AfterViewChecked {
   private doOperation(inputValue: string) {
     if (inputValue !== null) {
       const valueCut = inputValue.indexOf('//') + 2;
-      let operation = inputValue.slice(0, valueCut);
-      let params = inputValue.slice(valueCut, ).split('#');
+      const operation = inputValue.slice(0, valueCut);
+      const params = inputValue.slice(valueCut, ).split('#');
 
       switch (operation) {
         case QR_VALIDATOR.BUY:
@@ -159,7 +156,7 @@ export class DappHomeComponent implements OnInit, OnDestroy, AfterViewChecked {
           this.generteAllow(allowObject);
           break;
         case QR_VALIDATOR.ALLOW_BUY:
-          const allowBuyObject: AllowAndBuy ={
+          const allowBuyObject: AllowAndBuy = {
             dappId: params[3],
             assetId: parseInt(params[0], 10),
             schemaId: parseInt(params[1], 10),
