@@ -81,7 +81,7 @@ export class SendCashComponent implements OnInit, OnDestroy {
         select(fromRecentUser.selectCurrentUser)
     ).subscribe(
       recentUser => {
-        if(recentUser) this.sendCashForm.setValue({ address: recentUser.address, amount: null })
+        if (recentUser) this.sendCashForm.setValue({ address: recentUser.address, amount: null });
       }
     );
 

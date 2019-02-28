@@ -13,16 +13,17 @@
             <div class="restore-account-form">
                 <form class="form-wrapper" [formGroup]="restoreAccountForm" (ngSubmit)="onSubmit()">
                     <mat-form-field>
-                        <mat-select>
-                            <mat-option>
-                                TODO
+                        <mat-select placeholder="Select existing mnemonic" name="mnemonic" [(value)]="selectedValue">
+                            <mat-option *ngFor="let dapp of dappsWithMnemonics" value="dapp.randomSeed">
+                                {{dapp.dappId}}
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
                     <mat-form-field color="primary" appearance="outline">
                         <mat-label  floating>{{ 'dapp.restore_account.mnemonic' | translate }}</mat-label>
                         <!-- TODO: Add literal to rosetta -->
-                        <textarea [readonly]="isCordova" matInput formControlName="mnemonic" rows="4" (click)="paste()" placeholder="Tap here to paste"></textarea>
+                        <textarea [readonly]="isCordova" matInput formControlName="mnemonic" rows="4" (click)="paste()" placeholder="Tap here to paste">
+                        </textarea>
                     </mat-form-field>
                     <button [disabled]="!restoreAccountForm.valid" type="submit" color="accent" mat-flat-button fxLayout="row" fxLayoutAlign="center center">
                         <div fxFlex>{{ 'dapp.restore_account.restore' | translate | uppercase }}</div>

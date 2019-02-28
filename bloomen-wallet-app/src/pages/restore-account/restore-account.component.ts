@@ -38,8 +38,9 @@ export class RestoreAccountComponent implements OnInit, OnDestroy {
 
   public isCordova: boolean;
 
-  private mnemonic: string[] | number[];
   private dappsWithMnemonics: any;
+  private _selectedValue = '';
+  private mnemonics: any;
 
   constructor(
     private store: Store<any>,
@@ -53,13 +54,13 @@ export class RestoreAccountComponent implements OnInit, OnDestroy {
 
   public ngOnInit() {
     this.address = this.activatedRoute.snapshot.paramMap.get('address');
+
     this.dapps$ = this.store.select(fromDappSelectors.selectAllDapp).subscribe((dapps) => {
       this.dapp = dapps.find(dapp => dapp.address === this.address);
-      this.mnemonics$ = this.store.select(fromMnemonic.selectAllMnemonics).subscribe((mnemonic:any) => {
-        console.log(dapps, mnemonic);
-        this.dappsWithMnemonics = dapps.filter((dapp) => !mnemonic.includes(dapp.address));
-        console.log(this.dappsWithMnemonics)
-      })
+      this.mnemonics$ = this.store.select(fromMnemonic.selectAllMnemonics).subscribe((mnemonics: any) => {
+        this.dappsWithMnemonics = dapps.map(dapp => ({...mnemonics.find(mnemonic => mnemonic.address === dapp.address), ...dapp}));
+        console.log(this.dappsWithMnemonics);
+      });
     });
 
     this.isCordova = !!window['cordova'];
@@ -67,10 +68,15 @@ export class RestoreAccountComponent implements OnInit, OnDestroy {
     this.restoreAccountForm = new FormGroup({
       mnemonic: new FormControl('', Validators.required),
     });
+  }
 
+  get selectedValue(): string {
+    return this._selectedValue;
+  }
 
-
-
+  set selectedValue(newValue: string) {
+    this._selectedValue = newValue;
+    this.restoreAccountForm.get('mnemonic').setValue(newValue);
   }
 
   public ngOnDestroy() {
