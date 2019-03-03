@@ -40,7 +40,6 @@ export class RestoreAccountComponent implements OnInit, OnDestroy {
 
   private dappsWithMnemonics: any;
   private _selectedValue = '';
-  private mnemonics: any;
 
   constructor(
     private store: Store<any>,
@@ -58,8 +57,10 @@ export class RestoreAccountComponent implements OnInit, OnDestroy {
     this.dapps$ = this.store.select(fromDappSelectors.selectAllDapp).subscribe((dapps) => {
       this.dapp = dapps.find(dapp => dapp.address === this.address);
       this.mnemonics$ = this.store.select(fromMnemonic.selectAllMnemonics).subscribe((mnemonics: any) => {
-        this.dappsWithMnemonics = dapps.map(dapp => ({...mnemonics.find(mnemonic => mnemonic.address === dapp.address), ...dapp}));
-        console.log(this.dappsWithMnemonics);
+        this.dappsWithMnemonics = dapps.map(dapp =>
+            ({...mnemonics.find(mnemonic => mnemonic.address === dapp.address), ...dapp}))
+            .filter(value => value.randomSeed);
+        console.log(dapps);
       });
     });
 
