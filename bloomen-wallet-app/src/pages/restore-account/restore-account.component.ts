@@ -38,7 +38,7 @@ export class RestoreAccountComponent implements OnInit, OnDestroy {
 
   public isCordova: boolean;
 
-  private dappsWithMnemonics: any;
+  public dappsWithMnemonics: any;
   private _selectedValue = '';
 
   constructor(
@@ -60,7 +60,6 @@ export class RestoreAccountComponent implements OnInit, OnDestroy {
         this.dappsWithMnemonics = dapps.map(dapp =>
             ({...mnemonics.find(mnemonic => mnemonic.address === dapp.address), ...dapp}))
             .filter(value => value.randomSeed);
-        console.log(dapps);
       });
     });
 

@@ -17,7 +17,7 @@
                             <mat-option *ngFor="let dapp of dappsWithMnemonics" value={{dapp.randomSeed}}>
                                 <div class="flex-container">
                                     <div class="dialog-logo" [ngStyle]="{'background-image': 'url(' + dapp.laf.logo +')'}"></div>
-                                    <div class="text-dapp-name"> - {{dapp.dappId}} </div>
+                                    <div class="text-dapp-name"> {{dapp.dappId}} </div>
                                 </div>
                             </mat-option>
                         </mat-select>
