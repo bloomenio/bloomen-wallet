@@ -18,18 +18,18 @@ import { BalanceModel } from '@core/models/balance.model';
 
 import { MnemonicModel } from '@core/models/mnemonic.model';
 import { Dapp } from '@core/models/dapp.model';
-import {UserAlias} from "@models/recent-user.model";
+import {UserAlias} from '@models/recent-user.model';
 
 import * as fromAddressSelector from '@stores/recent-users/recent-users.selectors';
 import * as fromUserActions from '@stores/recent-users/recent-users.actions';
-import {filter, find, map} from "rxjs/operators";
+import {filter, find, map} from 'rxjs/operators';
 
 import { MatDialog } from '@angular/material';
 import { ChangeRecentUserComponent } from './change-recent-user/change-recent-user.component';
 
 import { ClipboardService } from 'ngx-clipboard';
-import {DappGeneralDialogComponent} from "@components/dapp-general-dialog/dapp-general-dialog.component";
-import * as fromDevicesActions from "@stores/devices/devices.actions";
+import {DappGeneralDialogComponent} from '@components/dapp-general-dialog/dapp-general-dialog.component';
+import * as fromDevicesActions from '@stores/devices/devices.actions';
 
 
 const log = new Logger('dapp-profile.component');
@@ -54,7 +54,7 @@ export class DappProfileComponent implements OnInit, OnDestroy {
   @Input() public dapp: Dapp;
 
   @Input() public mnemonic: MnemonicModel;
-  private addressList$: Observable<UserAlias[]>;
+  public addressList$: Observable<UserAlias[]>;
 
   /**
    * Constructor to declare all the necesary to initialize the component.
@@ -87,7 +87,7 @@ export class DappProfileComponent implements OnInit, OnDestroy {
         map(users =>
             users.filter(user => user.idDapp === this.dapp.address)
         )
-    )
+    );
   }
 
   public ngOnDestroy() {
@@ -102,7 +102,7 @@ export class DappProfileComponent implements OnInit, OnDestroy {
   }
 
   public goToSendCash() {
-    this.store.dispatch(new fromUserActions.cleanUser())
+    this.store.dispatch(new fromUserActions.cleanUser());
     this.router.navigate([`dapp/${this.dapp.address}/send-cash`]);
   }
 
@@ -114,7 +114,7 @@ export class DappProfileComponent implements OnInit, OnDestroy {
     }
   }
 
-  public sendCashToUser(address: UserAlias){
+  public sendCashToUser(address: UserAlias) {
     this.store.dispatch(new fromUserActions.setCurrentAlias(address));
     this.router.navigate([`dapp/${this.dapp.address}/send-cash`]);
   }
@@ -133,12 +133,12 @@ export class DappProfileComponent implements OnInit, OnDestroy {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.store.dispatch(new fromUserActions.DeleteAlias({id : address}))
+        this.store.dispatch(new fromUserActions.DeleteAlias({id : address}));
       }
     });
   }
 
-  openDialog(user: UserAlias): Observable<any> {
+  public openDialog(user: UserAlias): Observable<any> {
     const dialogRef = this.dialog.open(ChangeRecentUserComponent, {
       width: '250px',
       data: {user: user}

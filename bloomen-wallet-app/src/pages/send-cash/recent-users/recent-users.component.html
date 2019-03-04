@@ -6,6 +6,6 @@
   </mat-form-field>
 </div>
 <div mat-dialog-actions>
-  <button mat-button  (click)="onNoClick()">{{ 'common.cancel'| translate}}</button>
-  <button mat-button [disabled]="newUser.length <= 0" (click)="onYesClick()">{{ 'common.accept'| translate}}</button>
+  <button mat-button (click)="onNoClick()">{{ 'common.cancel'| translate}}</button>
+  <button mat-button (click)="onYesClick()">{{ 'common.accept'| translate}}</button>
 </div>
