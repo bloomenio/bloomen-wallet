@@ -12,16 +12,9 @@
             </div>
             <div class="restore-account-form">
                 <form class="form-wrapper" [formGroup]="restoreAccountForm" (ngSubmit)="onSubmit()">
-                    <mat-form-field>
-                        <mat-select placeholder="Select existing mnemonic" name="mnemonic" [(value)]="selectedValue">
-                            <mat-option *ngFor="let dapp of dappsWithMnemonics" value={{dapp.randomSeed}}>
-                                <div class="flex-container">
-                                    <div class="dialog-logo" [ngStyle]="{'background-image': 'url(' + dapp.laf.logo +')'}"></div>
-                                    <div class="text-dapp-name"> {{dapp.dappId}} </div>
-                                </div>
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
+
+                    <div class="text-popup" *ngIf="!selectedValue" (click)="openDialog()"> Copy from other Dapp</div>
+                    <div class="text-popup" ><i *ngIf="selectedValue" (click)="clearData()" class="material-icons"> clear </i></div>
                     <mat-form-field color="primary" appearance="outline">
                         <mat-label  floating>{{ 'dapp.restore_account.mnemonic' | translate }}</mat-label>
                         <!-- TODO: Add literal to rosetta -->

@@ -1,12 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Logger } from '@services/logger/logger.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material';
+import {MatDialog, MatSnackBar} from '@angular/material';
 import { TranslateService } from '@ngx-translate/core';
 import { Location } from '@angular/common';
 import { Web3Service } from '@services/web3/web3.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 
 import * as fromDappSelectors from '@stores/dapp/dapp.selectors';
 import * as fromMnemonic from '@stores/mnemonic/mnemonic.selectors';
@@ -15,6 +15,8 @@ import * as fromMnemonic from '@stores/mnemonic/mnemonic.selectors';
 import { Store } from '@ngrx/store';
 import * as fromMnemonicActions from '@stores/mnemonic/mnemonic.actions';
 import { Dapp } from '@core/models/dapp.model';
+import {DappsMnmonicsComponent} from '@pages/restore-account/dapps-mnmonics/dapps-mnmonics';
+
 
 
 const log = new Logger('restore-account.component');
@@ -39,7 +41,7 @@ export class RestoreAccountComponent implements OnInit, OnDestroy {
   public isCordova: boolean;
 
   public dappsWithMnemonics: any;
-  private _selectedValue = '';
+  private selectedValue: any;
 
   constructor(
     private store: Store<any>,
@@ -48,7 +50,8 @@ export class RestoreAccountComponent implements OnInit, OnDestroy {
     public snackBar: MatSnackBar,
     private location: Location,
     private web3Service: Web3Service,
-    private router: Router
+    private router: Router,
+    public dialog: MatDialog
   ) { }
 
   public ngOnInit() {
@@ -68,15 +71,6 @@ export class RestoreAccountComponent implements OnInit, OnDestroy {
     this.restoreAccountForm = new FormGroup({
       mnemonic: new FormControl('', Validators.required),
     });
-  }
-
-  get selectedValue(): string {
-    return this._selectedValue;
-  }
-
-  set selectedValue(newValue: string) {
-    this._selectedValue = newValue;
-    this.restoreAccountForm.get('mnemonic').setValue(newValue);
   }
 
   public ngOnDestroy() {
@@ -115,4 +109,22 @@ export class RestoreAccountComponent implements OnInit, OnDestroy {
     }
   }
 
+  public openDialog() {
+    const dialogRef = this.dialog.open(DappsMnmonicsComponent, {
+      width: '300px',
+      data: {dappsWithMnemonics: this.dappsWithMnemonics }
+    });
+
+    dialogRef.afterClosed().subscribe(value => {
+      if (value) {
+        this.selectedValue = value;
+        this.restoreAccountForm.get('mnemonic').setValue(value.randomSeed);
+      }
+    });
+  }
+
+  public clearData() {
+    this.selectedValue = null;
+    this.restoreAccountForm.get('mnemonic').setValue('');
+  }
 }

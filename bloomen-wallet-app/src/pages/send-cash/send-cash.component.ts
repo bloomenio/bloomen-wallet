@@ -20,8 +20,8 @@ import { BarCodeScannerService } from '@services/barcode-scanner/barcode-scanner
 import { QR_VALIDATOR } from '@core/constants/qr-validator.constants';
 
 import { RecentUsersComponent } from './recent-users/recent-users.component';
-import {UserAlias} from "@models/recent-user.model";
-import {filter, find, map} from "rxjs/operators";
+import {UserAlias} from '@models/recent-user.model';
+import {filter, find, map} from 'rxjs/operators';
 import { DappInputDialogComponent } from '@components/dapp-input-dialog/dapp-input-dialog.component';
 
 
@@ -81,7 +81,7 @@ export class SendCashComponent implements OnInit, OnDestroy {
         select(fromRecentUser.selectCurrentUser)
     ).subscribe(
       recentUser => {
-        if (recentUser) this.sendCashForm.setValue({ address: recentUser.address, amount: null });
+        if (recentUser) { this.sendCashForm.setValue({ address: recentUser.address, amount: null }); }
       }
     );
 
@@ -131,7 +131,7 @@ export class SendCashComponent implements OnInit, OnDestroy {
   }
 
 
-  sendTransaction() {
+  public sendTransaction() {
     const values = this.sendCashForm.value;
     this.web3Service.ready(() => {
       this.erc223.transfer(values.address, values.amount).then((result: any) => {
@@ -149,17 +149,16 @@ export class SendCashComponent implements OnInit, OnDestroy {
   }
 
   public onSubmit() {
-    let exist = this.listOfAddress.find(value => value.address === this.sendCashForm.get('address').value);
-    if(exist) this.sendTransaction();
-    else {
+    const exist = this.listOfAddress.find(value => value.address === this.sendCashForm.get('address').value);
+    if (exist) { this.sendTransaction(); } else {
       this.openDialog().subscribe(
           _ => {
             this.sendTransaction();
           }
-      )
+      );
     }
   }
-  
+
   private recoverMnemonic(inputValue: string) {
     if (inputValue.includes(QR_VALIDATOR.ID, 0)) {
       this.sendCashForm.get('address').setValue(inputValue.replace(QR_VALIDATOR.ID, ''));
@@ -177,11 +176,11 @@ export class SendCashComponent implements OnInit, OnDestroy {
     }
   }
 
-  openDialog(): Observable<any> {
+  public openDialog(): Observable<any> {
     const dialogRef = this.dialog.open(RecentUsersComponent, {
       width: '250px',
       data: {address: this.sendCashForm.get('address').value,
-              idDapp: this.dapp.address }
+             idDapp: this.dapp.address }
     });
     return dialogRef.afterClosed();
   }
