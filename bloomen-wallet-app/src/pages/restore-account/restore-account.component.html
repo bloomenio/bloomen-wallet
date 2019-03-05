@@ -12,8 +12,7 @@
             </div>
             <div class="restore-account-form">
                 <form class="form-wrapper" [formGroup]="restoreAccountForm" (ngSubmit)="onSubmit()">
-
-                    <div class="text-popup" *ngIf="!selectedValue" (click)="openDialog()"> Copy from other Dapp</div>
+                    <div class="text-popup" *ngIf="!selectedValue" (click)="openDialog()"> {{ 'dapp.restore_account.copy_from_other' | translate }}</div>
                     <div class="text-popup" ><i *ngIf="selectedValue" (click)="clearData()" class="material-icons"> clear </i></div>
                     <mat-form-field color="primary" appearance="outline">
                         <mat-label  floating>{{ 'dapp.restore_account.mnemonic' | translate }}</mat-label>

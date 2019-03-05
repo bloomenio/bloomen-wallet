@@ -105,7 +105,8 @@
     "restore_account": {
       "mnemonic": "Mnemonic",
       "restore": "Restore",
-      "placeholder_message": "Tap here to paste"
+      "placeholder_message": "Tap here to paste",
+      "copy_from_other": "Copy from other Dapp"
     },
     "send_cash": {
       "to": "To",

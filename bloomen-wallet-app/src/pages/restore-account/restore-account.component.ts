@@ -40,8 +40,8 @@ export class RestoreAccountComponent implements OnInit, OnDestroy {
 
   public isCordova: boolean;
 
-  public dappsWithMnemonics: any;
-  private selectedValue: any;
+  public dappsWithMnemonics: Array<any>;
+  public selectedValue: any;
 
   constructor(
     private store: Store<any>,
@@ -110,17 +110,23 @@ export class RestoreAccountComponent implements OnInit, OnDestroy {
   }
 
   public openDialog() {
-    const dialogRef = this.dialog.open(DappsMnmonicsComponent, {
-      width: '300px',
-      data: {dappsWithMnemonics: this.dappsWithMnemonics }
-    });
+    if (this.dappsWithMnemonics.length > 0) {
+      const dialogRef = this.dialog.open(DappsMnmonicsComponent, {
+        width: '300px',
+        data: {dappsWithMnemonics: this.dappsWithMnemonics }
+      });
 
-    dialogRef.afterClosed().subscribe(value => {
-      if (value) {
-        this.selectedValue = value;
-        this.restoreAccountForm.get('mnemonic').setValue(value.randomSeed);
-      }
-    });
+      dialogRef.afterClosed().subscribe(value => {
+        if (value) {
+          this.selectedValue = value;
+          this.restoreAccountForm.get('mnemonic').setValue(value.randomSeed);
+        }
+      });
+    } else {
+      this.snackBar.open(this.translate.instant('common.no_mnemonic'), null, {
+        duration: 2000,
+      });
+    }
   }
 
   public clearData() {
