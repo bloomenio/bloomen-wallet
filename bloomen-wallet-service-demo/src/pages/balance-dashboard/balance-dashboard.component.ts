@@ -1,11 +1,7 @@
 // Basic
 import { Component } from '@angular/core';
 
-import { MatSnackBar } from '@angular/material';
 import { Logger } from '@services/logger/logger.service';
-
-import MediaMock from '../../assets/mock/media.json';
-import { ASSETS_CONSTANTS } from '@core/constants/assets.constants.js';
 
 const log = new Logger('video.component');
 
@@ -20,13 +16,7 @@ const log = new Logger('video.component');
 })
 export class BalanceDashboardComponent {
 
-  public videos: any;
-
-  constructor(
-    public snackBar: MatSnackBar,
-  ) {
-    this.videos = MediaMock[ASSETS_CONSTANTS.VIDEOS];
-  }
+  constructor() { }
 
 
 }

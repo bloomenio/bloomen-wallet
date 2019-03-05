@@ -9,9 +9,10 @@ import { SharedModule } from '@shared/shared.module';
 import { MaterialModule } from '@app/material.module';
 import { BalanceDashboardRoutingModule } from './balance-dashboard-routing.module';
 
-// Home
+// Components
 import { BalanceDashboardComponent } from './balance-dashboard.component';
 import { MenuModule } from '@components/menu/menu.module';
+import { BalanceItemModule } from '@components/balance-item/balance-item.module';
 
 /**
  * Module to import and export all the components for the home page.
@@ -24,7 +25,8 @@ import { MenuModule } from '@components/menu/menu.module';
     FlexLayoutModule,
     MaterialModule,
     BalanceDashboardRoutingModule,
-    MenuModule
+    MenuModule,
+    BalanceItemModule
   ],
   declarations: [BalanceDashboardComponent]
 })
