@@ -62,3 +62,7 @@ mat-tab-group[headerposition="below"] > mat-tab-header {
   padding-bottom: var(safe-area-inset-bottom);
   padding-bottom: env(safe-area-inset-bottom);
 }
+
+.mat-option:focus, .mat-option:hover {
+  background-color: transparent !important;
+}

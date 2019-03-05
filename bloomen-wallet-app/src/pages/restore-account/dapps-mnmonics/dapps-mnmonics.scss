@@ -1,27 +1,16 @@
+.dialog-title {
+  margin: 0;
+  text-align: center;
+}
 .dialog-logo {
-  order: 0;
-  flex: 0 1 auto;
-  align-self: auto;
   width: 10%;
   height: 5vh;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
 }
-
-.flex-container {
-  align-items: center;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-}
-
 .text-dapp-name {
   padding-left: 15px;
-  order: 0;
-  flex: 1 1 auto;
-  align-self: auto;
 }
 
 .option-container {

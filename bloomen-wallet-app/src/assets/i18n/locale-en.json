@@ -106,7 +106,9 @@
       "mnemonic": "Mnemonic",
       "restore": "Restore",
       "placeholder_message": "Tap here to paste",
-      "copy_from_other": "Copy from other Dapp"
+      "copy_from_other": "Copy from other Dapp",
+      "available_mnemonics": "Available mnemonics",
+      "no_mnemonics": "No mnemonics saved"
     },
     "send_cash": {
       "to": "To",

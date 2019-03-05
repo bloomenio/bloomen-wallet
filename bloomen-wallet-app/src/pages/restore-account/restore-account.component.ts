@@ -123,7 +123,7 @@ export class RestoreAccountComponent implements OnInit, OnDestroy {
         }
       });
     } else {
-      this.snackBar.open(this.translate.instant('common.no_mnemonic'), null, {
+      this.snackBar.open(this.translate.instant('dapp.restore_account.no_mnemonics'), null, {
         duration: 2000,
       });
     }

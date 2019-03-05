@@ -106,7 +106,9 @@
       "mnemonic": "Mnemonic",
       "restore": "Restaurar",
       "placeholder_message": "Toca para pegar",
-      "copy_from_other": "Copiar de otra Dapp"
+      "copy_from_other": "Copiar de otra Dapp",
+      "available_mnemonics": "Mnemonics disponibles",
+      "no_mnemonics": "No tines mnemonics guardados"
     },
     "send_cash": {
       "to": "Para",
