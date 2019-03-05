@@ -1,4 +1,25 @@
-:host {
-    border-style: dashed;
-    border-color: white;
+.card {
+    color: black;
+    height: 100%;
+    border-radius: 2px;
+    .title {
+        color: #4980C9;
+    }
+    .subtitle {
+        color: #808080;
+    }
+    mat-icon {
+        opacity: 0.2;
+    }
+    .history-wrapper {
+        height: 200px;
+        background-color: blue;
+    }
+    .mat-card-actions {
+        margin-top: 16px;
+        .mat-button {
+            color: #4980C9;
+            font-weight: normal;
+        }
+    }
 }
