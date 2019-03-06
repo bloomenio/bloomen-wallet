@@ -31,4 +31,12 @@ export class PrepaidCardManagerContract extends Contract {
       return this.contract.methods.validateCard(this.web3Service.fromAscii(secret)).send(this.args);
     });
   }
+
+  public getSchemas() {
+    return this.contract.methods.getSchemas().call(this.args);
+  }
+
+  public getSchema(schemaId: string) {
+    return this.contract.methods.getSchema(schemaId).call(this.args);
+  }
 }
