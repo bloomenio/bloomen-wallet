@@ -8,9 +8,9 @@ export const collaboratorAdapter = createEntityAdapter<CollaboratorModel>({
     selectId: (collaborator: CollaboratorModel) => collaborator.receptor
 });
 
-const mnemonicInitialState: CollaboratorState = collaboratorAdapter.getInitialState();
+const collaboratorInitialState: CollaboratorState = collaboratorAdapter.getInitialState();
 
-export function collaboratorReducer(state: CollaboratorState = mnemonicInitialState, action: CollaboratorActions): CollaboratorState {
+export function collaboratorReducer(state: CollaboratorState = collaboratorInitialState, action: CollaboratorActions): CollaboratorState {
     switch (action.type) {
         case CollaboratorActionTypes.INIT_COLLABORATOR_SUCCESS:
             return collaboratorAdapter.addAll(action.payload, state);

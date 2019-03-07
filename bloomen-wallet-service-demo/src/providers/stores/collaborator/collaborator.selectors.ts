@@ -6,4 +6,4 @@ import * as fromReducer from './collaborator.reducer';
 
 export const CollaboratorState = createFeatureSelector<fromReducer.CollaboratorState>('collaborators');
 
-export const { selectAll: selectAllMnemonics, selectIds } = fromReducer.collaboratorAdapter.getSelectors(CollaboratorState);
+export const { selectAll: selectAllCollaborators, selectIds } = fromReducer.collaboratorAdapter.getSelectors(CollaboratorState);

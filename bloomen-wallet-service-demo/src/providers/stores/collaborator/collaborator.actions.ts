@@ -7,7 +7,8 @@ export enum CollaboratorActionTypes {
     ADD_COLLABORATOR = '[Collaborator] add collaborator',
     ADD_COLLABORATOR_SUCCESS = '[Collaborator] add collaborator success',
     REMOVE_COLLABORATOR = '[Collaborator] remove collaborator',
-    REMOVE_COLLABORATOR_SUCCESS = '[Collaborator] remove mnemonic success'
+    REMOVE_COLLABORATOR_SUCCESS = '[Collaborator] remove collaborator success',
+    REFRESH_COLLABORATOR = '[Collaborator] refresh collaborators'
 
 }
 
@@ -40,5 +41,9 @@ export class RemoveCollaboratorSuccess implements Action {
     constructor(public readonly payload: { receptor: string }) { }
 }
 
+export class RefreshCollaborator implements Action {
+    public readonly type = CollaboratorActionTypes.REFRESH_COLLABORATOR;
+}
+
 export type CollaboratorActions = AddCollaborator | InitCollaborator | InitCollaboratorSuccess | AddCollaboratorSuccess |
-    RemoveCollaborator | RemoveCollaboratorSuccess;
+    RemoveCollaborator | RemoveCollaboratorSuccess | RefreshCollaborator;

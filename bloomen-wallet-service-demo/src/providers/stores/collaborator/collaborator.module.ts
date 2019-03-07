@@ -5,16 +5,16 @@ import { SharedModule } from '@shared/shared.module';
 
 import { collaboratorReducer } from './collaborator.reducer';
 import { EffectsModule } from '@ngrx/effects';
-import { MnemonicEffects } from './collaborator.effects';
+import { CollaboratorEffects } from './collaborator.effects';
 
 @NgModule({
     imports: [
         SharedModule,
         StoreModule.forFeature('collaborators', collaboratorReducer),
         EffectsModule.forFeature([
-            MnemonicEffects
+            CollaboratorEffects
         ])
     ]
 })
 
-export class MnemonicStoreModule { }
+export class CollaboratorStoreModule { }

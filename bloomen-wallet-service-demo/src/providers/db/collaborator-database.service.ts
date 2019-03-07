@@ -8,7 +8,7 @@ import { StorageService } from '@services/storage/storage.service';
 
 
 // Config
-import { mnemonicConfig } from '@config/collaborator.db.config';
+import { collaboratorConfig } from '@config/collaborator.db.config';
 
 /**
  * Application data database service to access to the persistance data.
@@ -19,14 +19,14 @@ export class CollaboratorDatabaseService {
   /**
    * Application data database instance
    */
-  private mnemonicDatabase: NgForage;
+  private collaboratorDatabase: NgForage;
 
   /**
    * Constructor where we import all needed in the service.
    * @param storageService instance of the storage general service.
    */
   constructor(private storageService: StorageService) {
-    this.mnemonicDatabase = this.storageService.create(mnemonicConfig.databaseConfig);
+    this.collaboratorDatabase = this.storageService.create(collaboratorConfig.databaseConfig);
   }
 
   /**
@@ -34,7 +34,7 @@ export class CollaboratorDatabaseService {
    * @param key Primary key to get the value inside the database.
    */
   public get(key: string): Observable<any> {
-    return from(this.storageService.get(this.mnemonicDatabase, mnemonicConfig.encryption, key));
+    return from(this.storageService.get(this.collaboratorDatabase, collaboratorConfig.encryption, key));
   }
 
   /**
@@ -43,7 +43,7 @@ export class CollaboratorDatabaseService {
    * @param value Value to be stored inside the database
    */
   public set(key: string, value: any): Observable<any> {
-    return from(this.storageService.set(this.mnemonicDatabase, mnemonicConfig.encryption, key, value));
+    return from(this.storageService.set(this.collaboratorDatabase, collaboratorConfig.encryption, key, value));
   }
 
   /**
@@ -51,13 +51,20 @@ export class CollaboratorDatabaseService {
    * @param key Primary key to delete the value.
    */
   public remove(key: string): Observable<any> {
-    return from(this.storageService.remove(this.mnemonicDatabase, key));
+    return from(this.storageService.remove(this.collaboratorDatabase, key));
   }
 
   /**
    * Get all Mnemonics
    */
   public getAll() {
-    return from(this.storageService.getAll(this.mnemonicDatabase, mnemonicConfig.encryption));
+    return from(this.storageService.getAll(this.collaboratorDatabase, collaboratorConfig.encryption));
+  }
+
+    /**
+   * Get all dapp addresses
+   */
+  public getAllAddresses(): Observable<string[]> {
+    return from(this.collaboratorDatabase.keys());
   }
 }

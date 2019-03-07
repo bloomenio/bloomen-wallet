@@ -1,8 +1,10 @@
 // Basic
-import { Component, OnInit } from '@angular/core';
-import { PrepaidCardManagerContract } from '@core/core.module';
+import { Component, OnInit, Input } from '@angular/core';
+import { ERC223Contract } from '@core/core.module';
 import { Logger } from '@services/logger/logger.service';
 import { Web3Service } from '@services/web3/web3.service';
+import { CollaboratorModel } from '@core/models/collaborator.model';
+import { Observable } from 'rxjs';
 
 const log = new Logger('balance-item');
 
@@ -16,21 +18,18 @@ const log = new Logger('balance-item');
 })
 export class BalanceItemComponent implements OnInit {
 
+  @Input() public collaborator: CollaboratorModel;
+
+  public balance$: Observable<string>;
+
   constructor(
-    private prepaidCardContract: PrepaidCardManagerContract,
+    private erc223: ERC223Contract,
     private web3Service: Web3Service
-  ) {
-  }
+  ) { }
 
   public ngOnInit() {
     this.web3Service.ready(() => {
-      this.prepaidCardContract.getSchemas().then((schemas) => {
-        log.debug(schemas);
-        this.prepaidCardContract.getSchema(schemas[0]).then((schemaDetail) => {
-          log.debug(schemaDetail);
-        });
-      });
+      this.balance$ = this.erc223.getBalanceByAddress(this.collaborator.receptor);
     });
   }
-
 }

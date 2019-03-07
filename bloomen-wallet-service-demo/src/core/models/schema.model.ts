@@ -3,7 +3,7 @@ import { CollaboratorModel } from './collaborator.model';
 export interface SchemaModel {
     amount: string;
     assetLifeTime: string;
-    clearingHouseRules: Array<CollaboratorModel>;
+    clearingHouseRules: CollaboratorModel[];
     expirationDate: string;
     schemaId: string;
     valid: boolean;
