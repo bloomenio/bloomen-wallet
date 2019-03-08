@@ -4,12 +4,19 @@
             <mat-card-title class="title">{{collaborator.description}}</mat-card-title>
             <mat-card-subtitle class="subtitle">{{collaborator.receptor}}</mat-card-subtitle>
         </div>
-        <mat-icon *ngIf="!collaborator.fromServer">delete</mat-icon>
+        <mat-icon class="remove-icon" *ngIf="!collaborator.fromServer"
+            (click)="removeBalanceItem(collaborator.receptor)">delete</mat-icon>
     </div>
     <div class="detail-wrapper" fxLayout="row" fxLayoutAlign="start">
         <div fxFlex="35" class="balance-wrapper" fxLayout="row" fxLayoutAlign="center center">
-            <div *ngIf="balance">
+            <div *ngIf="balance && balance !== -1">
                 {{ balance | number}} PT
+            </div>
+            <div *ngIf="balance && balance === -1">
+                <div class="loading-spinner"></div>
+            </div>
+            <div *ngIf="!balance">
+                Error
             </div>
         </div>
         <div fxFlex="65" class="history-wrapper">
@@ -18,6 +25,10 @@
                     <div class="date">{{transaction.date | date: 'dd/MM/yyyy'}}</div>
                     <div class="amount">{{transaction.amount | number}} PT</div>
                 </div>
+            </div>
+            <div *ngIf="!transactions.length" class="no-data-wrapper" fxLayout="column" fxLayoutAlign="center center">
+                <mat-icon class="no-data-icon">cloud_off</mat-icon>
+                <div>{{'no movements yet' | uppercase}}</div>
             </div>
         </div>
     </div>

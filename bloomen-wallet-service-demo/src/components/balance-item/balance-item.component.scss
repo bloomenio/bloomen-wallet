@@ -11,8 +11,8 @@
     color: #808080;
   }
 
-  mat-icon {
-    opacity: 0.2;
+  .remove-icon {
+    color: #CDCDCD;
   }
 
   .detail-wrapper {
@@ -36,6 +36,16 @@
         .date {
             font-size: 14px;
             line-height: 16px;
+        }
+      }
+      .no-data-wrapper {
+        height: 100%;
+        color: #92B3DF;
+        margin-bottom: 8px;
+        .no-data-icon {
+          font-size: 50px;
+          height: 50px;
+          width: 50px;
         }
       }
     }

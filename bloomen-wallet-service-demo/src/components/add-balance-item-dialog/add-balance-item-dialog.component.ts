@@ -28,4 +28,8 @@ export class AddBalanceItemDialogComponent {
       description: ['', Validators.required]
     });
   }
+
+  public close() {
+    this.dialogRef.close();
+  }
 }

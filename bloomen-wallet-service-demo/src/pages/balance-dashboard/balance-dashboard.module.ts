@@ -14,6 +14,7 @@ import { BalanceDashboardComponent } from './balance-dashboard.component';
 import { MenuModule } from '@components/menu/menu.module';
 import { BalanceItemModule } from '@components/balance-item/balance-item.module';
 import { AddBalanceItemDialogModule } from '@components/add-balance-item-dialog/add-balance-item-dialog.module';
+import { RemoveBalanceItemDialogModule } from '@components/remove-balance-item-dialog/remove-balance-item-dialog.module';
 
 /**
  * Module to import and export all the components for the home page.
@@ -28,7 +29,8 @@ import { AddBalanceItemDialogModule } from '@components/add-balance-item-dialog/
     BalanceDashboardRoutingModule,
     MenuModule,
     BalanceItemModule,
-    AddBalanceItemDialogModule
+    AddBalanceItemDialogModule,
+    RemoveBalanceItemDialogModule
   ],
   declarations: [BalanceDashboardComponent]
 })

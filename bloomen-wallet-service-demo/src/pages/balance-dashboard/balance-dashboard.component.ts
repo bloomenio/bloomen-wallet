@@ -11,6 +11,7 @@ import * as fromCollaboratorActions from '@stores/collaborator/collaborator.acti
 import { MatDialog } from '@angular/material';
 
 import { AddBalanceItemDialogComponent } from '@components/add-balance-item-dialog/add-balance-item-dialog.component';
+import { RemoveBalanceItemDialogComponent } from '@components/remove-balance-item-dialog/remove-balance-item-dialog.component';
 
 const log = new Logger('video.component');
 
@@ -38,19 +39,24 @@ export class BalanceDashboardComponent implements OnInit {
 
 
   public RemoveBalanceItem(address) {
-    this.store.dispatch(new fromCollaboratorActions.RemoveCollaborator({ receptor: address }));
+    const dialogRef = this.dialog.open(RemoveBalanceItemDialogComponent, {
+      width: '400px'
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.store.dispatch(new fromCollaboratorActions.RemoveCollaborator({ receptor: address }));
+      }
+    });
   }
 
   public addBalanceItem() {
     const dialogRef = this.dialog.open(AddBalanceItemDialogComponent, {
-      width: '400px',
-      data: {}
+      width: '400px'
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      if (Object.keys(result).length !== 0) {
-        log.debug(result);
+      if (result && Object.keys(result).length !== 0) {
+        this.store.dispatch(new fromCollaboratorActions.AddCollaborator({ receptor: result.address, description: result.description }));
       }
     });
   }

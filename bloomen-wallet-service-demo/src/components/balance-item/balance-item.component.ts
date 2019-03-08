@@ -39,17 +39,27 @@ export class BalanceItemComponent implements OnInit, OnDestroy {
 
   public async ngOnInit() {
     this.transactions = [];
+    this.balance = -1;
     this.web3Service.ready(async () => {
 
       // First balance
-      this.balance = await this.erc223.getBalanceByAddress(this.collaborator.receptor);
+      try {
+        this.balance = await this.erc223.getBalanceByAddress(this.collaborator.receptor);
+      } catch (error) {
+        log.debug(`error getting balance for address ${this.collaborator.receptor}`);
+        this.balance = undefined;
+      }
 
       // On movement get balance again
       this.erc223$ = this.erc223.getEvents().subscribe((event: any) => {
-        this.erc223.getBalanceByAddress(this.collaborator.receptor).then((balance: number) => {
-          this.doTransaction(balance);
-          this.balance = balance;
-        });
+        try {
+          this.erc223.getBalanceByAddress(this.collaborator.receptor).then((balance: number) => {
+            this.doTransaction(balance);
+            this.balance = balance;
+          });
+        } catch (error) {
+          log.debug(`error getting balance for address ${this.collaborator.receptor}`);
+        }
       });
     });
 

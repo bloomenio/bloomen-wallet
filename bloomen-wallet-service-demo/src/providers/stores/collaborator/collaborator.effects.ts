@@ -74,7 +74,7 @@ export class CollaboratorEffects {
         switchMap((action) => {
             const collaborator: CollaboratorModel = {
                 receptor: action.payload.receptor,
-                description: action.payload.receptor,
+                description: action.payload.description,
                 fromServer: false
             };
             return from(this.collaboratorDatabaseService.set(collaborator.receptor, collaborator).pipe(

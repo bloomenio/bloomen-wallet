@@ -10,6 +10,6 @@
     </form>
 </div>
 <div mat-dialog-actions fxLayout="row" fxLayoutAlign="end">
-    <button mat-button>{{'close' | uppercase}}</button>
+    <button mat-button (click)="close()">{{'close' | uppercase}}</button>
     <button mat-button cdkFocusInitial [disabled]="form.invalid" [mat-dialog-close]="form.value">{{'save' | uppercase}}</button>
 </div>
