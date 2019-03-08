@@ -3,9 +3,22 @@
         <div fxFlex>
             <mat-card-title class="title">{{collaborator.description}}</mat-card-title>
             <mat-card-subtitle class="subtitle">{{collaborator.receptor}}</mat-card-subtitle>
-            {{ balance$ | async }}
         </div>
         <mat-icon *ngIf="!collaborator.fromServer">delete</mat-icon>
     </div>
-    <div class="history-wrapper"></div>
+    <div class="detail-wrapper" fxLayout="row" fxLayoutAlign="start">
+        <div fxFlex="35" class="balance-wrapper" fxLayout="row" fxLayoutAlign="center center">
+            <div *ngIf="balance">
+                {{ balance | number}} PT
+            </div>
+        </div>
+        <div fxFlex="65" class="history-wrapper">
+            <div *ngFor="let transaction of transactions; let i=index">
+                <div *ngIf="i < 5" class="transaction-wrapper" fxLayout="row" fxLayoutAlign="space-between center">
+                    <div class="date">{{transaction.date | date: 'dd/MM/yyyy'}}</div>
+                    <div class="amount">{{transaction.amount | number}} PT</div>
+                </div>
+            </div>
+        </div>
+    </div>
 </mat-card>

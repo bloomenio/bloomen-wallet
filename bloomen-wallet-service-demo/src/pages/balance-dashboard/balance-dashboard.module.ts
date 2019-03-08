@@ -13,6 +13,7 @@ import { BalanceDashboardRoutingModule } from './balance-dashboard-routing.modul
 import { BalanceDashboardComponent } from './balance-dashboard.component';
 import { MenuModule } from '@components/menu/menu.module';
 import { BalanceItemModule } from '@components/balance-item/balance-item.module';
+import { AddBalanceItemDialogModule } from '@components/add-balance-item-dialog/add-balance-item-dialog.module';
 
 /**
  * Module to import and export all the components for the home page.
@@ -26,7 +27,8 @@ import { BalanceItemModule } from '@components/balance-item/balance-item.module'
     MaterialModule,
     BalanceDashboardRoutingModule,
     MenuModule,
-    BalanceItemModule
+    BalanceItemModule,
+    AddBalanceItemDialogModule
   ],
   declarations: [BalanceDashboardComponent]
 })

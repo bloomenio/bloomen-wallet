@@ -1,25 +1,52 @@
 .card {
-    color: black;
-    height: 100%;
-    border-radius: 2px;
-    .title {
-        color: #4980C9;
+  color: black;
+  height: 100%;
+  border-radius: 2px;
+
+  .title {
+    color: #4980C9;
+  }
+
+  .subtitle {
+    color: #808080;
+  }
+
+  mat-icon {
+    opacity: 0.2;
+  }
+
+  .detail-wrapper {
+    height: 200px;
+
+    .balance-wrapper {
+      background-color: #4980C9;
+      font-weight: bold;
+      font-size: 28px;
+      color: white;
     }
-    .subtitle {
-        color: #808080;
-    }
-    mat-icon {
-        opacity: 0.2;
-    }
+
     .history-wrapper {
-        height: 200px;
-        background-color: blue;
-    }
-    .mat-card-actions {
-        margin-top: 16px;
-        .mat-button {
-            color: #4980C9;
-            font-weight: normal;
+      background-color: #D6E2F3;
+      .transaction-wrapper {
+        margin: 16px;
+        .amount {
+            font-size: 16px;
+            line-height: 19px;
         }
+        .date {
+            font-size: 14px;
+            line-height: 16px;
+        }
+      }
     }
+  }
+
+  .mat-card-actions {
+    margin-top: 16px;
+
+    .mat-button {
+      color: #4980C9;
+      font-weight: normal;
+    }
+  }
 }
