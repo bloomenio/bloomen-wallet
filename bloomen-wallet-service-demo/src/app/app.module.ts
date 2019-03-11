@@ -20,14 +20,22 @@ import { AppRoutingModule } from './app-routing.module';
 import { Store } from '@ngrx/store';
 
 import * as fromAppActions from '@stores/application-data/application-data.actions';
+import * as fromCollaboratorActions from '@stores/collaborator/collaborator.actions';
+import * as fromTransactionActions from '@stores/transaction/transaction.actions';
 
 import * as fromAppSelectors from '@stores/application-data/application-data.selectors';
+import * as fromCollaboratorSelectors from '@stores/collaborator/collaborator.selectors';
+import * as fromTransactionSelectors from '@stores/transaction/transaction.selectors';
 
 
 import { skipWhile, first } from 'rxjs/operators';
 import { forkJoin } from 'rxjs';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { devToolsConfig } from '@config/devtools.config';
+import { CollaboratorStoreModule } from '@stores/collaborator/collaborator.module';
+import { TransactionStoreModule } from '@stores/transaction/transaction.module';
+import { BalanceStoreModule } from '@stores/balance/balance.module';
+import { DashboardOptionMenuModule } from '@components/dashboard-option-menu/dashboard-option-menu.module';
 
 export function onAppInit(store: Store<any>): () => Promise<any> {
   return (): Promise<any> => {
@@ -36,10 +44,21 @@ export function onAppInit(store: Store<any>): () => Promise<any> {
       const appInit$ = store.select(fromAppSelectors.getApplicationData).pipe(skipWhile((value) => {
         return !value;
       }), first());
-      forkJoin([appInit$]).subscribe(() => {
+
+      const collaboratorInit$ = store.select(fromCollaboratorSelectors.selectAllCollaborators).pipe(skipWhile((value) => {
+        return !value;
+      }), first());
+
+      const transactionInit$ = store.select(fromTransactionSelectors.selectAllTransaction).pipe(skipWhile((value) => {
+        return !value;
+      }), first());
+
+      forkJoin([appInit$, collaboratorInit$, transactionInit$]).subscribe(() => {
         resolve();
       });
       store.dispatch(new fromAppActions.InitAppData());
+      store.dispatch(new fromCollaboratorActions.InitCollaborator());
+      store.dispatch(new fromTransactionActions.InitTransaction());
     });
   };
 }
@@ -61,6 +80,10 @@ export function onAppInit(store: Store<any>): () => Promise<any> {
     HomeModule,
     FlexLayoutModule,
     ApplicationDataStoreModule,
+    CollaboratorStoreModule,
+    BalanceStoreModule,
+    TransactionStoreModule,
+    DashboardOptionMenuModule,
     StoreDevtoolsModule.instrument(devToolsConfig),
     AppRoutingModule // must be imported as the last module as it contains the fallback route
   ],

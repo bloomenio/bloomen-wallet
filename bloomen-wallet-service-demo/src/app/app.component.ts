@@ -104,7 +104,6 @@ export class AppComponent implements OnInit {
     this.preloadImages.preload('assets/smart-office/img_detail_reserve_meeting_room.png');
 
     // Cards
-    this.preloadImages.preload('assets/cards/bloomen_card_0.png');
     this.preloadImages.preload('assets/cards/bloomen_card_1.png');
     this.preloadImages.preload('assets/cards/bloomen_card_2.png');
     this.preloadImages.preload('assets/cards/bloomen_card_3.png');

@@ -30,15 +30,11 @@ import { Store } from '@ngrx/store';
 import * as fromAppActions from '@stores/application-data/application-data.actions';
 import * as fromMnemonicActions from '@stores/mnemonic/mnemonic.actions';
 import * as fromDappActions from '@stores/dapp/dapp.actions';
-// new
-import * as fromRecentUsersActions from '@stores/recent-users/recent-users.actions';
 
 
 import * as fromAppSelectors from '@stores/application-data/application-data.selectors';
 import * as fromMnemonicSelectors from '@stores/mnemonic/mnemonic.selectors';
 import * as fromDappSelectors from '@stores/dapp/dapp.selectors';
-// new
-import * as fromRecentUsersSelectors from '@stores/recent-users/recent-users.selectors';
 
 
 import { skipWhile, first } from 'rxjs/operators';
@@ -106,8 +102,6 @@ export function onAppInit(store: Store<any>): () => Promise<any> {
     TxActivityStoreModule,
     StoreDevtoolsModule.instrument(devToolsConfig),
     RecentUsersStoreModule,
-    
-
     // Routing
     AppRoutingModule // must be imported as the last module as it contains the fallback route
   ],

@@ -1,0 +1,32 @@
+@import "~scss/variables.scss";
+
+.balance-wrapper {
+  padding: 32px;
+
+  .title {
+    font-size: 24px;
+    margin: 8px 0;
+  }
+
+  .cards {
+    color: #4980C9;
+  }
+
+  .item-wrapper {
+    height: 364px;
+    margin: 16px 4px;
+    .add-balance {
+      border-style: dashed;
+      border-color: white;
+      mat-icon {
+        height: 60px;
+        width: 60px;
+        font-size: 60px;
+      }
+    }
+
+    .add-balance-detail {
+      background-color: white;
+    }
+  }
+}
