@@ -30,6 +30,9 @@ export class ERC223Contract extends Contract {
     return this.contract.methods.balanceOf(this.address).call(this.args);
   }
 
+  public getBalanceByAddress(address: string) {
+    return this.contract.methods.balanceOf(address).call(this.args);
+  }
   public transfer(toAddress: string, amount: number) {
     return this.transactionService.addTransaction(this.args.gas, () => {
       return this.contract.methods.transfer(toAddress, amount).send(this.args);

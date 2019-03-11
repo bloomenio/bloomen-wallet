@@ -32,6 +32,10 @@ const routes: Routes = [
       path: 'smart-office/smart-office-exchange/:smartOfficeId',
       loadChildren: 'pages/smart-office-exchange/smart-office-exchange.module#SmartOfficeExchangeModule'
     },
+    {
+      path: 'balance-dashboard',
+      loadChildren: 'pages/balance-dashboard/balance-dashboard.module#BalanceDashboardModule'
+    },
   ]),
   // Fallback when no prior route is matched
   { path: '**', redirectTo: '', pathMatch: 'full' }
