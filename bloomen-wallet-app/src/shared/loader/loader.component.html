@@ -1,6 +1,14 @@
-<div  class="loader" *ngIf="isLoading" fxFlex fxLayoutAlign="center center">
+<div class="loader" *ngIf="isLoading" fxFlex fxLayoutAlign="center center">
     <lottie-animation-view
     [options]="lottieConfig"
+    [width]="300"
+    [height]="300"
+    (animCreated)="handleAnimation($event)">
+</lottie-animation-view>
+</div>
+<div class="loader" *ngIf="isLoadingCamera" fxFlex fxLayoutAlign="center center">
+    <lottie-animation-view
+    [options]="lottieConfigCamera"
     [width]="300"
     [height]="300"
     (animCreated)="handleAnimation($event)">

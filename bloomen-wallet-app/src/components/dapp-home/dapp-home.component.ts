@@ -1,5 +1,5 @@
 // Basic
-import { Component, OnInit, OnDestroy, Input, Output, AfterViewChecked } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, AfterViewChecked } from '@angular/core';
 
 import { Dapp } from '@core/models/dapp.model.js';
 
@@ -20,7 +20,6 @@ import { AssetsContract, DevicesContract } from '@core/core.module';
 import { TranslateService } from '@ngx-translate/core';
 import { DappGeneralDialogComponent } from '@components/dapp-general-dialog/dapp-general-dialog.component';
 
-import { DappInputDialogComponent } from '@components/dapp-input-dialog/dapp-input-dialog.component';
 import {AllowAndBuy, AllowObject, BuyObject} from '@models/operations.model';
 
 const log = new Logger('dapp-home.component');
@@ -91,64 +90,11 @@ export class DappHomeComponent implements OnInit, OnDestroy, AfterViewChecked {
     this.store.dispatch(new fromTxActivityActions.MoreTxActivity({ page: ++this.currentPage }));
   }
 
-<<<<<<< HEAD
-  public async buyOrAllow(){
-    this.isLoadingCamera = true;
-=======
   public async buyOrAllow() {
->>>>>>> 0e23526043edc41d1a3af718e854307da7f0d481
-    if (window['cordova']) {
-      try {
-        const scannedValue = await this.barCodeScannerService.scan();
-        if ((scannedValue) && (!scannedValue.cancelled)) {
-          this.isLoadingCamera = false;
-          this.doOperation(scannedValue.text);
-        } else {
-          log.error('KO', 'Scan cancelled');
-        }
-      } catch {
-        log.error('Error scanning the QR');
-      }
-    } else {
-<<<<<<< HEAD
-      this.isLoadingCamera = true;
-      setTimeout(() =>{
-        const dialogRef = this.dialog.open(DappInputDialogComponent, {
-          width: '250px',
-          data: {
-            // Juan aqui no mires, jordi me ha dicho que no lo traduzca, lo dejo con el instant para que si algun dia lo tenemos que traducir
-            // lo hagamos :(
-            title: this.translate.instant('Buy or Allow'),
-            description: this.translate.instant('Put the date into the input field'),
-            buttonAccept: this.translate.instant('Ok'),
-            buttonCancel: this.translate.instant('Cancel')
-          }
-        });
-        dialogRef.afterClosed().subscribe(result => {
-          if (result) {
+        this.barCodeScannerService.scan().then(result => {
+          console.log(result);
             this.doOperation(result);
-          }
-        });
-
-      }, 3000);
-      
-=======
-      const dialogRef = this.dialog.open(DappInputDialogComponent, {
-        width: '250px',
-        data: {
-          title: this.translate.instant('dapp.home.buy_content'),
-          description: this.translate.instant('dapp.home.data'),
-          buttonAccept: this.translate.instant('common.accept'),
-          buttonCancel: this.translate.instant('common.cancel')
-        }
-      });
-      dialogRef.afterClosed().subscribe(result => {
-        if (result) {
-          this.doOperation(result);
-        }
-      });
->>>>>>> 0e23526043edc41d1a3af718e854307da7f0d481
-    }
+        });    
   }
 
   private doOperation(inputValue: string) {
