@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { extract } from '@services/i18n/i18n.service';
 import { BalanceDashboardComponent } from './balance-dashboard.component';
+import { DashboardOptionMenuComponent } from '@components/dashboard-option-menu/dashboard-option-menu.component';
 
 
 const routes: Routes = [
@@ -12,7 +13,8 @@ const routes: Routes = [
     data: {
       title: extract('Balance dashboard'),
       shellOptions: {
-        hasBackButton: true
+        hasBackButton: true,
+        auxiliarOptionsComponent: DashboardOptionMenuComponent
       }
     }
   }
