@@ -49,18 +49,12 @@ export class BarCodeScannerService {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         if (window['cordova']) {
-          new Promise<BarcodeScanResult>((resolve, reject) => {
             this.barcodeScanner.scan(barcodeScannerOptions).then(
               scanResult => {
                 this.loader.next(false);
-                resolve(scanResult);
+                resolve(scanResult.text);
               },
-              error => { reject(error) }
-            );
-          }).then((valor) => {
-            this.loader.next(false);
-            resolve(valor.text)
-          });
+              error => reject(error));
         } else {
           this.loader.next(false);
           const dialogRef = this.dialog.open(DappInputDialogComponent, {
@@ -78,7 +72,7 @@ export class BarCodeScannerService {
             }
           });
         }
-      }, environment.loaderTime)
+      }, environment.loaderTime);
     });
   }
 }
