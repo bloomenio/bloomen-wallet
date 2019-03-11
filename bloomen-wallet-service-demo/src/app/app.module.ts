@@ -34,6 +34,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { devToolsConfig } from '@config/devtools.config';
 import { CollaboratorStoreModule } from '@stores/collaborator/collaborator.module';
 import { TransactionStoreModule } from '@stores/transaction/transaction.module';
+import { BalanceStoreModule } from '@stores/balance/balance.module';
 
 export function onAppInit(store: Store<any>): () => Promise<any> {
   return (): Promise<any> => {
@@ -79,6 +80,7 @@ export function onAppInit(store: Store<any>): () => Promise<any> {
     FlexLayoutModule,
     ApplicationDataStoreModule,
     CollaboratorStoreModule,
+    BalanceStoreModule,
     TransactionStoreModule,
     StoreDevtoolsModule.instrument(devToolsConfig),
     AppRoutingModule // must be imported as the last module as it contains the fallback route

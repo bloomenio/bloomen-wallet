@@ -7,6 +7,7 @@ import { map, switchMap } from 'rxjs/operators';
 
 // Actions
 import * as fromActions from './collaborator.actions';
+import * as fromBalanceActions from '@stores/balance/balance.actions';
 import { Logger } from '@services/logger/logger.service';
 
 import { CollaboratorDatabaseService } from '@db/collaborator-database.service';
@@ -83,11 +84,14 @@ export class CollaboratorEffects {
         })
     );
 
-    @Effect() public removeCollaborator = this.actions$.pipe(
+    @Effect({dispatch: false}) public removeCollaborator = this.actions$.pipe(
         ofType(fromActions.CollaboratorActionTypes.REMOVE_COLLABORATOR),
         switchMap((action) => {
             return from(this.collaboratorDatabaseService.remove(action.payload.receptor).pipe(
-                map(() => new fromActions.RemoveCollaboratorSuccess({ receptor: action.payload.receptor }))
+                map(() =>  {
+                    this.store.dispatch(new fromActions.RemoveCollaboratorSuccess({ receptor: action.payload.receptor }));
+                    this.store.dispatch(new fromBalanceActions.RemoveBalanceSuccess({address: action.payload.receptor}));
+                })
             ));
         })
     );

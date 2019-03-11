@@ -1,14 +1,16 @@
 // Basic
-import { Component, OnInit, Input, OnDestroy, Output, EventEmitter } from '@angular/core';
-import { ERC223Contract } from '@core/core.module';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Logger } from '@services/logger/logger.service';
-import { Web3Service } from '@services/web3/web3.service';
 import { CollaboratorModel } from '@core/models/collaborator.model';
 import { Subscription } from 'rxjs';
 import { TransactionModel } from '@core/models/transaction.model';
 import { Store } from '@ngrx/store';
+
 import * as fromTransactionActions from '@stores/transaction/transaction.actions';
 import * as fromTransactionSelectors from '@stores/transaction/transaction.selectors';
+
+import * as fromBalanceSelectors from '@stores/balance/balance.selectors';
+import { skipWhile } from 'rxjs/operators';
 
 const log = new Logger('balance-item');
 
@@ -20,7 +22,7 @@ const log = new Logger('balance-item');
   templateUrl: 'balance-item.component.html',
   styleUrls: ['balance-item.component.scss']
 })
-export class BalanceItemComponent implements OnInit, OnDestroy {
+export class BalanceItemComponent implements OnInit {
 
   @Input() public collaborator: CollaboratorModel;
   @Output() public readonly clickRemove = new EventEmitter();
@@ -32,36 +34,22 @@ export class BalanceItemComponent implements OnInit, OnDestroy {
   public erc223$: Subscription;
 
   constructor(
-    private erc223: ERC223Contract,
-    private web3Service: Web3Service,
-    private store: Store<TransactionModel>
+    private store: Store<any>
   ) { }
 
   public async ngOnInit() {
     this.transactions = [];
     this.balance = -1;
-    this.web3Service.ready(async () => {
 
-      // First balance
-      try {
-        this.balance = await this.erc223.getBalanceByAddress(this.collaborator.receptor);
-      } catch (error) {
-        log.debug(`error getting balance for address ${this.collaborator.receptor}`);
-        this.balance = undefined;
-      }
-
-      // On movement get balance again
-      this.erc223$ = this.erc223.getEvents().subscribe((event: any) => {
-        try {
-          this.erc223.getBalanceByAddress(this.collaborator.receptor).then((balance: number) => {
-            this.doTransaction(balance);
-            this.balance = balance;
-          });
-        } catch (error) {
-          log.debug(`error getting balance for address ${this.collaborator.receptor}`);
+    this.store.select(fromBalanceSelectors.getBalanceByAddress, this.collaborator.receptor)
+      .pipe(
+        skipWhile((balanceItem) => !balanceItem)
+      ).subscribe((balanceItem) => {
+        if (balanceItem && balanceItem.balance && this.balance !== -1 && this.balance - balanceItem.balance !== 0) {
+          this.doTransaction(balanceItem.balance);
         }
+        this.balance = balanceItem.balance;
       });
-    });
 
     this.store.select(fromTransactionSelectors.getTransactionByAddress, this.collaborator.receptor).subscribe((transactionItem: TransactionModel) => {
       if (transactionItem) {
@@ -84,9 +72,5 @@ export class BalanceItemComponent implements OnInit, OnDestroy {
 
   public removeBalanceItem(address: string) {
     this.clickRemove.emit(address);
-  }
-
-  public ngOnDestroy() {
-    this.erc223$.unsubscribe();
   }
 }
