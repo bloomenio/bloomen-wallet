@@ -1,5 +1,5 @@
 // Basic
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { Logger } from '@services/logger/logger.service';
 import { CollaboratorModel } from '@core/models/collaborator.model';
 import { Subscription } from 'rxjs';
@@ -11,6 +11,7 @@ import * as fromTransactionSelectors from '@stores/transaction/transaction.selec
 
 import * as fromBalanceSelectors from '@stores/balance/balance.selectors';
 import { skipWhile } from 'rxjs/operators';
+import { BalanceModel } from '@core/models/balance.model';
 
 const log = new Logger('balance-item');
 
@@ -22,14 +23,16 @@ const log = new Logger('balance-item');
   templateUrl: 'balance-item.component.html',
   styleUrls: ['balance-item.component.scss']
 })
-export class BalanceItemComponent implements OnInit {
+export class BalanceItemComponent implements OnInit, OnDestroy {
 
   @Input() public collaborator: CollaboratorModel;
   @Output() public readonly clickRemove = new EventEmitter();
 
   public balance: number;
+  public balance$: Subscription;
 
   public transactions: TransactionModel.Transaction[];
+  public transactions$: Subscription;
 
   public erc223$: Subscription;
 
@@ -41,24 +44,26 @@ export class BalanceItemComponent implements OnInit {
     this.transactions = [];
     this.balance = -1;
 
-    this.store.select(fromBalanceSelectors.getBalanceByAddress, this.collaborator.receptor)
-      .pipe(
-        skipWhile((balanceItem) => !balanceItem)
-      ).subscribe((balanceItem) => {
-        if (balanceItem && balanceItem.balance && this.balance !== -1 && this.balance - balanceItem.balance !== 0) {
+    this.balance$ = this.store.select(fromBalanceSelectors.selectAllBalance).subscribe((balanceItems: BalanceModel[]) => {
+      const balanceItem = balanceItems.find((balance) => balance.address === this.collaborator.receptor);
+      if (balanceItem) {
+        if (balanceItem.balance && this.balance !== -1 && this.balance - balanceItem.balance !== 0) {
           this.doTransaction(balanceItem.balance);
         }
         this.balance = balanceItem.balance;
-      });
-
-    this.store.select(fromTransactionSelectors.getTransactionByAddress, this.collaborator.receptor).subscribe((transactionItem: TransactionModel) => {
-      if (transactionItem) {
-        const transactions = [...transactionItem.transactions];
-        this.transactions = transactions.sort((a, b) => {
-          return b.date - a.date;
-        });
       }
     });
+
+    this.transactions$ = this.store.select(fromTransactionSelectors.selectAllTransaction)
+      .subscribe((transactionItems: TransactionModel[]) => {
+        const transactionItem = transactionItems.find((transaction) => transaction.address === this.collaborator.receptor);
+        if (transactionItem) {
+          const transactions = [...transactionItem.transactions];
+          this.transactions = transactions.sort((a, b) => {
+            return b.date - a.date;
+          });
+        }
+      });
   }
 
   private doTransaction(balance: number) {
@@ -72,5 +77,10 @@ export class BalanceItemComponent implements OnInit {
 
   public removeBalanceItem(address: string) {
     this.clickRemove.emit(address);
+  }
+
+  public ngOnDestroy() {
+    this.balance$.unsubscribe();
+    this.transactions$.unsubscribe();
   }
 }

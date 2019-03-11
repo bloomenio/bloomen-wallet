@@ -39,14 +39,13 @@ export class TransactionEffects {
 
     @Effect() public addTransaction = this.actions$.pipe(
         ofType(fromActions.TranscationActionTypes.ADD_TRANSACTION),
-        switchMap((action) => {
+        map((action) => {
             const transaction: TransactionModel = {
                 address: action.payload.address,
                 transactions: action.payload.transactions
             };
-            return from(this.transactionDatabaseService.set(transaction.address, transaction).pipe(
-                map(() => new fromActions.AddTransactionSuccess(transaction))
-            ));
+            this.transactionDatabaseService.set(transaction.address, transaction);
+            return new fromActions.AddTransactionSuccess(transaction);
         })
     );
 
