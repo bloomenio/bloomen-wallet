@@ -6,11 +6,11 @@
             Total cards: {{(collaborators$ | async).length}}
         </div>
     <div fxLayout="row wrap" fxLayoutAlign="start stretch">
+        <blo-balance-item *ngFor="let collaborator of (collaborators$ | async)" (clickRemove)="RemoveBalanceItem($event)" [collaborator]="collaborator" class="item-wrapper" fxFlex="30"></blo-balance-item>
         <div class="item-wrapper" fxLayout="column" fxFlex="30" (click)="addBalanceItem()">
             <div class="add-balance" fxFlex fxLayout="row" fxLayoutAlign="center center">
                 <mat-icon>add_circle_outline</mat-icon>
             </div>
         </div>
-        <blo-balance-item *ngFor="let collaborator of (collaborators$ | async)" (clickRemove)="RemoveBalanceItem($event)" [collaborator]="collaborator" class="item-wrapper" fxFlex="30"></blo-balance-item>
     </div>
 </div>
