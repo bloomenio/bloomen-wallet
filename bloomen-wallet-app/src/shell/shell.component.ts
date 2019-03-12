@@ -16,8 +16,7 @@ import { Logger } from '@services/logger/logger.service';
 
 import { TransactionService, Transaction } from '@services/web3/transactions/transaction.service';
 import { Subscription, Observable } from 'rxjs';
-
-import  { BarCodeScannerService } from '@services/barcode-scanner/barcode-scanner.service';
+import { BarCodeScannerService } from '@services/barcode-scanner/barcode-scanner.service';
 
 
 const log = new Logger('blo-shell');
@@ -132,9 +131,6 @@ export class ShellComponent implements OnInit, OnDestroy {
         this.isLoading = transactions.length > 0;
       });
   }
-
-  
-
 
   private unregister() {
     this.transactionSubscription.unsubscribe();
