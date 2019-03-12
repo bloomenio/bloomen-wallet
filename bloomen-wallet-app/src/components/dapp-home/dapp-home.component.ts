@@ -1,5 +1,5 @@
 // Basic
-import { Component, OnInit, OnDestroy, Input, AfterViewChecked } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, ElementRef, Renderer2, ViewChild, AfterViewChecked } from '@angular/core';
 
 import { Dapp } from '@core/models/dapp.model.js';
 
@@ -32,7 +32,7 @@ const log = new Logger('dapp-home.component');
   templateUrl: 'dapp-home.component.html',
   styleUrls: ['dapp-home.component.scss']
 })
-export class DappHomeComponent implements OnInit, OnDestroy, AfterViewChecked {
+export class DappHomeComponent implements OnInit, OnDestroy {
 
   public dapp$: Subscription;
 
@@ -48,6 +48,9 @@ export class DappHomeComponent implements OnInit, OnDestroy, AfterViewChecked {
 
   @Input() public dapp: Dapp;
 
+  @ViewChild('recentActivity', {read: ElementRef}) public recentActivity: ElementRef;
+  @ViewChild('newContent', {read: ElementRef}) public newContent: ElementRef;
+
 
 
   /**
@@ -60,26 +63,27 @@ export class DappHomeComponent implements OnInit, OnDestroy, AfterViewChecked {
     private devices: DevicesContract,
     private barCodeScannerService: BarCodeScannerService,
     private translate: TranslateService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private render: Renderer2
   ) {
   }
 
-    public onResize() {
-      if(document.getElementById('recentActivity') !== null) {
-        document.getElementById('recentActivity').style.marginTop = document.getElementById('newContent').offsetHeight+"px";
-      }
+  public onResize() {
+    if (this.recentActivity != null) {
+      this.render.setStyle(
+        this.recentActivity.nativeElement, 'margin-top', this.newContent.nativeElement.offsetHeight + 'px'
+      );
     }
-    public ngAfterViewChecked() {
-      this.onResize();
-    }
+  }
 
-    public ngOnInit() {
-      this.txActivity$ = this.store.select(fromTxActivitySelectors.selectAllTxActivity).subscribe((txActivityArray) => {
-      this.txActivityArray = txActivityArray.sort((a, b) => b.epoch - a.epoch);
-      this.currentPage = Math.ceil(txActivityArray.length / 10);
-    });
-      this.isLoading$ = this.store.select(fromTxActivitySelectors.getIsLoading);
-    }
+  public ngOnInit() {
+    this.txActivity$ = this.store.select(fromTxActivitySelectors.selectAllTxActivity).subscribe((txActivityArray) => {
+    this.txActivityArray = txActivityArray.sort((a, b) => b.epoch - a.epoch);
+    this.currentPage = Math.ceil(txActivityArray.length / 10);
+    this.onResize();
+  });
+    this.isLoading$ = this.store.select(fromTxActivitySelectors.getIsLoading);
+  }
 
   public ngOnDestroy() {
     this.txActivity$.unsubscribe();
@@ -93,8 +97,8 @@ export class DappHomeComponent implements OnInit, OnDestroy, AfterViewChecked {
   public async buyOrAllow() {
         this.barCodeScannerService.scan().then(result => {
           console.log(result);
-            this.doOperation(result);
-        });    
+          this.doOperation(result);
+        });
   }
 
   private doOperation(inputValue: string) {
