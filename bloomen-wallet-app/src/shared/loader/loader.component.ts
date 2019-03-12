@@ -21,13 +21,13 @@ export class LoaderComponent {
       renderer: 'svg',
       autoplay: true,
       loop: true
-    }
+    };
     this.lottieConfigCamera = {
       path: 'assets/animation/loadingCamera.json',
       renderer: 'svg',
       autoplay: true,
       loop: true
-    }
+    };
   }
 
   public handleAnimation(anim: any) {
