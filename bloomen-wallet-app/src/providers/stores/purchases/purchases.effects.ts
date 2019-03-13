@@ -34,7 +34,6 @@ export class DevicesEffects {
             this.web3Service.ready(() => {
                 this.assetsContract.getAssetsPageCount().then(pageCount => {
                     pageCount = parseInt(pageCount);
-                    
                     // #BUGPAGECOUNT: Remove "+ 1" when fixed
                     const lastPage = pageCount + 1;
                     this.loadFullPage(lastPage, fromActions.PAGE_SIZE).then((result: AssetModel[]) => {
@@ -68,7 +67,7 @@ export class DevicesEffects {
     private loadFullPage(pageIndex: number, pageSize = fromActions.PAGE_SIZE): Promise<AssetModel[]> {
         return new Promise<AssetModel[]>((resolve, reject) => {
             this.assetsContract.getAssets(pageIndex).then((result: AssetModel[]) => {
-                let assets = this.calculateAssetArray(result);
+                const assets = this.calculateAssetArray(result);
                 if (pageIndex > fromActions.FIRST_PAGE_INDEX && assets.length < pageSize) {
                     // When a page is not complete then load also previous one, if available
                     this.loadFullPage(pageIndex - 1, pageSize).then(previousPage => {

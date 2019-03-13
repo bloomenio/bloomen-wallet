@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import {UserAlias} from "@models/recent-user.model";
+import {UserAlias} from '@models/recent-user.model';
 
 
 export enum RecentUsersActionTypes {
@@ -49,12 +49,12 @@ export class DeleteAliasSuccess implements Action {
     constructor(public readonly payload: { id: string }) { }
 }
 
-export class setCurrentAlias implements Action {
+export class SetCurrentAlias implements Action {
     public readonly type = RecentUsersActionTypes.CURRENT_ALIAS;
     constructor(public readonly payload: UserAlias ) {}
 }
 
-export class cleanUser implements Action {
+export class CleanUser implements Action {
     public readonly type = RecentUsersActionTypes.DELETE_CURRENT_ALIAS;
 
 }
@@ -64,5 +64,4 @@ export class InitRecentUsersSuccess implements Action {
     constructor(public readonly payload: UserAlias[]) { }
 }
 
- export type RecentUsersActions = AddAlias | DeleteAlias | setCurrentAlias | ChangeAlias | cleanUser
-     | InitRecentUsers | InitRecentUsersSuccess | AddAliasSuccess | DeleteAliasSuccess | ChangeAliasSuccess ;
+ export type RecentUsersActions = AddAlias | DeleteAlias | SetCurrentAlias | ChangeAlias | CleanUser | InitRecentUsers | InitRecentUsersSuccess | AddAliasSuccess | DeleteAliasSuccess | ChangeAliasSuccess ;

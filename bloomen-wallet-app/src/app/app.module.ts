@@ -106,7 +106,6 @@ export function onAppInit(store: Store<any>): () => Promise<any> {
     TxActivityStoreModule,
     StoreDevtoolsModule.instrument(devToolsConfig),
     RecentUsersStoreModule,
-    
 
     // Routing
     AppRoutingModule // must be imported as the last module as it contains the fallback route

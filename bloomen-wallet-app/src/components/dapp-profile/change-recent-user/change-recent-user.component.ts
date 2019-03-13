@@ -10,29 +10,29 @@ import * as fromRecentUsersAction from '@stores/recent-users/recent-users.action
   styleUrls: ['./change-recent-user.component.scss']
 })
 export class ChangeRecentUserComponent implements OnInit {
-  newAlias: string = '';
+  public newAlias = '';
   public newUser: UserAlias = {
     address: null,
     idDapp: null,
     alias: ''
   };
 
-  constructor(public store: Store<UserAlias> , 
+  constructor(public store: Store<UserAlias> ,
     public dialogRef: MatDialogRef<ChangeRecentUserComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any ) {
       this.newUser.address = this.data.user.address;
       this.newUser.idDapp = this.data.user.idDapp;
      }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.newAlias = this.data.user.alias;
   }
 
-  onNoClick(): void {
+  public onNoClick(): void {
     this.dialogRef.close();
   }
 
-  onChangeAlias(): void{
+  public onChangeAlias(): void {
     this.newUser.alias = this.newAlias;
     this.store.dispatch(new fromRecentUsersAction.ChangeAlias({ user: this.newUser }));
     this.dialogRef.close();
