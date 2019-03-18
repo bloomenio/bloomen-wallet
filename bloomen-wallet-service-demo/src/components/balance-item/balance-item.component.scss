@@ -1,0 +1,62 @@
+.card {
+  color: black;
+  height: 100%;
+  border-radius: 2px;
+
+  .title {
+    color: #4980C9;
+  }
+
+  .subtitle {
+    color: #808080;
+  }
+
+  .remove-icon {
+    color: #CDCDCD;
+  }
+
+  .detail-wrapper {
+    height: 200px;
+
+    .balance-wrapper {
+      background-color: #4980C9;
+      font-weight: bold;
+      font-size: 28px;
+      color: white;
+    }
+
+    .history-wrapper {
+      background-color: #D6E2F3;
+      .transaction-wrapper {
+        margin: 16px;
+        .amount {
+            font-size: 16px;
+            line-height: 19px;
+        }
+        .date {
+            font-size: 14px;
+            line-height: 16px;
+        }
+      }
+      .no-data-wrapper {
+        height: 100%;
+        color: #92B3DF;
+        margin-bottom: 8px;
+        .no-data-icon {
+          font-size: 50px;
+          height: 50px;
+          width: 50px;
+        }
+      }
+    }
+  }
+
+  .mat-card-actions {
+    margin-top: 16px;
+
+    .mat-button {
+      color: #4980C9;
+      font-weight: normal;
+    }
+  }
+}

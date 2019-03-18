@@ -1,9 +1,9 @@
 {
     "videos": {
         "1001": {
-            "title": "Test title",
-            "subtitle": "Test subtitle",
-            "description": "A compilation of found footage featuring music, interviews, and stories of The Beatles' 250 concerts from 1963 to 1966. Director: Ron Howard, Writers: Mark Monroe, P.G. Morgan (story consultant), Stars: The Beatles, John Lennon, George Harrison",
+            "title": "Smart Stadium",
+            "subtitle": "VIDEO",
+            "description": "Scan QR code to buy or play the video",
             "previewImg": "assets/videos/symbiote.png",
             "media": {
                 "url": "symbiotev6.mp4",
@@ -12,9 +12,9 @@
             }
         },
         "1002": {
-            "title": "Test title",
-            "subtitle": "Test subtitle",
-            "description": "A compilation of found footage featuring music, interviews, and stories of The Beatles' 250 concerts from 1963 to 1966. Director: Ron Howard, Writers: Mark Monroe, P.G. Morgan (story consultant), Stars: The Beatles, John Lennon, George Harrison",
+            "title": "Connected Office",
+            "subtitle": "VIDEO",
+            "description": "Scan QR code to buy or play the video",
             "previewImg": "assets/videos/ConnectedOffice.png",
             "media": {
                 "url": "ConnectedOffice.mp4",
@@ -23,9 +23,9 @@
             }
         },
         "1003": {
-            "title": "Test title",
-            "subtitle": "Test subtitle",
-            "description": "A compilation of found footage featuring music, interviews, and stories of The Beatles' 250 concerts from 1963 to 1966. Director: Ron Howard, Writers: Mark Monroe, P.G. Morgan (story consultant), Stars: The Beatles, John Lennon, George Harrison",
+            "title": "Holo glasses",
+            "subtitle": "VIDEO",
+            "description": "Scan QR code to buy or play the video",
             "previewImg": "assets/videos/hololens.png",
             "media": {
                 "url": "hololens_on_air.mp4",
@@ -34,9 +34,9 @@
             }
         },
         "1004": {
-            "title": "Test title",
-            "subtitle": "Test subtitle",
-            "description": "A compilation of found footage featuring music, interviews, and stories of The Beatles' 250 concerts from 1963 to 1966. Director: Ron Howard, Writers: Mark Monroe, P.G. Morgan (story consultant), Stars: The Beatles, John Lennon, George Harrison",
+            "title": "Smart Retail",
+            "subtitle": "VIDEO",
+            "description": "Scan QR code to buy or play the video",
             "previewImg": "assets/videos/smartretail.png",
             "media": {
                 "url": "smartretail_video_en.mp4",
@@ -45,9 +45,9 @@
             }
         },
         "1005": {
-            "title": "Test title",
-            "subtitle": "Test subtitle",
-            "description": "A compilation of found footage featuring music, interviews, and stories of The Beatles' 250 concerts from 1963 to 1966. Director: Ron Howard, Writers: Mark Monroe, P.G. Morgan (story consultant), Stars: The Beatles, John Lennon, George Harrison",
+            "title": "Wearlumb",
+            "subtitle": "VIDEO",
+            "description": "Scan QR code to buy or play the video",
             "previewImg": "assets/videos/wearlumb.png",
             "media": {
                 "url": "wearlumb_video.mp4",
@@ -60,7 +60,7 @@
         "2001": {
             "title": "Scooter",
             "subtitle": "RENTAL",
-            "description": "Scan QR code to reserve or unlock the scooter. Etiam laoreet justo in pellentesque rutrum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consequat ligula vel ante commodo, quis dignissim lectus suscipit. Proin non venenatis felis, eu molestie justo. Etiam consequat nibh vitae posuere ullamcorper. Integer sollicitudin lacus et lobortis egestas.",
+            "description": "Scan QR code to reserve or unlock the scooter.",
             "previewImg": "assets/mobility/img_background_scooter.png",
             "dialogContent": {
                 "textBuy": "Reserve the scooter scanning the QR code",
@@ -77,7 +77,7 @@
         "2002": {
             "title": "Motorcycle",
             "subtitle": "RENTAL",
-            "description": "Scan QR code to reserve or unlock the scooter. Etiam laoreet justo in pellentesque rutrum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consequat ligula vel ante commodo, quis dignissim lectus suscipit. Proin non venenatis felis, eu molestie justo. Etiam consequat nibh vitae posuere ullamcorper. Integer sollicitudin lacus et lobortis egestas.",
+            "description": "Scan QR code to reserve or unlock the motorcycle.",
             "previewImg": "assets/mobility/img_background_motorcycle.png",
             "dialogContent": {
                 "textBuy": "Reserve the motorcycle scanning the QR code",
@@ -91,9 +91,9 @@
             }
         },
         "2003": {
-            "title": "Green car",
+            "title": "MobCity Electrical car (green option)",
             "subtitle": "RENTAL",
-            "description": "Scan QR code to reserve or unlock the scooter. Etiam laoreet justo in pellentesque rutrum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consequat ligula vel ante commodo, quis dignissim lectus suscipit. Proin non venenatis felis, eu molestie justo. Etiam consequat nibh vitae posuere ullamcorper. Integer sollicitudin lacus et lobortis egestas.",
+            "description": "Scan QR code to reserve or unlock the car.",
             "previewImg": "assets/mobility/img_background_green_car.png",
             "dialogContent": {
                 "textBuy": "Reserve the car scanning the QR code",
@@ -107,9 +107,9 @@
             }
         },
         "2004": {
-            "title": "Yellow car",
+            "title": "MobCity Electrical car (yellow option)",
             "subtitle": "RENTAL",
-            "description": "Scan QR code to reserve or unlock the scooter. Etiam laoreet justo in pellentesque rutrum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consequat ligula vel ante commodo, quis dignissim lectus suscipit. Proin non venenatis felis, eu molestie justo. Etiam consequat nibh vitae posuere ullamcorper. Integer sollicitudin lacus et lobortis egestas.",
+            "description": "Scan QR code to reserve or unlock the car.",
             "previewImg": "assets/mobility/img_background_yellow_car.png",
             "dialogContent": {
                 "textBuy": "Reserve the car scanning the QR code",
@@ -127,7 +127,7 @@
         "3001": {
             "title": "Reserve desk",
             "subtitle": "SMART OFFICE",
-            "description": "Scan QR code to reserve or unlock the desk. Etiam laoreet justo in pellentesque rutrum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consequat ligula vel ante commodo, quis dignissim lectus suscipit. Proin non venenatis felis, eu molestie justo. Etiam consequat nibh vitae posuere ullamcorper. Integer sollicitudin lacus et lobortis egestas.",
+            "description": "Scan QR code to reserve or unlock the desk.",
             "previewImg": "assets/smart-office/img_background_reserve_desk.png",
             "dialogContent": {
                 "textBuy": "Reserve the desk scanning the QR code",
@@ -144,7 +144,7 @@
         "3002": {
             "title": "Reserve meeting room",
             "subtitle": "RENTAL",
-            "description": "Scan QR code to reserve or unlock the meeting room. Etiam laoreet justo in pellentesque rutrum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consequat ligula vel ante commodo, quis dignissim lectus suscipit. Proin non venenatis felis, eu molestie justo. Etiam consequat nibh vitae posuere ullamcorper. Integer sollicitudin lacus et lobortis egestas.",
+            "description": "Scan QR code to reserve or unlock the meeting room.",
             "previewImg": "assets/smart-office/img_background_reserve_meeting_room.png",
             "dialogContent": {
                 "textBuy": "Reserve the meeting room scanning the QR code",
@@ -160,7 +160,7 @@
         "3003": {
             "title": "Office printer",
             "subtitle": "RENTAL",
-            "description": "Scan QR code to reserve or unlock the printer. Etiam laoreet justo in pellentesque rutrum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consequat ligula vel ante commodo, quis dignissim lectus suscipit. Proin non venenatis felis, eu molestie justo. Etiam consequat nibh vitae posuere ullamcorper. Integer sollicitudin lacus et lobortis egestas.",
+            "description": "Scan QR code to reserve or unlock the printer.",
             "previewImg": "assets/smart-office/img_background_printer.png",
             "dialogContent": {
                 "textBuy": "Reserve the printer scanning the QR code",

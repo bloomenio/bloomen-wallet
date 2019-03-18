@@ -136,7 +136,7 @@ module.exports = {
           description: 'Start web application using development configuration',
           script: series(
             'nps banner.serve',
-            'nps "ng.serve --proxy-config proxy.conf.js --open"'
+            'nps "ng.serve --proxy-config proxy.conf.js --open --port 4201"'
           )
         },
         pre: {
