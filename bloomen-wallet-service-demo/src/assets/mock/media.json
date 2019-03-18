@@ -63,9 +63,8 @@
             "description": "Scan QR code to reserve or unlock the scooter.",
             "previewImg": "assets/mobility/img_background_scooter.png",
             "dialogContent": {
-                "textBuy": "Reserve the scooter scanning the QR code",
                 "iconBuy": "assets/icons/ic_scooter.svg",
-                "textAllow": "Scan QR to use the scooter"
+                "textAllowBuy": "Scan QR to reserve/use the scooter"
             },
             "exchanged": {
                 "exchangedImg": "assets/mobility/img_detail_scooter.png",
@@ -80,9 +79,8 @@
             "description": "Scan QR code to reserve or unlock the motorcycle.",
             "previewImg": "assets/mobility/img_background_motorcycle.png",
             "dialogContent": {
-                "textBuy": "Reserve the motorcycle scanning the QR code",
                 "iconBuy": "assets/icons/ic_motorcycle.svg",
-                "textAllow": "Scan QR to use the motorcycle"
+                "textAllowBuy": "Scan QR to reserve/use the motorcycle"
             },
             "exchanged": {
                 "exchangedImg": "assets/mobility/img_detail_motorcycle.png",
@@ -96,9 +94,8 @@
             "description": "Scan QR code to reserve or unlock the car.",
             "previewImg": "assets/mobility/img_background_green_car.png",
             "dialogContent": {
-                "textBuy": "Reserve the car scanning the QR code",
                 "iconBuy": "assets/icons/ic_car.svg",
-                "textAllow": "Scan QR to unlock and use the car"
+                "textAllowBuy": "Scan QR to unlock and reserve/use the car"
             },
             "exchanged": {
                 "exchangedImg": "assets/mobility/img_detail_green_car.png",
@@ -112,9 +109,8 @@
             "description": "Scan QR code to reserve or unlock the car.",
             "previewImg": "assets/mobility/img_background_yellow_car.png",
             "dialogContent": {
-                "textBuy": "Reserve the car scanning the QR code",
                 "iconBuy": "assets/icons/ic_car.svg",
-                "textAllow": "Scan QR unlock and use the car"
+                "textAllowBuy": "Scan QR unlock and reserve/use the car"
             },
             "exchanged": {
                 "exchangedImg": "assets/mobility/img_detail_yellow_car.png",
@@ -130,9 +126,8 @@
             "description": "Scan QR code to reserve or unlock the desk.",
             "previewImg": "assets/smart-office/img_background_reserve_desk.png",
             "dialogContent": {
-                "textBuy": "Reserve the desk scanning the QR code",
                 "iconBuy": "assets/icons/ic_desktop.svg",
-                "textAllow": "Scan QR to unlock and use the desk"
+                "textAllowBuy": "Scan QR to unlock and reserve/use the desk"
             },
             "exchanged": {
                 "exchangedImg": "assets/smart-office/img_detail_reserve_desk.png",
@@ -147,9 +142,8 @@
             "description": "Scan QR code to reserve or unlock the meeting room.",
             "previewImg": "assets/smart-office/img_background_reserve_meeting_room.png",
             "dialogContent": {
-                "textBuy": "Reserve the meeting room scanning the QR code",
                 "iconBuy": "assets/icons/ic_calendar.svg",
-                "textAllow": "Scan QR to unlock and use the meeting room"
+                "textAllowBuy": "Scan QR to unlock and reserve/use the meeting room"
             },
             "exchanged": {
                 "exchangedImg": "assets/smart-office/img_detail_reserve_meeting_room.png",
@@ -163,9 +157,8 @@
             "description": "Scan QR code to reserve or unlock the printer.",
             "previewImg": "assets/smart-office/img_background_printer.png",
             "dialogContent": {
-                "textBuy": "Reserve the printer scanning the QR code",
                 "iconBuy": "assets/icons/ic_printer.svg",
-                "textAllow": "Scan QR to unlock and use the printer"
+                "textAllowBuy": "Scan QR to unlock and reserve/use the printer"
             },
             "exchanged": {
                 "exchangedImg": "assets/smart-office/img_detail_printer.png",
