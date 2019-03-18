@@ -1,19 +1,22 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Logger } from '@services/logger/logger.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material';
+import {MatDialog, MatSnackBar} from '@angular/material';
 import { TranslateService } from '@ngx-translate/core';
 import { Location } from '@angular/common';
 import { Web3Service } from '@services/web3/web3.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 
 import * as fromDappSelectors from '@stores/dapp/dapp.selectors';
+import * as fromMnemonic from '@stores/mnemonic/mnemonic.selectors';
 
 
 import { Store } from '@ngrx/store';
 import * as fromMnemonicActions from '@stores/mnemonic/mnemonic.actions';
 import { Dapp } from '@core/models/dapp.model';
+import {DappsMnmonicsComponent} from '@pages/restore-account/dapps-mnmonics/dapps-mnmonics';
+
 
 
 const log = new Logger('restore-account.component');
@@ -31,10 +34,14 @@ export class RestoreAccountComponent implements OnInit, OnDestroy {
   public address: string;
 
   private dapps$: Subscription;
+  private mnemonics$: Subscription;
 
   public dapp: Dapp;
 
   public isCordova: boolean;
+
+  public dappsWithMnemonics: Array<any>;
+  public selectedValue: any;
 
   constructor(
     private store: Store<any>,
@@ -43,13 +50,20 @@ export class RestoreAccountComponent implements OnInit, OnDestroy {
     public snackBar: MatSnackBar,
     private location: Location,
     private web3Service: Web3Service,
-    private router: Router
+    private router: Router,
+    public dialog: MatDialog
   ) { }
 
   public ngOnInit() {
     this.address = this.activatedRoute.snapshot.paramMap.get('address');
+
     this.dapps$ = this.store.select(fromDappSelectors.selectAllDapp).subscribe((dapps) => {
       this.dapp = dapps.find(dapp => dapp.address === this.address);
+      this.mnemonics$ = this.store.select(fromMnemonic.selectAllMnemonics).subscribe((mnemonics: any) => {
+        this.dappsWithMnemonics = dapps.map(dapp =>
+            ({...mnemonics.find(mnemonic => mnemonic.address === dapp.address), ...dapp}))
+            .filter(value => value.randomSeed);
+      });
     });
 
     this.isCordova = !!window['cordova'];
@@ -61,6 +75,7 @@ export class RestoreAccountComponent implements OnInit, OnDestroy {
 
   public ngOnDestroy() {
     this.dapps$.unsubscribe();
+    this.mnemonics$.unsubscribe();
   }
 
   public doBack() {
@@ -94,4 +109,28 @@ export class RestoreAccountComponent implements OnInit, OnDestroy {
     }
   }
 
+  public openDialog() {
+    if (this.dappsWithMnemonics.length > 0) {
+      const dialogRef = this.dialog.open(DappsMnmonicsComponent, {
+        width: '300px',
+        data: {dappsWithMnemonics: this.dappsWithMnemonics }
+      });
+
+      dialogRef.afterClosed().subscribe(value => {
+        if (value) {
+          this.selectedValue = value;
+          this.restoreAccountForm.get('mnemonic').setValue(value.randomSeed);
+        }
+      });
+    } else {
+      this.snackBar.open(this.translate.instant('dapp.restore_account.no_mnemonics'), null, {
+        duration: 2000,
+      });
+    }
+  }
+
+  public clearData() {
+    this.selectedValue = null;
+    this.restoreAccountForm.get('mnemonic').setValue('');
+  }
 }
