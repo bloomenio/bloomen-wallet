@@ -30,9 +30,10 @@ menuCommands['V1'] = {name: '[V1] Activate Prepaid card', value: vendor.v1 };
 menuCommands['C1'] = {name: '[C1] Generate Prepaid card QR', value: customer.c1 };
 menuCommands['C2'] = {name: '[C2] Generate purchase operation QR', value: customer.c2 };        
 menuCommands['C3'] = {name: '[C3] Generate asset access request QR for device', value: customer.c3 };
+menuCommands['C4'] = {name: '[C4] Generate asset access QR and purchase', value: customer.c4 };
 menuCommands['UB1'] = {name: '[UB1] Balance Dashboard', value: utils.ub1 };
-menuCommands['UB2'] = {name: '[UB2] Balance for address', value: utils.ub2 }
-menuCommands['UB3'] = {name: '[UB3] Mint for address', value: utils.ub3 }
+menuCommands['UB2'] = {name: '[UB2] Balance for address', value: utils.ub2 };
+menuCommands['UB3'] = {name: '[UB3] Mint for address', value: utils.ub3 };
 menuCommands['U1'] = {name: '[U1] Test of device access to an asset', value: utils.u1 };
 menuCommands['U2'] = {name: '[U2] Purge all prepaid card', value: utils.u2 };                
 menuCommands['U3'] = {name: '[U3] Generate 10 random PPC', value: utils.u3 };
@@ -176,7 +177,8 @@ async function customerMenu() {
     let options = [
         menuCommands['C1'], 
         menuCommands['C2'],         
-        menuCommands['C3'], 
+        menuCommands['C3'],
+        menuCommands['C4'],
         menuCommands['SP13'],
         menuCommands['BACK_MAIN_MENU'],
         menuCommands['EXIT']         

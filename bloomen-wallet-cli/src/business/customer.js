@@ -67,8 +67,28 @@ async function _c3() {
     });     
 }
 
+//[C4] Generate asset access request QR for device and buy option
+async function _c4() {
+    let questions = [
+        { type: 'input', name: 'dappId', message: 'Specify the dappId:' },
+        { type: 'input', name: 'assetId', message: 'Specify the assetId key:' },
+        { type: 'input', name: 'schemaId', message: 'Specify the schemaId key:' },
+        { type: 'input', name: 'amount', message: 'Specify the amount key:' },
+        { type: 'input', name: 'description', message: 'Specify the description:' },
+        { type: 'input', name: 'device', message: 'Specify the device:' },
+    ];
+
+    let answer = await inquirer.prompt(questions);
+    const qrData = 'allow_buy://'+answer.assetId+'#'+answer.schemaId+'#'+answer.amount+'#'+answer.dappId+'#'+encodeURI(answer.description)+'#'+encodeURI(answer.device);
+    console.log(qrData);
+    qrcode.generate(qrData, (str) => {
+        console.log(str);
+    });
+}
+
 module.exports = {
         c1: _c1,
         c2: _c2,
-        c3: _c3           
+        c3: _c3,
+        c4: _c4
     };
