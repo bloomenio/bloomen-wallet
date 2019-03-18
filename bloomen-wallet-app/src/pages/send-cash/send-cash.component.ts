@@ -97,37 +97,9 @@ export class SendCashComponent implements OnInit, OnDestroy {
   }
 
   public async openQR(event: Event) {
-    if (window['cordova']) {
-      try {
-        const scannedValue = await this.barCodeScannerService.scan();
-        if ((scannedValue) && (!scannedValue.cancelled)) {
-          this.recoverMnemonic(scannedValue.text);
-        } else {
-          log.error('KO', 'Scan cancelled');
-        }
-      } catch {
-        log.error('KO', 'Error scanning the QR');
-      }
-    } else {
-      const dialogRef = this.dialog.open(DappInputDialogComponent, {
-        width: '250px',
-        data: {
-          // Juan aqui no mires, jordi me ha dicho que no lo traduzca, lo dejo con el instant para que si algun dia lo tenemos que traducir
-          // lo hagamos :(
-          title: this.translate.instant('Add Dapp'),
-          description: this.translate.instant('Put the dapp code into the input field'),
-          buttonAccept: this.translate.instant('Ok'),
-          buttonCancel: this.translate.instant('Cancel')
-        }
-      });
-
-      dialogRef.afterClosed().subscribe(result => {
-
-        if (result) {
-          this.recoverMnemonic(result);
-        }
-      });
-    }
+    this.barCodeScannerService.scan().then(result => {
+      this.recoverMnemonic(result);
+    });
   }
 
 

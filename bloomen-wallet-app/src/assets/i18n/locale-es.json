@@ -66,8 +66,8 @@
   },
   "dapp": {
     "home": {
-      "buy_content": "Comprar contenido",
-      "allow": "Autorizar",
+      "buy_content": "Comprar contenido o autorizar",
+      "data": "Introduce la dirección",
       "recent_activity": "Actividad reciente"
     },
     "profile": {

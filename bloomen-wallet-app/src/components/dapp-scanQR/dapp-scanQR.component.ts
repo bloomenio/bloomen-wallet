@@ -1,6 +1,6 @@
 // Basic
 import { Component, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { BarCodeScannerService } from '@services/barcode-scanner/barcode-scanner.service';
 import { Logger } from '@services/logger/logger.service';
 import { Dapp } from '@core/models/dapp.model';
@@ -8,8 +8,6 @@ import { PrepaidCardManagerContract } from '@core/core.module';
 import { MatSnackBar } from '@angular/material';
 import { QR_VALIDATOR } from '@core/constants/qr-validator.constants';
 import { TranslateService } from '@ngx-translate/core';
-
-import { DappInputDialogComponent } from '@components/dapp-input-dialog/dapp-input-dialog.component';
 
 const log = new Logger('dapp-scanQR.component');
 
@@ -27,9 +25,8 @@ export class DappScanQRComponent {
     @Inject(MAT_DIALOG_DATA) public data: Dapp,
     private prepaidCardManager: PrepaidCardManagerContract,
     public snackBar: MatSnackBar,
-    private translate: TranslateService,
-    private dialog: MatDialog,
-  ) {
+    private translate: TranslateService
+    ) {
   }
 
   public closeDialog() {
@@ -37,36 +34,10 @@ export class DappScanQRComponent {
   }
 
   public async scanQR() {
-    if (window['cordova']) {
-      try {
-        const scannedValue = await this.barCodeScannerService.scan();
-        if ((scannedValue) && (!scannedValue.cancelled)) {
-          this.generatePrepaidCard(scannedValue.text);
-        }
-      } catch {
-        log.error('Error scanning the QR');
-      }
-    } else {
-      const dialogRef = this.dialog.open(DappInputDialogComponent, {
-        width: '250px',
-        data: {
-          // Juan aqui no mires, jordi me ha dicho que no lo traduzca, lo dejo con el instant para que si algun dia lo tenemos que traducir
-          // lo hagamos :(
-          title: this.translate.instant('Prepaid card code'),
-          description: this.translate.instant('Put the card code into the input field'),
-          buttonAccept: this.translate.instant('Ok'),
-          buttonCancel: this.translate.instant('Cancel')
-        }
-      });
-
-      dialogRef.afterClosed().subscribe(result => {
-
-        if (result) {
-          this.generatePrepaidCard(result);
-        }
-
-      });
-    }
+    this.dialogRef.close();
+    this.barCodeScannerService.scan().then(result => {
+      this.generatePrepaidCard(result);
+    });
   }
 
   private generatePrepaidCard(inputValue: string) {

@@ -35,6 +35,7 @@
   background-image: url("assets/icons/ic_social_qr_code.svg");
 }
 
+
 div[class$="theme-dark"] {
   .create-account-button,
   .restore-account-button,
@@ -43,6 +44,9 @@ div[class$="theme-dark"] {
   }
   .qr-icon {
     background-image: url("assets/icons/ic_social_qr_code.svg");
+  }
+  .qrbutton {
+    border: 5px solid #303030;
   }
 }
 
@@ -55,6 +59,9 @@ div[class$="theme-light"]{
   }
   .qr-icon {
     background-image: url("assets/icons/ic_social_qr_code_black.svg");
+  }
+  .qrbutton {
+    border: 5px solid white;
   }
 }
 

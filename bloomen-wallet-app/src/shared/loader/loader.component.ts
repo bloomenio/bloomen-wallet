@@ -7,9 +7,11 @@ import { Component, Input } from '@angular/core';
 })
 export class LoaderComponent {
   public lottieConfig: Object;
+  public lottieConfigCamera: Object;
   private anim: any;
   private animationSpeed = 1;
-  @Input() public isLoading;
+  @Input() public isLoading: boolean;
+  @Input() public isLoadingCamera: boolean;
   @Input() public size = 1;
   @Input() public message: string;
 
@@ -19,7 +21,13 @@ export class LoaderComponent {
       renderer: 'svg',
       autoplay: true,
       loop: true
-  };
+    };
+    this.lottieConfigCamera = {
+      path: 'assets/animation/loadingCamera.json',
+      renderer: 'svg',
+      autoplay: true,
+      loop: true
+    };
   }
 
   public handleAnimation(anim: any) {

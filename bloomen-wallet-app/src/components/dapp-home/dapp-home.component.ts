@@ -1,5 +1,5 @@
 // Basic
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, ElementRef, Renderer2, ViewChild, AfterViewChecked } from '@angular/core';
 
 import { Dapp } from '@core/models/dapp.model.js';
 
@@ -20,10 +20,7 @@ import { AssetsContract, DevicesContract } from '@core/core.module';
 import { TranslateService } from '@ngx-translate/core';
 import { DappGeneralDialogComponent } from '@components/dapp-general-dialog/dapp-general-dialog.component';
 
-import { DappInputDialogComponent } from '@components/dapp-input-dialog/dapp-input-dialog.component';
-import { pipe } from '@angular/core/src/render3';
-import { skip } from 'rxjs/operators';
-import {AllowAndBuy, AllowObject, BuyObject} from "@models/operations.model";
+import {AllowAndBuy, AllowObject, BuyObject} from '@models/operations.model';
 
 const log = new Logger('dapp-home.component');
 
@@ -51,6 +48,11 @@ export class DappHomeComponent implements OnInit, OnDestroy {
 
   @Input() public dapp: Dapp;
 
+  @ViewChild('recentActivity', {read: ElementRef}) public recentActivity: ElementRef;
+  @ViewChild('newContent', {read: ElementRef}) public newContent: ElementRef;
+
+
+
   /**
    * Constructor to declare all the necesary to initialize the component.
    */
@@ -61,15 +63,25 @@ export class DappHomeComponent implements OnInit, OnDestroy {
     private devices: DevicesContract,
     private barCodeScannerService: BarCodeScannerService,
     private translate: TranslateService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private render: Renderer2
   ) {
+  }
+
+  public onResize() {
+    if (this.recentActivity != null) {
+      this.render.setStyle(
+        this.recentActivity.nativeElement, 'margin-top', this.newContent.nativeElement.offsetHeight + 'px'
+      );
+    }
   }
 
   public ngOnInit() {
     this.txActivity$ = this.store.select(fromTxActivitySelectors.selectAllTxActivity).subscribe((txActivityArray) => {
-      this.txActivityArray = txActivityArray.sort((a, b) => b.epoch - a.epoch);
-      this.currentPage = Math.ceil(txActivityArray.length / 10);
-    });
+    this.txActivityArray = txActivityArray.sort((a, b) => b.epoch - a.epoch);
+    this.currentPage = Math.ceil(txActivityArray.length / 10);
+    this.onResize();
+  });
     this.isLoading$ = this.store.select(fromTxActivitySelectors.getIsLoading);
   }
 
@@ -82,43 +94,18 @@ export class DappHomeComponent implements OnInit, OnDestroy {
     this.store.dispatch(new fromTxActivityActions.MoreTxActivity({ page: ++this.currentPage }));
   }
 
-  public async buyOrAllow(){
-    if (window['cordova']) {
-      try {
-        const scannedValue = await this.barCodeScannerService.scan();
-        if ((scannedValue) && (!scannedValue.cancelled)) {
-          this.doOperation(scannedValue.text);
-        } else {
-          log.error('KO', 'Scan cancelled');
-        }
-      } catch {
-        log.error('Error scanning the QR');
-      }
-    } else {
-      const dialogRef = this.dialog.open(DappInputDialogComponent, {
-        width: '250px',
-        data: {
-          // Juan aqui no mires, jordi me ha dicho que no lo traduzca, lo dejo con el instant para que si algun dia lo tenemos que traducir
-          // lo hagamos :(
-          title: this.translate.instant('Buy or Allow'),
-          description: this.translate.instant('Put the date into the input field'),
-          buttonAccept: this.translate.instant('Ok'),
-          buttonCancel: this.translate.instant('Cancel')
-        }
-      });
-      dialogRef.afterClosed().subscribe(result => {
-        if (result) {
+  public async buyOrAllow() {
+        this.barCodeScannerService.scan().then(result => {
+          console.log(result);
           this.doOperation(result);
-        }
-      });
-    }
+        });
   }
 
   private doOperation(inputValue: string) {
     if (inputValue !== null) {
       const valueCut = inputValue.indexOf('//') + 2;
-      let operation = inputValue.slice(0, valueCut);
-      let params = inputValue.slice(valueCut, ).split('#');
+      const operation = inputValue.slice(0, valueCut);
+      const params = inputValue.slice(valueCut, ).split('#');
 
       switch (operation) {
         case QR_VALIDATOR.BUY:
@@ -144,7 +131,7 @@ export class DappHomeComponent implements OnInit, OnDestroy {
           this.generteAllow(allowObject);
           break;
         case QR_VALIDATOR.ALLOW_BUY:
-          const allowBuyObject: AllowAndBuy ={
+          const allowBuyObject: AllowAndBuy = {
             dappId: params[3],
             assetId: parseInt(params[0], 10),
             schemaId: parseInt(params[1], 10),

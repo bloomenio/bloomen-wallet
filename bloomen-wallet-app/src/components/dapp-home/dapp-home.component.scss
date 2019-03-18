@@ -25,6 +25,9 @@
     .new-content-text {
       text-shadow: 1px 1px black;
     }
+    .new-content-card {
+      background-color: #303030;
+    }
   }
 }
 
@@ -39,15 +42,14 @@
   }
 
   .new-content-card {
-    /*new*/
     position: fixed;
     z-index: 1;
-    /*new*/
     padding: 0 0 16px;
     .qr-icon {
       background-image: url("assets/icons/ic_social_qr_code.svg");
     }
   }
+
 
   .new-content-card {
     .new-content-wrapper {
@@ -75,8 +77,6 @@
       }
     }
 
-    
-
     mat-card-content.recent-activity-content {
       margin-top: 8px;
     }
@@ -94,8 +94,7 @@
         border-radius: 60px;
         margin: 0px;
         padding: 0px;
-        border: 5px solid #424242;
-        
+        box-shadow: 10px 10px 30px 0px rgba(0,0,0,0.6);  
       }
     }
 
@@ -123,11 +122,10 @@
   }
 
   .recent-activity-card {
-    /*new*/    
-    margin-top: 250px;
     padding-top: 0px;
-    /*new*/
-    // margin: 8px 0;
+    .mat-divider.mat-divider.mat-divider-horizontal {
+      display: none;
+    }
     .recent-activity-content {
       .mat-list-item {
         height: auto;
@@ -153,6 +151,7 @@
 
 .no-data-content {
   margin: 16px;
+  padding-top: 16px;
   .no-data-image {
     width: 100%;
     height: 25vh;
