@@ -27,18 +27,7 @@
     "start": "nps start.web.devel",
     "serve:sw": "nps start.web.sw",
     "translations:extract": "nps translations.extract",
-    "build:web:development": "nps build.web.devel",
-    "build:web:pre": "nps build.web.pre",
-    "build:web:production": "nps build.web.prod",
-    "prepare:ios:dev": "nps prepare.ios.devel",
-    "start:android:local": "nps start.android.local",
-    "build:android:local": "nps build.android.local",
-    "electron:serve-tsc": "tsc -p tsconfig-serve.json",
-    "electron:serve": "wait-on http-get://localhost:4200/ && npm run electron:serve-tsc && electron . --serve",
-    "electron:local": "node postinstall-web && npm run electron:serve-tsc && npm run build:web:production && electron .",
-    "electron:linux": "node postinstall-web && npm run electron:serve-tsc && npm run build:web:production && electron-builder build --linux",
-    "electron:windows": "npm run build:web:production && electron-builder build --windows",
-    "electron:mac": "npm run build:web:production && electron-builder build --mac"
+    "build:web:production": "nps build.web.prod"
   },
   "dependencies": {
     "@angular/animations": "7.0.0",

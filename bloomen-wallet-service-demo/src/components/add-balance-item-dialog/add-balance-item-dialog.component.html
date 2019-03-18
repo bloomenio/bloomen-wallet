@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>Add new</h1>
+<div mat-dialog-content>
+    <form class="form-container" [formGroup]="form">
+        <mat-form-field class="full-width">
+            <input matInput placeholder="Address" formControlName="address"/>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <input matInput placeholder="Description"formControlName="description"/>
+        </mat-form-field>
+    </form>
+</div>
+<div mat-dialog-actions fxLayout="row" fxLayoutAlign="end">
+    <button mat-button (click)="close()">{{'close' | uppercase}}</button>
+    <button mat-button cdkFocusInitial [disabled]="form.invalid" [mat-dialog-close]="form.value">{{'save' | uppercase}}</button>
+</div>
