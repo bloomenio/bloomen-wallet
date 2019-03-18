@@ -13,6 +13,7 @@ export const environment = {
   serverUrl: '/api',
   defaultLanguage: 'en',
   supportedLanguages: ['ca', 'de', 'el', 'en', 'es'],
+  loaderTime: 2000,
   eth: {
     httpUser: 'bloomen',
     httpPassword: '12345',

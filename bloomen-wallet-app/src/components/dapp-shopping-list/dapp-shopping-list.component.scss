@@ -18,6 +18,12 @@
   .mat-button-toggle-appearance-standard {
     color: $grey;
   }
+
+  .shopping-list-container {
+    .purchase-container {
+      color: #00000070;
+    }
+  }
 }
 
 ::ng-deep div[class$="theme-dark"] {
@@ -32,6 +38,11 @@
 
     .mat-button-toggle-appearance-standard {
       color: $grey;
+    }
+    .shopping-list-container {
+      .purchase-container {
+        color: #ffffff38;
+      }
     }
   }
 }

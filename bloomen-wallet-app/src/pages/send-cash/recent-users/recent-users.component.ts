@@ -17,17 +17,17 @@ export class RecentUsersComponent {
     alias: ''
   };
 
-  constructor(public store: Store<UserAlias> , 
+  constructor(public store: Store<UserAlias> ,
               public dialogRef: MatDialogRef<RecentUsersComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any ) {
                 this.newUser.address = this.data.address;
                 this.newUser.idDapp = this.data.idDapp;
                }
 
-  onNoClick(): void {
+  public onNoClick(): void {
     this.dialogRef.close();
   }
-  onYesClick(): void{
+  public onYesClick(): void {
     this.store.dispatch(new fromRecentUsersAction.AddAlias({ user: this.newUser }));
     this.dialogRef.close();
   }

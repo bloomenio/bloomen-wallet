@@ -1,6 +1,6 @@
-import {createFeatureSelector, createSelector} from "@ngrx/store";
+import {createFeatureSelector, createSelector} from '@ngrx/store';
 
-//Reducer
+// Reducer
 import * as fromReducer from './recent-users.reducer';
 
 

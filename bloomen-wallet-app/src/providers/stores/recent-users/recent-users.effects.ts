@@ -9,9 +9,9 @@ import * as fromActions from './recent-users.actions';
 import { Logger } from '@services/logger/logger.service';
 
 import { Store } from '@ngrx/store';
-import {UserAlias} from "@models/recent-user.model";
-import {RecentUsersService} from "@db/recent-users.service";
-import {from} from "rxjs";
+import {UserAlias} from '@models/recent-user.model';
+import {RecentUsersService} from '@db/recent-users.service';
+import {from} from 'rxjs';
 
 const log = new Logger('purchases.effects');
 
@@ -19,7 +19,7 @@ const log = new Logger('purchases.effects');
 export class RecentUsersEffects {
     constructor(private actions$: Actions<fromActions.RecentUsersActions>,
                 private store: Store<UserAlias>,
-                private recentUsersDateBaseService: RecentUsersService){}
+                private recentUsersDateBaseService: RecentUsersService) {}
 
     @Effect() public initRecentUser = this.actions$.pipe(
         ofType(fromActions.RecentUsersActionTypes.INIT_RECENT_USER),

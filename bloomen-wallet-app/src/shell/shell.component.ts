@@ -15,7 +15,8 @@ import { filter, map, mergeMap, delay } from 'rxjs/operators';
 import { Logger } from '@services/logger/logger.service';
 
 import { TransactionService, Transaction } from '@services/web3/transactions/transaction.service';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
+import { BarCodeScannerService } from '@services/barcode-scanner/barcode-scanner.service';
 
 
 const log = new Logger('blo-shell');
@@ -28,8 +29,10 @@ const log = new Logger('blo-shell');
 export class ShellComponent implements OnInit, OnDestroy {
 
   public imgToolbar: string;
-  public isLoading = false;
+  public isLoading: boolean;
+  public isLoadingCamera$: Observable<boolean>;
   private transactionSubscription: Subscription;
+  private isLoadingCameraSubscription: Subscription;
 
 
 
@@ -42,7 +45,8 @@ export class ShellComponent implements OnInit, OnDestroy {
     private componentFactoryResolver: ComponentFactoryResolver,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private transactionService: TransactionService
+    private transactionService: TransactionService,
+    private barCodeScannerService: BarCodeScannerService
   ) {
   }
 
@@ -51,7 +55,10 @@ export class ShellComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit() {
+    this.isLoading = false;
+    this.isLoadingCamera$ = this.barCodeScannerService.isLoading();
     this.register();
+
     this.store.select(fromSelectors.getTheme).pipe(
       map((theme) => {
         if (theme) {
@@ -119,12 +126,12 @@ export class ShellComponent implements OnInit, OnDestroy {
   }
 
   private register() {
-
     this.transactionSubscription = this.transactionService
       .getTransactions().subscribe((transactions: Transaction[]) => {
         this.isLoading = transactions.length > 0;
       });
   }
+
   private unregister() {
     this.transactionSubscription.unsubscribe();
     this.transactionSubscription = null;

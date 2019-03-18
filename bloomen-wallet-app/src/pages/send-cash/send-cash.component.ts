@@ -20,9 +20,7 @@ import { BarCodeScannerService } from '@services/barcode-scanner/barcode-scanner
 import { QR_VALIDATOR } from '@core/constants/qr-validator.constants';
 
 import { RecentUsersComponent } from './recent-users/recent-users.component';
-import {UserAlias} from "@models/recent-user.model";
-import {filter, find, map} from "rxjs/operators";
-import { DappInputDialogComponent } from '@components/dapp-input-dialog/dapp-input-dialog.component';
+import {UserAlias} from '@models/recent-user.model';
 
 
 const log = new Logger('send-cash.component');
@@ -81,7 +79,7 @@ export class SendCashComponent implements OnInit, OnDestroy {
         select(fromRecentUser.selectCurrentUser)
     ).subscribe(
       recentUser => {
-        if(recentUser) this.sendCashForm.setValue({ address: recentUser.address, amount: null })
+        if (recentUser) { this.sendCashForm.setValue({ address: recentUser.address, amount: null }); }
       }
     );
 
@@ -97,41 +95,13 @@ export class SendCashComponent implements OnInit, OnDestroy {
   }
 
   public async openQR(event: Event) {
-    if (window['cordova']) {
-      try {
-        const scannedValue = await this.barCodeScannerService.scan();
-        if ((scannedValue) && (!scannedValue.cancelled)) {
-          this.recoverMnemonic(scannedValue.text);
-        } else {
-          log.error('KO', 'Scan cancelled');
-        }
-      } catch {
-        log.error('KO', 'Error scanning the QR');
-      }
-    } else {
-      const dialogRef = this.dialog.open(DappInputDialogComponent, {
-        width: '250px',
-        data: {
-          // Juan aqui no mires, jordi me ha dicho que no lo traduzca, lo dejo con el instant para que si algun dia lo tenemos que traducir
-          // lo hagamos :(
-          title: this.translate.instant('Add Dapp'),
-          description: this.translate.instant('Put the dapp code into the input field'),
-          buttonAccept: this.translate.instant('Ok'),
-          buttonCancel: this.translate.instant('Cancel')
-        }
-      });
-
-      dialogRef.afterClosed().subscribe(result => {
-
-        if (result) {
-          this.recoverMnemonic(result);
-        }
-      });
-    }
+    this.barCodeScannerService.scan().then(result => {
+      this.recoverMnemonic(result);
+    });
   }
 
 
-  sendTransaction() {
+  public sendTransaction() {
     const values = this.sendCashForm.value;
     this.web3Service.ready(() => {
       this.erc223.transfer(values.address, values.amount).then((result: any) => {
@@ -149,17 +119,16 @@ export class SendCashComponent implements OnInit, OnDestroy {
   }
 
   public onSubmit() {
-    let exist = this.listOfAddress.find(value => value.address === this.sendCashForm.get('address').value);
-    if(exist) this.sendTransaction();
-    else {
+    const exist = this.listOfAddress.find(value => value.address === this.sendCashForm.get('address').value);
+    if (exist) { this.sendTransaction(); } else {
       this.openDialog().subscribe(
           _ => {
             this.sendTransaction();
           }
-      )
+      );
     }
   }
-  
+
   private recoverMnemonic(inputValue: string) {
     if (inputValue.includes(QR_VALIDATOR.ID, 0)) {
       this.sendCashForm.get('address').setValue(inputValue.replace(QR_VALIDATOR.ID, ''));
@@ -177,11 +146,11 @@ export class SendCashComponent implements OnInit, OnDestroy {
     }
   }
 
-  openDialog(): Observable<any> {
+  public openDialog(): Observable<any> {
     const dialogRef = this.dialog.open(RecentUsersComponent, {
       width: '250px',
       data: {address: this.sendCashForm.get('address').value,
-              idDapp: this.dapp.address }
+             idDapp: this.dapp.address }
     });
     return dialogRef.afterClosed();
   }

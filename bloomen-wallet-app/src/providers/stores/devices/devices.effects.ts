@@ -33,8 +33,9 @@ export class DevicesEffects {
         map((action) => {
             this.web3Service.ready(() => {
                 this.devicesContract.getDevicesPageCount().then(pageCount => {
-                    pageCount = parseInt(pageCount);
-                    
+                    console.log('pagecount1 = ' + pageCount);
+                    pageCount = parseInt(pageCount, 10);
+                    console.log('pagecount2 = ' + pageCount);
                     // #BUGPAGECOUNT: Remove "+ 1" when fixed
                     const lastPage = pageCount + 1;
                     this.loadFullPage(lastPage, fromActions.PAGE_SIZE).then((result: DeviceModel[]) => {
@@ -80,7 +81,7 @@ export class DevicesEffects {
     private loadFullPage(pageIndex: number, pageSize = fromActions.PAGE_SIZE): Promise<DeviceModel[]> {
         return new Promise<DeviceModel[]>((resolve, reject) => {
             this.devicesContract.getDevices(pageIndex).then((result: DeviceModel[]) => {
-                let devices = this.calculateDeviceArray(result);
+                const devices = this.calculateDeviceArray(result);
                 if (pageIndex > fromActions.FIRST_PAGE_INDEX && devices.length < pageSize) {
                     // When a page is not complete then load also previous one, if available
                     this.loadFullPage(pageIndex - 1, pageSize).then(previousPage => {

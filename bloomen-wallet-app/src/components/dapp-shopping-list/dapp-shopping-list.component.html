@@ -1,47 +1,47 @@
-<div fxFlex class="has-dapp-credit-header">
-    <div class="dapp-shopping-list" fxFlex fxLayout="column" fxLayoutAlign="center center">
-        <mat-button-toggle-group class="button-group-wrapper" #group="matButtonToggleGroup">
-            <mat-button-toggle fxFlex checked="true" value="purchases">
+<div fxFlex class='has-dapp-credit-header'>
+    <div class='dapp-shopping-list' fxFlex fxLayout='column' fxLayoutAlign='center center'>
+        <mat-button-toggle-group class='button-group-wrapper' #group='matButtonToggleGroup'>
+            <mat-button-toggle fxFlex checked='true' value='purchases'>
                 <mat-icon>card_travel</mat-icon>
                 {{ 'dapp.shopping_list.purchases' | translate }}
             </mat-button-toggle>
-            <mat-button-toggle fxFlex value="devices">
+            <mat-button-toggle fxFlex value='devices'>
                 <mat-icon>stay_current_portrait</mat-icon>
                 {{ 'dapp.shopping_list.devices' | translate }}
             </mat-button-toggle>
         </mat-button-toggle-group>
-        <div [ngSwitch]="group.value" class="shopping-list-container" fxLayout="column">
-            <ng-container *ngSwitchCase="'purchases'">
-                <mat-list *ngFor="let purchase of purchaseArray;">
-                    <mat-list-item>
-                        <div fxFlex fxLayout="column">
-                            <div class="purchase-id">{{purchase.assetId}}</div>
-                            <div fxLayout="row" fxLayoutAlign="space-between end">
-                                <div class="purchase-description" fxFlex="50">{{purchase.description}}</div>
-                                <div class="purchase-date" fxFlex="50">{{purchase.expirationDate | date: 'medium'}}</div>
+        <div [ngSwitch]='group.value' class='shopping-list-container' fxLayout='column'>
+            <ng-container *ngSwitchCase='"purchases"'>
+                <mat-list *ngFor='let purchase of purchaseArray;'>
+                    <mat-list-item [ngClass]="{'purchase-container': checkDate(purchase.expirationDate)}">
+                        <div fxFlex fxLayout='column'>
+                            <div class='purchase-id'>{{ purchase.assetId }}</div>
+                            <div fxLayout='row' fxLayoutAlign='space-between end'>
+                                <div class='purchase-description' fxFlex='50'>{{ purchase.description }}</div>
+                                <div class='purchase-date' fxFlex='50'>{{ purchase.expirationDate | date: 'medium' }}</div>
                             </div>
                         </div>
                     </mat-list-item>
                     <mat-divider></mat-divider>
                 </mat-list>
-                <button mat-button color="accent" (click)="morePurchases()" *ngIf="purchaseArray.length && currentPagePurchases > 1">
+                <button mat-button color='accent' (click)='morePurchases()' *ngIf='purchaseArray.length && currentPagePurchases > 1'>
                         {{ 'common.show_more' | translate | uppercase }}
                     </button>
-                <div class="no-purchases-content" *ngIf="!purchaseArray?.length" fxLayout="column" fxLayoutAlign="center">
-                    <div class="no-purchases-image"></div>
-                    <div class="no-purchases-text">{{ 'common.no_data' | translate | uppercase }}</div>
+                <div class='no-purchases-content' *ngIf='!purchaseArray?.length' fxLayout='column' fxLayoutAlign='center'>
+                    <div class='no-purchases-image'></div>
+                    <div class='no-purchases-text'>{{ 'common.no_data' | translate | uppercase }}</div>
                 </div>
             </ng-container>
-            <ng-container *ngSwitchCase="'devices'">
-                <mat-list *ngFor="let device of deviceArray;">
-                    <mat-list-item>
-                        <div fxFlex fxLayout="column">
-                            <div class="device-id">{{device.assetId}}</div>
-                            <div fxLayout="row" fxLayoutAlign="space-between end">
-                                <div class="device-description" fxFlex>{{device.description}}</div>
-                                <div class="device-date" fxFlex="50">{{device.expirationDate | date: 'medium'}}</div>
-                                <div class="device-actions" fxFlex="10">
-                                    <button mat-icon-button (click)="removeDevice(device)">
+            <ng-container *ngSwitchCase='"devices"'>
+                <mat-list *ngFor='let device of deviceArray;'>
+                    <mat-list-item [ngClass]="{'purchase-container': checkDate(device.expirationDate)}">
+                        <div fxFlex fxLayout='column'>
+                            <div class='device-id'>{{ device.assetId }}</div>
+                            <div fxLayout='row' fxLayoutAlign='space-between end'>
+                                <div class='device-description' fxFlex>{{ device.description }}</div>
+                                <div class='device-date' fxFlex='50'>{{ device.expirationDate | date: 'medium' }}</div>
+                                <div class='device-actions' fxFlex='10'>
+                                    <button mat-icon-button (click)='removeDevice(device)'>
                                         <mat-icon>delete</mat-icon>
                                     </button>                            
                                 </div>
@@ -50,12 +50,12 @@
                     </mat-list-item>
                     <mat-divider></mat-divider>
                 </mat-list>
-                <button mat-button color="accent" (click)="moreDevices()" *ngIf="deviceArray.length && currentPageDevices > 1">
+                <button mat-button color='accent' (click)='moreDevices()' *ngIf='deviceArray.length && currentPageDevices > 1'>
                     {{ 'common.show_more' | translate | uppercase }}
                 </button>
-                <div class="no-devices-content" *ngIf="!deviceArray?.length" fxLayout="column" fxLayoutAlign="center">
-                    <div class="no-devices-image"></div>
-                    <div class="no-devices-text">{{ 'common.no_data' | translate | uppercase }}</div>
+                <div class='no-devices-content' *ngIf='!deviceArray?.length' fxLayout='column' fxLayoutAlign='center'>
+                    <div class='no-devices-image'></div>
+                    <div class='no-devices-text'>{{ 'common.no_data' | translate | uppercase }}</div>
                 </div>
             </ng-container>
         </div>

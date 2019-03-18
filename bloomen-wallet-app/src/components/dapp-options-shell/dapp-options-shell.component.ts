@@ -41,7 +41,9 @@ export class DappOptionsShellComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy() {
-    this.dapps$ && this.dapps$.unsubscribe();
+    if (this.dapps$) {
+      this.dapps$.unsubscribe();
+    }
   }
 
   public goToHome() {

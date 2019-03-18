@@ -29,6 +29,4 @@ export class MovementHistoryContract extends Contract {
   public getMovements(page: number) {
     return this.contract.methods.getMovements(page).call(this.args);
   }
-
- 
 }

@@ -1,9 +1,9 @@
 import {UserAlias} from '@models/recent-user.model';
-import {createEntityAdapter, EntityState} from "@ngrx/entity";
-import {RecentUsersActions, RecentUsersActionTypes} from "@stores/recent-users/recent-users.actions";
+import {createEntityAdapter, EntityState} from '@ngrx/entity';
+import {RecentUsersActions, RecentUsersActionTypes} from '@stores/recent-users/recent-users.actions';
 
-export interface RecentUserState extends  EntityState<UserAlias>{
-    currentAddressId: string
+export interface RecentUserState extends  EntityState<UserAlias> {
+    currentAddressId: string;
 }
 
 export const recentUserAdapter = createEntityAdapter<UserAlias>({
