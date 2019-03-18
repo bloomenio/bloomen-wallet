@@ -1,0 +1,11 @@
+<div mat-dialog-title class="dialog-title">{{ 'dapp.restore_account.available_mnemonics'| translate}}</div>
+<div mat-dialog-content>
+  <mat-action-list>
+    <mat-option class="option-container" *ngFor="let dapp of dappsWithMnemonics" (click)="selectDapp(dapp)">
+      <div fxLayout="row" fxLayoutAlign="center center">
+        <div class="dialog-logo" [ngStyle]="{'background-image': 'url(' + dapp.laf.logo +')'}"></div>
+        <div class="text-dapp-name"> {{ dapp.dappId }} </div>
+      </div>
+    </mat-option>
+  </mat-action-list>
+</div>
