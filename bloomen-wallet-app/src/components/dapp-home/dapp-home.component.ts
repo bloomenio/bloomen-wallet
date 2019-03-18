@@ -128,7 +128,7 @@ export class DappHomeComponent implements OnInit, OnDestroy {
             dappId: params[3]
           };
           console.log('Allow', allowObject);
-          this.generteAllow(allowObject);
+          this.Allow(allowObject);
           break;
         case QR_VALIDATOR.ALLOW_BUY:
           const allowBuyObject: AllowAndBuy = {
@@ -181,9 +181,8 @@ export class DappHomeComponent implements OnInit, OnDestroy {
     });
   }
 
-  public doBuyTranscation() {
-    console.log(this.buyObject);
-    this.assets.buy(this.buyObject.assetId, this.buyObject.schemaId, this.buyObject.amount, this.buyObject.dappId, this.buyObject.description)
+  public doBuyTranscation(): Promise<any> {
+    return this.assets.buy(this.buyObject.assetId, this.buyObject.schemaId, this.buyObject.amount, this.buyObject.dappId, this.buyObject.description)
         .then((result: any) => {
           log.debug('OK', result);
           this.snackBar.open(this.translate.instant('common.transaction_success'), null, {
@@ -197,8 +196,8 @@ export class DappHomeComponent implements OnInit, OnDestroy {
         });
   }
 
-  private generteAllow(allowObject: any) {
-    this.devices.handshake(allowObject.deviceHash, allowObject.assetId, allowObject.schemaId, allowObject.dappId)
+  private Allow(allowObject: any): Promise<any> {
+    return this.devices.handshake(allowObject.deviceHash, allowObject.assetId, allowObject.schemaId, allowObject.dappId)
         .then((result: any) => {
           log.debug('OK', result);
           this.snackBar.open(this.translate.instant('common.transaction_success'), null, {
@@ -207,8 +206,6 @@ export class DappHomeComponent implements OnInit, OnDestroy {
         }, (error: any) => {
           if (allowObject.amount) {
             console.log('Try to buy asset');
-            this.buyObject = allowObject;
-            this.doBuyTranscation();
           } else {
             log.debug('KO', error);
             this.snackBar.open(this.translate.instant('common.transaction_error'), null, {
@@ -216,6 +213,14 @@ export class DappHomeComponent implements OnInit, OnDestroy {
             });
           }
         });
-    }
+  }
+
+  private generteAllow(allowObject: any) {
+    this.Allow(allowObject).then((value) => {
+      console.log(value);
+      this.buyObject = allowObject;
+      this.doBuyTranscation().then(_ => this.Allow(allowObject));
+    });
+  }
 
 }
