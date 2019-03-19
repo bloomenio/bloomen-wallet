@@ -41,9 +41,8 @@ export class MobilityExchangeComponent {
       disableClose: true,
       data: {
         mobilityId: this.mobilityId,
-        textBuy: this.mobilities[this.mobilityId].dialogContent.textBuy,
         iconBuy: this.mobilities[this.mobilityId].dialogContent.iconBuy,
-        textAllow: this.mobilities[this.mobilityId].dialogContent.textAllow,
+        textAllowBuy: this.mobilities[this.mobilityId].dialogContent.textAllowBuy,
       }
     });
 
