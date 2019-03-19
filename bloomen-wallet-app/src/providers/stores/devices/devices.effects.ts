@@ -33,10 +33,7 @@ export class DevicesEffects {
         map((action) => {
             this.web3Service.ready(() => {
                 this.devicesContract.getDevicesPageCount().then(pageCount => {
-                    console.log('pagecount1 = ' + pageCount);
                     pageCount = parseInt(pageCount, 10);
-                    console.log('pagecount2 = ' + pageCount);
-                    // #BUGPAGECOUNT: Remove "+ 1" when fixed
                     const lastPage = pageCount + 1;
                     this.loadFullPage(lastPage, fromActions.PAGE_SIZE).then((result: DeviceModel[]) => {
                         // #BUGPAGECOUNT: Remove IF when fixed

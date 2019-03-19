@@ -10,7 +10,9 @@
     "invalid_mnemonic": "Mnemonic invàlid",
     "remove": "Eliminar",
     "cancel": "Cancel·lar",
-    "accept": "Acceptar"
+    "accept": "Acceptar",
+    "noitemfound_nowbuy": "No s'ha trobat l'ítem, es procedeix a comprar",
+    "itemfounded": "Ítem trobat"
   },
   "language": {
     "en": "English",
@@ -105,7 +107,10 @@
     "restore_account": {
       "mnemonic": "Mnemonic",
       "restore": "Restaurar",
-      "placeholder_message": "Toca per pegar"
+      "placeholder_message": "Toca per pegar",
+      "copy_from_other": "Còpia d'un altre Dapp",
+      "available_mnemonics": "Mnemonics disponibles",
+      "no_mnemonics": "No hi ha mnemonics guardats"
     },
     "send_cash": {
       "to": "Per",
