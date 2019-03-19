@@ -38,9 +38,8 @@ export class SmartOfficeExchangeComponent {
       disableClose: true,
       data: {
         smartOfficeId: this.smartOfficeId,
-        textBuy: this.smartOfficeServices[this.smartOfficeId].dialogContent.textBuy,
         iconBuy: this.smartOfficeServices[this.smartOfficeId].dialogContent.iconBuy,
-        textAllow: this.smartOfficeServices[this.smartOfficeId].dialogContent.textAllow
+        textAllowBuy: this.smartOfficeServices[this.smartOfficeId].dialogContent.textAllowBuy
       }
     });
 

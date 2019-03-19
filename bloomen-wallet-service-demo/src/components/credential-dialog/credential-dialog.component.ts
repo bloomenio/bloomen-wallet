@@ -27,8 +27,7 @@ export class CredentialDialogComponent implements OnInit, OnDestroy {
   public asset: AssetModel;
   public media: MediaModel;
 
-  public qrAllowAsset: string;
-  public qrBuyAsset: string;
+  public qrAllowBuy: string;
 
   private allowed: boolean;
   private deviceId: string;
@@ -59,8 +58,9 @@ export class CredentialDialogComponent implements OnInit, OnDestroy {
       this.deviceId = `Worldline ${MockMedia[ASSETS_CONSTANTS.SMART_OFFICE][this.data.smartOfficeId].title}-${new Date().getTime()}`;
     }
 
-    this.qrAllowAsset = `allow://${encodeURI(this.deviceId)}#${this.asset.assetKey}#${this.asset.schemaId}#${this.asset.dappId}`;
-    this.qrBuyAsset = `buy://${this.asset.assetKey}#${this.asset.schemaId}#${this.asset.amount}#${this.asset.dappId}#${encodeURI(this.asset.description)}`;
+    this.qrAllowBuy = `allow_buy://${this.asset.assetKey}#${this.asset.schemaId}#${this.asset.amount}#${this.asset.dappId}
+    #${encodeURI(this.asset.description)}#${encodeURI(this.deviceId)}`;
+
 
     this.interval$ = interval(1000).pipe(
       takeWhile(() => !this.allowed)

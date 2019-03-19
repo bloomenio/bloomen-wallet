@@ -55,9 +55,8 @@ export class VideoPlayerComponent implements OnInit {
       disableClose: true,
       data: {
         videoId: this.videoId,
-        textBuy: 'Buy the content scanning the QR code',
         iconBuy: 'assets/icons/ic_wallet.svg',
-        textAllow: 'Scan QR to view the content'
+        textAllowBuy: 'Scan QR to view/buy the content'
       }
     });
 
