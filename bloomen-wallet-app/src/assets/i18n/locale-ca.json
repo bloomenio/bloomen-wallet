@@ -10,7 +10,9 @@
     "invalid_mnemonic": "Mnemonic invàlid",
     "remove": "Eliminar",
     "cancel": "Cancel·lar",
-    "accept": "Acceptar"
+    "accept": "Acceptar",
+    "noitemfound_nowbuy": "No s'ha trobat l'ítem, es procedeix a comprar",
+    "itemfounded": "Ítem trobat"
   },
   "language": {
     "en": "English",

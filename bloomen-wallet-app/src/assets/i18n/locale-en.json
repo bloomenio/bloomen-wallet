@@ -10,7 +10,9 @@
     "invalid_mnemonic": "Invalid mnemonic",
     "remove": "Remove",
     "cancel": "Cancel",
-    "accept": "Accept"
+    "accept": "Accept",
+    "noitemfound_nowbuy": "No item found, proceeding to purchase",
+    "itemfounded": "Item founded"
   },
   "language": {
     "en": "English",
