@@ -15,12 +15,13 @@ import * as fromTxActivityActions from '@stores/tx-activity/tx-activity.actions'
 import { Subscription, Observable } from 'rxjs';
 import { TxActivityModel } from '@core/models/tx-activity.model';
 import { BarCodeScannerService } from '@services/barcode-scanner/barcode-scanner.service';
-import { QR_VALIDATOR} from '@core/constants/qr-validator.constants';
+import { QR_VALIDATOR } from '@core/constants/qr-validator.constants';
 import { AssetsContract, DevicesContract } from '@core/core.module';
 import { TranslateService } from '@ngx-translate/core';
 import { DappGeneralDialogComponent } from '@components/dapp-general-dialog/dapp-general-dialog.component';
 
-import {AllowAndBuy, AllowObject, BuyObject} from '@models/operations.model';
+import { AllowAndBuy, AllowObject, BuyObject } from '@models/operations.model';
+import { resolve } from 'q';
 
 const log = new Logger('dapp-home.component');
 
@@ -48,8 +49,8 @@ export class DappHomeComponent implements OnInit, OnDestroy {
 
   @Input() public dapp: Dapp;
 
-  @ViewChild('recentActivity', {read: ElementRef}) public recentActivity: ElementRef;
-  @ViewChild('newContent', {read: ElementRef}) public newContent: ElementRef;
+  @ViewChild('recentActivity', { read: ElementRef }) public recentActivity: ElementRef;
+  @ViewChild('newContent', { read: ElementRef }) public newContent: ElementRef;
 
 
 
@@ -78,10 +79,10 @@ export class DappHomeComponent implements OnInit, OnDestroy {
 
   public ngOnInit() {
     this.txActivity$ = this.store.select(fromTxActivitySelectors.selectAllTxActivity).subscribe((txActivityArray) => {
-    this.txActivityArray = txActivityArray.sort((a, b) => b.epoch - a.epoch);
-    this.currentPage = Math.ceil(txActivityArray.length / 10);
-    this.onResize();
-  });
+      this.txActivityArray = txActivityArray.sort((a, b) => b.epoch - a.epoch);
+      this.currentPage = Math.ceil(txActivityArray.length / 10);
+      this.onResize();
+    });
     this.isLoading$ = this.store.select(fromTxActivitySelectors.getIsLoading);
   }
 
@@ -95,17 +96,17 @@ export class DappHomeComponent implements OnInit, OnDestroy {
   }
 
   public async buyOrAllow() {
-        this.barCodeScannerService.scan().then(result => {
-          console.log(result);
-          this.doOperation(result);
-        });
+    this.barCodeScannerService.scan().then(result => {
+      console.log(result);
+      this.doOperation(result);
+    });
   }
 
   private doOperation(inputValue: string) {
     if (inputValue !== null) {
       const valueCut = inputValue.indexOf('//') + 2;
       const operation = inputValue.slice(0, valueCut);
-      const params = inputValue.slice(valueCut, ).split('#');
+      const params = inputValue.slice(valueCut).split('#');
 
       switch (operation) {
         case QR_VALIDATOR.BUY:
@@ -135,7 +136,7 @@ export class DappHomeComponent implements OnInit, OnDestroy {
             dappId: params[3],
             assetId: parseInt(params[0], 10),
             schemaId: parseInt(params[1], 10),
-            amount:  parseInt(params[2], 10),
+            amount: parseInt(params[2], 10),
             description: decodeURI(params[4]),
             deviceHash: decodeURI(params[5])
           };
@@ -181,45 +182,52 @@ export class DappHomeComponent implements OnInit, OnDestroy {
     });
   }
 
-  public doBuyTranscation(): Promise<any> {
-    return this.assets.buy(this.buyObject.assetId, this.buyObject.schemaId, this.buyObject.amount, this.buyObject.dappId, this.buyObject.description)
+  public doBuyTranscation(): Promise<boolean> {
+    return new Promise<boolean>((res, rej) => {
+      this.assets.buy(this.buyObject.assetId, this.buyObject.schemaId, this.buyObject.amount, this.buyObject.dappId, this.buyObject.description)
         .then((result: any) => {
           log.debug('OK', result);
           this.snackBar.open(this.translate.instant('common.transaction_success'), null, {
             duration: 2000,
           });
+          res();
         }, (error: any) => {
           log.debug('KO', error);
           this.snackBar.open(this.translate.instant('common.transaction_error'), null, {
             duration: 2000,
           });
+          rej();
         });
+    });
   }
 
-  private Allow(allowObject: any): Promise<any> {
-    return this.devices.handshake(allowObject.deviceHash, allowObject.assetId, allowObject.schemaId, allowObject.dappId)
+  private Allow(allowObject: any): Promise<boolean> {
+    return new Promise<boolean>((res, rej) => {
+      this.devices.handshake(allowObject.deviceHash, allowObject.assetId, allowObject.schemaId, allowObject.dappId)
         .then((result: any) => {
-          log.debug('OK', result);
-          this.snackBar.open(this.translate.instant('common.transaction_success'), null, {
+          log.debug('FOUNDED', result);
+          this.snackBar.open(this.translate.instant('common.itemfounded'), null, {
             duration: 2000,
           });
+          res();
         }, (error: any) => {
-          if (allowObject.amount) {
-            console.log('Try to buy asset');
-          } else {
-            log.debug('KO', error);
-            this.snackBar.open(this.translate.instant('common.transaction_error'), null, {
-              duration: 2000,
-            });
-          }
+          log.debug('NO-FOUND_THEN-BUY', error);
+          this.snackBar.open(this.translate.instant('common.noitemfound_nowbuy'), null, {
+            duration: 2000,
+          });
+          rej();
         });
+    });
   }
 
   private generteAllow(allowObject: any) {
-    this.Allow(allowObject).then((value) => {
-      console.log(value);
+    this.Allow(allowObject).catch(() => {
       this.buyObject = allowObject;
-      this.doBuyTranscation().then(_ => this.Allow(allowObject));
+      this.doBuyTranscation().then(() => {
+        this.Allow(allowObject);
+      }, () => {
+        log.debug(`you can't buy it =>`);
+      });
     });
   }
 
