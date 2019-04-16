@@ -20,22 +20,26 @@ async function _v1() {
     ];
     console.log('Activate prepaid card');
     let answer = await inquirer.prompt(questions);
-    await ctx.business.methods.activateCard(answer.id).send(ctx.transactionObject)
-        .then((tx) => {
-            console.log('Transaction sent.');
-            return web3Ctx.checkTransaction(tx.transactionHash);
-        }).then(()=> {
-            cards.forEach(card => {
-                if (card.id == answer.id) {
-                    card.active = true;
-                }
-            });
-            common.setCards(cards);   
-        },(err)=>{
-            console.log(err);
-            }
-        );   
+    await _activateCard(ctx,cards,answer.id); 
 }
+
+function _activateCard(ctx,cards,_id){
+    return new Promise((resolve, reject) => {
+        ctx.prepaidCardManager.methods.activateCard(_id).send(ctx.transactionObject)
+        .on('transactionHash', (hash) => {
+            web3Ctx.checkTransaction(hash).then( () => {
+                cards.forEach(card => {
+                    if (card.id == _id) {
+                        card.active = true;
+                    }
+                });
+                common.setCards(cards);  
+                resolve();
+            }, (err) => reject(err));
+        });
+    });
+}
+
 module.exports = {
         v1: _v1
     };

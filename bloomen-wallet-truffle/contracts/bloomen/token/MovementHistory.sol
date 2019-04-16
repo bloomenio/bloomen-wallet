@@ -1,7 +1,9 @@
-pragma solidity 0.4.24;
+pragma solidity ^0.5.2;
 pragma experimental ABIEncoderV2;
 
-contract MovementHistory {
+import "../../../node_modules/openzeppelin-solidity/contracts/access/roles/WhitelistedRole.sol";
+
+contract MovementHistory is WhitelistedRole {
 
     struct Movement {
         int256 amount;
@@ -9,15 +11,18 @@ contract MovementHistory {
         uint date;
         address to;
     }
-
+  
     mapping (address => Movement[]) private transfersMap_;
     mapping (address => int256) private currentIndexMap_;
+
+ 
     int256 constant private MAX = 100;
     int256 constant private PAGE_SIZE = 10;
     int256 constant private MAX_PAGE_NUMBER = MAX/PAGE_SIZE;
 
-    function addMovement(int256 _amount, string memory _description,  address _to) public {
-        _addMovement(_amount, _description, msg.sender, _to);
+
+    function addMovement(int256 _amount, string memory _description, address _from, address _to) onlyWhitelisted public {
+        _addMovement(_amount, _description, _from, _to);
     }
     
     function _addMovement(int256 _amount, string memory _description,  address _from, address _to) internal {
@@ -33,18 +38,17 @@ contract MovementHistory {
         }
     }
 
-
     function getMovements( int256 _page) public view returns (Movement[] memory) {
         require(_page > 0 && _page <= MAX_PAGE_NUMBER, "Invalid page.");
 
         uint256 _reqIndexOffset = uint256(PAGE_SIZE * (_page - 1));
         Movement[] memory transfers = transfersMap_[msg.sender];
         if (transfers.length <= _reqIndexOffset) {
-            return;
+            Movement[] memory empty;
+            return empty;
         }
 
-
-         Movement[] memory _transfersPage = new Movement[](uint256(PAGE_SIZE));
+        Movement[] memory _transfersPage = new Movement[](uint256(PAGE_SIZE));
 
         for (int256 i = 0; i < int(PAGE_SIZE); i++) {
             int256 _transferIndex = currentIndexMap_[msg.sender] - int256(_reqIndexOffset) - i;
@@ -57,7 +61,7 @@ contract MovementHistory {
             }
             _transfersPage[uint256(i)]= transfers[uint256(_transferIndex)];
         }
-      
+
         return _transfersPage;
     }
 }

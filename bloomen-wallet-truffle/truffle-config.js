@@ -1,22 +1,20 @@
 require('dotenv').config();
 var HDWalletProvider = require("truffle-hdwallet-provider");
 
-var Web3 = require('web3');
-
 module.exports = {
-  solc: {
-    optimizer: {
-      enabled: true,
-      runs: 200
-    }
-  },
+
   networks: {
+
     development: {
-      provider: () =>{ 
-        return new HDWalletProvider(process.env.DEVELOPMENT_MNEMONIC, "http://"+process.env.DEVELOPMENT_HOST+":"+ process.env.DEVELOPMENT_PORT);     
-      },
+      provider: () => new HDWalletProvider(process.env.DEVELOPMENT_MNEMONIC, process.env.DEVELOPMENT_URL),
+      network_id: "*", // Match Alastria network id
       gasPrice: 0,
-      network_id: '*',
-    }
+      type: "quorum"
+     },
+  },
+  compilers: {
+    solc: {
+      version: '0.5.7',
+    },
   }
 };
