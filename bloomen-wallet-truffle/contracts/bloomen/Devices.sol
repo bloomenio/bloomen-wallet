@@ -40,7 +40,7 @@ contract Devices {
     return allowed;
   }
 
-  function getAssetsPageCount() public view returns (uint256) {    
+  function getDevicesPageCount() public view returns (uint256) {    
     uint256 pages = userDevices_[msg.sender].deviceArray.length / PAGE_SIZE;
     if ( (userDevices_[msg.sender].deviceArray.length % PAGE_SIZE)>0) {
       pages++;

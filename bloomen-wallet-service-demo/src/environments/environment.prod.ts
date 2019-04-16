@@ -9,9 +9,7 @@ export const environment = {
   defaultLanguage: 'en',
   supportedLanguages: ['ca', 'de', 'el', 'en', 'es'],
   eth: {
-    httpUser: 'bloomen',
-    httpPassword: '12345',
-    ethRpcUrl: 'https://demo2.bloomen.io/alastria',
+    ethRpcUrl: 'https://0x.bloomen.io/rpc/telsius/wallet',
     ethBlockPollingTime: 4000,
     transactionStatusPollingTime: 1000,
     transactionCallDelayTime: 2000,
