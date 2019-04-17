@@ -13,7 +13,7 @@ module.exports = {
   networks: {
     development: {
       provider: () =>{ 
-        return new HDWalletProvider(process.env.DEVELOPMENT_MNEMONIC, "http://"+process.env.DEVELOPMENT_HOST+":"+ process.env.DEVELOPMENT_PORT);     
+        return new HDWalletProvider(process.env.DEVELOPMENT_MNEMONIC, process.env.DEVELOPMENT_URL);     
       },
       gasPrice: 0,
       network_id: '*',

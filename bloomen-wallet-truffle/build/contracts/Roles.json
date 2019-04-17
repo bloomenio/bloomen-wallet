@@ -3,22 +3,22 @@
   "abi": [],
   "bytecode": "0x604c602c600b82828239805160001a60731460008114601c57601e565bfe5b5030600052607381538281f30073000000000000000000000000000000000000000030146080604052600080fd00a165627a7a72305820d67ac76e5faebfabf9d3b3ea0ba88e1c9ef489465bcc1fe50a0b8bd348e22fad0029",
   "deployedBytecode": "0x73000000000000000000000000000000000000000030146080604052600080fd00a165627a7a72305820d67ac76e5faebfabf9d3b3ea0ba88e1c9ef489465bcc1fe50a0b8bd348e22fad0029",
-  "sourceMap": "109:784:7:-;;132:2:-1;166:7;155:9;146:7;137:37;252:7;246:14;243:1;238:23;232:4;229:33;270:1;265:20;;;;222:63;;265:20;274:9;222:63;;298:9;295:1;288:20;328:4;319:7;311:22;352:7;343;336:24",
-  "deployedSourceMap": "109:784:7:-;;;;;;;;",
+  "sourceMap": "109:784:14:-;;132:2:-1;166:7;155:9;146:7;137:37;252:7;246:14;243:1;238:23;232:4;229:33;270:1;265:20;;;;222:63;;265:20;274:9;222:63;;298:9;295:1;288:20;328:4;319:7;311:22;352:7;343;336:24",
+  "deployedSourceMap": "109:784:14:-;;;;;;;;",
   "source": "pragma solidity ^0.4.24;\n\n/**\n * @title Roles\n * @dev Library for managing addresses assigned to a Role.\n */\nlibrary Roles {\n  struct Role {\n    mapping (address => bool) bearer;\n  }\n\n  /**\n   * @dev give an account access to this role\n   */\n  function add(Role storage role, address account) internal {\n    require(account != address(0));\n    require(!has(role, account));\n\n    role.bearer[account] = true;\n  }\n\n  /**\n   * @dev remove an account's access to this role\n   */\n  function remove(Role storage role, address account) internal {\n    require(account != address(0));\n    require(has(role, account));\n\n    role.bearer[account] = false;\n  }\n\n  /**\n   * @dev check if an account has this role\n   * @return bool\n   */\n  function has(Role storage role, address account)\n    internal\n    view\n    returns (bool)\n  {\n    require(account != address(0));\n    return role.bearer[account];\n  }\n}\n",
   "sourcePath": "/home/jordi/ws/bloomenApp/bloomen-wallet-truffle/node_modules/openzeppelin-solidity/contracts/access/Roles.sol",
   "ast": {
     "absolutePath": "/home/jordi/ws/bloomenApp/bloomen-wallet-truffle/node_modules/openzeppelin-solidity/contracts/access/Roles.sol",
     "exportedSymbols": {
       "Roles": [
-        2149
+        4782
       ]
     },
-    "id": 2150,
+    "id": 4783,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2057,
+        "id": 4690,
         "literals": [
           "solidity",
           "^",
@@ -26,7 +26,7 @@
           ".24"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:24:7"
+        "src": "0:24:14"
       },
       {
         "baseContracts": [],
@@ -34,24 +34,24 @@
         "contractKind": "library",
         "documentation": "@title Roles\n@dev Library for managing addresses assigned to a Role.",
         "fullyImplemented": true,
-        "id": 2149,
+        "id": 4782,
         "linearizedBaseContracts": [
-          2149
+          4782
         ],
         "name": "Roles",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "canonicalName": "Roles.Role",
-            "id": 2062,
+            "id": 4695,
             "members": [
               {
                 "constant": false,
-                "id": 2061,
+                "id": 4694,
                 "name": "bearer",
                 "nodeType": "VariableDeclaration",
-                "scope": 2062,
-                "src": "145:32:7",
+                "scope": 4695,
+                "src": "145:32:14",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -59,28 +59,28 @@
                   "typeString": "mapping(address => bool)"
                 },
                 "typeName": {
-                  "id": 2060,
+                  "id": 4693,
                   "keyType": {
-                    "id": 2058,
+                    "id": 4691,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "154:7:7",
+                    "src": "154:7:14",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
                     }
                   },
                   "nodeType": "Mapping",
-                  "src": "145:25:7",
+                  "src": "145:25:14",
                   "typeDescriptions": {
                     "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
                     "typeString": "mapping(address => bool)"
                   },
                   "valueType": {
-                    "id": 2059,
+                    "id": 4692,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "165:4:7",
+                    "src": "165:4:14",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -93,15 +93,15 @@
             ],
             "name": "Role",
             "nodeType": "StructDefinition",
-            "scope": 2149,
-            "src": "127:55:7",
+            "scope": 4782,
+            "src": "127:55:14",
             "visibility": "public"
           },
           {
             "body": {
-              "id": 2093,
+              "id": 4726,
               "nodeType": "Block",
-              "src": "302:109:7",
+              "src": "302:109:14",
               "statements": [
                 {
                   "expression": {
@@ -113,19 +113,19 @@
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         },
-                        "id": 2074,
+                        "id": 4707,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "leftExpression": {
                           "argumentTypes": null,
-                          "id": 2070,
+                          "id": 4703,
                           "name": "account",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2066,
-                          "src": "316:7:7",
+                          "referencedDeclaration": 4699,
+                          "src": "316:7:14",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
                             "typeString": "address"
@@ -139,14 +139,14 @@
                             {
                               "argumentTypes": null,
                               "hexValue": "30",
-                              "id": 2072,
+                              "id": 4705,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": true,
                               "kind": "number",
                               "lValueRequested": false,
                               "nodeType": "Literal",
-                              "src": "335:1:7",
+                              "src": "335:1:14",
                               "subdenomination": null,
                               "typeDescriptions": {
                                 "typeIdentifier": "t_rational_0_by_1",
@@ -162,20 +162,20 @@
                                 "typeString": "int_const 0"
                               }
                             ],
-                            "id": 2071,
+                            "id": 4704,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
                             "lValueRequested": false,
                             "nodeType": "ElementaryTypeNameExpression",
-                            "src": "327:7:7",
+                            "src": "327:7:14",
                             "typeDescriptions": {
                               "typeIdentifier": "t_type$_t_address_$",
                               "typeString": "type(address)"
                             },
                             "typeName": "address"
                           },
-                          "id": 2073,
+                          "id": 4706,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -183,13 +183,13 @@
                           "lValueRequested": false,
                           "names": [],
                           "nodeType": "FunctionCall",
-                          "src": "327:10:7",
+                          "src": "327:10:14",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
                             "typeString": "address"
                           }
                         },
-                        "src": "316:21:7",
+                        "src": "316:21:14",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bool",
                           "typeString": "bool"
@@ -203,21 +203,21 @@
                           "typeString": "bool"
                         }
                       ],
-                      "id": 2069,
+                      "id": 4702,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        3763,
-                        3764
+                        6396,
+                        6397
                       ],
-                      "referencedDeclaration": 3763,
-                      "src": "308:7:7",
+                      "referencedDeclaration": 6396,
+                      "src": "308:7:14",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
                         "typeString": "function (bool) pure"
                       }
                     },
-                    "id": 2075,
+                    "id": 4708,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -225,15 +225,15 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "308:30:7",
+                    "src": "308:30:14",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 2076,
+                  "id": 4709,
                   "nodeType": "ExpressionStatement",
-                  "src": "308:30:7"
+                  "src": "308:30:14"
                 },
                 {
                   "expression": {
@@ -241,7 +241,7 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 2082,
+                        "id": 4715,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -249,31 +249,31 @@
                         "nodeType": "UnaryOperation",
                         "operator": "!",
                         "prefix": true,
-                        "src": "352:19:7",
+                        "src": "352:19:14",
                         "subExpression": {
                           "argumentTypes": null,
                           "arguments": [
                             {
                               "argumentTypes": null,
-                              "id": 2079,
+                              "id": 4712,
                               "name": "role",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 2064,
-                              "src": "357:4:7",
+                              "referencedDeclaration": 4697,
+                              "src": "357:4:14",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_struct$_Role_$2062_storage_ptr",
+                                "typeIdentifier": "t_struct$_Role_$4695_storage_ptr",
                                 "typeString": "struct Roles.Role storage pointer"
                               }
                             },
                             {
                               "argumentTypes": null,
-                              "id": 2080,
+                              "id": 4713,
                               "name": "account",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 2066,
-                              "src": "363:7:7",
+                              "referencedDeclaration": 4699,
+                              "src": "363:7:14",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_address",
                                 "typeString": "address"
@@ -283,7 +283,7 @@
                           "expression": {
                             "argumentTypes": [
                               {
-                                "typeIdentifier": "t_struct$_Role_$2062_storage_ptr",
+                                "typeIdentifier": "t_struct$_Role_$4695_storage_ptr",
                                 "typeString": "struct Roles.Role storage pointer"
                               },
                               {
@@ -291,18 +291,18 @@
                                 "typeString": "address"
                               }
                             ],
-                            "id": 2078,
+                            "id": 4711,
                             "name": "has",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 2148,
-                            "src": "353:3:7",
+                            "referencedDeclaration": 4781,
+                            "src": "353:3:14",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_function_internal_view$_t_struct$_Role_$2062_storage_ptr_$_t_address_$returns$_t_bool_$",
+                              "typeIdentifier": "t_function_internal_view$_t_struct$_Role_$4695_storage_ptr_$_t_address_$returns$_t_bool_$",
                               "typeString": "function (struct Roles.Role storage pointer,address) view returns (bool)"
                             }
                           },
-                          "id": 2081,
+                          "id": 4714,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -310,7 +310,7 @@
                           "lValueRequested": false,
                           "names": [],
                           "nodeType": "FunctionCall",
-                          "src": "353:18:7",
+                          "src": "353:18:14",
                           "typeDescriptions": {
                             "typeIdentifier": "t_bool",
                             "typeString": "bool"
@@ -329,21 +329,21 @@
                           "typeString": "bool"
                         }
                       ],
-                      "id": 2077,
+                      "id": 4710,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        3763,
-                        3764
+                        6396,
+                        6397
                       ],
-                      "referencedDeclaration": 3763,
-                      "src": "344:7:7",
+                      "referencedDeclaration": 6396,
+                      "src": "344:7:14",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
                         "typeString": "function (bool) pure"
                       }
                     },
-                    "id": 2083,
+                    "id": 4716,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -351,20 +351,20 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "344:28:7",
+                    "src": "344:28:14",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 2084,
+                  "id": 4717,
                   "nodeType": "ExpressionStatement",
-                  "src": "344:28:7"
+                  "src": "344:28:14"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 2091,
+                    "id": 4724,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -375,40 +375,40 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 2085,
+                          "id": 4718,
                           "name": "role",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2064,
-                          "src": "379:4:7",
+                          "referencedDeclaration": 4697,
+                          "src": "379:4:14",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_struct$_Role_$2062_storage_ptr",
+                            "typeIdentifier": "t_struct$_Role_$4695_storage_ptr",
                             "typeString": "struct Roles.Role storage pointer"
                           }
                         },
-                        "id": 2088,
+                        "id": 4721,
                         "isConstant": false,
                         "isLValue": true,
                         "isPure": false,
                         "lValueRequested": false,
                         "memberName": "bearer",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 2061,
-                        "src": "379:11:7",
+                        "referencedDeclaration": 4694,
+                        "src": "379:11:14",
                         "typeDescriptions": {
                           "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
                           "typeString": "mapping(address => bool)"
                         }
                       },
-                      "id": 2089,
+                      "id": 4722,
                       "indexExpression": {
                         "argumentTypes": null,
-                        "id": 2087,
+                        "id": 4720,
                         "name": "account",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2066,
-                        "src": "391:7:7",
+                        "referencedDeclaration": 4699,
+                        "src": "391:7:14",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -419,7 +419,7 @@
                       "isPure": false,
                       "lValueRequested": true,
                       "nodeType": "IndexAccess",
-                      "src": "379:20:7",
+                      "src": "379:20:14",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bool",
                         "typeString": "bool"
@@ -430,14 +430,14 @@
                     "rightHandSide": {
                       "argumentTypes": null,
                       "hexValue": "74727565",
-                      "id": 2090,
+                      "id": 4723,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
                       "kind": "bool",
                       "lValueRequested": false,
                       "nodeType": "Literal",
-                      "src": "402:4:7",
+                      "src": "402:4:14",
                       "subdenomination": null,
                       "typeDescriptions": {
                         "typeIdentifier": "t_bool",
@@ -445,20 +445,20 @@
                       },
                       "value": "true"
                     },
-                    "src": "379:27:7",
+                    "src": "379:27:14",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
-                  "id": 2092,
+                  "id": 4725,
                   "nodeType": "ExpressionStatement",
-                  "src": "379:27:7"
+                  "src": "379:27:14"
                 }
               ]
             },
             "documentation": "@dev give an account access to this role",
-            "id": 2094,
+            "id": 4727,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -466,31 +466,31 @@
             "name": "add",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2067,
+              "id": 4700,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2064,
+                  "id": 4697,
                   "name": "role",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2094,
-                  "src": "257:17:7",
+                  "scope": 4727,
+                  "src": "257:17:14",
                   "stateVariable": false,
                   "storageLocation": "storage",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_Role_$2062_storage_ptr",
+                    "typeIdentifier": "t_struct$_Role_$4695_storage_ptr",
                     "typeString": "struct Roles.Role"
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 2063,
+                    "id": 4696,
                     "name": "Role",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 2062,
-                    "src": "257:4:7",
+                    "referencedDeclaration": 4695,
+                    "src": "257:4:14",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Role_$2062_storage_ptr",
+                      "typeIdentifier": "t_struct$_Role_$4695_storage_ptr",
                       "typeString": "struct Roles.Role"
                     }
                   },
@@ -499,11 +499,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 2066,
+                  "id": 4699,
                   "name": "account",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2094,
-                  "src": "276:15:7",
+                  "scope": 4727,
+                  "src": "276:15:14",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -511,10 +511,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2065,
+                    "id": 4698,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "276:7:7",
+                    "src": "276:7:14",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -524,26 +524,26 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "256:36:7"
+              "src": "256:36:14"
             },
             "payable": false,
             "returnParameters": {
-              "id": 2068,
+              "id": 4701,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "302:0:7"
+              "src": "302:0:14"
             },
-            "scope": 2149,
-            "src": "244:167:7",
+            "scope": 4782,
+            "src": "244:167:14",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "internal"
           },
           {
             "body": {
-              "id": 2124,
+              "id": 4757,
               "nodeType": "Block",
-              "src": "538:109:7",
+              "src": "538:109:14",
               "statements": [
                 {
                   "expression": {
@@ -555,19 +555,19 @@
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         },
-                        "id": 2106,
+                        "id": 4739,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "leftExpression": {
                           "argumentTypes": null,
-                          "id": 2102,
+                          "id": 4735,
                           "name": "account",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2098,
-                          "src": "552:7:7",
+                          "referencedDeclaration": 4731,
+                          "src": "552:7:14",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
                             "typeString": "address"
@@ -581,14 +581,14 @@
                             {
                               "argumentTypes": null,
                               "hexValue": "30",
-                              "id": 2104,
+                              "id": 4737,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": true,
                               "kind": "number",
                               "lValueRequested": false,
                               "nodeType": "Literal",
-                              "src": "571:1:7",
+                              "src": "571:1:14",
                               "subdenomination": null,
                               "typeDescriptions": {
                                 "typeIdentifier": "t_rational_0_by_1",
@@ -604,20 +604,20 @@
                                 "typeString": "int_const 0"
                               }
                             ],
-                            "id": 2103,
+                            "id": 4736,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
                             "lValueRequested": false,
                             "nodeType": "ElementaryTypeNameExpression",
-                            "src": "563:7:7",
+                            "src": "563:7:14",
                             "typeDescriptions": {
                               "typeIdentifier": "t_type$_t_address_$",
                               "typeString": "type(address)"
                             },
                             "typeName": "address"
                           },
-                          "id": 2105,
+                          "id": 4738,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -625,13 +625,13 @@
                           "lValueRequested": false,
                           "names": [],
                           "nodeType": "FunctionCall",
-                          "src": "563:10:7",
+                          "src": "563:10:14",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
                             "typeString": "address"
                           }
                         },
-                        "src": "552:21:7",
+                        "src": "552:21:14",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bool",
                           "typeString": "bool"
@@ -645,21 +645,21 @@
                           "typeString": "bool"
                         }
                       ],
-                      "id": 2101,
+                      "id": 4734,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        3763,
-                        3764
+                        6396,
+                        6397
                       ],
-                      "referencedDeclaration": 3763,
-                      "src": "544:7:7",
+                      "referencedDeclaration": 6396,
+                      "src": "544:7:14",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
                         "typeString": "function (bool) pure"
                       }
                     },
-                    "id": 2107,
+                    "id": 4740,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -667,15 +667,15 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "544:30:7",
+                    "src": "544:30:14",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 2108,
+                  "id": 4741,
                   "nodeType": "ExpressionStatement",
-                  "src": "544:30:7"
+                  "src": "544:30:14"
                 },
                 {
                   "expression": {
@@ -686,25 +686,25 @@
                         "arguments": [
                           {
                             "argumentTypes": null,
-                            "id": 2111,
+                            "id": 4744,
                             "name": "role",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 2096,
-                            "src": "592:4:7",
+                            "referencedDeclaration": 4729,
+                            "src": "592:4:14",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_struct$_Role_$2062_storage_ptr",
+                              "typeIdentifier": "t_struct$_Role_$4695_storage_ptr",
                               "typeString": "struct Roles.Role storage pointer"
                             }
                           },
                           {
                             "argumentTypes": null,
-                            "id": 2112,
+                            "id": 4745,
                             "name": "account",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 2098,
-                            "src": "598:7:7",
+                            "referencedDeclaration": 4731,
+                            "src": "598:7:14",
                             "typeDescriptions": {
                               "typeIdentifier": "t_address",
                               "typeString": "address"
@@ -714,7 +714,7 @@
                         "expression": {
                           "argumentTypes": [
                             {
-                              "typeIdentifier": "t_struct$_Role_$2062_storage_ptr",
+                              "typeIdentifier": "t_struct$_Role_$4695_storage_ptr",
                               "typeString": "struct Roles.Role storage pointer"
                             },
                             {
@@ -722,18 +722,18 @@
                               "typeString": "address"
                             }
                           ],
-                          "id": 2110,
+                          "id": 4743,
                           "name": "has",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2148,
-                          "src": "588:3:7",
+                          "referencedDeclaration": 4781,
+                          "src": "588:3:14",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_function_internal_view$_t_struct$_Role_$2062_storage_ptr_$_t_address_$returns$_t_bool_$",
+                            "typeIdentifier": "t_function_internal_view$_t_struct$_Role_$4695_storage_ptr_$_t_address_$returns$_t_bool_$",
                             "typeString": "function (struct Roles.Role storage pointer,address) view returns (bool)"
                           }
                         },
-                        "id": 2113,
+                        "id": 4746,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -741,7 +741,7 @@
                         "lValueRequested": false,
                         "names": [],
                         "nodeType": "FunctionCall",
-                        "src": "588:18:7",
+                        "src": "588:18:14",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bool",
                           "typeString": "bool"
@@ -755,21 +755,21 @@
                           "typeString": "bool"
                         }
                       ],
-                      "id": 2109,
+                      "id": 4742,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        3763,
-                        3764
+                        6396,
+                        6397
                       ],
-                      "referencedDeclaration": 3763,
-                      "src": "580:7:7",
+                      "referencedDeclaration": 6396,
+                      "src": "580:7:14",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
                         "typeString": "function (bool) pure"
                       }
                     },
-                    "id": 2114,
+                    "id": 4747,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -777,20 +777,20 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "580:27:7",
+                    "src": "580:27:14",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 2115,
+                  "id": 4748,
                   "nodeType": "ExpressionStatement",
-                  "src": "580:27:7"
+                  "src": "580:27:14"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 2122,
+                    "id": 4755,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -801,40 +801,40 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 2116,
+                          "id": 4749,
                           "name": "role",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2096,
-                          "src": "614:4:7",
+                          "referencedDeclaration": 4729,
+                          "src": "614:4:14",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_struct$_Role_$2062_storage_ptr",
+                            "typeIdentifier": "t_struct$_Role_$4695_storage_ptr",
                             "typeString": "struct Roles.Role storage pointer"
                           }
                         },
-                        "id": 2119,
+                        "id": 4752,
                         "isConstant": false,
                         "isLValue": true,
                         "isPure": false,
                         "lValueRequested": false,
                         "memberName": "bearer",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 2061,
-                        "src": "614:11:7",
+                        "referencedDeclaration": 4694,
+                        "src": "614:11:14",
                         "typeDescriptions": {
                           "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
                           "typeString": "mapping(address => bool)"
                         }
                       },
-                      "id": 2120,
+                      "id": 4753,
                       "indexExpression": {
                         "argumentTypes": null,
-                        "id": 2118,
+                        "id": 4751,
                         "name": "account",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2098,
-                        "src": "626:7:7",
+                        "referencedDeclaration": 4731,
+                        "src": "626:7:14",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -845,7 +845,7 @@
                       "isPure": false,
                       "lValueRequested": true,
                       "nodeType": "IndexAccess",
-                      "src": "614:20:7",
+                      "src": "614:20:14",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bool",
                         "typeString": "bool"
@@ -856,14 +856,14 @@
                     "rightHandSide": {
                       "argumentTypes": null,
                       "hexValue": "66616c7365",
-                      "id": 2121,
+                      "id": 4754,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
                       "kind": "bool",
                       "lValueRequested": false,
                       "nodeType": "Literal",
-                      "src": "637:5:7",
+                      "src": "637:5:14",
                       "subdenomination": null,
                       "typeDescriptions": {
                         "typeIdentifier": "t_bool",
@@ -871,20 +871,20 @@
                       },
                       "value": "false"
                     },
-                    "src": "614:28:7",
+                    "src": "614:28:14",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
-                  "id": 2123,
+                  "id": 4756,
                   "nodeType": "ExpressionStatement",
-                  "src": "614:28:7"
+                  "src": "614:28:14"
                 }
               ]
             },
             "documentation": "@dev remove an account's access to this role",
-            "id": 2125,
+            "id": 4758,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -892,31 +892,31 @@
             "name": "remove",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2099,
+              "id": 4732,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2096,
+                  "id": 4729,
                   "name": "role",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2125,
-                  "src": "493:17:7",
+                  "scope": 4758,
+                  "src": "493:17:14",
                   "stateVariable": false,
                   "storageLocation": "storage",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_Role_$2062_storage_ptr",
+                    "typeIdentifier": "t_struct$_Role_$4695_storage_ptr",
                     "typeString": "struct Roles.Role"
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 2095,
+                    "id": 4728,
                     "name": "Role",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 2062,
-                    "src": "493:4:7",
+                    "referencedDeclaration": 4695,
+                    "src": "493:4:14",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Role_$2062_storage_ptr",
+                      "typeIdentifier": "t_struct$_Role_$4695_storage_ptr",
                       "typeString": "struct Roles.Role"
                     }
                   },
@@ -925,11 +925,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 2098,
+                  "id": 4731,
                   "name": "account",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2125,
-                  "src": "512:15:7",
+                  "scope": 4758,
+                  "src": "512:15:14",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -937,10 +937,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2097,
+                    "id": 4730,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "512:7:7",
+                    "src": "512:7:14",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -950,26 +950,26 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "492:36:7"
+              "src": "492:36:14"
             },
             "payable": false,
             "returnParameters": {
-              "id": 2100,
+              "id": 4733,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "538:0:7"
+              "src": "538:0:14"
             },
-            "scope": 2149,
-            "src": "477:170:7",
+            "scope": 4782,
+            "src": "477:170:14",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "internal"
           },
           {
             "body": {
-              "id": 2147,
+              "id": 4780,
               "nodeType": "Block",
-              "src": "817:74:7",
+              "src": "817:74:14",
               "statements": [
                 {
                   "expression": {
@@ -981,19 +981,19 @@
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         },
-                        "id": 2139,
+                        "id": 4772,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "leftExpression": {
                           "argumentTypes": null,
-                          "id": 2135,
+                          "id": 4768,
                           "name": "account",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2129,
-                          "src": "831:7:7",
+                          "referencedDeclaration": 4762,
+                          "src": "831:7:14",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
                             "typeString": "address"
@@ -1007,14 +1007,14 @@
                             {
                               "argumentTypes": null,
                               "hexValue": "30",
-                              "id": 2137,
+                              "id": 4770,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": true,
                               "kind": "number",
                               "lValueRequested": false,
                               "nodeType": "Literal",
-                              "src": "850:1:7",
+                              "src": "850:1:14",
                               "subdenomination": null,
                               "typeDescriptions": {
                                 "typeIdentifier": "t_rational_0_by_1",
@@ -1030,20 +1030,20 @@
                                 "typeString": "int_const 0"
                               }
                             ],
-                            "id": 2136,
+                            "id": 4769,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
                             "lValueRequested": false,
                             "nodeType": "ElementaryTypeNameExpression",
-                            "src": "842:7:7",
+                            "src": "842:7:14",
                             "typeDescriptions": {
                               "typeIdentifier": "t_type$_t_address_$",
                               "typeString": "type(address)"
                             },
                             "typeName": "address"
                           },
-                          "id": 2138,
+                          "id": 4771,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -1051,13 +1051,13 @@
                           "lValueRequested": false,
                           "names": [],
                           "nodeType": "FunctionCall",
-                          "src": "842:10:7",
+                          "src": "842:10:14",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
                             "typeString": "address"
                           }
                         },
-                        "src": "831:21:7",
+                        "src": "831:21:14",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bool",
                           "typeString": "bool"
@@ -1071,21 +1071,21 @@
                           "typeString": "bool"
                         }
                       ],
-                      "id": 2134,
+                      "id": 4767,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        3763,
-                        3764
+                        6396,
+                        6397
                       ],
-                      "referencedDeclaration": 3763,
-                      "src": "823:7:7",
+                      "referencedDeclaration": 6396,
+                      "src": "823:7:14",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
                         "typeString": "function (bool) pure"
                       }
                     },
-                    "id": 2140,
+                    "id": 4773,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1093,15 +1093,15 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "823:30:7",
+                    "src": "823:30:14",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 2141,
+                  "id": 4774,
                   "nodeType": "ExpressionStatement",
-                  "src": "823:30:7"
+                  "src": "823:30:14"
                 },
                 {
                   "expression": {
@@ -1110,40 +1110,40 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 2142,
+                        "id": 4775,
                         "name": "role",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2127,
-                        "src": "866:4:7",
+                        "referencedDeclaration": 4760,
+                        "src": "866:4:14",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Role_$2062_storage_ptr",
+                          "typeIdentifier": "t_struct$_Role_$4695_storage_ptr",
                           "typeString": "struct Roles.Role storage pointer"
                         }
                       },
-                      "id": 2143,
+                      "id": 4776,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "bearer",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 2061,
-                      "src": "866:11:7",
+                      "referencedDeclaration": 4694,
+                      "src": "866:11:14",
                       "typeDescriptions": {
                         "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
                         "typeString": "mapping(address => bool)"
                       }
                     },
-                    "id": 2145,
+                    "id": 4778,
                     "indexExpression": {
                       "argumentTypes": null,
-                      "id": 2144,
+                      "id": 4777,
                       "name": "account",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 2129,
-                      "src": "878:7:7",
+                      "referencedDeclaration": 4762,
+                      "src": "878:7:14",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
@@ -1154,21 +1154,21 @@
                     "isPure": false,
                     "lValueRequested": false,
                     "nodeType": "IndexAccess",
-                    "src": "866:20:7",
+                    "src": "866:20:14",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
-                  "functionReturnParameters": 2133,
-                  "id": 2146,
+                  "functionReturnParameters": 4766,
+                  "id": 4779,
                   "nodeType": "Return",
-                  "src": "859:27:7"
+                  "src": "859:27:14"
                 }
               ]
             },
             "documentation": "@dev check if an account has this role\n@return bool",
-            "id": 2148,
+            "id": 4781,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -1176,31 +1176,31 @@
             "name": "has",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2130,
+              "id": 4763,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2127,
+                  "id": 4760,
                   "name": "role",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2148,
-                  "src": "738:17:7",
+                  "scope": 4781,
+                  "src": "738:17:14",
                   "stateVariable": false,
                   "storageLocation": "storage",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_Role_$2062_storage_ptr",
+                    "typeIdentifier": "t_struct$_Role_$4695_storage_ptr",
                     "typeString": "struct Roles.Role"
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 2126,
+                    "id": 4759,
                     "name": "Role",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 2062,
-                    "src": "738:4:7",
+                    "referencedDeclaration": 4695,
+                    "src": "738:4:14",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Role_$2062_storage_ptr",
+                      "typeIdentifier": "t_struct$_Role_$4695_storage_ptr",
                       "typeString": "struct Roles.Role"
                     }
                   },
@@ -1209,11 +1209,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 2129,
+                  "id": 4762,
                   "name": "account",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2148,
-                  "src": "757:15:7",
+                  "scope": 4781,
+                  "src": "757:15:14",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1221,10 +1221,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2128,
+                    "id": 4761,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "757:7:7",
+                    "src": "757:7:14",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -1234,20 +1234,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "737:36:7"
+              "src": "737:36:14"
             },
             "payable": false,
             "returnParameters": {
-              "id": 2133,
+              "id": 4766,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2132,
+                  "id": 4765,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2148,
-                  "src": "809:4:7",
+                  "scope": 4781,
+                  "src": "809:4:14",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1255,10 +1255,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 2131,
+                    "id": 4764,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "809:4:7",
+                    "src": "809:4:14",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -1268,33 +1268,33 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "808:6:7"
+              "src": "808:6:14"
             },
-            "scope": 2149,
-            "src": "725:166:7",
+            "scope": 4782,
+            "src": "725:166:14",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "internal"
           }
         ],
-        "scope": 2150,
-        "src": "109:784:7"
+        "scope": 4783,
+        "src": "109:784:14"
       }
     ],
-    "src": "0:894:7"
+    "src": "0:894:14"
   },
   "legacyAST": {
     "absolutePath": "/home/jordi/ws/bloomenApp/bloomen-wallet-truffle/node_modules/openzeppelin-solidity/contracts/access/Roles.sol",
     "exportedSymbols": {
       "Roles": [
-        2149
+        4782
       ]
     },
-    "id": 2150,
+    "id": 4783,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2057,
+        "id": 4690,
         "literals": [
           "solidity",
           "^",
@@ -1302,7 +1302,7 @@
           ".24"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:24:7"
+        "src": "0:24:14"
       },
       {
         "baseContracts": [],
@@ -1310,24 +1310,24 @@
         "contractKind": "library",
         "documentation": "@title Roles\n@dev Library for managing addresses assigned to a Role.",
         "fullyImplemented": true,
-        "id": 2149,
+        "id": 4782,
         "linearizedBaseContracts": [
-          2149
+          4782
         ],
         "name": "Roles",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "canonicalName": "Roles.Role",
-            "id": 2062,
+            "id": 4695,
             "members": [
               {
                 "constant": false,
-                "id": 2061,
+                "id": 4694,
                 "name": "bearer",
                 "nodeType": "VariableDeclaration",
-                "scope": 2062,
-                "src": "145:32:7",
+                "scope": 4695,
+                "src": "145:32:14",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1335,28 +1335,28 @@
                   "typeString": "mapping(address => bool)"
                 },
                 "typeName": {
-                  "id": 2060,
+                  "id": 4693,
                   "keyType": {
-                    "id": 2058,
+                    "id": 4691,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "154:7:7",
+                    "src": "154:7:14",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
                     }
                   },
                   "nodeType": "Mapping",
-                  "src": "145:25:7",
+                  "src": "145:25:14",
                   "typeDescriptions": {
                     "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
                     "typeString": "mapping(address => bool)"
                   },
                   "valueType": {
-                    "id": 2059,
+                    "id": 4692,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "165:4:7",
+                    "src": "165:4:14",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -1369,15 +1369,15 @@
             ],
             "name": "Role",
             "nodeType": "StructDefinition",
-            "scope": 2149,
-            "src": "127:55:7",
+            "scope": 4782,
+            "src": "127:55:14",
             "visibility": "public"
           },
           {
             "body": {
-              "id": 2093,
+              "id": 4726,
               "nodeType": "Block",
-              "src": "302:109:7",
+              "src": "302:109:14",
               "statements": [
                 {
                   "expression": {
@@ -1389,19 +1389,19 @@
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         },
-                        "id": 2074,
+                        "id": 4707,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "leftExpression": {
                           "argumentTypes": null,
-                          "id": 2070,
+                          "id": 4703,
                           "name": "account",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2066,
-                          "src": "316:7:7",
+                          "referencedDeclaration": 4699,
+                          "src": "316:7:14",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
                             "typeString": "address"
@@ -1415,14 +1415,14 @@
                             {
                               "argumentTypes": null,
                               "hexValue": "30",
-                              "id": 2072,
+                              "id": 4705,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": true,
                               "kind": "number",
                               "lValueRequested": false,
                               "nodeType": "Literal",
-                              "src": "335:1:7",
+                              "src": "335:1:14",
                               "subdenomination": null,
                               "typeDescriptions": {
                                 "typeIdentifier": "t_rational_0_by_1",
@@ -1438,20 +1438,20 @@
                                 "typeString": "int_const 0"
                               }
                             ],
-                            "id": 2071,
+                            "id": 4704,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
                             "lValueRequested": false,
                             "nodeType": "ElementaryTypeNameExpression",
-                            "src": "327:7:7",
+                            "src": "327:7:14",
                             "typeDescriptions": {
                               "typeIdentifier": "t_type$_t_address_$",
                               "typeString": "type(address)"
                             },
                             "typeName": "address"
                           },
-                          "id": 2073,
+                          "id": 4706,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -1459,13 +1459,13 @@
                           "lValueRequested": false,
                           "names": [],
                           "nodeType": "FunctionCall",
-                          "src": "327:10:7",
+                          "src": "327:10:14",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
                             "typeString": "address"
                           }
                         },
-                        "src": "316:21:7",
+                        "src": "316:21:14",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bool",
                           "typeString": "bool"
@@ -1479,21 +1479,21 @@
                           "typeString": "bool"
                         }
                       ],
-                      "id": 2069,
+                      "id": 4702,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        3763,
-                        3764
+                        6396,
+                        6397
                       ],
-                      "referencedDeclaration": 3763,
-                      "src": "308:7:7",
+                      "referencedDeclaration": 6396,
+                      "src": "308:7:14",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
                         "typeString": "function (bool) pure"
                       }
                     },
-                    "id": 2075,
+                    "id": 4708,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1501,15 +1501,15 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "308:30:7",
+                    "src": "308:30:14",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 2076,
+                  "id": 4709,
                   "nodeType": "ExpressionStatement",
-                  "src": "308:30:7"
+                  "src": "308:30:14"
                 },
                 {
                   "expression": {
@@ -1517,7 +1517,7 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 2082,
+                        "id": 4715,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -1525,31 +1525,31 @@
                         "nodeType": "UnaryOperation",
                         "operator": "!",
                         "prefix": true,
-                        "src": "352:19:7",
+                        "src": "352:19:14",
                         "subExpression": {
                           "argumentTypes": null,
                           "arguments": [
                             {
                               "argumentTypes": null,
-                              "id": 2079,
+                              "id": 4712,
                               "name": "role",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 2064,
-                              "src": "357:4:7",
+                              "referencedDeclaration": 4697,
+                              "src": "357:4:14",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_struct$_Role_$2062_storage_ptr",
+                                "typeIdentifier": "t_struct$_Role_$4695_storage_ptr",
                                 "typeString": "struct Roles.Role storage pointer"
                               }
                             },
                             {
                               "argumentTypes": null,
-                              "id": 2080,
+                              "id": 4713,
                               "name": "account",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 2066,
-                              "src": "363:7:7",
+                              "referencedDeclaration": 4699,
+                              "src": "363:7:14",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_address",
                                 "typeString": "address"
@@ -1559,7 +1559,7 @@
                           "expression": {
                             "argumentTypes": [
                               {
-                                "typeIdentifier": "t_struct$_Role_$2062_storage_ptr",
+                                "typeIdentifier": "t_struct$_Role_$4695_storage_ptr",
                                 "typeString": "struct Roles.Role storage pointer"
                               },
                               {
@@ -1567,18 +1567,18 @@
                                 "typeString": "address"
                               }
                             ],
-                            "id": 2078,
+                            "id": 4711,
                             "name": "has",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 2148,
-                            "src": "353:3:7",
+                            "referencedDeclaration": 4781,
+                            "src": "353:3:14",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_function_internal_view$_t_struct$_Role_$2062_storage_ptr_$_t_address_$returns$_t_bool_$",
+                              "typeIdentifier": "t_function_internal_view$_t_struct$_Role_$4695_storage_ptr_$_t_address_$returns$_t_bool_$",
                               "typeString": "function (struct Roles.Role storage pointer,address) view returns (bool)"
                             }
                           },
-                          "id": 2081,
+                          "id": 4714,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -1586,7 +1586,7 @@
                           "lValueRequested": false,
                           "names": [],
                           "nodeType": "FunctionCall",
-                          "src": "353:18:7",
+                          "src": "353:18:14",
                           "typeDescriptions": {
                             "typeIdentifier": "t_bool",
                             "typeString": "bool"
@@ -1605,21 +1605,21 @@
                           "typeString": "bool"
                         }
                       ],
-                      "id": 2077,
+                      "id": 4710,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        3763,
-                        3764
+                        6396,
+                        6397
                       ],
-                      "referencedDeclaration": 3763,
-                      "src": "344:7:7",
+                      "referencedDeclaration": 6396,
+                      "src": "344:7:14",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
                         "typeString": "function (bool) pure"
                       }
                     },
-                    "id": 2083,
+                    "id": 4716,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1627,20 +1627,20 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "344:28:7",
+                    "src": "344:28:14",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 2084,
+                  "id": 4717,
                   "nodeType": "ExpressionStatement",
-                  "src": "344:28:7"
+                  "src": "344:28:14"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 2091,
+                    "id": 4724,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1651,40 +1651,40 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 2085,
+                          "id": 4718,
                           "name": "role",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2064,
-                          "src": "379:4:7",
+                          "referencedDeclaration": 4697,
+                          "src": "379:4:14",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_struct$_Role_$2062_storage_ptr",
+                            "typeIdentifier": "t_struct$_Role_$4695_storage_ptr",
                             "typeString": "struct Roles.Role storage pointer"
                           }
                         },
-                        "id": 2088,
+                        "id": 4721,
                         "isConstant": false,
                         "isLValue": true,
                         "isPure": false,
                         "lValueRequested": false,
                         "memberName": "bearer",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 2061,
-                        "src": "379:11:7",
+                        "referencedDeclaration": 4694,
+                        "src": "379:11:14",
                         "typeDescriptions": {
                           "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
                           "typeString": "mapping(address => bool)"
                         }
                       },
-                      "id": 2089,
+                      "id": 4722,
                       "indexExpression": {
                         "argumentTypes": null,
-                        "id": 2087,
+                        "id": 4720,
                         "name": "account",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2066,
-                        "src": "391:7:7",
+                        "referencedDeclaration": 4699,
+                        "src": "391:7:14",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -1695,7 +1695,7 @@
                       "isPure": false,
                       "lValueRequested": true,
                       "nodeType": "IndexAccess",
-                      "src": "379:20:7",
+                      "src": "379:20:14",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bool",
                         "typeString": "bool"
@@ -1706,14 +1706,14 @@
                     "rightHandSide": {
                       "argumentTypes": null,
                       "hexValue": "74727565",
-                      "id": 2090,
+                      "id": 4723,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
                       "kind": "bool",
                       "lValueRequested": false,
                       "nodeType": "Literal",
-                      "src": "402:4:7",
+                      "src": "402:4:14",
                       "subdenomination": null,
                       "typeDescriptions": {
                         "typeIdentifier": "t_bool",
@@ -1721,20 +1721,20 @@
                       },
                       "value": "true"
                     },
-                    "src": "379:27:7",
+                    "src": "379:27:14",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
-                  "id": 2092,
+                  "id": 4725,
                   "nodeType": "ExpressionStatement",
-                  "src": "379:27:7"
+                  "src": "379:27:14"
                 }
               ]
             },
             "documentation": "@dev give an account access to this role",
-            "id": 2094,
+            "id": 4727,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -1742,31 +1742,31 @@
             "name": "add",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2067,
+              "id": 4700,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2064,
+                  "id": 4697,
                   "name": "role",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2094,
-                  "src": "257:17:7",
+                  "scope": 4727,
+                  "src": "257:17:14",
                   "stateVariable": false,
                   "storageLocation": "storage",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_Role_$2062_storage_ptr",
+                    "typeIdentifier": "t_struct$_Role_$4695_storage_ptr",
                     "typeString": "struct Roles.Role"
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 2063,
+                    "id": 4696,
                     "name": "Role",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 2062,
-                    "src": "257:4:7",
+                    "referencedDeclaration": 4695,
+                    "src": "257:4:14",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Role_$2062_storage_ptr",
+                      "typeIdentifier": "t_struct$_Role_$4695_storage_ptr",
                       "typeString": "struct Roles.Role"
                     }
                   },
@@ -1775,11 +1775,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 2066,
+                  "id": 4699,
                   "name": "account",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2094,
-                  "src": "276:15:7",
+                  "scope": 4727,
+                  "src": "276:15:14",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1787,10 +1787,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2065,
+                    "id": 4698,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "276:7:7",
+                    "src": "276:7:14",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -1800,26 +1800,26 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "256:36:7"
+              "src": "256:36:14"
             },
             "payable": false,
             "returnParameters": {
-              "id": 2068,
+              "id": 4701,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "302:0:7"
+              "src": "302:0:14"
             },
-            "scope": 2149,
-            "src": "244:167:7",
+            "scope": 4782,
+            "src": "244:167:14",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "internal"
           },
           {
             "body": {
-              "id": 2124,
+              "id": 4757,
               "nodeType": "Block",
-              "src": "538:109:7",
+              "src": "538:109:14",
               "statements": [
                 {
                   "expression": {
@@ -1831,19 +1831,19 @@
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         },
-                        "id": 2106,
+                        "id": 4739,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "leftExpression": {
                           "argumentTypes": null,
-                          "id": 2102,
+                          "id": 4735,
                           "name": "account",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2098,
-                          "src": "552:7:7",
+                          "referencedDeclaration": 4731,
+                          "src": "552:7:14",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
                             "typeString": "address"
@@ -1857,14 +1857,14 @@
                             {
                               "argumentTypes": null,
                               "hexValue": "30",
-                              "id": 2104,
+                              "id": 4737,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": true,
                               "kind": "number",
                               "lValueRequested": false,
                               "nodeType": "Literal",
-                              "src": "571:1:7",
+                              "src": "571:1:14",
                               "subdenomination": null,
                               "typeDescriptions": {
                                 "typeIdentifier": "t_rational_0_by_1",
@@ -1880,20 +1880,20 @@
                                 "typeString": "int_const 0"
                               }
                             ],
-                            "id": 2103,
+                            "id": 4736,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
                             "lValueRequested": false,
                             "nodeType": "ElementaryTypeNameExpression",
-                            "src": "563:7:7",
+                            "src": "563:7:14",
                             "typeDescriptions": {
                               "typeIdentifier": "t_type$_t_address_$",
                               "typeString": "type(address)"
                             },
                             "typeName": "address"
                           },
-                          "id": 2105,
+                          "id": 4738,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -1901,13 +1901,13 @@
                           "lValueRequested": false,
                           "names": [],
                           "nodeType": "FunctionCall",
-                          "src": "563:10:7",
+                          "src": "563:10:14",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
                             "typeString": "address"
                           }
                         },
-                        "src": "552:21:7",
+                        "src": "552:21:14",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bool",
                           "typeString": "bool"
@@ -1921,21 +1921,21 @@
                           "typeString": "bool"
                         }
                       ],
-                      "id": 2101,
+                      "id": 4734,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        3763,
-                        3764
+                        6396,
+                        6397
                       ],
-                      "referencedDeclaration": 3763,
-                      "src": "544:7:7",
+                      "referencedDeclaration": 6396,
+                      "src": "544:7:14",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
                         "typeString": "function (bool) pure"
                       }
                     },
-                    "id": 2107,
+                    "id": 4740,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1943,15 +1943,15 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "544:30:7",
+                    "src": "544:30:14",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 2108,
+                  "id": 4741,
                   "nodeType": "ExpressionStatement",
-                  "src": "544:30:7"
+                  "src": "544:30:14"
                 },
                 {
                   "expression": {
@@ -1962,25 +1962,25 @@
                         "arguments": [
                           {
                             "argumentTypes": null,
-                            "id": 2111,
+                            "id": 4744,
                             "name": "role",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 2096,
-                            "src": "592:4:7",
+                            "referencedDeclaration": 4729,
+                            "src": "592:4:14",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_struct$_Role_$2062_storage_ptr",
+                              "typeIdentifier": "t_struct$_Role_$4695_storage_ptr",
                               "typeString": "struct Roles.Role storage pointer"
                             }
                           },
                           {
                             "argumentTypes": null,
-                            "id": 2112,
+                            "id": 4745,
                             "name": "account",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 2098,
-                            "src": "598:7:7",
+                            "referencedDeclaration": 4731,
+                            "src": "598:7:14",
                             "typeDescriptions": {
                               "typeIdentifier": "t_address",
                               "typeString": "address"
@@ -1990,7 +1990,7 @@
                         "expression": {
                           "argumentTypes": [
                             {
-                              "typeIdentifier": "t_struct$_Role_$2062_storage_ptr",
+                              "typeIdentifier": "t_struct$_Role_$4695_storage_ptr",
                               "typeString": "struct Roles.Role storage pointer"
                             },
                             {
@@ -1998,18 +1998,18 @@
                               "typeString": "address"
                             }
                           ],
-                          "id": 2110,
+                          "id": 4743,
                           "name": "has",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2148,
-                          "src": "588:3:7",
+                          "referencedDeclaration": 4781,
+                          "src": "588:3:14",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_function_internal_view$_t_struct$_Role_$2062_storage_ptr_$_t_address_$returns$_t_bool_$",
+                            "typeIdentifier": "t_function_internal_view$_t_struct$_Role_$4695_storage_ptr_$_t_address_$returns$_t_bool_$",
                             "typeString": "function (struct Roles.Role storage pointer,address) view returns (bool)"
                           }
                         },
-                        "id": 2113,
+                        "id": 4746,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -2017,7 +2017,7 @@
                         "lValueRequested": false,
                         "names": [],
                         "nodeType": "FunctionCall",
-                        "src": "588:18:7",
+                        "src": "588:18:14",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bool",
                           "typeString": "bool"
@@ -2031,21 +2031,21 @@
                           "typeString": "bool"
                         }
                       ],
-                      "id": 2109,
+                      "id": 4742,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        3763,
-                        3764
+                        6396,
+                        6397
                       ],
-                      "referencedDeclaration": 3763,
-                      "src": "580:7:7",
+                      "referencedDeclaration": 6396,
+                      "src": "580:7:14",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
                         "typeString": "function (bool) pure"
                       }
                     },
-                    "id": 2114,
+                    "id": 4747,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2053,20 +2053,20 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "580:27:7",
+                    "src": "580:27:14",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 2115,
+                  "id": 4748,
                   "nodeType": "ExpressionStatement",
-                  "src": "580:27:7"
+                  "src": "580:27:14"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 2122,
+                    "id": 4755,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2077,40 +2077,40 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 2116,
+                          "id": 4749,
                           "name": "role",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2096,
-                          "src": "614:4:7",
+                          "referencedDeclaration": 4729,
+                          "src": "614:4:14",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_struct$_Role_$2062_storage_ptr",
+                            "typeIdentifier": "t_struct$_Role_$4695_storage_ptr",
                             "typeString": "struct Roles.Role storage pointer"
                           }
                         },
-                        "id": 2119,
+                        "id": 4752,
                         "isConstant": false,
                         "isLValue": true,
                         "isPure": false,
                         "lValueRequested": false,
                         "memberName": "bearer",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 2061,
-                        "src": "614:11:7",
+                        "referencedDeclaration": 4694,
+                        "src": "614:11:14",
                         "typeDescriptions": {
                           "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
                           "typeString": "mapping(address => bool)"
                         }
                       },
-                      "id": 2120,
+                      "id": 4753,
                       "indexExpression": {
                         "argumentTypes": null,
-                        "id": 2118,
+                        "id": 4751,
                         "name": "account",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2098,
-                        "src": "626:7:7",
+                        "referencedDeclaration": 4731,
+                        "src": "626:7:14",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -2121,7 +2121,7 @@
                       "isPure": false,
                       "lValueRequested": true,
                       "nodeType": "IndexAccess",
-                      "src": "614:20:7",
+                      "src": "614:20:14",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bool",
                         "typeString": "bool"
@@ -2132,14 +2132,14 @@
                     "rightHandSide": {
                       "argumentTypes": null,
                       "hexValue": "66616c7365",
-                      "id": 2121,
+                      "id": 4754,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
                       "kind": "bool",
                       "lValueRequested": false,
                       "nodeType": "Literal",
-                      "src": "637:5:7",
+                      "src": "637:5:14",
                       "subdenomination": null,
                       "typeDescriptions": {
                         "typeIdentifier": "t_bool",
@@ -2147,20 +2147,20 @@
                       },
                       "value": "false"
                     },
-                    "src": "614:28:7",
+                    "src": "614:28:14",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
-                  "id": 2123,
+                  "id": 4756,
                   "nodeType": "ExpressionStatement",
-                  "src": "614:28:7"
+                  "src": "614:28:14"
                 }
               ]
             },
             "documentation": "@dev remove an account's access to this role",
-            "id": 2125,
+            "id": 4758,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -2168,31 +2168,31 @@
             "name": "remove",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2099,
+              "id": 4732,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2096,
+                  "id": 4729,
                   "name": "role",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2125,
-                  "src": "493:17:7",
+                  "scope": 4758,
+                  "src": "493:17:14",
                   "stateVariable": false,
                   "storageLocation": "storage",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_Role_$2062_storage_ptr",
+                    "typeIdentifier": "t_struct$_Role_$4695_storage_ptr",
                     "typeString": "struct Roles.Role"
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 2095,
+                    "id": 4728,
                     "name": "Role",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 2062,
-                    "src": "493:4:7",
+                    "referencedDeclaration": 4695,
+                    "src": "493:4:14",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Role_$2062_storage_ptr",
+                      "typeIdentifier": "t_struct$_Role_$4695_storage_ptr",
                       "typeString": "struct Roles.Role"
                     }
                   },
@@ -2201,11 +2201,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 2098,
+                  "id": 4731,
                   "name": "account",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2125,
-                  "src": "512:15:7",
+                  "scope": 4758,
+                  "src": "512:15:14",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2213,10 +2213,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2097,
+                    "id": 4730,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "512:7:7",
+                    "src": "512:7:14",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -2226,26 +2226,26 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "492:36:7"
+              "src": "492:36:14"
             },
             "payable": false,
             "returnParameters": {
-              "id": 2100,
+              "id": 4733,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "538:0:7"
+              "src": "538:0:14"
             },
-            "scope": 2149,
-            "src": "477:170:7",
+            "scope": 4782,
+            "src": "477:170:14",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "internal"
           },
           {
             "body": {
-              "id": 2147,
+              "id": 4780,
               "nodeType": "Block",
-              "src": "817:74:7",
+              "src": "817:74:14",
               "statements": [
                 {
                   "expression": {
@@ -2257,19 +2257,19 @@
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         },
-                        "id": 2139,
+                        "id": 4772,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "leftExpression": {
                           "argumentTypes": null,
-                          "id": 2135,
+                          "id": 4768,
                           "name": "account",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2129,
-                          "src": "831:7:7",
+                          "referencedDeclaration": 4762,
+                          "src": "831:7:14",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
                             "typeString": "address"
@@ -2283,14 +2283,14 @@
                             {
                               "argumentTypes": null,
                               "hexValue": "30",
-                              "id": 2137,
+                              "id": 4770,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": true,
                               "kind": "number",
                               "lValueRequested": false,
                               "nodeType": "Literal",
-                              "src": "850:1:7",
+                              "src": "850:1:14",
                               "subdenomination": null,
                               "typeDescriptions": {
                                 "typeIdentifier": "t_rational_0_by_1",
@@ -2306,20 +2306,20 @@
                                 "typeString": "int_const 0"
                               }
                             ],
-                            "id": 2136,
+                            "id": 4769,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
                             "lValueRequested": false,
                             "nodeType": "ElementaryTypeNameExpression",
-                            "src": "842:7:7",
+                            "src": "842:7:14",
                             "typeDescriptions": {
                               "typeIdentifier": "t_type$_t_address_$",
                               "typeString": "type(address)"
                             },
                             "typeName": "address"
                           },
-                          "id": 2138,
+                          "id": 4771,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -2327,13 +2327,13 @@
                           "lValueRequested": false,
                           "names": [],
                           "nodeType": "FunctionCall",
-                          "src": "842:10:7",
+                          "src": "842:10:14",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
                             "typeString": "address"
                           }
                         },
-                        "src": "831:21:7",
+                        "src": "831:21:14",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bool",
                           "typeString": "bool"
@@ -2347,21 +2347,21 @@
                           "typeString": "bool"
                         }
                       ],
-                      "id": 2134,
+                      "id": 4767,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        3763,
-                        3764
+                        6396,
+                        6397
                       ],
-                      "referencedDeclaration": 3763,
-                      "src": "823:7:7",
+                      "referencedDeclaration": 6396,
+                      "src": "823:7:14",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
                         "typeString": "function (bool) pure"
                       }
                     },
-                    "id": 2140,
+                    "id": 4773,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2369,15 +2369,15 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "823:30:7",
+                    "src": "823:30:14",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 2141,
+                  "id": 4774,
                   "nodeType": "ExpressionStatement",
-                  "src": "823:30:7"
+                  "src": "823:30:14"
                 },
                 {
                   "expression": {
@@ -2386,40 +2386,40 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 2142,
+                        "id": 4775,
                         "name": "role",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2127,
-                        "src": "866:4:7",
+                        "referencedDeclaration": 4760,
+                        "src": "866:4:14",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Role_$2062_storage_ptr",
+                          "typeIdentifier": "t_struct$_Role_$4695_storage_ptr",
                           "typeString": "struct Roles.Role storage pointer"
                         }
                       },
-                      "id": 2143,
+                      "id": 4776,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "bearer",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 2061,
-                      "src": "866:11:7",
+                      "referencedDeclaration": 4694,
+                      "src": "866:11:14",
                       "typeDescriptions": {
                         "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
                         "typeString": "mapping(address => bool)"
                       }
                     },
-                    "id": 2145,
+                    "id": 4778,
                     "indexExpression": {
                       "argumentTypes": null,
-                      "id": 2144,
+                      "id": 4777,
                       "name": "account",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 2129,
-                      "src": "878:7:7",
+                      "referencedDeclaration": 4762,
+                      "src": "878:7:14",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
@@ -2430,21 +2430,21 @@
                     "isPure": false,
                     "lValueRequested": false,
                     "nodeType": "IndexAccess",
-                    "src": "866:20:7",
+                    "src": "866:20:14",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
-                  "functionReturnParameters": 2133,
-                  "id": 2146,
+                  "functionReturnParameters": 4766,
+                  "id": 4779,
                   "nodeType": "Return",
-                  "src": "859:27:7"
+                  "src": "859:27:14"
                 }
               ]
             },
             "documentation": "@dev check if an account has this role\n@return bool",
-            "id": 2148,
+            "id": 4781,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -2452,31 +2452,31 @@
             "name": "has",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2130,
+              "id": 4763,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2127,
+                  "id": 4760,
                   "name": "role",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2148,
-                  "src": "738:17:7",
+                  "scope": 4781,
+                  "src": "738:17:14",
                   "stateVariable": false,
                   "storageLocation": "storage",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_Role_$2062_storage_ptr",
+                    "typeIdentifier": "t_struct$_Role_$4695_storage_ptr",
                     "typeString": "struct Roles.Role"
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 2126,
+                    "id": 4759,
                     "name": "Role",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 2062,
-                    "src": "738:4:7",
+                    "referencedDeclaration": 4695,
+                    "src": "738:4:14",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Role_$2062_storage_ptr",
+                      "typeIdentifier": "t_struct$_Role_$4695_storage_ptr",
                       "typeString": "struct Roles.Role"
                     }
                   },
@@ -2485,11 +2485,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 2129,
+                  "id": 4762,
                   "name": "account",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2148,
-                  "src": "757:15:7",
+                  "scope": 4781,
+                  "src": "757:15:14",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2497,10 +2497,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2128,
+                    "id": 4761,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "757:7:7",
+                    "src": "757:7:14",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -2510,20 +2510,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "737:36:7"
+              "src": "737:36:14"
             },
             "payable": false,
             "returnParameters": {
-              "id": 2133,
+              "id": 4766,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2132,
+                  "id": 4765,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2148,
-                  "src": "809:4:7",
+                  "scope": 4781,
+                  "src": "809:4:14",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2531,10 +2531,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 2131,
+                    "id": 4764,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "809:4:7",
+                    "src": "809:4:14",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -2544,20 +2544,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "808:6:7"
+              "src": "808:6:14"
             },
-            "scope": 2149,
-            "src": "725:166:7",
+            "scope": 4782,
+            "src": "725:166:14",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "internal"
           }
         ],
-        "scope": 2150,
-        "src": "109:784:7"
+        "scope": 4783,
+        "src": "109:784:14"
       }
     ],
-    "src": "0:894:7"
+    "src": "0:894:14"
   },
   "compiler": {
     "name": "solc",
@@ -2565,5 +2565,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.1",
-  "updatedAt": "2019-02-19T15:39:57.978Z"
+  "updatedAt": "2019-04-17T13:16:01.495Z"
 }

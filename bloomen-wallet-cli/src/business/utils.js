@@ -64,7 +64,7 @@ async function _ub3() {
     await ctx.business.methods.mint(answer.address.address,parseInt(answer.amount)).send(ctx.transactionObject).then((tx) => {
         console.log('Transaction sent.');
         return web3Ctx.checkTransaction(tx.transactionHash);
-    });       
+    }, (err) => console.log(err));       
     
         
 }

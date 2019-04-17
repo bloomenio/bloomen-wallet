@@ -58,7 +58,7 @@
     "news": [
       { "img" : "https://ant1media.azureedge.net/imgHandler/380/1a6495eb-36a0-4c56-8c95-1a097572eab6.jpg",
         "title": "News #2",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed congue velit mi, vitae sodales ligula fermentum ut. Donec vel ornare nibh. Duis scelerisque suscipit arcu, sit amet malesuada orci feugiat sit amet. Vestibulum at efficitur arcu, et tincidunt nunc. Maecenas non ornare lacus, ac egestas magna. In eu mattis neque, at consectetur nunc.",
+        "description": "xLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed congue velit mi, vitae sodales ligula fermentum ut. Donec vel ornare nibh. Duis scelerisque suscipit arcu, sit amet malesuada orci feugiat sit amet. Vestibulum at efficitur arcu, et tincidunt nunc. Maecenas non ornare lacus, ac egestas magna. In eu mattis neque, at consectetur nunc.",
         "i18n":{
           "en":{
             "title": "EN-News #2",

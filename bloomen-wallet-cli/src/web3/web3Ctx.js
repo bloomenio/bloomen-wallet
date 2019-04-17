@@ -13,23 +13,12 @@ const GAS = 9999999999;
 const Web3 = require('web3');
 
 
-// truffle hack web3 0.2 vs 1.0beta36
-Web3.providers.HttpProvider.prototype.sendAsync = Web3.providers.HttpProvider.prototype.send;
-const _user = process.env.ALASTRIA_USER;
-const _password = process.env.ALASTRIA_PASSWORD;
-const _auth = 'Basic ' + Buffer.from(_user + ':' + _password).toString('base64');
-const _headers = [{name: 'Authorization', value: _auth}];
-const _provider = new Web3.providers.HttpProvider(process.env.ALASTRIA_URL, {timeout: 0, headers: _headers });
 
 
 function _contextSetup(type, mnemonic) {
     const _context = {type:type, mnemonic:mnemonic};
 
     var hdprovider =new HDWalletProvider(mnemonic, process.env.ALASTRIA_URL);   
-    hdprovider.engine.stop();
-    hdprovider.engine._providers[2].provider=_provider;
-    hdprovider.engine.start();
-    hdprovider.engine.stop();
     
     _context.web3=new Web3(hdprovider);
     _context.address=hdprovider.getAddress(0);

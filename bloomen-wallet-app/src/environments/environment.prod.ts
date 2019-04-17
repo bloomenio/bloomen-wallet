@@ -9,9 +9,7 @@ export const environment = {
   defaultLanguage: 'en',
   supportedLanguages: ['ca', 'de', 'el', 'en', 'es'],
   eth: {
-    httpUser: 'xxxx',
-    httpPassword: 'xxxx',
-    ethRpcUrl: 'https://alastria1.wlilab.eu/alastria',
+    ethRpcUrl: 'https://0x.bloomen.io/rpc/telsius/blooappmidterm',
     ethBlockPollingTime: 4000,
     transactionStatusPollingTime: 1000,
     transactionCallDelayTime: 2000,
@@ -23,7 +21,7 @@ export const environment = {
         gasPrice: 0,
         gas: 9999999
       },
-      networkId: '82584648528'
+      networkId: '83584648538'
     }
   }
 };
