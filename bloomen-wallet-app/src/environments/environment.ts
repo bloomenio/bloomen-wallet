@@ -15,9 +15,7 @@ export const environment = {
   supportedLanguages: ['ca', 'de', 'el', 'en', 'es'],
   loaderTime: 2000,
   eth: {
-    httpUser: 'bloomen',
-    httpPassword: '12345',
-    ethRpcUrl: 'https://demo2.bloomen.io/alastria',
+    ethRpcUrl: 'https://0x.bloomen.io/rpc/telsius/wallet',
     ethBlockPollingTime: 4000,
     transactionStatusPollingTime: 1000,
     transactionCallDelayTime: 2000,
@@ -29,7 +27,7 @@ export const environment = {
         gasPrice: 0,
         gas: 9999999
       },
-      networkId: '82584648528'
+      networkId: '83584648538'
     }
   }
 };

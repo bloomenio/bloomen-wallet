@@ -1,28 +1,30 @@
 {
   "contractName": "Structs",
   "abi": [],
-  "bytecode": "0x6080604052348015600f57600080fd5b50603580601d6000396000f3006080604052600080fd00a165627a7a723058202c57891d2ef9405b8b5529a2ecc22465709651db48c75463d2a3d79c407b4e470029",
-  "deployedBytecode": "0x6080604052600080fd00a165627a7a723058202c57891d2ef9405b8b5529a2ecc22465709651db48c75463d2a3d79c407b4e470029",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.7+commit.6da8b019\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/home/jordi/ws/jordiescudero/bloomen-wallet/bloomen-wallet-truffle/contracts/jsw/lib/Structs.sol\":\"Structs\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/jordi/ws/jordiescudero/bloomen-wallet/bloomen-wallet-truffle/contracts/jsw/lib/Structs.sol\":{\"keccak256\":\"0x2838f92da9d1bbbae0a67757a56c0783bd54692b3f0e122bdee844619af100e8\",\"urls\":[\"bzzr://a2eeffe4d1567f3211873478cabbeaa328c9a9c2ba8137a1b2ddeaf71b531bbc\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50603580601d6000396000f3fe6080604052600080fdfea165627a7a7230582014fded437e05ac5fbe48e342af2775d527f89ef659bf6e9435259c33f230c2410029",
+  "deployedBytecode": "0x6080604052600080fdfea165627a7a7230582014fded437e05ac5fbe48e342af2775d527f89ef659bf6e9435259c33f230c2410029",
   "sourceMap": "29:195:12:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;29:195:12;;;;;;;",
   "deployedSourceMap": "29:195:12:-;;;;;",
-  "source": "pragma solidity 0.4.24;\n  \n  contract Structs {\n\n    struct PathValue {\n        string path;\n        string value;\n        string valueType;\n    }\n\n    struct Container {\n      address addr;\n      string name;\n    }\n    \n  }\n",
-  "sourcePath": "/home/jordi/ws/bloomenApp/bloomen-wallet-truffle/contracts/jsw/lib/Structs.sol",
+  "source": "pragma solidity ^0.5.2;\n  \n  contract Structs {\n\n    struct PathValue {\n        string path;\n        string value;\n        string valueType;\n    }\n\n    struct Container {\n      address addr;\n      string name;\n    }\n    \n  }\n",
+  "sourcePath": "/home/jordi/ws/jordiescudero/bloomen-wallet/bloomen-wallet-truffle/contracts/jsw/lib/Structs.sol",
   "ast": {
-    "absolutePath": "/home/jordi/ws/bloomenApp/bloomen-wallet-truffle/contracts/jsw/lib/Structs.sol",
+    "absolutePath": "/home/jordi/ws/jordiescudero/bloomen-wallet/bloomen-wallet-truffle/contracts/jsw/lib/Structs.sol",
     "exportedSymbols": {
       "Structs": [
-        4593
+        4255
       ]
     },
-    "id": 4594,
+    "id": 4256,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 4580,
+        "id": 4242,
         "literals": [
           "solidity",
-          "0.4",
-          ".24"
+          "^",
+          "0.5",
+          ".2"
         ],
         "nodeType": "PragmaDirective",
         "src": "0:23:12"
@@ -33,23 +35,23 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 4593,
+        "id": 4255,
         "linearizedBaseContracts": [
-          4593
+          4255
         ],
         "name": "Structs",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "canonicalName": "Structs.PathValue",
-            "id": 4587,
+            "id": 4249,
             "members": [
               {
                 "constant": false,
-                "id": 4582,
+                "id": 4244,
                 "name": "path",
                 "nodeType": "VariableDeclaration",
-                "scope": 4587,
+                "scope": 4249,
                 "src": "80:11:12",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -58,7 +60,7 @@
                   "typeString": "string"
                 },
                 "typeName": {
-                  "id": 4581,
+                  "id": 4243,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
                   "src": "80:6:12",
@@ -72,10 +74,10 @@
               },
               {
                 "constant": false,
-                "id": 4584,
+                "id": 4246,
                 "name": "value",
                 "nodeType": "VariableDeclaration",
-                "scope": 4587,
+                "scope": 4249,
                 "src": "101:12:12",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -84,7 +86,7 @@
                   "typeString": "string"
                 },
                 "typeName": {
-                  "id": 4583,
+                  "id": 4245,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
                   "src": "101:6:12",
@@ -98,10 +100,10 @@
               },
               {
                 "constant": false,
-                "id": 4586,
+                "id": 4248,
                 "name": "valueType",
                 "nodeType": "VariableDeclaration",
-                "scope": 4587,
+                "scope": 4249,
                 "src": "123:16:12",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -110,7 +112,7 @@
                   "typeString": "string"
                 },
                 "typeName": {
-                  "id": 4585,
+                  "id": 4247,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
                   "src": "123:6:12",
@@ -125,20 +127,20 @@
             ],
             "name": "PathValue",
             "nodeType": "StructDefinition",
-            "scope": 4593,
+            "scope": 4255,
             "src": "53:93:12",
             "visibility": "public"
           },
           {
             "canonicalName": "Structs.Container",
-            "id": 4592,
+            "id": 4254,
             "members": [
               {
                 "constant": false,
-                "id": 4589,
+                "id": 4251,
                 "name": "addr",
                 "nodeType": "VariableDeclaration",
-                "scope": 4592,
+                "scope": 4254,
                 "src": "177:12:12",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -147,10 +149,11 @@
                   "typeString": "address"
                 },
                 "typeName": {
-                  "id": 4588,
+                  "id": 4250,
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
                   "src": "177:7:12",
+                  "stateMutability": "nonpayable",
                   "typeDescriptions": {
                     "typeIdentifier": "t_address",
                     "typeString": "address"
@@ -161,10 +164,10 @@
               },
               {
                 "constant": false,
-                "id": 4591,
+                "id": 4253,
                 "name": "name",
                 "nodeType": "VariableDeclaration",
-                "scope": 4592,
+                "scope": 4254,
                 "src": "197:11:12",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -173,7 +176,7 @@
                   "typeString": "string"
                 },
                 "typeName": {
-                  "id": 4590,
+                  "id": 4252,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
                   "src": "197:6:12",
@@ -188,33 +191,34 @@
             ],
             "name": "Container",
             "nodeType": "StructDefinition",
-            "scope": 4593,
+            "scope": 4255,
             "src": "152:63:12",
             "visibility": "public"
           }
         ],
-        "scope": 4594,
+        "scope": 4256,
         "src": "29:195:12"
       }
     ],
     "src": "0:225:12"
   },
   "legacyAST": {
-    "absolutePath": "/home/jordi/ws/bloomenApp/bloomen-wallet-truffle/contracts/jsw/lib/Structs.sol",
+    "absolutePath": "/home/jordi/ws/jordiescudero/bloomen-wallet/bloomen-wallet-truffle/contracts/jsw/lib/Structs.sol",
     "exportedSymbols": {
       "Structs": [
-        4593
+        4255
       ]
     },
-    "id": 4594,
+    "id": 4256,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 4580,
+        "id": 4242,
         "literals": [
           "solidity",
-          "0.4",
-          ".24"
+          "^",
+          "0.5",
+          ".2"
         ],
         "nodeType": "PragmaDirective",
         "src": "0:23:12"
@@ -225,23 +229,23 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 4593,
+        "id": 4255,
         "linearizedBaseContracts": [
-          4593
+          4255
         ],
         "name": "Structs",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "canonicalName": "Structs.PathValue",
-            "id": 4587,
+            "id": 4249,
             "members": [
               {
                 "constant": false,
-                "id": 4582,
+                "id": 4244,
                 "name": "path",
                 "nodeType": "VariableDeclaration",
-                "scope": 4587,
+                "scope": 4249,
                 "src": "80:11:12",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -250,7 +254,7 @@
                   "typeString": "string"
                 },
                 "typeName": {
-                  "id": 4581,
+                  "id": 4243,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
                   "src": "80:6:12",
@@ -264,10 +268,10 @@
               },
               {
                 "constant": false,
-                "id": 4584,
+                "id": 4246,
                 "name": "value",
                 "nodeType": "VariableDeclaration",
-                "scope": 4587,
+                "scope": 4249,
                 "src": "101:12:12",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -276,7 +280,7 @@
                   "typeString": "string"
                 },
                 "typeName": {
-                  "id": 4583,
+                  "id": 4245,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
                   "src": "101:6:12",
@@ -290,10 +294,10 @@
               },
               {
                 "constant": false,
-                "id": 4586,
+                "id": 4248,
                 "name": "valueType",
                 "nodeType": "VariableDeclaration",
-                "scope": 4587,
+                "scope": 4249,
                 "src": "123:16:12",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -302,7 +306,7 @@
                   "typeString": "string"
                 },
                 "typeName": {
-                  "id": 4585,
+                  "id": 4247,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
                   "src": "123:6:12",
@@ -317,20 +321,20 @@
             ],
             "name": "PathValue",
             "nodeType": "StructDefinition",
-            "scope": 4593,
+            "scope": 4255,
             "src": "53:93:12",
             "visibility": "public"
           },
           {
             "canonicalName": "Structs.Container",
-            "id": 4592,
+            "id": 4254,
             "members": [
               {
                 "constant": false,
-                "id": 4589,
+                "id": 4251,
                 "name": "addr",
                 "nodeType": "VariableDeclaration",
-                "scope": 4592,
+                "scope": 4254,
                 "src": "177:12:12",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -339,10 +343,11 @@
                   "typeString": "address"
                 },
                 "typeName": {
-                  "id": 4588,
+                  "id": 4250,
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
                   "src": "177:7:12",
+                  "stateMutability": "nonpayable",
                   "typeDescriptions": {
                     "typeIdentifier": "t_address",
                     "typeString": "address"
@@ -353,10 +358,10 @@
               },
               {
                 "constant": false,
-                "id": 4591,
+                "id": 4253,
                 "name": "name",
                 "nodeType": "VariableDeclaration",
-                "scope": 4592,
+                "scope": 4254,
                 "src": "197:11:12",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -365,7 +370,7 @@
                   "typeString": "string"
                 },
                 "typeName": {
-                  "id": 4590,
+                  "id": 4252,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
                   "src": "197:6:12",
@@ -380,12 +385,12 @@
             ],
             "name": "Container",
             "nodeType": "StructDefinition",
-            "scope": 4593,
+            "scope": 4255,
             "src": "152:63:12",
             "visibility": "public"
           }
         ],
-        "scope": 4594,
+        "scope": 4256,
         "src": "29:195:12"
       }
     ],
@@ -393,9 +398,15 @@
   },
   "compiler": {
     "name": "solc",
-    "version": "0.4.24+commit.e67f0147.Emscripten.clang"
+    "version": "0.5.7+commit.6da8b019.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "2.0.1",
-  "updatedAt": "2019-02-06T14:19:22.204Z"
+  "schemaVersion": "3.0.6",
+  "updatedAt": "2019-04-16T14:50:38.991Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
 }

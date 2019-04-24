@@ -27,7 +27,7 @@ import { RouterStateSerializer } from '@ngrx/router-store';
 import { Web3Service } from '@services/web3/web3.service';
 import { TransactionService } from '@services/web3/transactions/transaction.service';
 import { BloomenContract, PrepaidCardManagerContract, ERC223Contract, MovementHistoryContract,
-  AssetsContract, DevicesContract, SimpleStorageContract } from '@services/web3/contracts';
+  AssetsContract, DevicesContract } from '@services/web3/contracts';
 
 import { reducers, metaReducers } from './core.state';
 
@@ -87,11 +87,6 @@ import { reducers, metaReducers } from './core.state';
     {
       provide: DevicesContract,
       useFactory: genericContractFactory(DevicesContract),
-      deps: [Web3Service, TransactionService]
-    },
-    {
-      provide: SimpleStorageContract,
-      useFactory: genericContractFactory(SimpleStorageContract),
       deps: [Web3Service, TransactionService]
     }
   ]

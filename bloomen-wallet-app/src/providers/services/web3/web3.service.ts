@@ -25,11 +25,7 @@ export class CustomHttpProvider {
   private provider: any;
 
   constructor(path: any, timeout: any) {
-    const _user = environment.eth.httpUser;
-    const _password = environment.eth.httpPassword;
-    const _auth = 'Basic ' + btoa(_user + ':' + _password);
-    const _headers = [{ name: 'Authorization', value: _auth }];
-    this.provider = new Web3.providers.HttpProvider(path, { timeout: timeout, headers: _headers });
+    this.provider = new Web3.providers.HttpProvider(path, { timeout: timeout});
   }
 
   public sendAsync(payload: any, callback: any) {

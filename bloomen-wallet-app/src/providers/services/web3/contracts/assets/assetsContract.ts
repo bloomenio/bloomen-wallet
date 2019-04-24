@@ -1,4 +1,4 @@
-import { default as JSON } from '../json/PrepaidCardManager.json';
+import { default as JSON } from '../json/Assets.json';
 import { Contract, Listener } from '../contract';
 
 // Environment
