@@ -11,17 +11,15 @@
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
+    "nps": "^5.9.3",
     "copyfiles": "^2.1.0",
     "dotenv": "6.0.0",
-    "openzeppelin-solidity": "2.0.0",
+    "openzeppelin-solidity": "2.2.0",
     "rlp": "2.1.0",
-    "solidity-rlp": "1.1.0",
-    "truffle": "4.1.14",
-    "truffle-hdwallet-provider": "0.0.6",
-    "web3": "1.0.0-beta.36"
-  },
-  "devDependencies": {
-    "nps": "^5.9.3"
+    "solidity-rlp": "2.0.0",
+    "truffle": "5.0.12",
+    "ganache-cli": "^6.4.1"
   }
 }

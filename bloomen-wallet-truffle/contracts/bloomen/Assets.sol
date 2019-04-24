@@ -1,14 +1,18 @@
-pragma solidity 0.4.24;
+pragma solidity ^0.5.2;
 pragma experimental ABIEncoderV2;
 
 import "./Schemas.sol";
 import "./token/ERC223ReceivingContract.sol";
 import "./token/ERC223.sol";
+import "../../node_modules/solidity-rlp/contracts/RLPReader.sol";
 import "../../node_modules/openzeppelin-solidity/contracts/math/SafeMath.sol";
 
-contract  Assets is Schemas, ERC223ReceivingContract, ERC223("BloomenCoin","BLO",2) {
+contract  Assets is ERC223ReceivingContract{
 
   using SafeMath for uint256;
+  using RLPReader for bytes;
+  using RLPReader for uint;
+  using RLPReader for RLPReader.RLPItem;
     
   struct UserAssets {   
     Asset[] assets;
@@ -24,9 +28,15 @@ contract  Assets is Schemas, ERC223ReceivingContract, ERC223("BloomenCoin","BLO"
 
   uint256 constant private PAGE_SIZE = 10;
 
-  // buy://<assetId>#<schemaId>#<amount>#<dappId>#amount
+  mapping (address => UserAssets) private userAssets_; 
 
-  mapping (address => UserAssets) private userAssets_;
+  Schemas private _schemas;
+  ERC223 private _erc223;
+  
+  constructor (address _schemasAddr, address _erc223Addr) public{
+    _erc223 = ERC223(_erc223Addr);
+    _schemas = Schemas(_schemasAddr);
+  }
 
   function checkOwnership(uint256 _assetId, uint256 _schemaId) public view returns (bool) {
     return _checkOwnership(msg.sender, _assetId, _schemaId);  
@@ -36,16 +46,12 @@ contract  Assets is Schemas, ERC223ReceivingContract, ERC223("BloomenCoin","BLO"
     return _checkOwnership(_target, _assetId, _schemaId);  
   }
 
-  function buy(uint256 _assetId, uint256 _schemaId, uint256 _amount, string _dappId) public  {
-    _buy(msg.sender, _assetId, _schemaId, _amount, _dappId, "");  
-  }
-
-  function buy(uint256 _assetId, uint256 _schemaId, uint256 _amount, string _dappId, string _description) public  {
-    _buy(msg.sender, _assetId, _schemaId, _amount, _dappId, _description);  
-  }
-
-  function getAssetsPageCount() public view returns (uint256) {
-    return userAssets_[msg.sender].assets.length / PAGE_SIZE;
+  function getAssetsPageCount() public view returns (uint256) {    
+    uint256 pages = userAssets_[msg.sender].assets.length / PAGE_SIZE;
+    if ((userAssets_[msg.sender].assets.length % PAGE_SIZE)>0) {
+      pages++;
+    }
+    return pages;
   }
 
   function getAssets(uint256 _page) public view returns (Asset[] memory) {
@@ -54,7 +60,8 @@ contract  Assets is Schemas, ERC223ReceivingContract, ERC223("BloomenCoin","BLO"
     Asset[] memory assets = userAssets_[msg.sender].assets;
 
     if (assets.length == 0 || transferIndex > assets.length - 1) {
-      return;
+      Asset[] memory empty;
+      return empty ;
     }
 
     Asset[] memory assetsPage = new Asset[](PAGE_SIZE);  
@@ -70,16 +77,30 @@ contract  Assets is Schemas, ERC223ReceivingContract, ERC223("BloomenCoin","BLO"
     return (assetsPage);
   }
 
-  function _buy(address _user, uint256 _assetId, uint256 _schemaId, uint256 _amount, string _dappId, string _description) internal  {
-    Schema memory schema = Schemas.getSchema(_schemaId);
+  function tokenFallback(address _user, uint _amount, bytes memory _data) public {
+
+    RLPReader.RLPItem memory item = _data.toRlpItem();
+    RLPReader.RLPItem[] memory itemList = item.toList();
+
+    uint256 _assetId = uint256(itemList[0].toUint());
+    uint256 _schemaId = uint256(itemList[1].toUint());
+
+    string memory _dappId = string(itemList[2].toBytes());
+    string memory _description = string(itemList[3].toBytes());
+
+    Schemas.Schema memory schema = _schemas.getSchema(_schemaId);
     require(schema.amount == _amount, "incorrect amount");    
     require(!_checkOwnership(_user, _assetId, _schemaId), "duplicated");
+    
+    uint pieValue = _amount;
 
-    if (_amount >0 ){
-      // avoid money transfer on free assets
-      ERC223.transfer(this, _amount, _schemaId);
+    for (uint i = 0; i < schema.clearingHouseRules.length-1; i++) {
+      uint tmpValue = calculatePercentage(_amount,schema.clearingHouseRules[i].percent);
+      _erc223.transfer(schema.clearingHouseRules[i].receptor, tmpValue);
+      pieValue -= tmpValue;
     }
-  
+
+    _erc223.transfer(schema.clearingHouseRules[schema.clearingHouseRules.length-1].receptor, pieValue);
     // registrar la compra
     userAssets_[_user].assets.push(Asset(now + schema.assetLifeTime , _assetId, _schemaId, _dappId, _description));
   }
@@ -95,20 +116,6 @@ contract  Assets is Schemas, ERC223ReceivingContract, ERC223("BloomenCoin","BLO"
     }
     
     return false;
-  }
-
-  function tokenFallback(address _from, uint _value, uint256 _schemaId) public {
-    Schema memory schema = Schemas.getSchema(_schemaId);
-    uint pieValue = _value;
-
-    for (uint i = 0; i < schema.clearingHouseRules.length-1; i++) {
-      uint tmpValue = calculatePercentage(_value,schema.clearingHouseRules[i].percent);
-      ERC223.transfer(schema.clearingHouseRules[i].receptor, tmpValue, 0);
-      pieValue -= tmpValue;
-    }
-
-    ERC223.transfer(schema.clearingHouseRules[schema.clearingHouseRules.length-1].receptor, pieValue, 0);
-
   }
 
   function calculatePercentage(uint theNumber, uint percentage) public view returns (uint) {

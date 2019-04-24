@@ -1,5 +1,4 @@
-pragma solidity ^0.4.23;
-
+pragma solidity ^0.5.2;
 
 import "../../../node_modules/openzeppelin-solidity/contracts/token/ERC20/ERC20Detailed.sol";
 import "../../../node_modules/openzeppelin-solidity/contracts/token/ERC20/ERC20Mintable.sol";
@@ -8,27 +7,31 @@ import "../../../node_modules/openzeppelin-solidity/contracts/token/ERC20/ERC20.
 import "../../../node_modules/openzeppelin-solidity/contracts/utils/Address.sol";
 import "./MovementHistory.sol";
 
-
 import "./ERC223ReceivingContract.sol";
 
-contract ERC223 is ERC20, ERC20Detailed, ERC20Mintable, ERC20Burnable, MovementHistory {
-  constructor (string _name, string _symbol, uint8 _decimals) public ERC20Detailed(_name, _symbol, _decimals){}
+contract ERC223 is ERC20, ERC20Detailed, ERC20Mintable, ERC20Burnable {
+  
+  MovementHistory private _movementHistory;
+  
+  constructor (string memory _name, string memory _symbol, uint8 _decimals, address _movementHistoryAddr) public ERC20Detailed(_name, _symbol, _decimals){
+    _movementHistory = MovementHistory(_movementHistoryAddr);
+  }
 
-    // Overridden transfer method with _data param for transaction data
-  function transfer(address _to, uint _value, uint256 _data) public {
+  // Overridden transfer method with _data param for transaction data
+  function transfer(address _to, uint _value, bytes memory _data) public {
     _transfer(msg.sender,_to,_value);
     _tokenFallback(msg.sender, _to, _value , _data );
   }
 
-    // Overridden Backwards compatible transfer method without _data param
+  // Overridden Backwards compatible transfer method without _data param
   function transfer(address _to, uint _value) public returns (bool) {
-    //bytes memory empty;
+    bytes memory empty;
     _transfer(msg.sender,_to,_value);
-    _tokenFallback(msg.sender, _to, _value , 0 );
+    _tokenFallback(msg.sender, _to, _value , empty );
     return true;
   }
 
-  function _tokenFallback(address sender, address to, uint256 value, uint256 data) internal {
+  function _tokenFallback(address sender, address to, uint256 value, bytes memory data) internal {
     if(Address.isContract(to)) {
       ERC223ReceivingContract receiver = ERC223ReceivingContract(to);
       receiver.tokenFallback(sender, value, data);
@@ -37,8 +40,8 @@ contract ERC223 is ERC20, ERC20Detailed, ERC20Mintable, ERC20Burnable, MovementH
   }
   
   function _transfer(address from, address to, uint256 value) internal {
-    _addMovement(int(value) * -1, "send", from, to);
-    _addMovement(int(value), "receive", to, from);
+    _movementHistory.addMovement(int(value) * -1, "send", from, to);
+    _movementHistory.addMovement(int(value), "receive", to, from);
     ERC20._transfer(from,to,value);
   }
 

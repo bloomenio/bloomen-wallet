@@ -1,9 +1,9 @@
-pragma solidity 0.4.24;
+pragma solidity ^0.5.2;
 pragma experimental ABIEncoderV2;
 
 import "./Assets.sol";
 
-contract Devices  is Assets {
+contract Devices {
 
   struct UserDevices {   
     mapping (bytes32 => Device) devices;
@@ -23,6 +23,12 @@ contract Devices  is Assets {
   mapping (address => UserDevices) private userDevices_;
 
   mapping (bytes32 => address) private deviceHashes_;
+ 
+  Assets private _assets;
+  
+  constructor (address _assetsAddr) public{
+    _assets = Assets(_assetsAddr);    
+  }
     
   function isAllowed(bytes32 _deviceHash) public view returns (bool) {
     bool allowed = userDevices_[deviceHashes_[_deviceHash]].devices[_deviceHash].expirationDate > now ;
@@ -33,9 +39,13 @@ contract Devices  is Assets {
     bool allowed =  (deviceHashes_[_deviceHash] == _target) && (isAllowed(_deviceHash));
     return allowed;
   }
-   
-  function getDevicesPageCount() public view returns (uint256) {
-    return userDevices_[msg.sender].deviceArray.length / PAGE_SIZE;
+
+  function getAssetsPageCount() public view returns (uint256) {    
+    uint256 pages = userDevices_[msg.sender].deviceArray.length / PAGE_SIZE;
+    if ( (userDevices_[msg.sender].deviceArray.length % PAGE_SIZE)>0) {
+      pages++;
+    }
+    return pages;
   }
 
   function getDevices(uint256 _page) public view returns (Device[] memory) {
@@ -44,7 +54,8 @@ contract Devices  is Assets {
     bytes32[] memory devices = userDevices_[msg.sender].deviceArray;
 
     if (devices.length == 0 || transferIndex > devices.length - 1) {
-      return;
+      Device[] memory empty;
+      return empty;
     }
    
     uint256 returnCounter = 0;
@@ -67,11 +78,11 @@ contract Devices  is Assets {
     return ownerAddress;
   }
 
-  function handshake(bytes32 _deviceHash, uint256 _assetId, uint256 _schemaId, uint256 _lifeTime, string _dappId) public {
+  function handshake(bytes32 _deviceHash, uint256 _assetId, uint256 _schemaId, uint256 _lifeTime, string memory _dappId) public {
     _handshake(msg.sender, _deviceHash, _assetId, _schemaId, _lifeTime, _dappId, "");
   }
 
-  function handshake(bytes32 _deviceHash, uint256 _assetId, uint256 _schemaId, uint256 _lifeTime, string _dappId, string _description) public {
+  function handshake(bytes32 _deviceHash, uint256 _assetId, uint256 _schemaId, uint256 _lifeTime, string memory _dappId, string memory _description) public {
     _handshake(msg.sender, _deviceHash, _assetId, _schemaId, _lifeTime, _dappId, _description);
   }
 
@@ -80,9 +91,9 @@ contract Devices  is Assets {
   }
 
     
-  function _handshake(address _owner, bytes32 _deviceHash, uint256 _assetId, uint256 _schemaId, uint256 _lifeTime, string _dappId, string _description) internal {
+  function _handshake(address _owner, bytes32 _deviceHash, uint256 _assetId, uint256 _schemaId, uint256 _lifeTime, string memory _dappId, string memory _description) internal {
 
-    require(Assets._checkOwnership(_owner, _assetId, _schemaId),"not allowed");
+    require(_assets.checkOwnershipForAddress(_owner, _assetId, _schemaId),"not allowed");
 
     if ((deviceHashes_[_deviceHash] != address(0)) && (!isAllowed(_deviceHash))) {
       _removeDevice(deviceHashes_[_deviceHash], _deviceHash);
