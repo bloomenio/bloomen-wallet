@@ -33,16 +33,15 @@ export class DevicesEffects {
         map((action) => {
             this.web3Service.ready(() => {
                 this.assetsContract.getAssetsPageCount().then(pageCount => {
-                    pageCount = parseInt(pageCount);
-                    // #BUGPAGECOUNT: Remove "+ 1" when fixed
-                    const lastPage = pageCount + 1;
+                    pageCount = parseInt(pageCount, 10);
+                    const lastPage = pageCount;
+                    // #BUGPAGECOUNT: move dispatch UpdateDevicesPagesCountSuccess before 'loadFullPage' call
+                    this.store.dispatch(new fromActions.UpdatePurchasesPagesCountSuccess({ totalPages: pageCount }));
                     this.loadFullPage(lastPage, fromActions.PAGE_SIZE).then((result: AssetModel[]) => {
                         // #BUGPAGECOUNT: Remove IF when fixed
-                        if (result.length > fromActions.PAGE_SIZE) {
-                            pageCount++;
-                        }
-                        // #BUGPAGECOUNT: move dispatch UpdateDevicesPagesCountSuccess before 'loadFullPage' call
-                        this.store.dispatch(new fromActions.UpdatePurchasesPagesCountSuccess({ totalPages: pageCount }));
+                        // if (result.length > fromActions.PAGE_SIZE) {
+                        //     pageCount++;
+                        // }
                         this.store.dispatch(new fromActions.InitPurchasesSuccess(result));
                     });
                 });

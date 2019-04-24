@@ -29,13 +29,7 @@ export class AssetsContract extends Contract {
   public getAssets(page: number) {
      return this.contract.methods.getAssets(page).call(this.args);
   }
-
-  public buy( assetId: number, schemaId: number, amount: number, dappId: string, description: string) {
-    return this.transactionService.addTransaction(this.args.gas, () => {
-      return this.contract.methods.buy(assetId, schemaId, amount, dappId, description).send(this.args);
-    });
-  }
-
+  
   public getAssetsPageCount() {
     return this.contract.methods.getAssetsPageCount().call(this.args);
   }

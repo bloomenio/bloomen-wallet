@@ -16,7 +16,7 @@ import { Subscription, Observable } from 'rxjs';
 import { TxActivityModel } from '@core/models/tx-activity.model';
 import { BarCodeScannerService } from '@services/barcode-scanner/barcode-scanner.service';
 import { QR_VALIDATOR } from '@core/constants/qr-validator.constants';
-import { AssetsContract, DevicesContract } from '@core/core.module';
+import { AssetsContract, DevicesContract, ERC223Contract } from '@core/core.module';
 import { TranslateService } from '@ngx-translate/core';
 import { DappGeneralDialogComponent } from '@components/dapp-general-dialog/dapp-general-dialog.component';
 
@@ -61,6 +61,7 @@ export class DappHomeComponent implements OnInit, OnDestroy {
     public snackBar: MatSnackBar,
     private store: Store<any>,
     private assets: AssetsContract,
+    private erc223: ERC223Contract,
     private devices: DevicesContract,
     private barCodeScannerService: BarCodeScannerService,
     private translate: TranslateService,
@@ -184,7 +185,7 @@ export class DappHomeComponent implements OnInit, OnDestroy {
 
   public doBuyTranscation(): Promise<boolean> {
     return new Promise<boolean>((res, rej) => {
-      this.assets.buy(this.buyObject.assetId, this.buyObject.schemaId, this.buyObject.amount, this.buyObject.dappId, this.buyObject.description)
+      this.erc223.buy(this.buyObject.assetId, this.buyObject.schemaId, this.buyObject.amount, this.buyObject.dappId, this.buyObject.description)
         .then((result: any) => {
           log.debug('OK', result);
           this.snackBar.open(this.translate.instant('common.transaction_success'), null, {

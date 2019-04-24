@@ -90,6 +90,7 @@
     "ngforage": "^4.0.1",
     "ngx-clipboard": "^11.1.9",
     "phonegap-plugin-barcodescanner": "^8.0.1",
+    "rlp": "^2.2.3",
     "roboto-fontface": "^0.10.0",
     "rxjs": "^6.3.1",
     "rxjs-compat": "^6.1.0",

@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { Dapp } from '@core/models/dapp.model';
-import { AssetsContract } from '@core/core.module';
+import { ERC223Contract } from '@core/core.module';
 import { MatSnackBar, MatDialog } from '@angular/material';
 import { TranslateService } from '@ngx-translate/core';
 import { Web3Service } from '@services/web3/web3.service';
@@ -41,7 +41,7 @@ export class NotificationDetailComponent implements OnInit, OnDestroy {
   constructor(
     private store: Store<any>,
     private activatedRoute: ActivatedRoute,
-    private assets: AssetsContract,
+    private erc223: ERC223Contract,
     private snackBar: MatSnackBar,
     private translate: TranslateService,
     private web3Service: Web3Service,
@@ -110,7 +110,7 @@ export class NotificationDetailComponent implements OnInit, OnDestroy {
 
   private _buyContent(buyObject) {
     this.web3Service.ready(() => {
-      this.assets.buy(buyObject.assetId, buyObject.schemaId, buyObject.amount, buyObject.dappId, buyObject.description).then((result: any) => {
+      this.erc223.buy(buyObject.assetId, buyObject.schemaId, buyObject.amount, buyObject.dappId, buyObject.description).then((result: any) => {
         log.debug('OK', result);
         this.snackBar.open(this.translate.instant('common.transaction_success'), null, {
           duration: 2000,

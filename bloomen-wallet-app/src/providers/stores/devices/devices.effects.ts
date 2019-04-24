@@ -34,14 +34,14 @@ export class DevicesEffects {
             this.web3Service.ready(() => {
                 this.devicesContract.getDevicesPageCount().then(pageCount => {
                     pageCount = parseInt(pageCount, 10);
-                    const lastPage = pageCount + 1;
+                    const lastPage = pageCount;
+                    // #BUGPAGECOUNT: move dispatch UpdateDevicesPagesCountSuccess before 'loadFullPage' call
+                    this.store.dispatch(new fromActions.UpdateDevicesPagesCountSuccess({ totalPages: pageCount }));
                     this.loadFullPage(lastPage, fromActions.PAGE_SIZE).then((result: DeviceModel[]) => {
                         // #BUGPAGECOUNT: Remove IF when fixed
-                        if (result.length > fromActions.PAGE_SIZE) {
-                            pageCount++;
-                        }
-                        // #BUGPAGECOUNT: move dispatch UpdateDevicesPagesCountSuccess before 'loadFullPage' call
-                        this.store.dispatch(new fromActions.UpdateDevicesPagesCountSuccess({ totalPages: pageCount }));
+                        // if (result.length > fromActions.PAGE_SIZE) {
+                        //     pageCount++;
+                        // }
                         this.store.dispatch(new fromActions.InitDevicesSuccess(result));
                     });
                 });
