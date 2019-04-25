@@ -17,7 +17,7 @@ import { from } from 'rxjs';
 import { Web3Service } from '@services/web3/web3.service';
 import { CollaboratorModel } from '@core/models/collaborator.model';
 import { Store } from '@ngrx/store';
-import { PrepaidCardManagerContract } from '@core/core.module';
+import { SchemasContract } from '@core/core.module';
 
 const log = new Logger('collaborator.effects');
 
@@ -29,7 +29,7 @@ export class CollaboratorEffects {
         private collaboratorDatabaseService: CollaboratorDatabaseService,
         private web3Service: Web3Service,
         private store: Store<any>,
-        private prepaidCardManagerContract: PrepaidCardManagerContract
+        private schemasContract: SchemasContract
     ) { }
 
     @Effect({ dispatch: false }) public getCachedFirstCollaborators = this.actions$.pipe(
@@ -55,7 +55,7 @@ export class CollaboratorEffects {
             this.web3Service.ready(() => {
                 Promise.all([
                     this.collaboratorDatabaseService.getAll().toPromise(),
-                    this.prepaidCardManagerContract.getSchemas()
+                    this.schemasContract.getSchemas()
                 ]).then(async ([cachedAddresses, serverSchemas]) => {
 
                     const serverCollaborators = await this.extractCollaboratorsFromSchema(serverSchemas);
@@ -103,7 +103,7 @@ export class CollaboratorEffects {
         const collaborators: CollaboratorModel[] = [];
         const start = async () => {
             await this.asyncForEach(schemas, async (schemaId) => {
-                const schema = await this.prepaidCardManagerContract.getSchema(schemaId);
+                const schema = await this.schemasContract.getSchema(schemaId);
 
                 schema.clearingHouseRules.forEach((clearingHouseRule) => {
                     const collaborator: CollaboratorModel = {

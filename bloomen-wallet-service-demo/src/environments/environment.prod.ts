@@ -9,7 +9,7 @@ export const environment = {
   defaultLanguage: 'en',
   supportedLanguages: ['ca', 'de', 'el', 'en', 'es'],
   eth: {
-    ethRpcUrl: 'https://0x.bloomen.io/rpc/telsius/wallet',
+    ethRpcUrl: 'https://0x.bloomen.io/rpc/telsius/bloodemo',
     ethBlockPollingTime: 4000,
     transactionStatusPollingTime: 1000,
     transactionCallDelayTime: 2000,
@@ -21,7 +21,7 @@ export const environment = {
         gasPrice: 0,
         gas: 9999999
       },
-      networkId: '82584648528'
+      networkId: '83584648538'
     }
   }
 };

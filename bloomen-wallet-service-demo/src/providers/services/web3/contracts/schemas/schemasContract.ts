@@ -1,4 +1,4 @@
-import { default as JSON } from '../json/PrepaidCardManager.json';
+import { default as JSON } from '../json/Schemas.json';
 import { Contract } from '../contract';
 
 // Environment
@@ -13,7 +13,7 @@ import { SchemaModel } from '@core/models/schema.model.js';
 const log = new Logger('prepaid_card_manager.contract');
 
 
-export class PrepaidCardManagerContract extends Contract {
+export class SchemasContract extends Contract {
 
   constructor(
     public contractAddress: string,
@@ -27,10 +27,11 @@ export class PrepaidCardManagerContract extends Contract {
   public static get ABI() { return JSON.abi; }
   public static get ADDRESS() { return JSON.networks[environment.eth.contractConfig.networkId].address; }
 
-  public validateCard(secret: string) {
-    return this.transactionService.addTransaction(this.args.gas, () => {
-      return this.contract.methods.validateCard(this.web3Service.fromAscii(secret)).send(this.args);
-    });
+  public getSchemas(): Promise<string[]> {
+    return this.contract.methods.getSchemas().call(this.args);
   }
 
+  public getSchema(schemaId: string): Promise<SchemaModel> {
+    return this.contract.methods.getSchema(schemaId).call(this.args);
+  }
 }
