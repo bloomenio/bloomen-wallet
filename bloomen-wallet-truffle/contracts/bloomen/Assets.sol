@@ -95,7 +95,7 @@ contract  Assets is ERC223ReceivingContract{
     uint pieValue = _amount;
 
     for (uint i = 0; i < schema.clearingHouseRules.length-1; i++) {
-      uint tmpValue = calculatePercentage(_amount,schema.clearingHouseRules[i].percent);
+      uint tmpValue = _calculatePercentage(_amount,schema.clearingHouseRules[i].percent);
       _erc223.transfer(schema.clearingHouseRules[i].receptor, tmpValue);
       pieValue -= tmpValue;
     }
@@ -118,7 +118,7 @@ contract  Assets is ERC223ReceivingContract{
     return false;
   }
 
-  function calculatePercentage(uint theNumber, uint percentage) public view returns (uint) {
+  function _calculatePercentage(uint theNumber, uint percentage) internal view returns (uint) {
     return theNumber * percentage / 100 ;
   }
     
