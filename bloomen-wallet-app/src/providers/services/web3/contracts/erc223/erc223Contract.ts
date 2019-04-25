@@ -10,7 +10,7 @@ import { environment } from '@env/environment';
 import { Logger } from '@services/logger/logger.service';
 import { Web3Service } from '@services/web3/web3.service';
 import { TransactionService } from '@services/web3/transactions/transaction.service';
-import { AssetsContract } from '@core/core.module.js';
+import { AssetsContract } from '@services/web3/contracts/assets/assetsContract';
 
 const log = new Logger('erc223.contract');
 
