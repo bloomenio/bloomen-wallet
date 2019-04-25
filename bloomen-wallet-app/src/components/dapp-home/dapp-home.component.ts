@@ -35,6 +35,9 @@ const log = new Logger('dapp-home.component');
 })
 export class DappHomeComponent implements OnInit, OnDestroy {
 
+
+  private static headerOffsetHeight: number;
+
   public dapp$: Subscription;
 
   public currentPage: number;
@@ -46,6 +49,7 @@ export class DappHomeComponent implements OnInit, OnDestroy {
   public buyObject: any;
 
   public isLoading$: Observable<boolean>;
+
 
   @Input() public dapp: Dapp;
 
@@ -72,8 +76,13 @@ export class DappHomeComponent implements OnInit, OnDestroy {
 
   public onResize() {
     if (this.recentActivity != null) {
+
+      if (!DappHomeComponent.headerOffsetHeight) {
+        DappHomeComponent.headerOffsetHeight = this.newContent.nativeElement.offsetHeight;
+      }
+
       this.render.setStyle(
-        this.recentActivity.nativeElement, 'margin-top', this.newContent.nativeElement.offsetHeight + 'px'
+        this.recentActivity.nativeElement, 'margin-top', DappHomeComponent.headerOffsetHeight + 'px'
       );
     }
   }
