@@ -112,7 +112,7 @@ async function _getClearHouseArray() {
     });
 
     let questions = [
-        { type: 'list', name: 'percentage', message: 'Percentage', choices: ['10','20','30','40','50'] },
+        { type: 'list', name: 'percentage', message: 'Percentage', choices: ['10','20','30','40','50','100'] },
         { type: 'list', name: 'address', message: 'Address', choices: choices},
         { type: 'confirm', name: 'more', message: 'more?', default: false},
                
