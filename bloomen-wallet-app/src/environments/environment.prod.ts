@@ -7,7 +7,7 @@ export const environment = {
   version: env.npm_package_version,
   serverUrl: '/api',
   defaultLanguage: 'en',
-  supportedLanguages: ['ca', 'de', 'el', 'en', 'es'],
+  supportedLanguages: [ 'en', 'el'],
   eth: {
     ethRpcUrl: 'https://0x.bloomen.io/rpc/telsius/wallet',
     ethBlockPollingTime: 4000,
