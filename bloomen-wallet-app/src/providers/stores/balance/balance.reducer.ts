@@ -12,4 +12,4 @@ export function balanceReducer(state: BalanceModel, action: BalanceActions): Bal
     }
 }
 
-export const getBalance = (state: BalanceModel) => state.balance;
+export const getBalance = (state: BalanceModel) => state ? state.balance : undefined;
