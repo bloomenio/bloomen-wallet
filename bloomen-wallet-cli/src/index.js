@@ -84,7 +84,7 @@ async function demoMenu() {
     return;
 }
 
-async function schemesMenu() {
+async function schemasMenu() {
     let options = [
         menuCommands['SP3'],
         menuCommands['SP4'],         
@@ -94,7 +94,7 @@ async function schemesMenu() {
         menuCommands['EXIT']               
     ];
     let questions = [
-        { type: 'list', name: 'operation', message: 'Main -> Service Provider -> Schemes:', choices: options }
+        { type: 'list', name: 'operation', message: 'Main -> Service Provider -> Schemas:', choices: options }
     ];
     let answer = {operation:()=>{return;}};
     while( answer.operation != 0  ) {
@@ -134,7 +134,7 @@ async function serviceProviderMenu() {
     let options = [
         { name: 'Menu Prepaid card', value: prepaidCardMenu },
         { name: 'Menu Demo', value: demoMenu },        
-        { name: 'Menu Schemes', value: schemesMenu },
+        { name: 'Menu Schemas', value: schemasMenu },
         { name: 'Menu DAPPS', value: dappsMenu },
         menuCommands['BACK_MAIN_MENU'],
         menuCommands['EXIT']

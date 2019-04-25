@@ -10,13 +10,15 @@ contract Schemas is WhitelistedRole {
   using RLPReader for uint;
   using RLPReader for RLPReader.RLPItem;
 
-  struct Schema {   
+  struct Schema {
+    string dappId;   
     uint expirationDate;
     uint256 schemaId;
     uint256 amount;
     uint256 assetLifeTime;
     ClearingHouseRule[] clearingHouseRules;
     bool valid;
+    uint256 topPrice;    
   }
 
   struct ClearingHouseRule {  
@@ -50,7 +52,7 @@ contract Schemas is WhitelistedRole {
   }
 
   function _createSchema(uint256 _schemaId, bytes memory _in) internal  {
-    // RLP format : [<expirationDate>,<schemaId>,<amount>,<assetLifeTime>,[ [<percent>,<address>,<description>],[<percent>,<address>,<description>]]]
+    // RLP format : [<expirationDate>,<schemaId>,<amount>,<assetLifeTime>,<dappId>,<openPrice?> ,[ [<percent>,<address>,<description>],[<percent>,<address>,<description>]]]
 
     require(schemas_[_schemaId].schemaId == 0, "exist"); 
    
@@ -64,9 +66,10 @@ contract Schemas is WhitelistedRole {
     uint256 schemaId = uint256(itemList[1].toUint());
     uint256 amount = uint256(itemList[2].toUint());
     uint256 assetLifeTime = uint256(itemList[3].toUint());
-
+    string memory dappId = string(itemList[4].toBytes());
+    uint256 topPrice = itemList[5].toUint();
     
-    RLPReader.RLPItem[] memory clearingHouseRulesItemList = itemList[4].toList();
+    RLPReader.RLPItem[] memory clearingHouseRulesItemList = itemList[6].toList();
     
     uint listLength = clearingHouseRulesItemList.length;
     for (uint i = 0; i < listLength; i++) {
@@ -81,6 +84,8 @@ contract Schemas is WhitelistedRole {
     
     schemas_[schemaId].expirationDate = expirationDate;
     schemas_[schemaId].schemaId = schemaId;
+    schemas_[schemaId].dappId = dappId;
+    schemas_[schemaId].topPrice = topPrice;
     schemas_[schemaId].amount = amount;
     schemas_[schemaId].assetLifeTime = assetLifeTime;
     schemas_[schemaId].valid = true;

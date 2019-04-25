@@ -36,7 +36,6 @@ async function _sp1() {
             , (err) => reject(err));
         });
     });
-       
 }
 
 //[SP2] Add vendor
@@ -59,7 +58,6 @@ async function _sp2() {
             web3Ctx.checkTransaction(hash).then( () => resolve(), (err) => reject(err));
         });
     });
-    
 }
 
 //[SP3] Create Schema
@@ -68,7 +66,9 @@ async function _sp3() {
         { type: 'input', name: 'schemaId', message: 'Schema id:' },
         { type: 'input', name: 'schemaValidityDays', message: 'Schema validity days:' },
         { type: 'input', name: 'schemaPrice', message: 'Schema price:' },
-        { type: 'input', name: 'assetValidityDays', message: 'Asset validity days:' },        
+        { type: 'input', name: 'topPrize', message: 'Specify top Schema Price:', default: (answers) => answers.schemaPrice},
+        { type: 'input', name: 'assetValidityDays', message: 'Asset validity days:' },
+        { type: 'input', name: 'dappId', message: 'Specify the dappId:' }, 
     ]; 
 
     let answer = await inquirer.prompt(questions); 
@@ -83,8 +83,10 @@ async function _sp3() {
     pathValues.push(n); // schema expiration date
     pathValues.push(schemaId); // id
 
-    pathValues.push(parseInt(answer.schemaPrice)); // price
-    pathValues.push(60*60*24*parseInt(answer.assetValidityDays)); // asset valid for 30 days
+    pathValues.push(parseInt(answer.schemaPrice)); // price >=0
+    pathValues.push(60*60*24*parseInt(answer.assetValidityDays)); // asset valid for X days
+    pathValues.push(answer.dappId); // dappId
+    pathValues.push(parseInt(answer.topPrize)); // dappId
 
     let clearArray = await _getClearHouseArray();
 
