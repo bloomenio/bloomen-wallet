@@ -60,8 +60,8 @@ export class CredentialDialogComponent implements OnInit, OnDestroy {
       this.deviceId = `Worldline ${MockMedia[ASSETS_CONSTANTS.SMART_OFFICE][this.data.smartOfficeId].title}-${new Date().getTime()}`;
     }
 
-    this.qrAllowBuy = `allow_buy://${this.asset.assetKey}#${this.asset.schemaId}#${this.asset.amount}#${this.asset.dappId}#${encodeURI(this.asset.description)}#${encodeURI(this.deviceId)}`;
-
+    this.qrAllowBuy = `allow_buy://${this.asset.assetKey}#${this.asset.schemaId}#` +
+    `${this.asset.amount}#${this.asset.dappId}#${encodeURI(this.asset.description)}#${encodeURI(this.deviceId)}`;
 
     this.interval$ = interval(1000).pipe(
       takeWhile(() => !this.allowed)
