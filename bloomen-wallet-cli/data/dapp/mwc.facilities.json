@@ -81,7 +81,7 @@
       },
       "payment" : {
         "asset": "2002",
-        "schema": "2",
+        "schema": "21",
         "price": "100"
       }
     }
