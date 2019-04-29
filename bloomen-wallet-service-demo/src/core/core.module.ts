@@ -26,8 +26,7 @@ import { RouterStateSerializer } from '@ngrx/router-store';
 
 import { Web3Service } from '@services/web3/web3.service';
 import { TransactionService } from '@services/web3/transactions/transaction.service';
-import { BloomenContract, PrepaidCardManagerContract, ERC223Contract, MovementHistoryContract,
-  AssetsContract, DevicesContract, SchemasContract } from '@services/web3/contracts';
+import { ERC223Contract, DevicesContract, SchemasContract } from '@services/web3/contracts';
 
 import { reducers, metaReducers } from './core.state';
 
@@ -60,28 +59,8 @@ import { reducers, metaReducers } from './core.state';
     { provide: RouteReuseStrategy, useClass: RouteReusableStrategy },
     { provide: RouterStateSerializer, useClass: CustomSerializer },
     {
-      provide: BloomenContract,
-      useFactory: genericContractFactory(BloomenContract),
-      deps: [Web3Service, TransactionService]
-    },
-    {
-      provide: PrepaidCardManagerContract,
-      useFactory: genericContractFactory(PrepaidCardManagerContract),
-      deps: [Web3Service, TransactionService]
-    },
-    {
       provide: ERC223Contract,
       useFactory: genericContractFactory(ERC223Contract),
-      deps: [Web3Service, TransactionService]
-    },
-    {
-      provide: MovementHistoryContract,
-      useFactory: genericContractFactory(MovementHistoryContract),
-      deps: [Web3Service, TransactionService]
-    },
-    {
-      provide: AssetsContract,
-      useFactory: genericContractFactory(AssetsContract),
       deps: [Web3Service, TransactionService]
     },
     {
