@@ -2,68 +2,68 @@
     "videos": {
         "deviceId": "Player by Worldline",
         "1001": {
-            "dappId": "Test",
+            "dappId": "MWC-VIDEO",
             "assetKey": "1001",
-            "schemaId": "2",
+            "schemaId": "20",
             "amount": "100",
-            "description": "Earth miracle"
+            "description": "Smart Stadium"
         },
         "1002": {
-            "dappId": "Test",
+            "dappId": "MWC-VIDEO",
             "assetKey": "1002",
-            "schemaId": "2",
+            "schemaId": "20",
             "amount": "100",
-            "description": "Earth miracle"
+            "description": "Connected office"
         },
         "1003": {
-            "dappId": "Test",
+            "dappId": "MWC-VIDEO",
             "assetKey": "1003",
-            "schemaId": "2",
+            "schemaId": "20",
             "amount": "100",
-            "description": "Earth miracle"
+            "description": "Holo glasses"
         },
         "1004": {
-            "dappId": "Test",
+            "dappId": "MWC-VIDEO",
             "assetKey": "1004",
-            "schemaId": "2",
+            "schemaId": "20",
             "amount": "100",
-            "description": "Earth miracle"
+            "description": "Smart Retail"
         },
         "1005": {
-            "dappId": "Test",
+            "dappId": "MWC-VIDEO",
             "assetKey": "1005",
-            "schemaId": "2",
+            "schemaId": "20",
             "amount": "100",
-            "description": "Earth miracle"
+            "description": "Wearlumb"
         }
     },
     "mobility": {
         "deviceId": "Mobility Worldline",     
         "2001": {
-            "dappId": "Test",
+            "dappId": "MWC-FACILITIES",
             "assetKey": "2001",
-            "schemaId": "2",
+            "schemaId": "21",
             "amount": "100",
             "description": "Scooter test"
         },
         "2002": {
-            "dappId": "Test",
+            "dappId": "MWC-FACILITIES",
             "assetKey": "2002",
-            "schemaId": "2",
+            "schemaId": "21",
             "amount": "100",
             "description": "Motorcycle test"
         },
         "2003": {
-            "dappId": "Test",
+            "dappId": "MWC-FACILITIES",
             "assetKey": "2003",
-            "schemaId": "2",
+            "schemaId": "21",
             "amount": "100",
             "description": "Green car test"
         },
         "2004": {
-            "dappId": "Test",
+            "dappId": "MWC-FACILITIES",
             "assetKey": "2004",
-            "schemaId": "2",
+            "schemaId": "21",
             "amount": "100",
             "description": "Yellow car test"
         }
@@ -71,23 +71,23 @@
     "smart-office": {
         "deviceId": "Smart office Worldline",     
         "3001": {
-            "dappId": "Test",
+            "dappId": "MWC-SMART-OFFICE",
             "assetKey": "3001",
-            "schemaId": "2",
+            "schemaId": "22",
             "amount": "100",
             "description": "Reserve desk test"
         },
         "3002": {
-            "dappId": "Test",
+            "dappId": "MWC-SMART-OFFICE",
             "assetKey": "3002",
-            "schemaId": "2",
+            "schemaId": "22",
             "amount": "100",
             "description": "Reserve meeting test"
         },
         "3003": {
-            "dappId": "Test",
+            "dappId": "MWC-SMART-OFFICE",
             "assetKey": "3003",
-            "schemaId": "2",
+            "schemaId": "22",
             "amount": "100",
             "description": "Office printer test"
         }

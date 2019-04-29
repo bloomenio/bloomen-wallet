@@ -14,7 +14,7 @@ export enum MnemonicActionTypes {
 
 export class ChangeWallet implements Action {
     public readonly type = MnemonicActionTypes.CHANGE_WALLET;
-    constructor(public readonly payload: { randomSeed: string }) { }
+    constructor(public readonly payload: { randomSeed: string, dappId: string }) { }
 }
 
 export class AddMnemonic implements Action {

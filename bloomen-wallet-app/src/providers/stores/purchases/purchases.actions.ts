@@ -15,7 +15,7 @@ export enum PurchasesActionTypes {
 
 export class InitPurchases implements Action {
     public readonly type = PurchasesActionTypes.INIT_PURCHASES;
-    constructor() { }
+    constructor(public readonly payload: { dappId: string}) { }
 }
 
 
@@ -26,7 +26,7 @@ export class InitPurchasesSuccess implements Action {
 
 export class UpdatePurchases implements Action {
     public readonly type = PurchasesActionTypes.UPDATE_PURCHASES;
-    constructor(public readonly payload: { page: number }) { }
+    constructor(public readonly payload: { page: number, dappId: string }) { }
 }
 
 export class UpdatePurchasesSuccess implements Action {

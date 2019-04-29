@@ -76,10 +76,11 @@ async function _u1() {
     const ctx = web3Ctx.getCurrentContext();   
     let questions = [
         { type: 'input', name: 'device', message: 'Specify the device key:' },
+        { type: 'input', name: 'dappId', message: 'Specify the dappId:' }, 
     ];
     let answer = await inquirer.prompt(questions);
     try{
-        let response = await ctx.devices.methods.isAllowed(ctx.web3.utils.keccak256(answer.device)).call(ctx.transactionObject);
+        let response = await ctx.devices.methods.isAllowed(ctx.web3.utils.keccak256(answer.device),answer.dappId).call(ctx.transactionObject);
         console.log( answer.device +'  access: ' +response);
     } catch(e){
         console.log('Error:',e);

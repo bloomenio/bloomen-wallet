@@ -26,8 +26,8 @@ export class DevicesContract extends Contract {
   public static get ABI() { return JSON.abi; }
   public static get ADDRESS() { return JSON.networks[environment.eth.contractConfig.networkId].address; }
 
-  public isAllowed(device: string) {
-    return this.contract.methods.isAllowed(this.web3Service.keccak256(device)).call(this.args);
+  public isAllowed(device: string, dappId: string) {
+    return this.contract.methods.isAllowed(this.web3Service.keccak256(device), dappId).call(this.args);
   }
 
   public handshake(device: string, assetId: number, schemaId: number, dappId: string) {
@@ -40,17 +40,17 @@ export class DevicesContract extends Contract {
     });
   }
 
-  public getDevices(page: number) {
-    return this.contract.methods.getDevices(page).call(this.args);
+  public getDevices(page: number, dappId: string) {
+    return this.contract.methods.getDevices(page, dappId).call(this.args);
   }
 
-  public getDevicesPageCount() {
-    return this.contract.methods.getDevicesPageCount().call(this.args);
+  public getDevicesPageCount(dappId: string) {
+    return this.contract.methods.getDevicesPageCount(dappId).call(this.args);
   }
 
-  public removeDevice(device: string) {
+  public removeDevice(device: string, dappId: string) {
     return this.transactionService.addTransaction(this.args.gas, () => {
-      return this.contract.methods.removeDevice(this.web3Service.keccak256(device)).send(this.args);
+      return this.contract.methods.removeDevice(this.web3Service.keccak256(device), dappId).send(this.args);
     });
 
   }

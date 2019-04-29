@@ -71,7 +71,7 @@ export class NotificationDetailComponent implements OnInit, OnDestroy {
     this.mnemonics$ = this.store.select(fromMnemonicSelectors.selectAllMnemonics).subscribe((mnemonics) => {
       const mnemonic = mnemonics.find(mnemonicItem => mnemonicItem.address === address);
       if (mnemonic) {
-        this.store.dispatch(new fromMnemonicActions.ChangeWallet({ randomSeed: mnemonic.randomSeed }));
+        this.store.dispatch(new fromMnemonicActions.ChangeWallet({ randomSeed: mnemonic.randomSeed, dappId: this.dapp.dappId }));
       }
     });
   }

@@ -35,7 +35,7 @@ export class BalanceEffects {
                 this.web3Service.ready(() => {
                     this.store.dispatch(new fromBalanceActions.InitBalanceEvents);
                     this.store.dispatch(new fromtxActivityActions.InitTxActivity({ page: 1 }));
-                    this.store.dispatch(new fromPurchasesActions.UpdatePurchases({ page: 1 }));
+                    this.store.dispatch(new fromPurchasesActions.UpdatePurchases({ page: 1 , dappId: 'NO-DAPP'}));
                 });
             }
         });
@@ -50,8 +50,3 @@ export class BalanceEffects {
         })
     );
 }
-
-
-
-
-

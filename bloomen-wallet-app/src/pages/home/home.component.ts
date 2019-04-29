@@ -56,7 +56,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     });
 
-    this.store.dispatch(new fromMnemonicActions.ChangeWallet({ randomSeed: environment.eth.generalSeed }));
+    this.store.dispatch(new fromMnemonicActions.ChangeWallet({ randomSeed: environment.eth.generalSeed, dappId: 'NO-DAPP' }));
 
     this.theme$ = this.store.select(fromAppSelectors.getTheme).pipe(
       skipWhile((theme) => theme === undefined),

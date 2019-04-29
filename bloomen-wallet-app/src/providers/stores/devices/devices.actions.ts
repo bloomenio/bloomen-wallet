@@ -16,7 +16,7 @@ export enum DeviceActionTypes {
 
 export class InitDevices implements Action {
     public readonly type = DeviceActionTypes.INIT_DEVICES;
-    constructor() { }
+    constructor(public readonly payload: { dappId: string }) { }
 }
 
 
@@ -27,7 +27,7 @@ export class InitDevicesSuccess implements Action {
 
 export class UpdateDevices implements Action {
     public readonly type = DeviceActionTypes.UPDATE_DEVICES;
-    constructor(public readonly payload: { page: number }) { }
+    constructor(public readonly payload: { page: number, dappId: string }) { }
 }
 
 export class UpdateDevicesSuccess implements Action {
@@ -37,7 +37,7 @@ export class UpdateDevicesSuccess implements Action {
 
 export class UpdateDevicesPagesCountSuccess implements Action {
     public readonly type = DeviceActionTypes.UPDATE_DEVICE_PAGES_COUNT_SUCCESS;
-    constructor(public readonly payload: { totalPages: number }) { }
+    constructor(public readonly payload: { totalPages: number  }) { }
 }
 
 export class RemoveDevice implements Action {

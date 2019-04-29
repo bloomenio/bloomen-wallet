@@ -60,7 +60,7 @@ export class DappSectionsComponent implements OnInit, OnDestroy {
     this.mnemonics$ = this.store.select(fromMnemonicSelectors.selectAllMnemonics).subscribe((mnemonics) => {
       this.mnemonic = mnemonics.find(mnemonicItem => mnemonicItem.address === address);
       if (this.mnemonic) {
-        this.store.dispatch(new fromMnemonicActions.ChangeWallet({ randomSeed: this.mnemonic.randomSeed }));
+        this.store.dispatch(new fromMnemonicActions.ChangeWallet({ randomSeed: this.mnemonic.randomSeed, dappId: this.dapp.dappId }));
       }
     });
   }
@@ -86,8 +86,8 @@ export class DappSectionsComponent implements OnInit, OnDestroy {
     if (index === 3) {
       // Refresh data required to ensure that Purchase/Allow action did actually update the blockchain
       // Because of reverse ordering refresh all data to load first/last page ignoring other previous loaded pages
-      this.store.dispatch(new fromDevicesActions.InitDevices());
-      this.store.dispatch(new fromPurchasesActions.InitPurchases());
+      this.store.dispatch(new fromDevicesActions.InitDevices({dappId: this.dapp.dappId}));
+      this.store.dispatch(new fromPurchasesActions.InitPurchases({dappId: this.dapp.dappId}));
     }
   }
 }

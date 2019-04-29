@@ -32,6 +32,8 @@ export class CredentialDialogComponent implements OnInit, OnDestroy {
   private allowed: boolean;
   private deviceId: string;
 
+  private dappId: string;
+
   private interval$: Subscription;
 
   constructor(
@@ -58,14 +60,13 @@ export class CredentialDialogComponent implements OnInit, OnDestroy {
       this.deviceId = `Worldline ${MockMedia[ASSETS_CONSTANTS.SMART_OFFICE][this.data.smartOfficeId].title}-${new Date().getTime()}`;
     }
 
-    this.qrAllowBuy = `allow_buy://${this.asset.assetKey}#${this.asset.schemaId}#${this.asset.amount}#${this.asset.dappId}
-    #${encodeURI(this.asset.description)}#${encodeURI(this.deviceId)}`;
+    this.qrAllowBuy = `allow_buy://${this.asset.assetKey}#${this.asset.schemaId}#${this.asset.amount}#${this.asset.dappId}#${encodeURI(this.asset.description)}#${encodeURI(this.deviceId)}`;
 
 
     this.interval$ = interval(1000).pipe(
       takeWhile(() => !this.allowed)
     ).subscribe(() => {
-      this.devicesContract.isAllowed(this.deviceId).then((allowed) => {
+      this.devicesContract.isAllowed(this.deviceId, this.asset.dappId).then((allowed) => {
         if (allowed) {
           this.allowed = allowed;
           this.dialogRef.close(true);

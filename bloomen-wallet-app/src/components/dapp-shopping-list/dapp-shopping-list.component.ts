@@ -82,13 +82,13 @@ export class DappShoppingListComponent implements OnInit, OnDestroy {
 
   public moreDevices() {
     this.store.dispatch(new fromDevicesActions.UpdateDevices({
-      page: Math.max(fromDevicesActions.FIRST_PAGE_INDEX, --this.currentPageDevices)
+      page: Math.max(fromDevicesActions.FIRST_PAGE_INDEX, --this.currentPageDevices), dappId: this.dapp.dappId
     }));
   }
 
   public morePurchases() {
     this.store.dispatch(new fromPurchasesActions.UpdatePurchases({
-      page: Math.max(fromPurchasesActions.FIRST_PAGE_INDEX, --this.currentPagePurchases)
+      page: Math.max(fromPurchasesActions.FIRST_PAGE_INDEX, --this.currentPagePurchases), dappId: this.dapp.dappId
     }));
   }
 

@@ -11,7 +11,6 @@ import { TransactionService } from '@services/web3/transactions/transaction.serv
 
 const log = new Logger('assets.contract');
 
-
 export class AssetsContract extends Contract {
 
   constructor(
@@ -26,16 +25,12 @@ export class AssetsContract extends Contract {
   public static get ABI() { return JSON.abi; }
   public static get ADDRESS() { return JSON.networks[environment.eth.contractConfig.networkId].address; }
 
-  public getAssets(page: number) {
-     return this.contract.methods.getAssets(page).call(this.args);
-  }
-  
-  public getAssetsPageCount() {
-    return this.contract.methods.getAssetsPageCount().call(this.args);
+  public getAssets(page: number, dappId: string) {
+     return this.contract.methods.getAssets(page, dappId).call(this.args);
   }
 
-  public removePurchase(purchase: string) {
-    return this.contract.methods.removePurchase(purchase).call(this.args);
+  public getAssetsPageCount(dappId: string) {
+    return this.contract.methods.getAssetsPageCount(dappId).call(this.args);
   }
 
 }

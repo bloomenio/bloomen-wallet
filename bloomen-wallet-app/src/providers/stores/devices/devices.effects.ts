@@ -32,12 +32,12 @@ export class DevicesEffects {
         ),
         map((action) => {
             this.web3Service.ready(() => {
-                this.devicesContract.getDevicesPageCount().then(pageCount => {
+                this.devicesContract.getDevicesPageCount(action.payload.dappId).then(pageCount => {
                     pageCount = parseInt(pageCount, 10);
                     const lastPage = pageCount;
                     // #BUGPAGECOUNT: move dispatch UpdateDevicesPagesCountSuccess before 'loadFullPage' call
                     this.store.dispatch(new fromActions.UpdateDevicesPagesCountSuccess({ totalPages: pageCount }));
-                    this.loadFullPage(lastPage, fromActions.PAGE_SIZE).then((result: DeviceModel[]) => {
+                    this.loadFullPage(lastPage, fromActions.PAGE_SIZE, action.payload.dappId).then((result: DeviceModel[]) => {
                         // #BUGPAGECOUNT: Remove IF when fixed
                         // if (result.length > fromActions.PAGE_SIZE) {
                         //     pageCount++;
@@ -56,7 +56,7 @@ export class DevicesEffects {
         map((action) => {
             this.web3Service.ready(() => {
                 // Read in reverse order
-                this.loadFullPage(action.payload.page, fromActions.PAGE_SIZE).then((result: DeviceModel[]) => {
+                this.loadFullPage(action.payload.page, fromActions.PAGE_SIZE, action.payload.dappId).then((result: DeviceModel[]) => {
                     this.store.dispatch(new fromActions.UpdateDevicesSuccess(result));
                 });
             });
@@ -67,21 +67,20 @@ export class DevicesEffects {
         ofType(fromActions.DeviceActionTypes.REMOVE_DEVICE),
         map((action) => {
             this.web3Service.ready(() => {
-
-                this.devicesContract.removeDevice(action.payload.description).then(() => {
+                this.devicesContract.removeDevice(action.payload.description, action.payload.dappId).then(() => {
                     this.store.dispatch(new fromActions.RemoveDeviceSuccess(action.payload));
                 });
             });
         })
     );
 
-    private loadFullPage(pageIndex: number, pageSize = fromActions.PAGE_SIZE): Promise<DeviceModel[]> {
+    private loadFullPage(pageIndex: number, pageSize = fromActions.PAGE_SIZE, dappId: string): Promise<DeviceModel[]> {
         return new Promise<DeviceModel[]>((resolve, reject) => {
-            this.devicesContract.getDevices(pageIndex).then((result: DeviceModel[]) => {
+            this.devicesContract.getDevices(pageIndex, dappId).then((result: DeviceModel[]) => {
                 const devices = this.calculateDeviceArray(result);
                 if (pageIndex > fromActions.FIRST_PAGE_INDEX && devices.length < pageSize) {
                     // When a page is not complete then load also previous one, if available
-                    this.loadFullPage(pageIndex - 1, pageSize).then(previousPage => {
+                    this.loadFullPage(pageIndex - 1, pageSize, dappId).then(previousPage => {
                         // Reverse order
                         resolve([...devices, ...previousPage]);
                     }, reject);

@@ -26,16 +26,8 @@ export class DevicesContract extends Contract {
   public static get ABI() { return JSON.abi; }
   public static get ADDRESS() { return JSON.networks[environment.eth.contractConfig.networkId].address; }
 
-  public isAllowed(device: string) {
-    return this.contract.methods.isAllowed(this.web3Service.keccak256(device)).call(this.args);
-  }
-
-  public handshake(device: string, assetId: number, schemaId: number, dappId: string) {
-    return this.transactionService.addTransaction(this.args.gas, () => {
-      let n =  Date.now();
-      n += 60 * 60 * 24; // one day
-      return this.contract.methods.handshake(this.web3Service.keccak256(device), assetId, schemaId, n, dappId).send(this.args);
-    });
+  public isAllowed(device: string, dappId: string) {
+    return this.contract.methods.isAllowed(this.web3Service.keccak256(device), dappId).call(this.args);
   }
 
 }

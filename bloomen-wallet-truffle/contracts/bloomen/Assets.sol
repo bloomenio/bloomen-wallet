@@ -6,18 +6,26 @@ import "./token/ERC223ReceivingContract.sol";
 import "./token/ERC223.sol";
 import "../../node_modules/solidity-rlp/contracts/RLPReader.sol";
 import "../../node_modules/openzeppelin-solidity/contracts/math/SafeMath.sol";
+import "./dapp/lib/Strings.sol";
 
 contract  Assets is ERC223ReceivingContract{
-
+  
+  using Strings for *;
   using SafeMath for uint256;
   using RLPReader for bytes;
   using RLPReader for uint;
   using RLPReader for RLPReader.RLPItem;
-    
-  struct UserAssets {   
+
+  struct DappCtx {
+    string dappID;
+    mapping (address => UserAssets)  userAssets_;    
+  }
+
+  struct UserAssets { 
+    mapping (uint256 => uint) assetsIdx;  
     Asset[] assets;
   } 
-
+  
   struct Asset {   
     uint expirationDate;
     uint256 assetId;
@@ -28,7 +36,8 @@ contract  Assets is ERC223ReceivingContract{
 
   uint256 constant private PAGE_SIZE = 10;
 
-  mapping (address => UserAssets) private userAssets_; 
+  mapping (bytes32 => uint[]) private dappCtxhashIndexMap_;
+  DappCtx[] private dappCtxs_;
 
   Schemas private _schemas;
   ERC223 private _erc223;
@@ -38,26 +47,35 @@ contract  Assets is ERC223ReceivingContract{
     _schemas = Schemas(_schemasAddr);
   }
 
-  function checkOwnership(uint256 _assetId, uint256 _schemaId) public view returns (bool) {
-    return _checkOwnership(msg.sender, _assetId, _schemaId);  
+  function checkOwnershipOneAsset(uint256 _assetId, uint256 _schemaId, string memory dappId) public  returns (bool) {
+    return _checkOwnershipOneAsset(msg.sender, _assetId, _schemaId, dappId);  
   }
 
-  function checkOwnershipForAddress(address _target, uint256 _assetId, uint256 _schemaId) public view returns (bool) {
-    return _checkOwnership(_target, _assetId, _schemaId);  
+  function checkOwnershipMultipleAssets(uint256[] memory _assetsIds, uint256 _schemaId, string memory dappId) public  returns (bool[] memory) {
+    return _checkOwnershipMultipleAssets(msg.sender, _assetsIds, _schemaId, dappId);  
   }
 
-  function getAssetsPageCount() public view returns (uint256) {    
-    uint256 pages = userAssets_[msg.sender].assets.length / PAGE_SIZE;
-    if ((userAssets_[msg.sender].assets.length % PAGE_SIZE)>0) {
+  function checkOwnershipOneAssetForAddress(address _target, uint256 _assetId, uint256 _schemaId, string memory dappId) public  returns (bool) {
+    return _checkOwnershipOneAsset(_target, _assetId, _schemaId, dappId);  
+  }
+
+  function checkOwnershipMultipleAssetsForAddress(address _target, uint256[] memory _assetsIds, uint256 _schemaId, string memory dappId) public  returns (bool[] memory) {
+    return _checkOwnershipMultipleAssets(_target, _assetsIds, _schemaId, dappId);  
+  }
+
+  function getAssetsPageCount(string memory dappId) public  returns (uint256) {  
+    DappCtx storage ctx = _getDappCtx(dappId);  
+    uint256 pages = ctx.userAssets_[msg.sender].assets.length / PAGE_SIZE;
+    if ((ctx.userAssets_[msg.sender].assets.length % PAGE_SIZE)>0) {
       pages++;
     }
     return pages;
   }
 
-  function getAssets(uint256 _page) public view returns (Asset[] memory) {
-    
+  function getAssets(uint256 _page, string memory dappId) public  returns (Asset[] memory) {
+    DappCtx storage ctx = _getDappCtx(dappId);  
     uint256 transferIndex = PAGE_SIZE * _page - PAGE_SIZE;
-    Asset[] memory assets = userAssets_[msg.sender].assets;
+    Asset[] memory assets = ctx.userAssets_[msg.sender].assets;
 
     if (assets.length == 0 || transferIndex > assets.length - 1) {
       Asset[] memory empty;
@@ -86,11 +104,16 @@ contract  Assets is ERC223ReceivingContract{
     uint256 _schemaId = uint256(itemList[1].toUint());
 
     string memory _dappId = string(itemList[2].toBytes());
+
+    DappCtx storage ctx = _getDappCtx(_dappId); 
+
     string memory _description = string(itemList[3].toBytes());
 
     Schemas.Schema memory schema = _schemas.getSchema(_schemaId);
-    require(schema.amount == _amount, "incorrect amount");    
-    require(!_checkOwnership(_user, _assetId, _schemaId), "duplicated");
+    require(schema.amount >= _amount, "incorrect amount");    
+    require(schema.topPrice <= _amount, "incorrect amount");    
+    require(schema.dappId.toSlice().equals(_dappId.toSlice()),"incorrect dappId");    
+    require(!_checkOwnershipOneAsset(_user, _assetId, _schemaId,_dappId), "duplicated");
     
     uint pieValue = _amount;
 
@@ -101,25 +124,64 @@ contract  Assets is ERC223ReceivingContract{
     }
 
     _erc223.transfer(schema.clearingHouseRules[schema.clearingHouseRules.length-1].receptor, pieValue);
-    // registrar la compra
-    userAssets_[_user].assets.push(Asset(now + schema.assetLifeTime , _assetId, _schemaId, _dappId, _description));
+    //  purchase registry
+    ctx.userAssets_[_user].assets.push(Asset(now + schema.assetLifeTime , _assetId, _schemaId, _dappId, _description));
+
+    ctx.userAssets_[_user].assetsIdx[_assetId] = ctx.userAssets_[_user].assets.length - 1 ;
   }
 
-  function _checkOwnership(address _owner, uint256 _assetId, uint256 _schemaId) internal view returns (bool) {
-    
-    for (uint i = 0; i < userAssets_[_owner].assets.length; i++) {
-      Asset memory asset = userAssets_[_owner].assets[i];
+  function _checkOwnershipMultipleAssets(address _owner, uint256[] memory _assetsIds, uint256 _schemaId, string memory _dappId) internal  returns (bool[] memory) {
+        
+    bool[] memory assetOwnerShip  = new bool[](_assetsIds.length);    
 
-      if ( (asset.assetId == _assetId) && (asset.schemaId == _schemaId) && (asset.expirationDate > now)){
-        return true;
+    for (uint i = 0; i < _assetsIds.length-1; i++) {
+     assetOwnerShip[i] = _checkOwnershipOneAsset(_owner, _assetsIds[i] ,_schemaId, _dappId);
+    }
+
+    return assetOwnerShip;
+  }
+
+  function _checkOwnershipOneAsset(address _owner, uint256 _assetId, uint256 _schemaId, string memory _dappId) internal  returns (bool) {
+    DappCtx storage ctx = _getDappCtx(_dappId);  
+    
+    if(ctx.userAssets_[_owner].assets.length == 0){
+      return false;
+    }
+
+    uint idx = ctx.userAssets_[_owner].assetsIdx[_assetId];
+    Asset memory asset = ctx.userAssets_[_owner].assets[idx];
+    
+    if ((asset.expirationDate > now) && (asset.assetId == _assetId) && (_dappId.toSlice().equals(asset.dappId.toSlice()))){
+      return true;
+    }
+    else {
+      return false;
+    } 
+  }
+
+  function _calculatePercentage(uint theNumber, uint percentage) internal  returns (uint) {
+    return theNumber * percentage / 100 ;
+  }
+
+  function _getDappCtx(string memory dappId) internal returns (DappCtx storage) {
+    bytes32 dappIdHash = keccak256(bytes(dappId));
+    uint[] memory indexArray = dappCtxhashIndexMap_[dappIdHash];
+
+    if (indexArray.length > 0) {
+      // hash collision check
+      for (uint i = 0 ; i < indexArray.length ; i++) {
+        if (dappId.toSlice().equals(dappCtxs_[indexArray[i]].dappID.toSlice())) {
+          return dappCtxs_[indexArray[i]];
+        }
       }
     }
-    
-    return false;
-  }
 
-  function _calculatePercentage(uint theNumber, uint percentage) internal view returns (uint) {
-    return theNumber * percentage / 100 ;
+    dappCtxs_.push(DappCtx(dappId));
+    uint dappIndex = dappCtxs_.length-1;
+
+    dappCtxhashIndexMap_[dappIdHash].push(dappIndex);
+
+    return dappCtxs_[dappIndex];
   }
     
 }

@@ -3,6 +3,7 @@ var SafeMath = artifacts.require("../node_modules/openzeppelin-solidity/contract
 var RLPReader = artifacts.require("../node_modules/solidity-rlp/contracts/RLPReader.sol");
 var ERC223 = artifacts.require("./bloomen/token/ERC223");
 var Schemas = artifacts.require("./bloomen/Schemas");
+var Strings = artifacts.require("./dapp/lib/Strings.sol");
 
 var Assets = artifacts.require("./bloomen/Assets");
 
@@ -11,6 +12,7 @@ var Assets = artifacts.require("./bloomen/Assets");
     deployer
     .then(() => deployer.link(SafeMath, Assets))
     .then(() => deployer.link(RLPReader, Assets))
+    .then(() => deployer.link(Strings, Assets))
     .then(() => ERC223.deployed())
     .then((instance) => {
       _erc223 = instance;
