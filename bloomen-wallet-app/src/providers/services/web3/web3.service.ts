@@ -4,11 +4,13 @@ import { Observable, Subject, BehaviorSubject } from 'rxjs';
 
 // Ethereum
 import * as lightwallet from 'eth-lightwallet';
-const SignerProvider = require('ethjs-provider-signer');
+
 const Mnemonic = require('bitcore-mnemonic');
 
-declare var require: any;
-const Web3 = require('web3');
+import Web3 from 'web3';
+import * as Web3ProviderEngine from 'web3-provider-engine';
+import * as RpcSource from 'web3-provider-engine/subproviders/rpc';
+import * as HookedWalletSubprovider from 'web3-provider-engine/subproviders/hooked-wallet';
 
 // Environment
 import { environment } from '@env/environment';
@@ -20,18 +22,6 @@ import { Logger } from '@services/logger/logger.service';
 import { WEB3_CONSTANTS } from '@core/constants/web3.constants';
 
 const log = new Logger('web3.service');
-
-export class CustomHttpProvider {
-  private provider: any;
-
-  constructor(path: any, timeout: any) {
-    this.provider = new Web3.providers.HttpProvider(path, { timeout: timeout});
-  }
-
-  public sendAsync(payload: any, callback: any) {
-    return this.provider.send(payload, callback);
-  }
-}
 
 @Injectable()
 export class Web3Service {
@@ -52,7 +42,31 @@ export class Web3Service {
     this.currentBlockNumber = -1;
     this.watiningCallbacks = [];
     this.myAddress = new BehaviorSubject<string>(undefined);
-    this.web3 = new Web3();
+
+    const engine = new Web3ProviderEngine();
+
+    const web3Options = {
+      transactionConfirmationBlocks: 2,
+      transactionPollingTimeout: 1000,
+    };
+
+    this.web3 = new Web3(engine, null, web3Options);
+
+    engine.addProvider(new HookedWalletSubprovider({
+      getAccounts: (cb) => {
+        cb(undefined, this.globalKeystore.getAddresses());
+      },
+      signTransaction: (tx, cb) => {
+        this.globalKeystore.signTransaction(tx, cb);
+      },
+    }));
+
+    // data source
+    engine.addProvider(new RpcSource({
+      rpcUrl: environment.eth.ethRpcUrl,
+    }));
+
+    engine.start();
 
     if (document.readyState === WEB3_CONSTANTS.READY_STATE.COMPLETE) {
       this.bootstrapWeb3(environment.eth.generalSeed);
@@ -139,7 +153,6 @@ export class Web3Service {
             this.globalKeystore.generateNewAddress(pwDerivedKey, 1);
             const addresses = this.globalKeystore.getAddresses();
             this.myAddress.next(addresses[0]);
-            this._setWeb3Provider(this.globalKeystore);
             this.isReady = true;
             this.watiningCallbacks.forEach((element: any) => {
               element();
@@ -163,13 +176,5 @@ export class Web3Service {
       setTimeout(() => this._doTick(), environment.eth.ethBlockPollingTime);
     }, () => setTimeout(() => this._doTick(), environment.eth.ethBlockPollingTime));
   }
-
-  private _setWeb3Provider(_globalKeystore: any) {
-    _globalKeystore.provider = CustomHttpProvider;
-    const provider = new SignerProvider(environment.eth.ethRpcUrl, _globalKeystore);
-    provider.options = _globalKeystore;
-    this.web3.setProvider(provider);
-  }
-
 
 }
