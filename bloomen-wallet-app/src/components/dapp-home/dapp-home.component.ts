@@ -20,10 +20,15 @@ import { AssetsContract, DevicesContract, ERC223Contract } from '@core/core.modu
 import { TranslateService } from '@ngx-translate/core';
 import { DappGeneralDialogComponent } from '@components/dapp-general-dialog/dapp-general-dialog.component';
 
-import { AllowAndBuy, AllowObject, BuyObject } from '@models/operations.model';
-import { resolve } from 'q';
+import { AllowAndBuy } from '@models/operations.model';
 
 const log = new Logger('dapp-home.component');
+
+enum QR_ACTION {
+  BUY ,
+  ALLOW,
+  ALLOW_BUY
+}
 
 /**
  * Dapp-home component
@@ -36,6 +41,8 @@ const log = new Logger('dapp-home.component');
 export class DappHomeComponent implements OnInit, OnDestroy {
 
 
+
+
   private static headerOffsetHeight: number;
 
   public dapp$: Subscription;
@@ -46,8 +53,6 @@ export class DappHomeComponent implements OnInit, OnDestroy {
 
   public txActivityArray: TxActivityModel[];
 
-  public buyObject: any;
-
   public isLoading$: Observable<boolean>;
 
 
@@ -56,11 +61,6 @@ export class DappHomeComponent implements OnInit, OnDestroy {
   @ViewChild('recentActivity', { read: ElementRef }) public recentActivity: ElementRef;
   @ViewChild('newContent', { read: ElementRef }) public newContent: ElementRef;
 
-
-
-  /**
-   * Constructor to declare all the necesary to initialize the component.
-   */
   constructor(
     public snackBar: MatSnackBar,
     private store: Store<any>,
@@ -120,26 +120,23 @@ export class DappHomeComponent implements OnInit, OnDestroy {
 
       switch (operation) {
         case QR_VALIDATOR.BUY:
-          const buyObject: BuyObject = {
+          const buyObject: AllowAndBuy = {
             assetId: parseInt(params[0], 10),
             schemaId: parseInt(params[1], 10),
             amount: parseInt(params[2], 10),
             dappId: params[3],
             description: decodeURI(params[4])
           };
-          console.log('Purchase', buyObject);
-          this.buyObject = buyObject;
-          this.generatePurchase();
+          this.processRequest(QR_ACTION.BUY, buyObject);
           break;
         case QR_VALIDATOR.ALLOW:
-          const allowObject: AllowObject = {
+          const allowObject: AllowAndBuy = {
             deviceHash: decodeURI(params[0]),
             assetId: parseInt(params[1], 10),
             schemaId: parseInt(params[2], 10),
             dappId: params[3]
           };
-          console.log('Allow', allowObject);
-          this.Allow(allowObject);
+          this.processRequest(QR_ACTION.ALLOW, allowObject);
           break;
         case QR_VALIDATOR.ALLOW_BUY:
           const allowBuyObject: AllowAndBuy = {
@@ -150,8 +147,7 @@ export class DappHomeComponent implements OnInit, OnDestroy {
             description: decodeURI(params[4]),
             deviceHash: decodeURI(params[5])
           };
-          console.log('Allow and Buy', allowBuyObject);
-          this.generteAllow(allowBuyObject);
+          this.processRequest(QR_ACTION.ALLOW_BUY, allowBuyObject);
           break;
         default:
           log.error('KO', 'Bad QR prefix');
@@ -168,77 +164,100 @@ export class DappHomeComponent implements OnInit, OnDestroy {
     }
   }
 
+  private async processRequest(action: QR_ACTION, request: AllowAndBuy) {
 
-  private generatePurchase() {
+    const isowner = await this.assets.checkOwnership(request.assetId, request.schemaId, request.dappId);
+
+    switch (action) {
+      case QR_ACTION.ALLOW:
+        if (isowner) {
+          await this.generateAllow(request);
+        } else {
+          this.snackBar.open(this.translate.instant('common.noitemfound_nowbuy'), null, {
+            duration: 2000,
+          });
+        }
+        break;
+      case QR_ACTION.BUY:
+        if (!isowner) {
+          await this.generatePurchase(request);
+        } else {
+          this.snackBar.open(this.translate.instant('common.itemfounded'), null, {
+            duration: 2000,
+          });
+        }
+        break;
+      case QR_ACTION.ALLOW_BUY:
+        if (!isowner) {
+          // ask for buy
+          const purchased = await this.generatePurchase(request);
+          if ( purchased ) {
+            this.generateAllow(request);
+          }
+        } else {
+          this.generateAllow(request);
+        }
+        break;
+    }
+  }
+
+  private  generatePurchase( buyObject: AllowAndBuy ): Promise<boolean> {
     const dialogRef = this.dialog.open(DappGeneralDialogComponent, {
       width: '250px',
       height: '200px',
       data: {
         title: this.translate.instant('dapp.notifications.dialog_buy.title'),
         description: this.translate.instant('dapp.notifications.dialog_buy.description', {
-          id: this.buyObject.assetId,
-          title: this.buyObject.description,
-          price: this.buyObject.amount
+          id: buyObject.assetId,
+          title: buyObject.description,
+          price: buyObject.amount
         }),
         buttonAccept: this.translate.instant('common.accept'),
         buttonCancel: this.translate.instant('common.cancel')
       }
     });
 
-    dialogRef.afterClosed().subscribe(value => {
-      if (value) {
-        this.doBuyTranscation();
-      }
-    });
-  }
-
-  public doBuyTranscation(): Promise<boolean> {
-    return new Promise<boolean>((res, rej) => {
-      this.erc223.buy(this.buyObject.assetId, this.buyObject.schemaId, this.buyObject.amount, this.buyObject.dappId, this.buyObject.description)
-        .then((result: any) => {
-          log.debug('OK', result);
-          this.snackBar.open(this.translate.instant('common.transaction_success'), null, {
-            duration: 2000,
+    return new Promise<boolean>((resolve, reject) => {
+      dialogRef.afterClosed().subscribe(value => {
+        if (value) {
+          this.erc223.buy(buyObject.assetId, buyObject.schemaId, buyObject.amount, buyObject.dappId, buyObject.description)
+          .then((result: any) => {
+            log.debug('OK', result);
+            this.snackBar.open(this.translate.instant('common.transaction_success'), null, {
+              duration: 2000,
+            });
+            resolve(true);
+          }, (error: any) => {
+            log.debug('KO', error);
+            this.snackBar.open(this.translate.instant('common.transaction_error'), null, {
+              duration: 2000,
+            });
+            resolve(false);
           });
-          res();
-        }, (error: any) => {
-          log.debug('KO', error);
-          this.snackBar.open(this.translate.instant('common.transaction_error'), null, {
-            duration: 2000,
-          });
-          rej();
-        });
-    });
-  }
-
-  private Allow(allowObject: any): Promise<boolean> {
-    return new Promise<boolean>((res, rej) => {
-      this.devices.handshake(allowObject.deviceHash, allowObject.assetId, allowObject.schemaId, allowObject.dappId)
-        .then((result: any) => {
-          log.debug('FOUNDED', result);
-          this.snackBar.open(this.translate.instant('common.itemfounded'), null, {
-            duration: 2000,
-          });
-          res();
-        }, (error: any) => {
-          log.debug('NO-FOUND_THEN-BUY', error);
-          this.snackBar.open(this.translate.instant('common.noitemfound_nowbuy'), null, {
-            duration: 2000,
-          });
-          rej();
-        });
-    });
-  }
-
-  private generteAllow(allowObject: any) {
-    this.Allow(allowObject).catch(() => {
-      this.buyObject = allowObject;
-      this.doBuyTranscation().then(() => {
-        this.Allow(allowObject);
-      }, () => {
-        log.debug(`you can't buy it =>`);
+        } else {
+          // user cancel purchase
+          resolve(false);
+        }
       });
     });
   }
 
+  private generateAllow(allowObject: any): Promise<boolean> {
+    return new Promise<boolean>((resolve, reject) => {
+      this.devices.handshake(allowObject.deviceHash, allowObject.assetId, allowObject.schemaId, allowObject.dappId)
+        .then((result: any) => {
+          this.snackBar.open(this.translate.instant('common.itemfounded'), null, {
+            duration: 2000,
+          });
+          resolve(true);
+        }, (error: any) => {
+          this.snackBar.open(this.translate.instant('common.noitemfound_nowbuy'), null, {
+            duration: 2000,
+          });
+          reject(false);
+        });
+    });
+  }
+
 }
+

@@ -25,12 +25,17 @@ export class AssetsContract extends Contract {
   public static get ABI() { return JSON.abi; }
   public static get ADDRESS() { return JSON.networks[environment.eth.contractConfig.networkId].address; }
 
-  public getAssets(page: number, dappId: string) {
+  public  getAssets(page: number, dappId: string) {
      return this.contract.methods.getAssets(page, dappId).call(this.args);
   }
 
   public getAssetsPageCount(dappId: string) {
     return this.contract.methods.getAssetsPageCount(dappId).call(this.args);
   }
+
+  public checkOwnership(assetId: number, schemaId: number, dappId: string)  {
+    return this.contract.methods.checkOwnershipOneAsset(assetId, schemaId, dappId).call(this.args);
+  }
+
 
 }
