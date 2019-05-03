@@ -89,7 +89,7 @@ export class TransactionService {
         this.web3Service.checkTransactionStatus(tx.txhash).then(
           (txStatus: any) => {
             if (txStatus) {
-              if ((txStatus.gasUsed > 0) && ((tx.gas - txStatus.gasUsed) > 0)) {
+              if (txStatus.status) {
                 tx.resolve(txStatus);
               } else {
                 tx.reject(txStatus);
