@@ -246,12 +246,12 @@ export class DappHomeComponent implements OnInit, OnDestroy {
     return new Promise<boolean>((resolve, reject) => {
       this.devices.handshake(allowObject.deviceHash, allowObject.assetId, allowObject.schemaId, allowObject.dappId)
         .then((result: any) => {
-          this.snackBar.open(this.translate.instant('common.itemfounded'), null, {
+          this.snackBar.open(this.translate.instant('common.transaction_success'), null, {
             duration: 2000,
           });
           resolve(true);
         }, (error: any) => {
-          this.snackBar.open(this.translate.instant('common.noitemfound_nowbuy'), null, {
+          this.snackBar.open(this.translate.instant('common.transaction_error'), null, {
             duration: 2000,
           });
           reject(false);
