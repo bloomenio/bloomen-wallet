@@ -9,6 +9,10 @@ const routes: Routes = [
       loadChildren: 'pages/bloomen-cards/bloomen-cards.module#BloomenCardsModule'
     },
     {
+      path: 'device-identity',
+      loadChildren: 'pages/device-identity/device-identity.module#DeviceIdentityModule'
+    },
+    {
       path: 'videos',
       loadChildren: 'pages/videos/videos.module#VideosModule'
     },
