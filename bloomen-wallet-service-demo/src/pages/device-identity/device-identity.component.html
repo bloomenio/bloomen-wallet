@@ -1,7 +1,8 @@
 <div class="balance-wrapper" fxLayout="column" fxLayoutAlign="start">
         <div class="title">
-            Device Identity
+            Device Identity {{deviceIdentity$ | async}}
         </div>
-
-    
+        <div class="qr-box">
+            <qrcode [qrdata]="deviceIdentity$ | async" [size]="150" [level]="'Q'"></qrcode>
+        </div>
 </div>

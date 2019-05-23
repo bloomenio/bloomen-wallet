@@ -3,7 +3,6 @@ import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import * as fromDeviceIdentityActions from '@stores/device-identity/device-identity.actions';
-import { windowWhen } from 'rxjs/operators';
 
 @Component({
   selector: 'blo-device-identity-option-menu',
