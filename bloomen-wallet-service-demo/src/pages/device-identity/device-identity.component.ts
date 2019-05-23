@@ -10,6 +10,7 @@ import { MatDialog } from '@angular/material';
 import * as fromDeviceIdentitySelectors from '@stores/device-identity/device-identity.selectors';
 import { DeviceIdentityStateModel } from '@core/models/device-identity-state.model';
 
+
 const log = new Logger('video.component');
 
 
@@ -25,6 +26,7 @@ const log = new Logger('video.component');
 export class DeviceIdentityComponent implements OnInit {
 
   public deviceIdentity$: Observable<string>;
+
 
   constructor(
     private store: Store<DeviceIdentityStateModel>,

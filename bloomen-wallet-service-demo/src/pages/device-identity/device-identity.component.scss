@@ -8,25 +8,43 @@
     margin: 8px 0;
   }
 
-  .cards {
-    color: #4980C9;
-  }
+  .actions-wrapper {
+    width: 100%;
 
-  .item-wrapper {
-    height: 364px;
-    margin: 16px 4px;
-    .add-balance {
-      border-style: dashed;
-      border-color: white;
-      mat-icon {
-        height: 60px;
-        width: 60px;
-        font-size: 60px;
+    .action-wrapper {
+      text-align: center;
+      color: white;
+
+      .action-text {
+        padding: 16px;
+        font-size: $font-size-xxxl;
       }
     }
 
-    .add-balance-detail {
-      background-color: white;
+    .qr-wrapper {
+      border-radius: 10px;
+
+      &.allow-qr {
+        // background-color: #3F9C35;
+        background: rgba(64,156,53,1);
+        background: -moz-linear-gradient(left, rgba(64,156,53,1) 0%, rgba(64,156,53,1) 29%, rgba(73,129,201,1) 82%, rgba(73,129,201,1) 100%);
+        background: -webkit-gradient(left top, right top, color-stop(0%, rgba(64,156,53,1)), color-stop(29%, rgba(64,156,53,1)), color-stop(82%, rgba(73,129,201,1)), color-stop(100%, rgba(73,129,201,1)));
+        background: -webkit-linear-gradient(left, rgba(64,156,53,1) 0%, rgba(64,156,53,1) 29%, rgba(73,129,201,1) 82%, rgba(73,129,201,1) 100%);
+        background: -o-linear-gradient(left, rgba(64,156,53,1) 0%, rgba(64,156,53,1) 29%, rgba(73,129,201,1) 82%, rgba(73,129,201,1) 100%);
+        background: -ms-linear-gradient(left, rgba(64,156,53,1) 0%, rgba(64,156,53,1) 29%, rgba(73,129,201,1) 82%, rgba(73,129,201,1) 100%);
+        background: linear-gradient(to right, rgba(64,156,53,1) 0%, rgba(64,156,53,1) 29%, rgba(73,129,201,1) 82%, rgba(73,129,201,1) 100%);
+      }
+
+
+
+      .qr-box {
+        border-radius: 10px 0 0 10px;
+        margin: 2px;
+        padding: 24px;
+        background-color: white;
+      }
+
+      
     }
   }
 }

@@ -1,8 +1,14 @@
 <div class="balance-wrapper" fxLayout="column" fxLayoutAlign="start">
-        <div class="title">
-            Device Identity {{deviceIdentity$ | async}}
-        </div>
-        <div class="qr-box">
-            <qrcode [qrdata]="deviceIdentity$ | async" [size]="150" [level]="'Q'"></qrcode>
-        </div>
+
+        <div class="actions-wrapper" fxLayout="row" fxLayoutAlign="center">
+            <div fxFlex="100" class="qr-wrapper allow-qr" fxLayout="row" fxLayoutAlign="space-between">
+                <div class="qr-box">
+                    <qrcode [qrdata]="deviceIdentity$ | async" [size]="150" [level]="'Q'"></qrcode>
+                </div>
+                <div class="action-wrapper" fxFlex fxLayout="column" fxLayoutAlign="start center">
+                    <div class="action-text">Device Identity </div>
+                    <div class="action-text">{{deviceIdentity$ | async}}</div>
+                </div>
+            </div>
+          </div>
 </div>

@@ -15,7 +15,7 @@ import { Logger } from '@services/logger/logger.service';
 import { DeviceIdentityStateModel } from '@core/models/device-identity-state.model';
 import { DeviceIdentityDatabaseService } from '@db/device-identity-database.service';
 import { DEVICE_IDENTITY_CONSTANTS} from '@core/constants/device-identity.constants';
-
+import { DeviceDetectorService } from 'ngx-device-detector';
 
 const log = new Logger('device-identity.effects');
 
@@ -25,6 +25,7 @@ export class DeviceIdentityEffects {
     constructor(
         private actions$: Actions<fromActions.DeviceIdentityActionActions>,
         private store: Store<DeviceIdentityStateModel>,
+        private deviceService: DeviceDetectorService,
         private deviceIdentityDatabaseService: DeviceIdentityDatabaseService,
     ) { }
 
@@ -47,7 +48,12 @@ export class DeviceIdentityEffects {
     @Effect() public changeDeviceIdentity = this.actions$.pipe(
         ofType(fromActions.DeviceIdentityActionTypes.CHANGE_DEVICE_IDENTITY),
         switchMap(() => {
-            const newIndentity = 'identity' + new Date().getTime() ;
+            const deviceInfo = this.deviceService.getDeviceInfo();
+            const deviceType = this.deviceService.isDesktop() ? 'Desktop' :
+                                    this.deviceService.isMobile() ? 'Mobile' :
+                                        this.deviceService.isTablet() ? 'Tablet' : 'Unknow' ;
+            const newIndentity = 'os:' + deviceInfo.os + ' browser:' +  deviceInfo.browser
+                                       + ' deviceType:' + deviceType + ' timestamp:' + new Date().toTimeString() ;
 
             return from(this.deviceIdentityDatabaseService.set(DEVICE_IDENTITY_CONSTANTS.DEVICE_IDENTITY, newIndentity).pipe(
                 map(() => new fromActions.ChangeIdentitySuccess({ id: newIndentity }))
