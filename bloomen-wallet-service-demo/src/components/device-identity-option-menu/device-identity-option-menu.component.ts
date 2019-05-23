@@ -2,7 +2,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 
-import * as fromCollaboratorActions from '@stores/collaborator/collaborator.actions';
+import * as fromDeviceIdentityActions from '@stores/device-identity/device-identity.actions';
 import { windowWhen } from 'rxjs/operators';
 
 @Component({
@@ -17,7 +17,7 @@ export class DeviceIdentityOptionMenuComponent {
   ) {}
 
   public doNewIdentity() {
-    console.log('doNewIdentity');
+    this.store.dispatch(new fromDeviceIdentityActions.ChangeIdentity());
   }
 
 }

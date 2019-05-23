@@ -8,6 +8,7 @@ import { MaterialModule } from './material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { ApplicationDataStoreModule } from '@stores/application-data/application-data.module';
+import { DeviceIdentityStoreModule } from '@stores/device-identity/device-identity.module';
 
 import { environment } from '@env/environment';
 import { CoreModule } from '@core/core.module';
@@ -22,10 +23,13 @@ import { Store } from '@ngrx/store';
 import * as fromAppActions from '@stores/application-data/application-data.actions';
 import * as fromCollaboratorActions from '@stores/collaborator/collaborator.actions';
 import * as fromTransactionActions from '@stores/transaction/transaction.actions';
+import * as fromDeviceIdentityActions from '@stores/device-identity/device-identity.actions';
 
 import * as fromAppSelectors from '@stores/application-data/application-data.selectors';
 import * as fromCollaboratorSelectors from '@stores/collaborator/collaborator.selectors';
 import * as fromTransactionSelectors from '@stores/transaction/transaction.selectors';
+import * as fromDeviceIdentitySelectors from '@stores/device-identity/device-identity.selectors';
+
 
 
 import { skipWhile, first } from 'rxjs/operators';
@@ -54,12 +58,17 @@ export function onAppInit(store: Store<any>): () => Promise<any> {
         return !value;
       }), first());
 
-      forkJoin([appInit$, collaboratorInit$, transactionInit$]).subscribe(() => {
+      const deviceIdentityInit$ = store.select(fromDeviceIdentitySelectors.getDeviceIdentity).pipe(skipWhile((value) => {
+        return !value;
+      }), first());
+
+      forkJoin([appInit$, collaboratorInit$, transactionInit$, deviceIdentityInit$]).subscribe(() => {
         resolve();
       });
       store.dispatch(new fromAppActions.InitAppData());
       store.dispatch(new fromCollaboratorActions.InitCollaborator());
       store.dispatch(new fromTransactionActions.InitTransaction());
+      store.dispatch(new fromDeviceIdentityActions.InitDeviceIdentity());
     });
   };
 }
@@ -81,6 +90,7 @@ export function onAppInit(store: Store<any>): () => Promise<any> {
     HomeModule,
     FlexLayoutModule,
     ApplicationDataStoreModule,
+    DeviceIdentityStoreModule,
     CollaboratorStoreModule,
     BalanceStoreModule,
     TransactionStoreModule,
