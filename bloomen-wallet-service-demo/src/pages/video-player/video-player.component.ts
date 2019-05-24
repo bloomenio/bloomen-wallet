@@ -42,7 +42,12 @@ export class VideoPlayerComponent implements OnInit {
     this.videoId = this.activatedRoute.snapshot.paramMap.get('videoId');
     this.video = MediaMock[ASSETS_CONSTANTS.VIDEOS][this.videoId];
     this.videoUrl = `${environment.serverUrl}${this.video.media.url}`;
-    setTimeout(() => this.openDialog());
+
+    if ( this.video.amount > 0 ) {
+      setTimeout(() => this.openDialog());
+    } else {
+      setTimeout(() => this.api.play());
+    }
   }
 
   public onPlayerReady(api: VgAPI) {

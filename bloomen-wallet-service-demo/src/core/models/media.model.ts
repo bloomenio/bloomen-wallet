@@ -1,6 +1,7 @@
 export interface MediaModel {
     title: string;
     subtitle: string;
+    amount: number;
     description: string;
     previewImg: string;
     media?: MediaModel.Media;

@@ -15,7 +15,10 @@
                 <span>{{videos['1001'].subtitle | uppercase}}</span>
             </mat-card-subtitle>
             <mat-card-title>
-                <span>{{videos['1001'].title}}</span>
+                <div Flex fxFlexFill fxLayout="row" fxLayoutAlign="space-between">
+                    <span>{{videos['1001'].title}}</span>
+                    <span>{{videos['1001'].amount!="0"?videos['1001'].amount + "$":"FREE"}}</span> 
+                </div>   
             </mat-card-title>
         </mat-card>
     </div>
@@ -29,7 +32,10 @@
                 <span>{{videos['1002'].subtitle | uppercase}}</span>
             </mat-card-subtitle>
             <mat-card-title>
-                <span>{{videos['1002'].title}}</span>
+                <div Flex fxFlexFill fxLayout="row" fxLayoutAlign="space-between">
+                    <span>{{videos['1002'].title}}</span> 
+                    <span>{{(videos['1002'].amount!="0")?videos['1002'].amount + "$":"FREE"}}</span> 
+                </div>                
             </mat-card-title>
         </mat-card>
     </div>
@@ -43,7 +49,10 @@
                 <span>{{videos['1003'].subtitle | uppercase}}</span>
             </mat-card-subtitle>
             <mat-card-title>
-                <span>{{videos['1003'].title}}</span>
+                <div Flex fxFlexFill fxLayout="row" fxLayoutAlign="space-between">
+                    <span>{{videos['1003'].title}}</span>
+                    <span>{{videos['1003'].amount!="0"?videos['1003'].amount + "$":"FREE"}}</span> 
+                </div>   
             </mat-card-title>
         </mat-card>
     </div>
@@ -58,7 +67,10 @@
                 <span>{{videos['1004'].subtitle | uppercase}}</span>
             </mat-card-subtitle>
             <mat-card-title>
-                <span>{{videos['1004'].title}}</span>
+                <div Flex fxFlexFill fxLayout="row" fxLayoutAlign="space-between">
+                    <span>{{videos['1004'].title}}</span>
+                    <span>{{videos['1004'].amount!="0"?videos['1004'].amount + "$":"FREE"}}</span> 
+                </div>   
             </mat-card-title>
         </mat-card>
     </div>
@@ -73,7 +85,10 @@
                 <span>{{videos['1005'].subtitle | uppercase}}</span>
             </mat-card-subtitle>
             <mat-card-title>
-                <span>{{videos['1005'].title}}</span>
+                <div Flex fxFlexFill fxLayout="row" fxLayoutAlign="space-between">
+                    <span>{{videos['1005'].title}}</span>
+                    <span>{{videos['1005'].amount!="0"?videos['1005'].amount + "$":"FREE"}}</span> 
+                </div>   
             </mat-card-title>
         </mat-card>
     </div>

@@ -3,6 +3,7 @@
         "1001": {
             "title": "Smart Stadium",
             "subtitle": "VIDEO",
+            "amount": 0,
             "description": "Scan QR code to buy or play the video",
             "previewImg": "assets/videos/symbiote.png",
             "media": {
@@ -14,6 +15,7 @@
         "1002": {
             "title": "Connected Office",
             "subtitle": "VIDEO",
+            "amount": 100,
             "description": "Scan QR code to buy or play the video",
             "previewImg": "assets/videos/ConnectedOffice.png",
             "media": {
@@ -25,6 +27,7 @@
         "1003": {
             "title": "Holo glasses",
             "subtitle": "VIDEO",
+            "amount": 100,
             "description": "Scan QR code to buy or play the video",
             "previewImg": "assets/videos/hololens.png",
             "media": {
@@ -36,6 +39,7 @@
         "1004": {
             "title": "Smart Retail",
             "subtitle": "VIDEO",
+            "amount": 0,
             "description": "Scan QR code to buy or play the video",
             "previewImg": "assets/videos/smartretail.png",
             "media": {
@@ -47,6 +51,7 @@
         "1005": {
             "title": "Wearlumb",
             "subtitle": "VIDEO",
+            "amount": 100,
             "description": "Scan QR code to buy or play the video",
             "previewImg": "assets/videos/wearlumb.png",
             "media": {

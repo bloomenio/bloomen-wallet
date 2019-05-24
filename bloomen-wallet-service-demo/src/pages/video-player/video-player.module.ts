@@ -20,6 +20,7 @@ import { VgControlsModule } from 'videogular2/controls';
 import { VgOverlayPlayModule } from 'videogular2/overlay-play';
 import { VgBufferingModule } from 'videogular2/buffering';
 import { MenuModule } from '@components/menu/menu.module';
+import { VideoPlayerOptionMenuModule } from '@components/video-player-option-menu/video-player-option-menu.module';
 
 /**
  * Module to import and export all the components for the home page.
@@ -34,6 +35,7 @@ import { MenuModule } from '@components/menu/menu.module';
     VideoPlayerRoutingModule,
     CredentialDialogModule,
     MenuModule,
+    VideoPlayerOptionMenuModule,
 
     // Angular player
     VgCoreModule,

@@ -10,11 +10,11 @@ export function debug(
 ): ActionReducer<AppState> {
   return function(state, action) {
     const newState = reducer(state, action);
-    logger.debug(`[DEBUG] action: ${action.type}`, {
-      payload: (<any>action).payload,
-      oldState: state,
-      newState
-    });
+    // logger.debug(`[DEBUG] action: ${action.type}`, {
+    //   payload: (<any>action).payload,
+    //   oldState: state,
+    //   newState
+    // });
     return newState;
   };
 }

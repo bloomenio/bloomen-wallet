@@ -41,6 +41,7 @@ import { TransactionStoreModule } from '@stores/transaction/transaction.module';
 import { BalanceStoreModule } from '@stores/balance/balance.module';
 import { DashboardOptionMenuModule } from '@components/dashboard-option-menu/dashboard-option-menu.module';
 import { DeviceIdentityOptionMenuModule } from '@components/device-identity-option-menu/device-identity-option-menu.module';
+import {VideoPlayerOptionMenuModule} from '@components/video-player-option-menu/video-player-option-menu.module';
 
 import { DeviceDetectorModule } from 'ngx-device-detector';
 
@@ -99,6 +100,7 @@ export function onAppInit(store: Store<any>): () => Promise<any> {
     TransactionStoreModule,
     DashboardOptionMenuModule,
     DeviceIdentityOptionMenuModule,
+    VideoPlayerOptionMenuModule,
     StoreDevtoolsModule.instrument(devToolsConfig),
     DeviceDetectorModule.forRoot(),
     AppRoutingModule // must be imported as the last module as it contains the fallback route

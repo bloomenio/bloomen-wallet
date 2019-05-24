@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { extract } from '@services/i18n/i18n.service';
 import { VideoPlayerComponent } from './video-player.component';
-import { MenuComponent } from '@components/menu/menu.component';
+import { VideoPlayerOptionMenuComponent } from '@components/video-player-option-menu/video-player-option-menu.component';
 
 
 const routes: Routes = [
@@ -14,7 +14,7 @@ const routes: Routes = [
       title: extract('Video Player'),
       shellOptions: {
         hasBackButton: true,
-        auxiliarOptionsComponent: MenuComponent
+        auxiliarOptionsComponent: VideoPlayerOptionMenuComponent
       }
     },
   }
