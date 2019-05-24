@@ -5,6 +5,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { QRCodeModule } from 'angularx-qrcode';
+import { ClipboardModule } from 'ngx-clipboard';
 
 
 // Modules
@@ -23,6 +24,7 @@ import { FormsModule } from '@angular/forms';
     FlexLayoutModule,
     MaterialModule,
     QRCodeModule,
+    ClipboardModule
   ],
   declarations: [CredentialDialogComponent],
   exports: [CredentialDialogComponent],

@@ -8,7 +8,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { SharedModule } from '@shared/shared.module';
 import { MaterialModule } from '@app/material.module';
 import { BloomenCardsRoutingModule } from './bloomen-cards-routing.module';
-import { ClipboardModule } from 'ngx-clipboard';
+
 // Home
 import { BloomenCardsComponent } from './bloomen-cards.component';
 import { CardZoomDialogModule } from '@components/card-zoom-dialog/card-zoom-dialog.module';
@@ -24,8 +24,7 @@ import { CardZoomDialogModule } from '@components/card-zoom-dialog/card-zoom-dia
     FlexLayoutModule,
     MaterialModule,
     CardZoomDialogModule,
-    BloomenCardsRoutingModule,
-    ClipboardModule
+    BloomenCardsRoutingModule
   ],
   declarations: [BloomenCardsComponent]
 })
