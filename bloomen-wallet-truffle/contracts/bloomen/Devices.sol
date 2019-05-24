@@ -49,18 +49,20 @@ contract Devices {
     return allowed;
   }
 
-  function checkOwnershipForDeviceMultipleAssets(bytes32 _deviceHash, uint256[] memory _assetIds, string memory dappId) public  returns (bool[] memory) {
+  function checkOwnershipForDeviceMultipleAssets(string memory _deviceString, uint256[] memory _assetIds, string memory dappId) public  returns (bool[] memory) {
     DappCtx storage ctx = _getDappCtx(dappId);
+    bytes32 _deviceHash = keccak256(bytes(_deviceString));
     require(ctx.deviceHashes_[_deviceHash] != address(0), "not exist");
     require(_assetIds.length > 0, "empty assets");
-    
+  
     Device memory device = ctx.userDevices_[ctx.deviceHashes_[_deviceHash]].devices[_deviceHash];
 
     return _assets.checkOwnershipMultipleAssetsForAddress(ctx.deviceHashes_[_deviceHash],_assetIds,device.schemaId,device.dappId);
   }
 
-  function checkOwnershipOneAssetForDevice(bytes32 _deviceHash, uint256 _assetId, string memory dappId) public  returns (bool) {
+  function checkOwnershipOneAssetForDevice(string memory _deviceString, uint256 _assetId, string memory dappId) public  returns (bool) {
     DappCtx storage ctx = _getDappCtx(dappId);
+    bytes32 _deviceHash = keccak256(bytes(_deviceString));
     require(ctx.deviceHashes_[_deviceHash] != address(0), "not exist");
     
     Device storage device = ctx.userDevices_[ctx.deviceHashes_[_deviceHash]].devices[_deviceHash];

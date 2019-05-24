@@ -4,35 +4,35 @@
         "1001": {
             "dappId": "MWC-VIDEO",
             "assetKey": "1001",
-            "schemaId": "20",
+            "schemaId": "202",
             "amount": "100",
             "description": "Smart Stadium"
         },
         "1002": {
             "dappId": "MWC-VIDEO",
             "assetKey": "1002",
-            "schemaId": "20",
+            "schemaId": "202",
             "amount": "100",
             "description": "Connected office"
         },
         "1003": {
             "dappId": "MWC-VIDEO",
             "assetKey": "1003",
-            "schemaId": "20",
+            "schemaId": "202",
             "amount": "100",
             "description": "Holo glasses"
         },
         "1004": {
             "dappId": "MWC-VIDEO",
             "assetKey": "1004",
-            "schemaId": "20",
+            "schemaId": "202",
             "amount": "100",
             "description": "Smart Retail"
         },
         "1005": {
             "dappId": "MWC-VIDEO",
             "assetKey": "1005",
-            "schemaId": "20",
+            "schemaId": "202",
             "amount": "100",
             "description": "Wearlumb"
         }
@@ -42,28 +42,28 @@
         "2001": {
             "dappId": "MWC-FACILITIES",
             "assetKey": "2001",
-            "schemaId": "21",
+            "schemaId": "301",
             "amount": "100",
             "description": "Scooter test"
         },
         "2002": {
             "dappId": "MWC-FACILITIES",
             "assetKey": "2002",
-            "schemaId": "21",
+            "schemaId": "301",
             "amount": "100",
             "description": "Motorcycle test"
         },
         "2003": {
             "dappId": "MWC-FACILITIES",
             "assetKey": "2003",
-            "schemaId": "21",
+            "schemaId": "301",
             "amount": "100",
             "description": "Green car test"
         },
         "2004": {
             "dappId": "MWC-FACILITIES",
             "assetKey": "2004",
-            "schemaId": "21",
+            "schemaId": "301",
             "amount": "100",
             "description": "Yellow car test"
         }
@@ -73,21 +73,21 @@
         "3001": {
             "dappId": "MWC-SMART-OFFICE",
             "assetKey": "3001",
-            "schemaId": "22",
+            "schemaId": "401",
             "amount": "100",
             "description": "Reserve desk test"
         },
         "3002": {
             "dappId": "MWC-SMART-OFFICE",
             "assetKey": "3002",
-            "schemaId": "22",
+            "schemaId": "401",
             "amount": "100",
             "description": "Reserve meeting test"
         },
         "3003": {
             "dappId": "MWC-SMART-OFFICE",
             "assetKey": "3003",
-            "schemaId": "22",
+            "schemaId": "401",
             "amount": "100",
             "description": "Office printer test"
         }
