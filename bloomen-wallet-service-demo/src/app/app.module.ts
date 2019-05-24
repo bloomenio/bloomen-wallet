@@ -44,6 +44,7 @@ import { DeviceIdentityOptionMenuModule } from '@components/device-identity-opti
 
 import { DeviceDetectorModule } from 'ngx-device-detector';
 
+
 export function onAppInit(store: Store<any>): () => Promise<any> {
   return (): Promise<any> => {
     return new Promise<any>((resolve, reject) => {
