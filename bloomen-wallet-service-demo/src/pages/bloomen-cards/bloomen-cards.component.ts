@@ -28,7 +28,8 @@ export class BloomenCardsComponent {
       maxWidth: '55vw',
       panelClass: 'bloomen-card-dialog',
       data: {
-        img: card
+        img: card.img,
+        secret: card.secret
       }
     });
 

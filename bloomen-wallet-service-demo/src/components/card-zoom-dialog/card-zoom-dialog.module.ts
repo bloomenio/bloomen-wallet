@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { ClipboardModule } from 'ngx-clipboard';
 
 // Modules
 import { MaterialModule } from '@app/material.module';
@@ -19,7 +20,8 @@ import { FormsModule } from '@angular/forms';
     TranslateModule,
     RouterModule,
     FlexLayoutModule,
-    MaterialModule
+    MaterialModule,
+    ClipboardModule
   ],
   declarations: [CardZoomDialogComponent],
   exports: [CardZoomDialogComponent],

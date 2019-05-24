@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { QRCodeModule } from 'angularx-qrcode';
 
+
 // Modules
 import { MaterialModule } from '@app/material.module';
 
@@ -21,7 +22,7 @@ import { FormsModule } from '@angular/forms';
     RouterModule,
     FlexLayoutModule,
     MaterialModule,
-    QRCodeModule
+    QRCodeModule,
   ],
   declarations: [CredentialDialogComponent],
   exports: [CredentialDialogComponent],
