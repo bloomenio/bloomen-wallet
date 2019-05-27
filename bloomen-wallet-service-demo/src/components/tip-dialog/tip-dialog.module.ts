@@ -9,9 +9,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from '@app/material.module';
 
 // Components
-import { VideoPlayerOptionMenuComponent } from './video-player-option-menu.component';
+import { TipDialogComponent } from './tip-dialog.component';
 import { FormsModule } from '@angular/forms';
-import { TipDialogModule } from '@components/tip-dialog/tip-dialog.module';
+import { QRCodeModule } from 'angularx-qrcode';
+import { ClipboardModule } from 'ngx-clipboard';
 
 @NgModule({
   imports: [
@@ -21,10 +22,11 @@ import { TipDialogModule } from '@components/tip-dialog/tip-dialog.module';
     RouterModule,
     FlexLayoutModule,
     MaterialModule,
-    TipDialogModule
+    QRCodeModule,
+    ClipboardModule,
   ],
-  declarations: [VideoPlayerOptionMenuComponent],
-  exports: [VideoPlayerOptionMenuComponent],
-  entryComponents: [VideoPlayerOptionMenuComponent]
+  declarations: [TipDialogComponent],
+  exports: [TipDialogComponent],
+  entryComponents: [TipDialogComponent]
 })
-export class VideoPlayerOptionMenuModule { }
+export class TipDialogModule { }
