@@ -1,6 +1,6 @@
 <button mat-icon-button [matMenuTriggerFor]="menu">
   <mat-icon class="icon">more_vert</mat-icon>
 </button>
-<mat-menu #menu="matMenu">
-  <button mat-menu-item (click)="doTip()">Give a tip</button>
+<mat-menu #menu="matMenu" class="menu-wrapper">
+  <button [class.disabled]="!enabled" mat-menu-item (click)="enabled && doTip()">Give a tip</button>
 </mat-menu>

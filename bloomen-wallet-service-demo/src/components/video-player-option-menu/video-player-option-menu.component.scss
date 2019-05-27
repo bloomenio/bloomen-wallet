@@ -1,6 +1,9 @@
 @import "~scss/variables.scss";
-  
+
 .mat-icon-button, .mat-menu-item {
   color: $black;
 }
-  
+
+.disabled {
+  color: gray;
+}

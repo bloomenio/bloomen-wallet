@@ -15,6 +15,7 @@ const log = new Logger('blo-video-player-option-menu');
 export class VideoPlayerOptionMenuComponent implements OnInit {
 
   private videoId: string;
+  public enabled: boolean;
 
   constructor(
     public activatedRoute: ActivatedRoute,
@@ -22,6 +23,7 @@ export class VideoPlayerOptionMenuComponent implements OnInit {
   ) { }
   public ngOnInit() {
     this.videoId = this.activatedRoute.firstChild.snapshot.paramMap.get('videoId');
+    this.enabled = ['1001', '1004'].includes(this.videoId);
   }
 
   public doTip() {
