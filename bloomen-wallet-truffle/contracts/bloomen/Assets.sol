@@ -110,8 +110,8 @@ contract  Assets is ERC223ReceivingContract{
     string memory _description = string(itemList[3].toBytes());
 
     Schemas.Schema memory schema = _schemas.getSchema(_schemaId);
-    require(schema.amount >= _amount, "incorrect amount");    
-    require(schema.topPrice <= _amount, "incorrect amount");    
+    require(schema.amount <= _amount, "incorrect amount");    
+    require(schema.topPrice >= _amount, "incorrect amount");    
     require(schema.dappId.toSlice().equals(_dappId.toSlice()),"incorrect dappId");    
     require(!_checkOwnershipOneAsset(_user, _assetId, _schemaId,_dappId), "duplicated");
     

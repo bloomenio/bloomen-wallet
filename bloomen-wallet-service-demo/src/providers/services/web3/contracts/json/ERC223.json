@@ -5242,12 +5242,12 @@
         }
       },
       "links": {},
-      "address": "0x75eEC531611B4c799E0C5d15696763Aa85d389c4",
-      "transactionHash": "0xe44ef2d52d9dc17f2eee46ca0056a973ffa2711734b8c0902a5ef88a7299a05a"
+      "address": "0x9ee506d486949dD3143aeB282A76bBC6162A9bDA",
+      "transactionHash": "0x4b75e024a1d8a70fac47914dc84c1f6e91e421c6ef450a96e0a60f5a7c010f28"
     }
   },
   "schemaVersion": "3.0.6",
-  "updatedAt": "2019-05-24T06:14:42.831Z",
+  "updatedAt": "2019-05-27T12:15:37.258Z",
   "devdoc": {
     "methods": {
       "allowance(address,address)": {
