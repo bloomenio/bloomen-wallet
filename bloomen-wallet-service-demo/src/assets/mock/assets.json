@@ -4,7 +4,7 @@
         "1001": {
             "dappId": "MWC-VIDEO",
             "assetKey": "1001",
-            "schemaId": "203",
+            "schemaId": "0",
             "amount": "0",
             "description": "Smart Stadium"
         },
@@ -18,14 +18,14 @@
         "1003": {
             "dappId": "MWC-VIDEO",
             "assetKey": "1003",
-            "schemaId": "203",
+            "schemaId": "202",
             "amount": "100",
             "description": "Holo glasses"
         },
         "1004": {
             "dappId": "MWC-VIDEO",
             "assetKey": "1004",
-            "schemaId": "203",
+            "schemaId": "0",
             "amount": "0",
             "description": "Smart Retail"
         },
