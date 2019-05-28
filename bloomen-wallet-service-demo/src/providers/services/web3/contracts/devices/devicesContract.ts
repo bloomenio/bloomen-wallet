@@ -30,8 +30,8 @@ export class DevicesContract extends Contract {
     return this.contract.methods.isAllowed(this.web3Service.keccak256(device), dappId).call(this.args);
   }
 
-  public checkOwnershipForDeviceMultipleAssets(device: string, assetIds: number[], dappId: string) {
-    return this.contract.methods.checkOwnershipForDeviceMultipleAssets(device, assetIds, dappId).call(this.args);
+  public checkOwnershipMultipleAssetsForDevice(device: string, assetIds: number[], dappId: string) {
+    return this.contract.methods.checkOwnershipMultipleAssetsForDevice(device, assetIds, dappId).call(this.args);
   }
 
   public checkOwnershipOneAssetForDevice(device: string, assetId: number, dappId: string) {

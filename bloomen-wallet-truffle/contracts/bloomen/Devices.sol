@@ -49,7 +49,7 @@ contract Devices {
     return allowed;
   }
 
-  function checkOwnershipForDeviceMultipleAssets(string memory _deviceString, uint256[] memory _assetIds, string memory dappId) public  returns (bool[] memory) {
+  function checkOwnershipMultipleAssetsForDevice(string memory _deviceString, uint256[] memory _assetIds, string memory dappId) public  returns (bool[] memory) {
     DappCtx storage ctx = _getDappCtx(dappId);
     bytes32 _deviceHash = keccak256(bytes(_deviceString));
     //require(ctx.deviceHashes_[_deviceHash] != address(0), "not exist");

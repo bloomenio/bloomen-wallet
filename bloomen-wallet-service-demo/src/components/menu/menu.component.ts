@@ -32,8 +32,8 @@ export class MenuComponent implements OnInit, OnDestroy {
     this.device$.unsubscribe();
   }
 
-  public checkOwnershipForDeviceMultipleAssets() {
-    this.purchases.checkOwnershipForDeviceMultipleAssets(this.device.id, [1002, 1003, 1005], 'MWC-VIDEO');
+  public checkOwnershipMultipleAssetsForDevice() {
+    this.purchases.checkOwnershipMultipleAssetsForDevice(this.device.id, [1002, 1003, 1005], 'MWC-VIDEO');
   }
 
 }

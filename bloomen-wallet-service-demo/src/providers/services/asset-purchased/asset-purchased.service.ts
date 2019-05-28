@@ -10,13 +10,13 @@ export class AssetPurchased {
         private devicesContract: DevicesContract
     ) { }
 
-    public checkOwnershipForDeviceMultipleAssets(device: string, assetsId: number[], dappId: string) {
-        this.devicesContract.checkOwnershipForDeviceMultipleAssets(device, assetsId, dappId).then((purchases) => {
+    public checkOwnershipMultipleAssetsForDevice(device: string, assetsId: number[], dappId: string) {
+        this.devicesContract.checkOwnershipMultipleAssetsForDevice(device, assetsId, dappId).then((purchases) => {
             console.log(purchases);
         });
     }
 
-    public checkOwnershipForDeviceOneAsset(device: string, assetId: number, dappId: string) {
+    public checkOwnershipOneAssetForDevice(device: string, assetId: number, dappId: string) {
         this.devicesContract.checkOwnershipOneAssetForDevice(device, assetId, dappId).then((purchases) => {
             console.log(purchases);
         });
