@@ -15,4 +15,10 @@ export class AssetPurchased {
             console.log(purchases);
         });
     }
+
+    public checkOwnershipForDeviceOneAsset(device: string, assetId: number, dappId: string) {
+        this.devicesContract.checkOwnershipOneAssetForDevice(device, assetId, dappId).then((purchases) => {
+            console.log(purchases);
+        });
+    }
 }
