@@ -380,7 +380,9 @@ async function _sp12() {
     let dapps = await _dappList();  
     const proposedDapps = _.reject(dapps, (item) => !item.mandatory);
     const choices = [];
-    proposedDapps.forEach(item => {         
+    let dappIndex = 0;
+    proposedDapps.forEach(item => {    
+        item.dappIndex=dappIndex++;     
         choices.push({name: item.name +' '+ item.addr,value: item});
     });
 
@@ -390,7 +392,7 @@ async function _sp12() {
     let answer = await inquirer.prompt(questions);
 
     return new Promise((resolve, reject) => {
-        ctx.inventory.methods.deleteDapp(answer.container.addr).send(ctx.transactionObject)
+        ctx.inventory.methods.deleteDapp(answer.container.dappIndex).send(ctx.transactionObject)
         .on('transactionHash', (hash) => {
             web3Ctx.checkTransaction(hash).then( () => resolve(), (err) => reject(err));
         });
