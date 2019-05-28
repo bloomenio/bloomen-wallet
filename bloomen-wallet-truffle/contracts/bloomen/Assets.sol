@@ -134,7 +134,7 @@ contract  Assets is ERC223ReceivingContract{
         
     bool[] memory assetOwnerShip  = new bool[](_assetsIds.length);    
 
-    for (uint i = 0; i < _assetsIds.length-1; i++) {
+    for (uint i = 0; i < _assetsIds.length; i++) {
      assetOwnerShip[i] = _checkOwnershipOneAsset(_owner, _assetsIds[i] ,_schemaId, _dappId);
     }
 
