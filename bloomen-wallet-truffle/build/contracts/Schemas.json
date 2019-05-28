@@ -11753,12 +11753,12 @@
         }
       },
       "links": {},
-      "address": "0x30dD58C70C4c39218430C5f7c7eD00A825D480b6",
-      "transactionHash": "0x796070215959e30c37d74767b67715878b5de618aab8c87ec6677c5e3c412f31"
+      "address": "0x2adD6d0E774C1C0BdD639D5c4850378472D9FD81",
+      "transactionHash": "0xe3ec12bc115faed569ac4fd0b2c7af39235c79d13e68176d4223d7eb0ebcab38"
     }
   },
   "schemaVersion": "3.0.6",
-  "updatedAt": "2019-05-28T12:29:57.042Z",
+  "updatedAt": "2019-05-28T13:29:47.677Z",
   "devdoc": {
     "methods": {}
   },

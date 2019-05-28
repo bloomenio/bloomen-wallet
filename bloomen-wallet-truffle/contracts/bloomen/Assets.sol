@@ -112,9 +112,13 @@ contract  Assets is ERC223ReceivingContract{
     Schemas.Schema memory schema = _schemas.getSchema(_schemaId);
     require(schema.amount <= _amount, "incorrect amount");    
     require(schema.topPrice >= _amount, "incorrect amount");    
-    require(schema.dappId.toSlice().equals(_dappId.toSlice()),"incorrect dappId");    
-    require(!_checkOwnershipOneAsset(_user, _assetId, _schemaId,_dappId), "duplicated");
-    
+    require(schema.dappId.toSlice().equals(_dappId.toSlice()),"incorrect dappId"); 
+
+    if (schema.amount == schema.topPrice){
+      // is not a tip
+      require(!_checkOwnershipOneAsset(_user, _assetId, _schemaId,_dappId), "duplicated");
+    }
+
     uint pieValue = _amount;
 
     for (uint i = 0; i < schema.clearingHouseRules.length-1; i++) {
@@ -124,10 +128,13 @@ contract  Assets is ERC223ReceivingContract{
     }
 
     _erc223.transfer(schema.clearingHouseRules[schema.clearingHouseRules.length-1].receptor, pieValue);
-    //  purchase registry
-    ctx.userAssets_[_user].assets.push(Asset(now + schema.assetLifeTime , _assetId, _schemaId, _dappId, _description));
 
-    ctx.userAssets_[_user].assetsIdx[_assetId] = ctx.userAssets_[_user].assets.length - 1 ;
+    if (schema.amount == schema.topPrice){
+      // is not a tip
+      //  purchase registry
+      ctx.userAssets_[_user].assets.push(Asset(now + schema.assetLifeTime , _assetId, _schemaId, _dappId, _description));
+      ctx.userAssets_[_user].assetsIdx[_assetId] = ctx.userAssets_[_user].assets.length - 1 ;
+    }
   }
 
   function _checkOwnershipMultipleAssets(address _owner, uint256[] memory _assetsIds, uint256 _schemaId, string memory _dappId) internal  returns (bool[] memory) {

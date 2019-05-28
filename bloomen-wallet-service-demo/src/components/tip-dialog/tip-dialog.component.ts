@@ -17,7 +17,7 @@ const log = new Logger('tip-dialog.component');
 })
 export class TipDialogComponent implements OnInit {
 
-  public value: string;
+  public value: number;
   public tipQR: string;
 
   public schema: SchemaModel;
@@ -34,11 +34,11 @@ export class TipDialogComponent implements OnInit {
       this.schema = await this.schemasContract.getSchema(TIPS_CONSTANTS.SCHEMA_ID);
     });
 
-    this.tipQR = `buy://${this.data.videoId}${Math.floor(Math.random() * 100000) + 1}}#${TIPS_CONSTANTS.SCHEMA_ID}#${this.value}#MWC-VIDEO#${encodeURI('Tip')}`;
+    this.onChange(1);
   }
 
   public onChange(newValue) {
-    this.tipQR = `buy://${this.data.videoId}${Math.floor(Math.random() * 100000) + 1}#${TIPS_CONSTANTS.SCHEMA_ID}#${newValue}#MWC-VIDEO#${encodeURI('Tip')}`;
+    this.tipQR = `buy://${this.data.videoId}#${TIPS_CONSTANTS.SCHEMA_ID}#${newValue}#MWC-VIDEO#${encodeURI('Tip')}`;
   }
 
   public formatLabel(value: number | null) {
