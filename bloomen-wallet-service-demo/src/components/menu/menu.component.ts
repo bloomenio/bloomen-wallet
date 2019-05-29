@@ -1,6 +1,6 @@
 // Basic
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { AssetPurchased } from '@services/asset-purchased/asset-purchased.service';
+import { EventEmiterAssetPurchased } from '@services/asset-purchased/asset-purchased.service';
 import { Store } from '@ngrx/store';
 
 import * as fromDeviceSelectors from '@stores/device-identity/device-identity.selectors';
@@ -18,7 +18,7 @@ export class MenuComponent implements OnInit, OnDestroy {
   private device$: Subscription;
 
   constructor(
-    private purchases: AssetPurchased,
+    private purchases: EventEmiterAssetPurchased,
     private store: Store<any>
   ) { }
 
@@ -33,7 +33,7 @@ export class MenuComponent implements OnInit, OnDestroy {
   }
 
   public checkOwnershipMultipleAssetsForDevice() {
-    this.purchases.checkOwnershipMultipleAssetsForDevice(this.device.id, [1002, 1003, 1005], 'MWC-VIDEO');
+    this.purchases.emitEvent();
   }
 
 }

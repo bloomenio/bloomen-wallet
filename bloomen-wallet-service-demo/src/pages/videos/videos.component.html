@@ -1,8 +1,11 @@
 <div fxFlex fxFlexFill fxLayout="row wrap" fxLayoutAlign="space-around stretch">
     <div fxFlex="30" class="title-wrapper">
         <h1>Video</h1>
-        <h3>BLOOMEN IS AN AUDIOVISUAL CONTENT ACQUISITION, COPYRIGHT MANAGEMENT AND SALES SOLUTION FOR B2C TV STREAMING SERVICES.</h3>
-        <p>Bloomen is an easy to implement pay-per-view solution leveraging on a blockchain’s  utility token to facilitate automated compensation to all stakeholders once a content is purchased. This Token acquisition is made via vouchers/QR, which simplifies roll out. Other payment options to be assessed in the future. 
+        <h3>BLOOMEN IS AN AUDIOVISUAL CONTENT ACQUISITION, COPYRIGHT MANAGEMENT AND SALES SOLUTION FOR B2C TV STREAMING
+            SERVICES.</h3>
+        <p>Bloomen is an easy to implement pay-per-view solution leveraging on a blockchain’s utility token to
+            facilitate automated compensation to all stakeholders once a content is purchased. This Token acquisition is
+            made via vouchers/QR, which simplifies roll out. Other payment options to be assessed in the future.
         </p>
     </div>
     <div class="card-wrapper" fxFlexFill fxFlex="30">
@@ -17,8 +20,13 @@
             <mat-card-title>
                 <div Flex fxFlexFill fxLayout="row" fxLayoutAlign="space-between">
                     <span>{{videos['1001'].title}}</span>
-                    <span>{{videos['1001'].amount!="0"?videos['1001'].amount + "$":"FREE"}}</span> 
-                </div>   
+                    <span *ngIf="purchasedAssets && purchasedAssets['1001'];else not_buyed">
+                        <span>Purchased</span>
+                    </span>
+                    <ng-template #not_buyed>
+                        <span>{{ videos['1001'].amount !== 0 ? videos['1001'].amount + "$" : "FREE" }}</span>
+                    </ng-template>
+                </div>
             </mat-card-title>
         </mat-card>
     </div>
@@ -33,9 +41,14 @@
             </mat-card-subtitle>
             <mat-card-title>
                 <div Flex fxFlexFill fxLayout="row" fxLayoutAlign="space-between">
-                    <span>{{videos['1002'].title}}</span> 
-                    <span>{{(videos['1002'].amount!="0")?videos['1002'].amount + "$":"FREE"}}</span> 
-                </div>                
+                    <span>{{videos['1002'].title}}</span>
+                    <div *ngIf="purchasedAssets && purchasedAssets['1002'];else not_buyed2">
+                        <span>Purchased</span>
+                    </div>
+                    <ng-template #not_buyed2>
+                        <span>{{ videos['1002'].amount !== 0 ? videos['1002'].amount + "$" : "FREE" }}</span>
+                    </ng-template>
+                </div>
             </mat-card-title>
         </mat-card>
     </div>
@@ -51,8 +64,13 @@
             <mat-card-title>
                 <div Flex fxFlexFill fxLayout="row" fxLayoutAlign="space-between">
                     <span>{{videos['1003'].title}}</span>
-                    <span>{{videos['1003'].amount!="0"?videos['1003'].amount + "$":"FREE"}}</span> 
-                </div>   
+                    <div *ngIf="purchasedAssets && purchasedAssets['1003'];else not_buyed3">
+                            <span>Purchased</span>
+                        </div>
+                        <ng-template #not_buyed3>
+                            <span>{{ videos['1003'].amount!== 0 ? videos['1003'].amount + "$" : "FREE" }}</span>
+                        </ng-template>
+                </div>
             </mat-card-title>
         </mat-card>
     </div>
@@ -62,15 +80,20 @@
                 <img [src]="videos['1004'].previewImg" alt="video">
                 <div class="play-button"></div>
             </div>
-            
+
             <mat-card-subtitle>
                 <span>{{videos['1004'].subtitle | uppercase}}</span>
             </mat-card-subtitle>
             <mat-card-title>
                 <div Flex fxFlexFill fxLayout="row" fxLayoutAlign="space-between">
                     <span>{{videos['1004'].title}}</span>
-                    <span>{{videos['1004'].amount!="0"?videos['1004'].amount + "$":"FREE"}}</span> 
-                </div>   
+                    <div *ngIf="purchasedAssets && purchasedAssets['1004'];else not_buyed4">
+                            <span>Purchased</span>
+                        </div>
+                        <ng-template #not_buyed4>
+                            <span>{{ videos['1004'].amount !== 0 ? videos['1004'].amount + "$" : "FREE" }}</span>
+                        </ng-template>
+                </div>
             </mat-card-title>
         </mat-card>
     </div>
@@ -80,17 +103,22 @@
                 <img [src]="videos['1005'].previewImg" alt="video">
                 <div class="play-button"></div>
             </div>
-            
+
             <mat-card-subtitle>
                 <span>{{videos['1005'].subtitle | uppercase}}</span>
             </mat-card-subtitle>
             <mat-card-title>
                 <div Flex fxFlexFill fxLayout="row" fxLayoutAlign="space-between">
                     <span>{{videos['1005'].title}}</span>
-                    <span>{{videos['1005'].amount!="0"?videos['1005'].amount + "$":"FREE"}}</span> 
-                </div>   
+                    <div *ngIf="purchasedAssets && purchasedAssets['1005'];else not_buyed5">
+                            <span>Purchased</span>
+                        </div>
+                        <ng-template #not_buyed5>
+                            <span>{{ videos['1005'].amount !== 0 ? videos['1005'].amount + "$" : "FREE" }}</span>
+                        </ng-template>
+                </div>
             </mat-card-title>
         </mat-card>
     </div>
-        
+
 </div>

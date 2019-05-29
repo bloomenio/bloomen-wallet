@@ -44,6 +44,7 @@ import { DeviceIdentityOptionMenuModule } from '@components/device-identity-opti
 import {VideoPlayerOptionMenuModule} from '@components/video-player-option-menu/video-player-option-menu.module';
 
 import { DeviceDetectorModule } from 'ngx-device-detector';
+import { AssetPurchased } from '@services/asset-purchased/asset-purchased.service';
 
 
 export function onAppInit(store: Store<any>): () => Promise<any> {

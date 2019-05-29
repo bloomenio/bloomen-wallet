@@ -1,5 +1,5 @@
 // Basic
-import { Component, AfterViewChecked, ChangeDetectorRef, OnInit, AfterViewInit } from '@angular/core';
+import { Component, AfterViewChecked, ChangeDetectorRef, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 
 import { MatSnackBar, MatDialog } from '@angular/material';
 import { Logger } from '@services/logger/logger.service';
@@ -12,6 +12,11 @@ import { environment } from '@env/environment';
 
 import MediaMock from '../../assets/mock/media.json';
 import { ASSETS_CONSTANTS } from '@core/constants/assets.constants.js';
+import { DevicesContract } from '@core/core.module.js';
+import { Store } from '@ngrx/store';
+
+import * as fromDeviceSelector from '@stores/device-identity/device-identity.selectors';
+import { Subscription } from 'rxjs';
 
 const log = new Logger('video.component');
 
@@ -24,7 +29,7 @@ const log = new Logger('video.component');
   templateUrl: './video-player.component.html',
   styleUrls: ['./video-player.component.scss']
 })
-export class VideoPlayerComponent implements OnInit {
+export class VideoPlayerComponent implements OnInit, OnDestroy {
 
   private api: VgAPI;
   private videoId: string;
@@ -32,10 +37,14 @@ export class VideoPlayerComponent implements OnInit {
 
   public videoUrl: any;
 
+  public device$: Subscription;
+
   constructor(
     public snackBar: MatSnackBar,
     public dialog: MatDialog,
-    public activatedRoute: ActivatedRoute
+    public activatedRoute: ActivatedRoute,
+    public devicesContract: DevicesContract,
+    public store: Store<any>
   ) { }
 
   public ngOnInit() {
@@ -43,11 +52,19 @@ export class VideoPlayerComponent implements OnInit {
     this.video = MediaMock[ASSETS_CONSTANTS.VIDEOS][this.videoId];
     this.videoUrl = `${environment.serverUrl}${this.video.media.url}`;
 
-    if ( this.video.amount > 0 ) {
-      setTimeout(() => this.openDialog());
-    } else {
-      setTimeout(() => this.api.play());
-    }
+    this.device$ = this.store.select(fromDeviceSelector.getDeviceIdentity).subscribe(async (device) => {
+      const purchased = await this.devicesContract.checkOwnershipOneAssetForDevice(device.id, parseInt(this.videoId, 10), 'MWC-VIDEO');
+
+      if (this.video.amount > 0 && !purchased) {
+        setTimeout(() => this.openDialog());
+      } else {
+        setTimeout(() => this.api.play());
+      }
+    });
+  }
+
+  public ngOnDestroy() {
+    this.device$.unsubscribe();
   }
 
   public onPlayerReady(api: VgAPI) {
