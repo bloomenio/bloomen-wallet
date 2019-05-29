@@ -131,7 +131,12 @@ contract Devices {
 
     
   function _handshake(address _owner, bytes32 _deviceHash, uint256 _assetId, uint256 _schemaId, uint256 _lifeTime, string memory _dappId, string memory _description) internal {
-    require(_assets.checkOwnershipOneAssetForAddress(_owner, _assetId, _schemaId, _dappId),"not allowed");
+   
+    if (_assetId != 0 ){
+      // asseId == = is only for device handshake
+      require(_assets.checkOwnershipOneAssetForAddress(_owner, _assetId, _schemaId, _dappId),"not allowed");
+    }
+    
     DappCtx storage ctx = _getDappCtx(_dappId);
 
     if ((ctx.deviceHashes_[_deviceHash] != address(0)) && (!isAllowed(_deviceHash,_dappId))) {

@@ -41472,12 +41472,12 @@
     "83584648538": {
       "events": {},
       "links": {},
-      "address": "0x55d674Dc50738Fb01f12D09a7cc5Df5871F25980",
-      "transactionHash": "0xe1e344e22147741a73cc192c4c0a90fab06c11ceecdf5883c6d38e99b14f2c7c"
+      "address": "0xd6B660267C464dc759d58bF02F55cc4294E0465d",
+      "transactionHash": "0xaba9d6416a76a8aa69d0ac54930723170243be8e1c1c79e242e9de74d8d836b0"
     }
   },
   "schemaVersion": "3.0.6",
-  "updatedAt": "2019-05-29T12:50:49.922Z",
+  "updatedAt": "2019-05-29T13:26:31.167Z",
   "devdoc": {
     "methods": {}
   },

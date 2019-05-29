@@ -20,11 +20,11 @@ contract BurnHistory is WhitelistedRole {
     burnsMap_[_from].push(Burn(msg.sender, _from, _amount, now));
   }
 
-  function getBurnPageCount() public returns (uint256) {
-    return getBurnPageCountFrom(msg.sender);
+  function getBurnsPageCount() public returns (uint256) {
+    return getBurnsPageCountFrom(msg.sender);
   }
 
-  function getBurnPageCountFrom(address from) public  returns (uint256) {
+  function getBurnsPageCountFrom(address from) public  returns (uint256) {
     uint256 pages = burnsMap_[from].length / PAGE_SIZE;
     if ( (burnsMap_[from].length  % PAGE_SIZE)>0) {
       pages++;
