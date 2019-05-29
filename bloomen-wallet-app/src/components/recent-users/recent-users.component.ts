@@ -25,11 +25,13 @@ export class RecentUsersComponent {
                }
 
   public onNoClick(): void {
-    this.dialogRef.close();
+    this.dialogRef.close(false);
   }
   public onYesClick(): void {
-    this.store.dispatch(new fromRecentUsersAction.AddAlias({ user: this.newUser }));
-    this.dialogRef.close();
+    if (this.newUser.alias !== '') {
+      this.store.dispatch(new fromRecentUsersAction.AddAlias({ user: this.newUser }));
+    }
+    this.dialogRef.close(true);
   }
 
 }

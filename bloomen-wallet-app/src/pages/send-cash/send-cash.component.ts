@@ -21,8 +21,6 @@ import { QR_VALIDATOR } from '@core/constants/qr-validator.constants';
 
 import { RecentUsersComponent } from '@components/recent-users/recent-users.component';
 import {UserAlias} from '@models/recent-user.model';
-import {filter, find, map} from 'rxjs/operators';
-import { DappInputDialogComponent } from '@components/dapp-input-dialog/dapp-input-dialog.component';
 
 
 const log = new Logger('send-cash.component');
@@ -124,8 +122,10 @@ export class SendCashComponent implements OnInit, OnDestroy {
     const exist = this.listOfAddress.find(value => value.address === this.sendCashForm.get('address').value);
     if (exist) { this.sendTransaction(); } else {
       this.openDialog().subscribe(
-          _ => {
-            this.sendTransaction();
+          (result: boolean) => {
+            if (result) {
+              this.sendTransaction();
+            }
           }
       );
     }
