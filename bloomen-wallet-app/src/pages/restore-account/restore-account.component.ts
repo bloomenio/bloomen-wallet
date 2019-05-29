@@ -15,7 +15,7 @@ import * as fromMnemonic from '@stores/mnemonic/mnemonic.selectors';
 import { Store } from '@ngrx/store';
 import * as fromMnemonicActions from '@stores/mnemonic/mnemonic.actions';
 import { Dapp } from '@core/models/dapp.model';
-import {DappsMnmonicsComponent} from '@pages/restore-account/dapps-mnmonics/dapps-mnmonics';
+import {DappsMnmonicsComponent} from '@components/dapps-mnmonics/dapps-mnmonics';
 
 
 

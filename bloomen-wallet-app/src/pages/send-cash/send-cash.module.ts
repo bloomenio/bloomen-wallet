@@ -14,7 +14,7 @@ import { SendCashComponent } from './send-cash.component';
 import { MaterialModule } from '@app/material.module';
 import { DappCreditHeaderModule } from '@components/dapp-credit-header/dapp-credit-header.module';
 import { DappInputDialogModule } from '@components/dapp-input-dialog/dapp-input-dialog.module';
-import { RecentUsersComponent } from './recent-users/recent-users.component';
+import { RecentUsersComponent } from '@components/recent-users/recent-users.component';
 
 /**
  * Module to import and export all the components for the tutorial page.

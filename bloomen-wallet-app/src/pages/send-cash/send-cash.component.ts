@@ -19,7 +19,7 @@ import * as fromRecentUser from '@stores/recent-users/recent-users.selectors';
 import { BarCodeScannerService } from '@services/barcode-scanner/barcode-scanner.service';
 import { QR_VALIDATOR } from '@core/constants/qr-validator.constants';
 
-import { RecentUsersComponent } from './recent-users/recent-users.component';
+import { RecentUsersComponent } from '@components/recent-users/recent-users.component';
 import {UserAlias} from '@models/recent-user.model';
 import {filter, find, map} from 'rxjs/operators';
 import { DappInputDialogComponent } from '@components/dapp-input-dialog/dapp-input-dialog.component';
