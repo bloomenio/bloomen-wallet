@@ -15,8 +15,9 @@ contract ERC223 is ERC20, ERC20Detailed, ERC20Mintable, ERC20Burnable {
   MovementHistory private _movementHistory;
   BurnHistory private _burnHistory;
   
-  constructor (string memory _name, string memory _symbol, uint8 _decimals, address _movementHistoryAddr) public ERC20Detailed(_name, _symbol, _decimals){
+  constructor (string memory _name, string memory _symbol, uint8 _decimals, address _movementHistoryAddr, address _burnHistoryAddr) public ERC20Detailed(_name, _symbol, _decimals){
     _movementHistory = MovementHistory(_movementHistoryAddr);
+    _burnHistory = BurnHistory(_burnHistoryAddr);
   }
 
   // Overridden transfer method with _data param for transaction data
@@ -52,6 +53,7 @@ contract ERC223 is ERC20, ERC20Detailed, ERC20Mintable, ERC20Burnable {
      * @param value The amount of token to be burned.
      */
   function burn(uint256 value) public {
+    require(value > 0, "empty burn not allowed");
     _burnHistory.addBurn(value, msg.sender, now);
     ERC20._burn(msg.sender, value);
   }

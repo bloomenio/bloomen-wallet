@@ -8,6 +8,8 @@ const ContainerContract = require('../contracts/DappContainer.json');
 
 const MovementHistoryContract = require('../contracts/MovementHistory.json');
 
+const BurnHistoryContract = require('../contracts/BurnHistory.json');
+
 const ERC223Contract = require('../contracts/ERC223.json');
 
 const PrepaidCardManager = require('../contracts/PrepaidCardManager.json');
@@ -37,6 +39,7 @@ function _contextSetup(type, mnemonic) {
     //_context.business = new _context.web3.eth.Contract(Businesscontract.abi, Businesscontract.networks[process.env.ALASTRIA_NETWORKID].address);
 
     _context.movements = new _context.web3.eth.Contract(MovementHistoryContract.abi, MovementHistoryContract.networks[process.env.ALASTRIA_NETWORKID].address);
+    _context.burns= new _context.web3.eth.Contract(BurnHistoryContract.abi, BurnHistoryContract.networks[process.env.ALASTRIA_NETWORKID].address);
     _context.erc223 = new _context.web3.eth.Contract(ERC223Contract.abi, ERC223Contract.networks[process.env.ALASTRIA_NETWORKID].address);
     _context.prepaidCardManager = new _context.web3.eth.Contract(PrepaidCardManager.abi, PrepaidCardManager.networks[process.env.ALASTRIA_NETWORKID].address);
     _context.schemas = new _context.web3.eth.Contract(Schemas.abi, Schemas.networks[process.env.ALASTRIA_NETWORKID].address);

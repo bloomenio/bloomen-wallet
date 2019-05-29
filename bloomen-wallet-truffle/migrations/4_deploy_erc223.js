@@ -16,7 +16,7 @@ var ERC223 = artifacts.require("./bloomen/token/ERC223");
         return BurnHistory.deployed();
      }).then((instance) => {  
         _burnHistory= instance;      
-        return deployer.deploy(ERC223,"BloomenCoin","BLO",0,_movementHistory.address);
+        return deployer.deploy(ERC223,"BloomenCoin","BLO",0,_movementHistory.address,_burnHistory.address);
      }).then((instance) => {        
         _erc223 = instance;
         return _movementHistory.addWhitelisted(_erc223.address);

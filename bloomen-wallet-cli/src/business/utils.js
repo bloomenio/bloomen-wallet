@@ -71,6 +71,36 @@ async function _ub3() {
     
 }
 
+
+//[UB4] Burn 
+async function _ub4() {    
+    const ctx = web3Ctx.getCurrentContext();
+
+    let questions = [
+        { type: 'input', name: 'amount', message: 'Specify the amount:' }
+    ];    
+    let answer = await inquirer.prompt(questions);
+    
+    return new Promise((resolve, reject) => {
+        ctx.erc223.methods.burn(parseInt(answer.amount)).send(ctx.transactionObject)
+        .on('transactionHash', (hash) => {
+            web3Ctx.checkTransaction(hash).then( () => resolve(), (err) => reject(err));
+        });
+    });
+}
+
+//[UB5] my Burns  
+async function _ub5() {    
+    const ctx = web3Ctx.getCurrentContext();
+    try{
+        let response = await ctx.burns.methods.getBurns(1).call(ctx.transactionObject);
+        console.log( 'burns(page:1): ' ,response);
+    } catch(e){
+        console.log('Error:',e);
+    }
+
+}
+
 //[U1] Test of device access to an asset
 async function _u1() { 
     const ctx = web3Ctx.getCurrentContext();   
@@ -191,6 +221,8 @@ module.exports = {
     ub1: _ub1,
     ub2: _ub2,
     ub3: _ub3,
+    ub4: _ub4,
+    ub5: _ub5,
     u1: _u1,
     u2: _u2,
     u3: _u3,
