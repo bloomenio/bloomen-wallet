@@ -19,6 +19,7 @@ menuCommands['SP3'] = {name: '[SP3] Create Schema', value:serviceProvider.sp3 };
 menuCommands['SP4'] = {name: '[SP4] List Schemas', value:serviceProvider.sp4 };
 menuCommands['SP5'] = {name: '[SP5] Detail Schema', value: serviceProvider.sp5 };
 menuCommands['SP6'] = {name: '[SP6] ON/OFF Schema', value: serviceProvider.sp6 };
+menuCommands['SP61'] = {name: '[SP61] Delete Schema', value: serviceProvider.sp61 };
 menuCommands['SP7'] = {name: '[SP7] Create Dapp', value: serviceProvider.sp7 };
 menuCommands['SP8'] = {name: '[SP8] Show Dapp', value: serviceProvider.sp8 };
 menuCommands['SP9'] = {name: '[SP9] Update Dapp', value: serviceProvider.sp9 };
@@ -90,6 +91,7 @@ async function schemasMenu() {
         menuCommands['SP4'],         
         menuCommands['SP5'], 
         menuCommands['SP6'],
+        menuCommands['SP61'],
         menuCommands['BACK_MAIN_MENU'],
         menuCommands['EXIT']               
     ];

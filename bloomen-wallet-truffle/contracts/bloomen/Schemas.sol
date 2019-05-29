@@ -51,6 +51,10 @@ contract Schemas is WhitelistedRole {
     _schemaStatus(_schemaId, true);  
   }
 
+  function deleteSchema(uint256 _schemaId) public  onlyWhitelisted {
+    _schemaDelete(_schemaId);  
+  }
+
   function _createSchema(uint256 _schemaId, bytes memory _in) internal  {
     // RLP format : [<expirationDate>,<schemaId>,<amount>,<assetLifeTime>,<dappId>,<openPrice?> ,[ [<percent>,<address>,<description>],[<percent>,<address>,<description>]]]
 
@@ -106,6 +110,30 @@ contract Schemas is WhitelistedRole {
       total += clearingHouseRules[i].percent;
     }
     require(total == 100, "all amount distributed");    
+  }
+
+  function _schemaDelete(uint256 _schemaId) internal  {
+    require(schemas_[_schemaId].schemaId != 0, "not exist"); 
+
+    // delete from array
+    bool found = false;
+
+    for (uint i=0; i< schemasArray_.length-1; i++) {
+      if (!found){
+        found = schemasArray_[i] == _schemaId;
+      } else {
+        schemasArray_[i] = schemasArray_[i+1];
+      }
+    }
+
+    schemasArray_.length--;
+
+    for (uint i=0; i< schemas_[_schemaId].clearingHouseRules.length; i++) {
+      delete schemas_[_schemaId].clearingHouseRules[i];
+    }
+    delete schemas_[_schemaId].clearingHouseRules;
+    delete schemas_[_schemaId];
+   
   }
 
 }

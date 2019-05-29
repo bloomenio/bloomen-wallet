@@ -49,9 +49,8 @@ contract Devices {
     return allowed;
   }
 
-  function checkOwnershipMultipleAssetsForDevice(string memory _deviceString, uint256[] memory _assetIds, string memory dappId) public  returns (bool[] memory) {
+  function checkOwnershipMultipleAssetsForDevice(bytes32 _deviceHash, uint256[] memory _assetIds, string memory dappId) public  returns (bool[] memory) {
     DappCtx storage ctx = _getDappCtx(dappId);
-    bytes32 _deviceHash = keccak256(bytes(_deviceString));
     //require(ctx.deviceHashes_[_deviceHash] != address(0), "not exist");
     if (ctx.deviceHashes_[_deviceHash] == address(0)) {
       bool[] memory empty  = new bool[](0); 
@@ -64,9 +63,8 @@ contract Devices {
     return _assets.checkOwnershipMultipleAssetsForAddress(ctx.deviceHashes_[_deviceHash],_assetIds,device.schemaId,device.dappId);
   }
 
-  function checkOwnershipOneAssetForDevice(string memory _deviceString, uint256 _assetId, string memory dappId) public  returns (bool) {
+  function checkOwnershipOneAssetForDevice(bytes32 _deviceHash, uint256 _assetId, string memory dappId) public  returns (bool) {
     DappCtx storage ctx = _getDappCtx(dappId);
-    bytes32 _deviceHash = keccak256(bytes(_deviceString));
     //require(ctx.deviceHashes_[_deviceHash] != address(0), "not exist");
     // require returns true on failured validation.
     if (ctx.deviceHashes_[_deviceHash] == address(0)) {

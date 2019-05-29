@@ -188,6 +188,25 @@ async function _sp6() {
 
 }
 
+//[SP61] Delete Schema
+async function _sp61() {
+    let questions = [
+        { type: 'input', name: 'schemaId', message: 'Schema id:' }
+    ];    
+    let answer = await inquirer.prompt(questions);
+
+    const ctx = web3Ctx.getCurrentContext();
+
+    return new Promise((resolve, reject) => {
+        ctx.schemas.methods.deleteSchema(answer.schemaId).send(ctx.transactionObject)
+        .on('transactionHash', (hash) => {
+            web3Ctx.checkTransaction(hash).then( () => resolve(), (err) => reject(err));
+        });
+    });
+
+}
+
+
 //[SP7] Create Dapp
 async function _sp7() {
     console.log('Create a new JSON container.');
@@ -432,6 +451,7 @@ module.exports = {
         sp4: _sp4,
         sp5: _sp5,
         sp6: _sp6,
+        sp61: _sp61,
         sp7: _sp7,
         sp8: _sp8,
         sp9: _sp9,
