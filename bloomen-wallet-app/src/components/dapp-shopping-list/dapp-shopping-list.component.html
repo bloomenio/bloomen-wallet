@@ -19,6 +19,11 @@
                             <div fxLayout='row' fxLayoutAlign='space-between end'>
                                 <div class='purchase-description' fxFlex='50'>{{ purchase.description }}</div>
                                 <div class='purchase-date' fxFlex='50'>{{ purchase.expirationDate | date: 'medium' }}</div>
+                                <div class='purchase-actions' fxFlex='10'>
+                                    <button mat-icon-button (click)='removePurchase(purchase)'>
+                                        <mat-icon>delete</mat-icon>
+                                    </button>                            
+                                </div>
                             </div>
                         </div>
                     </mat-list-item>

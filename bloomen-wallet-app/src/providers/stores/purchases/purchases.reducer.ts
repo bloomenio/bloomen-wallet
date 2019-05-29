@@ -26,6 +26,9 @@ export function PurchasesReducer(state: PurchasesState = purchaseInitialState, a
         case PurchasesActionTypes.UPDATE_PURCHASES_PAGES_COUNT_SUCCESS: {
             return { ...state, ...action.payload };
         }
+        case PurchasesActionTypes.REMOVE_PURCHASE_SUCCESS: {
+            return purchaseAdapter.removeOne(action.payload.assetId, state);
+        }
 
         default:
             return state;

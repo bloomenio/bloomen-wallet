@@ -49,6 +49,17 @@ export class DevicesEffects {
         })
     );
 
+    @Effect({ dispatch: false }) public removePurchase = this.actions$.pipe(
+        ofType(fromActions.PurchasesActionTypes.REMOVE_PURCHASE),
+        map((action) => {
+            this.web3Service.ready(() => {
+                this.assetsContract.removeAsset(action.payload.assetId, action.payload.dappId).then(() => {
+                    this.store.dispatch(new fromActions.RemovePurchaseSuccess(action.payload));
+                });
+            });
+        })
+    );
+
     @Effect({ dispatch: false }) public updatePurchases = this.actions$.pipe(
         ofType(
             fromActions.PurchasesActionTypes.UPDATE_PURCHASES

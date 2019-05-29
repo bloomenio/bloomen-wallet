@@ -11,6 +11,8 @@ export enum PurchasesActionTypes {
     UPDATE_PURCHASES = '[Purchases] Update purchases',
     UPDATE_PURCHASES_SUCCESS = '[Purchases] Update purchases success',
     UPDATE_PURCHASES_PAGES_COUNT_SUCCESS = '[Devices] Update purchases page count success',
+    REMOVE_PURCHASE = '[Purchases] Remove Purchases',
+    REMOVE_PURCHASE_SUCCESS = '[Purchases] Remove Purchases success',
 }
 
 export class InitPurchases implements Action {
@@ -39,6 +41,16 @@ export class UpdatePurchasesPagesCountSuccess implements Action {
     constructor(public readonly payload: { totalPages: number }) { }
 }
 
+export class RemovePurchase implements Action {
+    public readonly type = PurchasesActionTypes.REMOVE_PURCHASE;
+    constructor(public readonly payload: AssetModel) { }
+}
+
+export class RemovePurchaseSuccess implements Action {
+    public readonly type = PurchasesActionTypes.REMOVE_PURCHASE_SUCCESS;
+    constructor(public readonly payload: AssetModel) { }
+}
+
 
 export type PurchasesActions = InitPurchases | InitPurchasesSuccess
- | UpdatePurchases | UpdatePurchasesSuccess | UpdatePurchasesPagesCountSuccess;
+ | UpdatePurchases | UpdatePurchasesSuccess | UpdatePurchasesPagesCountSuccess | RemovePurchase | RemovePurchaseSuccess;

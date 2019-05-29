@@ -35,13 +35,8 @@ export class DevicesEffects {
                 this.devicesContract.getDevicesPageCount(action.payload.dappId).then(pageCount => {
                     pageCount = parseInt(pageCount, 10);
                     const lastPage = pageCount;
-                    // #BUGPAGECOUNT: move dispatch UpdateDevicesPagesCountSuccess before 'loadFullPage' call
                     this.store.dispatch(new fromActions.UpdateDevicesPagesCountSuccess({ totalPages: pageCount }));
                     this.loadFullPage(lastPage, fromActions.PAGE_SIZE, action.payload.dappId).then((result: DeviceModel[]) => {
-                        // #BUGPAGECOUNT: Remove IF when fixed
-                        // if (result.length > fromActions.PAGE_SIZE) {
-                        //     pageCount++;
-                        // }
                         this.store.dispatch(new fromActions.InitDevicesSuccess(result));
                     });
                 });

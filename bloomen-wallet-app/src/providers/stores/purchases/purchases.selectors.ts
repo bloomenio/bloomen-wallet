@@ -9,3 +9,4 @@ export const PurchasesState = createFeatureSelector<fromReducer.PurchasesState>(
 export const { selectAll: selectAllPurchases, selectIds } = fromReducer.purchaseAdapter.getSelectors(PurchasesState);
 
 export const getPageCount = createSelector(PurchasesState, fromReducer.getPageCount);
+

@@ -47,6 +47,10 @@ contract  Assets is ERC223ReceivingContract{
     _schemas = Schemas(_schemasAddr);
   }
 
+  function removeAsset(uint256 assetId, string memory _dappId) public {
+    _removeAsset(msg.sender, assetId,_dappId);
+  }
+
   function checkOwnershipOneAsset(uint256 _assetId, uint256 _schemaId, string memory dappId) public  returns (bool) {
     return _checkOwnershipOneAsset(msg.sender, _assetId, _schemaId, dappId);  
   }
@@ -142,7 +146,7 @@ contract  Assets is ERC223ReceivingContract{
     bool[] memory assetOwnerShip  = new bool[](_assetsIds.length);    
 
     for (uint i = 0; i < _assetsIds.length; i++) {
-     assetOwnerShip[i] = _checkOwnershipOneAsset(_owner, _assetsIds[i] ,_schemaId, _dappId);
+      assetOwnerShip[i] = _checkOwnershipOneAsset(_owner, _assetsIds[i] ,_schemaId, _dappId);
     }
 
     return assetOwnerShip;
@@ -190,5 +194,20 @@ contract  Assets is ERC223ReceivingContract{
 
     return dappCtxs_[dappIndex];
   }
+
+  function _removeAsset(address _owner, uint256 assetId, string memory _dappId) internal {
+    DappCtx storage ctx = _getDappCtx(_dappId);
+    require(ctx.userAssets_[_owner].assets.length>0, "empty user");
     
+    uint assetIdx = ctx.userAssets_[_owner].assetsIdx[assetId];
+    delete ctx.userAssets_[_owner].assetsIdx[assetId];
+
+    delete ctx.userAssets_[_owner].assets[assetIdx];
+
+    for (uint i = assetIdx; i < ctx.userAssets_[_owner].assets.length -1 ; i++) {
+      ctx.userAssets_[_owner].assets[i] = ctx.userAssets_[_owner].assets[i+1];
+    }
+    ctx.userAssets_[_owner].assets.length--;
+  }
+
 }

@@ -11,7 +11,6 @@ import { TransactionService } from '@services/web3/transactions/transaction.serv
 
 const log = new Logger('devices.contract');
 
-
 export class DevicesContract extends Contract {
 
   constructor(
@@ -31,11 +30,11 @@ export class DevicesContract extends Contract {
   }
 
   public checkOwnershipMultipleAssetsForDevice(device: string, assetIds: number[], dappId: string) {
-    return this.contract.methods.checkOwnershipMultipleAssetsForDevice(device, assetIds, dappId).call(this.args);
+    return this.contract.methods.checkOwnershipMultipleAssetsForDevice(this.web3Service.keccak256(device), assetIds, dappId).call(this.args);
   }
 
   public checkOwnershipOneAssetForDevice(device: string, assetId: number, dappId: string) {
-    return this.contract.methods.checkOwnershipOneAssetForDevice(device, assetId, dappId).call(this.args);
+    return this.contract.methods.checkOwnershipOneAssetForDevice(this.web3Service.keccak256(device), assetId, dappId).call(this.args);
   }
 
 }

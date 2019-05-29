@@ -37,5 +37,11 @@ export class AssetsContract extends Contract {
     return this.contract.methods.checkOwnershipOneAsset(assetId, schemaId, dappId).call(this.args);
   }
 
+  public removeAsset(assetId: string, dappId: string) {
+    return this.transactionService.addTransaction(this.args.gas, () => {
+      return this.contract.methods.removeAsset(assetId, dappId).send(this.args);
+    });
+
+  }
 
 }

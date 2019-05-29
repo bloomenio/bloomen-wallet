@@ -117,13 +117,11 @@ contract Schemas is WhitelistedRole {
 
     // delete from array
     bool found = false;
-
     for (uint i=0; i< schemasArray_.length-1; i++) {
-      if (!found){
-        found = schemasArray_[i] == _schemaId;
-      } else {
+      if ( found || (schemasArray_[i] == _schemaId)) {
+        found = true;
         schemasArray_[i] = schemasArray_[i+1];
-      }
+      } 
     }
 
     schemasArray_.length--;

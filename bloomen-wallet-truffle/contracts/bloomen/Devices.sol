@@ -151,13 +151,11 @@ contract Devices {
     delete ctx.userDevices_[_owner].devices[_deviceHash];
     bool found=false;
     for (uint i = 0; i < ctx.userDevices_[_owner].deviceArray.length-1;i++){
-      if(found){
+      if(found || (ctx.userDevices_[_owner].deviceArray[i] == _deviceHash)){
+        found= true;
         ctx.userDevices_[_owner].deviceArray[i] = ctx.userDevices_[_owner].deviceArray[i+1];
-      } else {
-        found = ctx.userDevices_[_owner].deviceArray[i] == _deviceHash;
       }
     }
-    delete ctx.userDevices_[_owner].deviceArray[ctx.userDevices_[_owner].deviceArray.length-1];
     ctx.userDevices_[_owner].deviceArray.length--;
   }
 

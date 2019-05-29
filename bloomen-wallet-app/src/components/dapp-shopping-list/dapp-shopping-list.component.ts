@@ -99,6 +99,26 @@ export class DappShoppingListComponent implements OnInit, OnDestroy {
     this.purchasesPageCount$.unsubscribe();
   }
 
+  public removePurchase (purchase: AssetModel) {
+    const dialogRef = this.dialog.open(DappGeneralDialogComponent, {
+      width: '250px',
+      height: '200px',
+      data: {
+        title: this.translate.instant('dapp.shopping_list.remove_asset.title'),
+        description: this.translate.instant('dapp.shopping_list.remove_asset.text'),
+        buttonAccept: this.translate.instant('common.remove'),
+        buttonCancel: this.translate.instant('common.cancel')
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.store.dispatch(new fromPurchasesActions.RemovePurchase(purchase));
+      }
+    });
+
+  }
+
   public removeDevice(device: DeviceModel) {
     const dialogRef = this.dialog.open(DappGeneralDialogComponent, {
       width: '250px',
