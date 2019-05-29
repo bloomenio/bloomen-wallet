@@ -6,12 +6,14 @@ import "../../../node_modules/openzeppelin-solidity/contracts/token/ERC20/ERC20B
 import "../../../node_modules/openzeppelin-solidity/contracts/token/ERC20/ERC20.sol";
 import "../../../node_modules/openzeppelin-solidity/contracts/utils/Address.sol";
 import "./MovementHistory.sol";
+import "./BurnHistory.sol";
 
 import "./ERC223ReceivingContract.sol";
 
 contract ERC223 is ERC20, ERC20Detailed, ERC20Mintable, ERC20Burnable {
   
   MovementHistory private _movementHistory;
+  BurnHistory private _burnHistory;
   
   constructor (string memory _name, string memory _symbol, uint8 _decimals, address _movementHistoryAddr) public ERC20Detailed(_name, _symbol, _decimals){
     _movementHistory = MovementHistory(_movementHistoryAddr);
@@ -43,6 +45,15 @@ contract ERC223 is ERC20, ERC20Detailed, ERC20Mintable, ERC20Burnable {
     _movementHistory.addMovement(int(value) * -1, "send", from, to);
     _movementHistory.addMovement(int(value), "receive", to, from);
     ERC20._transfer(from,to,value);
+  }
+
+  /**
+     * @dev Burns a specific amount of tokens.
+     * @param value The amount of token to be burned.
+     */
+  function burn(uint256 value) public {
+    _burnHistory.addBurn(value, msg.sender, now);
+    ERC20._burn(msg.sender, value);
   }
 
 }
