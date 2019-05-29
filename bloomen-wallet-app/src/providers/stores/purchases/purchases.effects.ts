@@ -94,7 +94,7 @@ export class DevicesEffects {
     private calculateAssetArray(result): AssetModel[] {
         // Reverse order
         const purchaseArray: AssetModel[] = result
-            .filter(asset => asset['assetId'] !== '0')
+            .filter(asset => asset['assetId'] !== '0' && asset['dappId'] !== '')
             .map(asset => {
                 return {
                     assetId: asset['assetId'],

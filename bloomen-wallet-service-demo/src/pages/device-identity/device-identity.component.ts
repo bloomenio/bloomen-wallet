@@ -1,9 +1,9 @@
 // Basic
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { Logger } from '@services/logger/logger.service';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 import { MatDialog } from '@angular/material';
 
@@ -14,7 +14,6 @@ import { DeviceIdentityStateModel } from '@core/models/device-identity-state.mod
 const log = new Logger('video.component');
 
 
-
 /**
  * Home page
  */
@@ -23,9 +22,10 @@ const log = new Logger('video.component');
   templateUrl: './device-identity.component.html',
   styleUrls: ['./device-identity.component.scss']
 })
-export class DeviceIdentityComponent implements OnInit {
+export class DeviceIdentityComponent implements OnInit, OnDestroy {
 
-  public deviceIdentity$: Observable<string>;
+  public deviceIdentity$: Subscription;
+  public qrDevice: string;
 
 
   constructor(
@@ -34,7 +34,14 @@ export class DeviceIdentityComponent implements OnInit {
   ) { }
 
   public ngOnInit() {
-    this.deviceIdentity$ = this.store.select(fromDeviceIdentitySelectors.getIdentity);
+    this.deviceIdentity$ = this.store.select(fromDeviceIdentitySelectors.getIdentity).subscribe((device: any) => {
+      this.qrDevice = `allow://${encodeURI(device)}#0#201#MWC-VIDEO`;
+    });
+
+  }
+
+  public ngOnDestroy() {
+    this.deviceIdentity$.unsubscribe();
   }
 
 }

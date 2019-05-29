@@ -17,6 +17,7 @@ import { Store } from '@ngrx/store';
 
 import * as fromDeviceSelector from '@stores/device-identity/device-identity.selectors';
 import { Subscription } from 'rxjs';
+import { Web3Service } from '@services/web3/web3.service.js';
 
 const log = new Logger('video.component');
 
@@ -39,12 +40,15 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
 
   public device$: Subscription;
 
+  public device: any;
+
   constructor(
     public snackBar: MatSnackBar,
     public dialog: MatDialog,
     public activatedRoute: ActivatedRoute,
     public devicesContract: DevicesContract,
-    public store: Store<any>
+    public store: Store<any>,
+    public web3Service: Web3Service
   ) { }
 
   public ngOnInit() {
@@ -52,15 +56,19 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
     this.video = MediaMock[ASSETS_CONSTANTS.VIDEOS][this.videoId];
     this.videoUrl = `${environment.serverUrl}${this.video.media.url}`;
 
-    this.device$ = this.store.select(fromDeviceSelector.getDeviceIdentity).subscribe(async (device) => {
-      const purchased = await this.devicesContract.checkOwnershipOneAssetForDevice(device.id, parseInt(this.videoId, 10), 'MWC-VIDEO');
+    this.device$ = this.store.select(fromDeviceSelector.getIdentity).subscribe((device) => {
 
-      if (this.video.amount > 0 && !purchased) {
-        setTimeout(() => this.openDialog());
-      } else {
-        setTimeout(() => this.api.play());
-      }
-    });
+      this.device = device;
+
+      this.web3Service.ready(async () => {
+        const purchased = await this.devicesContract.checkOwnershipOneAssetForDevice(device, parseInt(this.videoId, 10), 'MWC-VIDEO');
+        if (this.video.amount > 0 && !purchased) {
+          setTimeout(() => this.openDialog());
+        } else {
+          setTimeout(() => this.api.play());
+        }
+      });
+    })
   }
 
   public ngOnDestroy() {
@@ -77,6 +85,7 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
       disableClose: true,
       data: {
         videoId: this.videoId,
+        deviceId: this.device,
         iconBuy: 'assets/icons/ic_wallet.svg',
         textAllowBuy: 'Scan QR to view/buy the content'
       }

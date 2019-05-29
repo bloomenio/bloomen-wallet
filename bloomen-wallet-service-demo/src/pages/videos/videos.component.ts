@@ -12,6 +12,7 @@ import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 import * as fromDeviceSelectors from '@stores/device-identity/device-identity.selectors';
+import { Web3Service } from '@services/web3/web3.service.js';
 
 const log = new Logger('video.component');
 
@@ -39,16 +40,18 @@ export class VideosComponent implements OnInit, OnDestroy {
     public snackBar: MatSnackBar,
     public purchases: EventEmiterAssetPurchased,
     public devicesContract: DevicesContract,
-    public store: Store<any>
+    public store: Store<any>,
+    public web3Service: Web3Service
   ) {
     this.videos = MediaMock[ASSETS_CONSTANTS.VIDEOS];
   }
 
   public ngOnInit() {
-
-    this.device$ = this.store.select(fromDeviceSelectors.getDeviceIdentity).subscribe((device) => {
-      this.device = device;
-      this._parseFromContract();
+    this.web3Service.ready(async () => {
+      this.device$ = this.store.select(fromDeviceSelectors.getIdentity).subscribe((device) => {
+        this.device = device;
+        this._parseFromContract();
+      });
     });
 
 
@@ -58,7 +61,7 @@ export class VideosComponent implements OnInit, OnDestroy {
   }
 
   private async _parseFromContract() {
-    const arrayPurchases: Array<boolean> = await this.devicesContract.checkOwnershipMultipleAssetsForDevice(this.device.id, [1002, 1003, 1005], 'MWC-VIDEO');
+    const arrayPurchases: Array<boolean> = await this.devicesContract.checkOwnershipMultipleAssetsForDevice(this.device, [1002, 1003, 1005], 'MWC-VIDEO');
     if (arrayPurchases.length) {
       this.purchasedAssets = {
         1002: arrayPurchases[0],

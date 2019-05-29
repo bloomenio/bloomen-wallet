@@ -13,6 +13,7 @@ import { Location } from '@angular/common';
 import { DevicesContract } from '@core/core.module.js';
 import { interval, Subscription } from 'rxjs';
 import { takeWhile } from 'rxjs/operators';
+import { Web3Service } from '@services/web3/web3.service.js';
 
 const log = new Logger('credential-dialog.component');
 
@@ -30,9 +31,6 @@ export class CredentialDialogComponent implements OnInit, OnDestroy {
   public qrAllowBuy: string;
 
   private allowed: boolean;
-  private deviceId: string;
-
-  private dappId: string;
 
   private interval$: Subscription;
 
@@ -40,7 +38,8 @@ export class CredentialDialogComponent implements OnInit, OnDestroy {
     public dialogRef: MatDialogRef<CredentialDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     public location: Location,
-    public devicesContract: DevicesContract
+    public devicesContract: DevicesContract,
+    public web3Service: Web3Service
   ) { }
 
   public ngOnInit() {
@@ -49,29 +48,48 @@ export class CredentialDialogComponent implements OnInit, OnDestroy {
     if (this.data.videoId) {
       this.asset = MockData[ASSETS_CONSTANTS.VIDEOS][this.data.videoId];
       this.media = MockMedia[ASSETS_CONSTANTS.VIDEOS][this.data.videoId];
-      this.deviceId = `${MockData[ASSETS_CONSTANTS.VIDEOS].deviceId}-${new Date().getTime()}`;
     } else if (this.data.mobilityId) {
       this.asset = MockData[ASSETS_CONSTANTS.MOBILITY][this.data.mobilityId];
       this.media = MockMedia[ASSETS_CONSTANTS.MOBILITY][this.data.mobilityId];
-      this.deviceId = `Worldline ${MockMedia[ASSETS_CONSTANTS.MOBILITY][this.data.mobilityId].title}-${new Date().getTime()}`;
     } else if (this.data.smartOfficeId) {
       this.asset = MockData[ASSETS_CONSTANTS.SMART_OFFICE][this.data.smartOfficeId];
       this.media = MockMedia[ASSETS_CONSTANTS.SMART_OFFICE][this.data.smartOfficeId];
-      this.deviceId = `Worldline ${MockMedia[ASSETS_CONSTANTS.SMART_OFFICE][this.data.smartOfficeId].title}-${new Date().getTime()}`;
     }
 
-    this.qrAllowBuy = `allow_buy://${this.asset.assetKey}#${this.asset.schemaId}#` +
-    `${this.asset.amount}#${this.asset.dappId}#${encodeURI(this.asset.description)}#${encodeURI(this.deviceId)}`;
+    this.web3Service.ready(async () => {
+      const allowed = await this.devicesContract.isAllowed(this.data.deviceId, this.asset.dappId);
+      if (allowed) {
 
-    this.interval$ = interval(1000).pipe(
-      takeWhile(() => !this.allowed)
-    ).subscribe(() => {
-      this.devicesContract.isAllowed(this.deviceId, this.asset.dappId).then((allowed) => {
-        if (allowed) {
-          this.allowed = allowed;
-          this.dialogRef.close(true);
-        }
-      });
+        this.qrAllowBuy = `buy://${this.asset.assetKey}#${this.asset.schemaId}#` +
+          `${this.asset.amount}#${this.asset.dappId}#${encodeURI(this.asset.description)}`;
+
+        this.interval$ = interval(1000).pipe(
+          takeWhile(() => !this.allowed)
+        ).subscribe(async () => {
+          const allowedToReproduce = await this.devicesContract.checkOwnershipOneAssetForDevice(this.data.deviceId, this.data.videoId, this.asset.dappId);
+          if (allowedToReproduce) {
+            this.allowed = allowedToReproduce;
+            this.dialogRef.close(true);
+          }
+        });
+      } else {
+
+        const deviceId = `one-time-device-for-${this.asset.assetKey}-${new Date().getTime()}`;
+
+        this.qrAllowBuy = `allow_buy://${this.asset.assetKey}#${this.asset.schemaId}#` +
+          `${this.asset.amount}#${this.asset.dappId}#${encodeURI(this.asset.description)}#${encodeURI(deviceId)}`;
+
+        this.interval$ = interval(1000).pipe(
+          takeWhile(() => !this.allowed)
+        ).subscribe(async () => {
+          const allowedToReproduce = await this.devicesContract.isAllowed(deviceId, this.asset.dappId);
+          if (allowedToReproduce) {
+            this.allowed = allowedToReproduce;
+            this.dialogRef.close(true);
+          }
+        });
+      }
+
     });
   }
 

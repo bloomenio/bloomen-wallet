@@ -2,8 +2,8 @@
     
         <div class="actions-wrapper" fxLayout="row" fxLayoutAlign="center">
             <div fxFlex="100" class="qr-wrapper allow-qr" fxLayout="row" fxLayoutAlign="space-between">
-                <div class="qr-box" ngxClipboard [cbContent]="'allow_buy://0#201#0#MWC-VIDEO#Dapp%20handshake#'+(deviceIdentity$ | async)" >
-                    <qrcode  [qrdata]="'allow_buy://0#201#0#MWC-VIDEO#Dapp%20handshake#'+(deviceIdentity$ | async)" [size]="150" [level]="'Q'"></qrcode>
+                <div class="qr-box" ngxClipboard [cbContent]="qrDevice" >
+                    <qrcode  [qrdata]="qrDevice" [size]="150" [level]="'Q'"></qrcode>
                 </div>
                 <div class="action-wrapper" fxFlex fxLayout="column" fxLayoutAlign="start center">
                     <div class="action-text">MWC-VIDEO Device Identity </div>

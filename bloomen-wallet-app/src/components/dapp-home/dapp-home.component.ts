@@ -170,7 +170,7 @@ export class DappHomeComponent implements OnInit, OnDestroy {
 
     switch (action) {
       case QR_ACTION.ALLOW:
-        if (isowner) {
+        if (isowner || request.assetId === 0) {
           await this.generateAllow(request);
         } else {
           this.snackBar.open(this.translate.instant('common.noitemfound_nowbuy'), null, {

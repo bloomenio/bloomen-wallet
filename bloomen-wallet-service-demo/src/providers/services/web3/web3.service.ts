@@ -32,7 +32,7 @@ export class CustomHttpProvider {
   }
 }
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class Web3Service {
   private blockRange: Subject<any>;
   private lastBlockNumber: number;
