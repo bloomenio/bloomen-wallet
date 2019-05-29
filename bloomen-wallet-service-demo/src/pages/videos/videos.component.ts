@@ -48,7 +48,9 @@ export class VideosComponent implements OnInit, OnDestroy {
 
     this.device$ = this.store.select(fromDeviceSelectors.getDeviceIdentity).subscribe((device) => {
       this.device = device;
+      this._parseFromContract();
     });
+
 
     this.purchases$ = this.purchases.getEvent().subscribe(async () => {
       this._parseFromContract();

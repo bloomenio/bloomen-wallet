@@ -1,7 +1,7 @@
 export interface DeviceModel {
     id: string;
     expirationDate: number;
-    assetId: string;
+    assetId: any;
     schemaId: string;
     dappId: string;
     description: string;

@@ -89,7 +89,7 @@ export class DevicesEffects {
     private calculateDeviceArray(result: DeviceModel[]): DeviceModel[] {
         // Reverse order
         const deviceArray: DeviceModel[] = result
-            .filter((device) => device['assetId'] !== '0')
+            .filter((device) => device['assetId'] !== '0' && device['dappId'] !== '')
             .map(asset => {
                 return {
                     id: `${asset['assetId']}_${asset['expirationDate']}`,
