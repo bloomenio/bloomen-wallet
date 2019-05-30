@@ -79,8 +79,10 @@ export class MnemonicEffects {
                 this.web3Service.changeWallet(action.payload.randomSeed).then(() => {
                     this.store.dispatch(new fromBalanceAction.InitBalanceEvents());
                     this.store.dispatch(new fromTxActivityAction.InitTxActivity({ page: 1 }));
-                    this.store.dispatch(new fromDevicesAction.InitDevices({dappId: action.payload.dappId}));
-                    this.store.dispatch(new fromPurchasesAction.InitPurchases({dappId: action.payload.dappId}));
+                    if (action.payload.dappId) {
+                        this.store.dispatch(new fromDevicesAction.InitDevices({ dappId: action.payload.dappId }));
+                        this.store.dispatch(new fromPurchasesAction.InitPurchases({ dappId: action.payload.dappId }));
+                    }
                 });
             });
         })
