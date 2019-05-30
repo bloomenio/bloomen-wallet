@@ -101,6 +101,25 @@ async function _ub5() {
 
 }
 
+//[UB6] Burns for Address 
+async function _ub6() {    
+
+    const ctx = web3Ctx.getCurrentContext();
+    let questions = [
+        { type: 'input', name: 'address', message: 'Address:'},
+        { type: 'input', name: 'page', message: 'Specify the page (1-N):' }
+    ];    
+    let answer = await inquirer.prompt(questions)
+
+    try{
+        let response = await ctx.burns.methods.getBurnsFrom(parseInt(answer.page), answer.address).call(ctx.transactionObject);
+        console.log( 'burns(page: ${answer.page} ): ' ,response);
+    } catch(e){
+        console.log('Error:',e);
+    }
+
+}
+
 //[U1] Test of device access to an asset
 async function _u1() { 
     const ctx = web3Ctx.getCurrentContext();   
@@ -223,6 +242,7 @@ module.exports = {
     ub3: _ub3,
     ub4: _ub4,
     ub5: _ub5,
+    ub6: _ub6,
     u1: _u1,
     u2: _u2,
     u3: _u3,
