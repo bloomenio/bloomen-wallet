@@ -54,8 +54,8 @@ contract ERC223 is ERC20, ERC20Detailed, ERC20Mintable, ERC20Burnable {
      */
   function burn(uint256 value) public {
     require(value > 0, "empty burn not allowed");
-    _burnHistory.addBurn(value, msg.sender, now);
-    _movementHistory.addMovement(int(value), "burn", msg.sender, address(0));
+    _burnHistory.addBurn(value, msg.sender); 
+    _movementHistory.addMovement(int(value)* -1, "burn",  msg.sender, msg.sender);
     ERC20._burn(msg.sender, value);
   }
 

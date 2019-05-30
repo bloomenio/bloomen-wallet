@@ -1,0 +1,71 @@
+@import "~scss/variables.scss";
+
+:host {
+  height: 100%;
+}
+
+.has-dapp-credit-header {
+  height: 100%;
+  .burn-cash-card {
+    padding-top: $credit-header-height;
+  }
+}
+
+::ng-deep div[class$="theme-light"] {
+  .burn-cash-image {
+    background-image: url("assets/img_send_cash_hands_black.png");
+  }
+}
+
+::ng-deep div[class$="theme-dark"] {
+  .burn-cash-image {
+    background-image: url("assets/img_send_cash_hands_white.png");
+  }
+}
+
+.burn-cash-card {
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  padding: 0;
+
+  .burn-cash-wrapper {
+    position: relative;
+    background-size: cover;
+    
+    .dapp-logo {
+      position: absolute;
+      top: 10px;
+      height: 12vw;
+      width: 100%;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+    }
+  
+    .burn-cash-image {
+      width: 100%;
+      height: 40vw;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: bottom; 
+    }
+  }
+
+  .form-wrapper {
+    height: 100%;
+    padding: 25px;
+
+    mat-form-field {
+      width: 100%;
+    }
+
+    button {
+      font-size: $font-size-xl;
+      width: 100%;
+      padding: 10px 30px;
+      min-height: 56px;
+      margin-bottom: 25px;
+    }
+  }
+}

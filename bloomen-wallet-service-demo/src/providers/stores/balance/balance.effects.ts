@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Effect, Actions, ofType } from '@ngrx/effects';
 
+// Environment
+import { environment } from '@env/environment';
+
 // Constants
 import { map } from 'rxjs/operators';
 
@@ -27,7 +30,7 @@ export class BalanceEffects {
         private erc223: ERC223Contract
     ) {
         this.web3Service.ready(() => {
-            interval(1000).subscribe(() => {
+            interval(environment.eth.ethBalancePollingTime).subscribe(() => {
                 this.store.dispatch(new fromActions.InitBalance);
             });
         });

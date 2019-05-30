@@ -16,32 +16,26 @@ import * as fromDappSelectors from '@stores/dapp/dapp.selectors';
 import * as fromMnemonicSelectors from '@stores/mnemonic/mnemonic.selectors';
 import * as fromMnemonicActions from '@stores/mnemonic/mnemonic.actions';
 import * as fromRecentUser from '@stores/recent-users/recent-users.selectors';
-import { BarCodeScannerService } from '@services/barcode-scanner/barcode-scanner.service';
-import { QR_VALIDATOR } from '@core/constants/qr-validator.constants';
-
-import { RecentUsersComponent } from '@components/recent-users/recent-users.component';
-import {UserAlias} from '@models/recent-user.model';
 
 
-const log = new Logger('send-cash.component');
+const log = new Logger('burn-cash.component');
 
 
 @Component({
-  selector: 'blo-send-cash',
-  templateUrl: './send-cash.component.html',
-  styleUrls: ['./send-cash.component.scss']
+  selector: 'blo-burn-cash',
+  templateUrl: './burn-cash.component.html',
+  styleUrls: ['./burn-cash.component.scss']
 })
-export class SendCashComponent implements OnInit, OnDestroy {
+export class BurnCashComponent implements OnInit, OnDestroy {
 
   public dapp: Dapp;
-  public sendCashForm: FormGroup;
+  public burnCashForm: FormGroup;
   public address: string;
 
   private mnemonics$: Subscription;
 
   public dapps$: Subscription;
   private currentUser$: Subscription;
-  private listOfAddress: UserAlias[];
 
 
   constructor(
@@ -52,7 +46,6 @@ export class SendCashComponent implements OnInit, OnDestroy {
     public snackBar: MatSnackBar,
     private location: Location,
     private web3Service: Web3Service,
-    private barCodeScannerService: BarCodeScannerService,
     public dialog: MatDialog
   ) { }
 
@@ -70,8 +63,7 @@ export class SendCashComponent implements OnInit, OnDestroy {
       }
     });
 
-    this.sendCashForm = new FormGroup({
-      address: new FormControl('', Validators.required ),
+    this.burnCashForm = new FormGroup({
       amount: new FormControl('', Validators.required),
     });
 
@@ -79,13 +71,9 @@ export class SendCashComponent implements OnInit, OnDestroy {
         select(fromRecentUser.selectCurrentUser)
     ).subscribe(
       recentUser => {
-        if (recentUser) { this.sendCashForm.setValue({ address: recentUser.address, amount: null }); }
+        if (recentUser) { this.burnCashForm.setValue({ address: recentUser.address, amount: null }); }
       }
     );
-
-    this.store.pipe(
-        select(fromRecentUser.selectAllAddress)
-    ).subscribe(value => this.listOfAddress = value);
 
   }
 
@@ -94,17 +82,10 @@ export class SendCashComponent implements OnInit, OnDestroy {
     this.currentUser$.unsubscribe();
   }
 
-  public async openQR(event: Event) {
-    this.barCodeScannerService.scan().then(result => {
-      this.recoverAddress(result);
-    });
-  }
-
-
-  public sendTransaction() {
-    const values = this.sendCashForm.value;
+  public burnTransaction() {
+    const values = this.burnCashForm.value;
     this.web3Service.ready(() => {
-      this.erc223.transfer(values.address, values.amount).then((result: any) => {
+      this.erc223.burn(values.amount).then((result: any) => {
         this.snackBar.open(this.translate.instant('common.transaction_success'), null, {
           duration: 2000,
         });
@@ -119,27 +100,7 @@ export class SendCashComponent implements OnInit, OnDestroy {
   }
 
   public onSubmit() {
-    const exist = this.listOfAddress.find(value => value.address === this.sendCashForm.get('address').value);
-    if (exist) { this.sendTransaction(); } else {
-      this.openDialog().subscribe(
-          (result: boolean) => {
-            if (result) {
-              this.sendTransaction();
-            }
-          }
-      );
-    }
-  }
-
-  private recoverAddress(inputValue: string) {
-    if (inputValue.includes(QR_VALIDATOR.ID, 0)) {
-      this.sendCashForm.get('address').setValue(inputValue.replace(QR_VALIDATOR.ID, ''));
-    } else {
-      log.error('KO', 'Bad QR prefix');
-      this.snackBar.open(this.translate.instant('common.qr_invalid'), null, {
-        duration: 2000,
-      });
-    }
+    this.burnTransaction();
   }
 
   public hideKeyboard(event: Event) {
@@ -148,13 +109,6 @@ export class SendCashComponent implements OnInit, OnDestroy {
     }
   }
 
-  public openDialog(): Observable<any> {
-    const dialogRef = this.dialog.open(RecentUsersComponent, {
-      width: '250px',
-      data: {address: this.sendCashForm.get('address').value,
-             idDapp: this.dapp.address }
-    });
-    return dialogRef.afterClosed();
-  }
+
 }
 

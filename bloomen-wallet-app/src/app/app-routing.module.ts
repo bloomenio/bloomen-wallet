@@ -26,6 +26,10 @@ const routes: Routes = [
       loadChildren: 'pages/send-cash/send-cash.module#SendCashModule',
     },
     {
+      path: 'dapp/:address/burn-cash',
+      loadChildren: 'pages/burn-cash/burn-cash.module#BurnCashModule',
+    },
+    {
       path: 'dapp/:address/notifications/:assetId',
       loadChildren: 'pages/notification-detail/notification-detail.module#NotificationDetailModule'
     }

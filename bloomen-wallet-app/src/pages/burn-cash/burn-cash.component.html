@@ -1,0 +1,23 @@
+<blo-dapp-credit-header [dapp]="dapp" [addCash]="false" ></blo-dapp-credit-header>
+<div class="has-dapp-credit-header" (click)="hideKeyboard($event)">
+    <div class="burn-cash-card" fxFlex fxLayout="column">
+
+        <div *ngIf="dapp" class="burn-cash-wrapper" [ngStyle]="{'background-image': 'url(' + dapp.laf.homeImage +')'}">
+            <div class="dapp-logo" [ngStyle]="{'background-image': 'url(' + dapp.laf.logo +')'}"></div>
+            <div  class="burn-cash-image" ></div>
+        </div>
+        
+        <form class="form-wrapper" [formGroup]="burnCashForm" fxLayout="column" fxLayoutAlign="start center" (ngSubmit)="onSubmit()">
+        
+            <mat-form-field color="primary" appearance="outline">
+                <mat-label>{{ 'dapp.burn_cash.amount' | translate }}</mat-label>
+                <input matInput formControlName="amount" pattern="[0-9]*" type="number">
+                <div matSuffix>{{ 'dapp.send_cash.points' | translate | uppercase }}</div>
+            </mat-form-field>
+
+            <button [disabled]="!burnCashForm.valid" type="submit" color="accent" mat-flat-button fxLayout="row" fxLayoutAlign="center center">
+                <div fxFlex>{{ 'dapp.profile.burn_cash' | translate | uppercase }}</div>
+            </button>
+        </form>
+    </div>
+</div>
