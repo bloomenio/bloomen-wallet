@@ -68,7 +68,7 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
           setTimeout(() => this.api.play());
         }
       });
-    })
+    });
   }
 
   public ngOnDestroy() {

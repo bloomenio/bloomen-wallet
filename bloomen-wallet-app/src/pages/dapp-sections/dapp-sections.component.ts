@@ -60,7 +60,8 @@ export class DappSectionsComponent implements OnInit, OnDestroy {
     this.mnemonics$ = this.store.select(fromMnemonicSelectors.selectAllMnemonics).subscribe((mnemonics) => {
       this.mnemonic = mnemonics.find(mnemonicItem => mnemonicItem.address === address);
       if (this.mnemonic) {
-        this.store.dispatch(new fromMnemonicActions.ChangeWallet({ randomSeed: this.mnemonic.randomSeed, dappId: this.dapp.dappId }));
+        const dappId = this.dapp ? this.dapp.dappId : undefined;
+        this.store.dispatch(new fromMnemonicActions.ChangeWallet({ randomSeed: this.mnemonic.randomSeed, dappId: dappId }));
       }
     });
   }
