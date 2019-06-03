@@ -19,7 +19,7 @@ export const environment = {
     ethBlockPollingTime: 4000,
     transactionStatusPollingTime: 2000,
     transactionCallDelayTime: 2000,
-    hdMagicKey: 'xxXX_MAGIC_XXxx',
+    hdMagicKey: 'H2020_Bloomen',
     generalSeed: 'kit mother damage noise monkey appear peanut come razor vacant story water',
     web3Options: {
       transactionConfirmationBlocks: 2,
