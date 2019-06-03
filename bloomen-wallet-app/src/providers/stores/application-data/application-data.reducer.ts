@@ -5,6 +5,7 @@ export function applicationDataReducer(state: ApplicationDataStateModel, action:
     switch (action.type) {
         case ApplicationDataActionTypes.CHANGE_FIRST_RUN:
         case ApplicationDataActionTypes.CHANGE_THEME:
+        case ApplicationDataActionTypes.CHANGE_INITIAL_DAPP:
             return { ...{}, ...state, ...action.payload, };
 
         default:
@@ -15,3 +16,5 @@ export function applicationDataReducer(state: ApplicationDataStateModel, action:
 export const getIsFirstRun = (state: ApplicationDataStateModel) => state ? state.isFirstRun : undefined;
 
 export const getTheme = (state: ApplicationDataStateModel) => state ? state.theme : undefined;
+
+export const getCurrentDappAddress = (state: ApplicationDataStateModel) => state ? state.currentDappAddress : undefined;

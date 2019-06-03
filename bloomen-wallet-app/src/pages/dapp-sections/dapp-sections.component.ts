@@ -13,6 +13,8 @@ import * as fromMnemonicActions from '@stores/mnemonic/mnemonic.actions';
 import * as fromDevicesActions from '@stores/devices/devices.actions';
 import * as fromPurchasesActions from '@stores/purchases/purchases.actions';
 
+import * as fromApplicationDataActions from '@stores/application-data/application-data.actions';
+
 import { Subscription } from 'rxjs';
 import { Logger } from '@services/logger/logger.service';
 import { MnemonicModel } from '@core/models/mnemonic.model';
@@ -64,6 +66,8 @@ export class DappSectionsComponent implements OnInit, OnDestroy {
         this.store.dispatch(new fromMnemonicActions.ChangeWallet({ randomSeed: this.mnemonic.randomSeed, dappId: dappId }));
       }
     });
+
+    this.store.dispatch(new fromApplicationDataActions.ChangeInitialDapp({ currentDappAddress: address }));
   }
 
   public ngOnDestroy() {
@@ -87,8 +91,8 @@ export class DappSectionsComponent implements OnInit, OnDestroy {
     if (index === 3) {
       // Refresh data required to ensure that Purchase/Allow action did actually update the blockchain
       // Because of reverse ordering refresh all data to load first/last page ignoring other previous loaded pages
-      this.store.dispatch(new fromDevicesActions.InitDevices({dappId: this.dapp.dappId}));
-      this.store.dispatch(new fromPurchasesActions.InitPurchases({dappId: this.dapp.dappId}));
+      this.store.dispatch(new fromDevicesActions.InitDevices({ dappId: this.dapp.dappId }));
+      this.store.dispatch(new fromPurchasesActions.InitPurchases({ dappId: this.dapp.dappId }));
     }
   }
 }

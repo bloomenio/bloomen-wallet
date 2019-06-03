@@ -14,3 +14,6 @@ export const getIsFirstRun = createSelector(getApplicationData, fromReducer.getI
 
 // getTheme
 export const getTheme = createSelector(getApplicationData, fromReducer.getTheme);
+
+// getTheme
+export const getCurrentDappAddress = createSelector(getApplicationData, fromReducer.getCurrentDappAddress);

@@ -5,6 +5,9 @@ import { environment } from '@env/environment';
 
 import * as fromDappActions from '@stores/dapp/dapp.actions';
 import * as fromDappSelectors from '@stores/dapp/dapp.selectors';
+
+import * as fromApplicationDataActions from '@stores/application-data/application-data.actions';
+
 import { Store } from '@ngrx/store';
 import { Dapp, DappCache } from '@core/models/dapp.model';
 import { Subscription } from 'rxjs';
@@ -47,6 +50,7 @@ export class DappOptionsShellComponent implements OnInit, OnDestroy {
   }
 
   public goToHome() {
+    this.store.dispatch(new fromApplicationDataActions.ChangeInitialDapp({ currentDappAddress: undefined }));
     this.router.navigate(['home'], { replaceUrl: true });
   }
 

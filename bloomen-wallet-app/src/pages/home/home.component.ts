@@ -11,6 +11,7 @@ import * as fromAppActions from '@stores/application-data/application-data.actio
 import * as fromDappActions from '@stores/dapp/dapp.actions';
 import * as fromMnemonicActions from '@stores/mnemonic/mnemonic.actions';
 import * as fromTxActivityActions from '@stores/tx-activity/tx-activity.actions';
+
 import { THEMES } from '@core/constants/themes.constants.js';
 
 import { Subscription } from 'rxjs';
@@ -21,8 +22,6 @@ import { BarCodeScannerService } from '@services/barcode-scanner/barcode-scanner
 import { Logger } from '@services/logger/logger.service';
 import { QR_VALIDATOR } from '@core/constants/qr-validator.constants';
 import { TranslateService } from '@ngx-translate/core';
-
-import { DappInputDialogComponent } from '@components/dapp-input-dialog/dapp-input-dialog.component';
 
 const log = new Logger('home.component');
 

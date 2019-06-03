@@ -60,6 +60,14 @@ export class ApplicationDataEffects {
         })
     );
 
+    @Effect({ dispatch: false }) public persistCurrentDappAddress = this.actions$.pipe(
+        ofType(fromActions.ApplicationDataActionTypes.CHANGE_INITIAL_DAPP),
+        withLatestFrom(this.store.pipe(select(fromSelectors.getCurrentDappAddress))),
+        tap(([action, currentDappAddress]) => {
+            this.applicationDataDatabase.set(APPLICATION_DATA_CONSTANTS.CURRENT_DAPP, currentDappAddress);
+        })
+    );
+
     @Effect() public updateApplicationData = this.actions$.pipe(
         ofType(fromActions.ApplicationDataActionTypes.INIT_APP_DATA)
     ).pipe(
@@ -80,7 +88,15 @@ export class ApplicationDataEffects {
                     };
                 })
             );
-            return merge(firstRun$, theme$).pipe(
+            const currentDapp$ = this.applicationDataDatabase.get(APPLICATION_DATA_CONSTANTS.CURRENT_DAPP).pipe(
+                map((value) => {
+                    return {
+                        type: APPLICATION_DATA_CONSTANTS.CURRENT_DAPP,
+                        value
+                    };
+                })
+            );
+            return merge(firstRun$, theme$, currentDapp$).pipe(
                 map((element) => {
                     switch (element.type) {
                         case APPLICATION_DATA_CONSTANTS.FIRST_RUN: {
@@ -90,6 +106,9 @@ export class ApplicationDataEffects {
                         case APPLICATION_DATA_CONSTANTS.THEME: {
                             const theme = element.value ? element.value : THEMES.BLOOMEN;
                             return new fromActions.ChangeTheme({ theme });
+                        }
+                        case APPLICATION_DATA_CONSTANTS.CURRENT_DAPP: {
+                            return new fromActions.ChangeInitialDapp({ currentDappAddress: element.value });
                         }
                     }
                 }),
