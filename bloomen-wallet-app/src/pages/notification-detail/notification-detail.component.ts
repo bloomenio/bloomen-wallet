@@ -14,8 +14,8 @@ import * as fromMnemonicSelectors from '@stores/mnemonic/mnemonic.selectors';
 import * as fromMnemonicActions from '@stores/mnemonic/mnemonic.actions';
 import * as fromBalanceSelectors from '@stores/balance/balance.selectors';
 import * as fromPurchasesSelectors from '@stores/purchases/purchases.selectors';
-import { map } from 'rxjs/operators';
 import { DappGeneralDialogComponent } from '@components/dapp-general-dialog/dapp-general-dialog.component';
+import { Location } from '@angular/common';
 
 const log = new Logger('notification-detail.component');
 
@@ -45,7 +45,8 @@ export class NotificationDetailComponent implements OnInit, OnDestroy {
     private snackBar: MatSnackBar,
     private translate: TranslateService,
     private web3Service: Web3Service,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private location: Location
   ) { }
 
   public ngOnInit() {
@@ -112,6 +113,7 @@ export class NotificationDetailComponent implements OnInit, OnDestroy {
     this.web3Service.ready(() => {
       this.erc223.buy(buyObject.assetId, buyObject.schemaId, buyObject.amount, buyObject.dappId, buyObject.description).then((result: any) => {
         log.debug('OK', result);
+        this.location.back();
         this.snackBar.open(this.translate.instant('common.transaction_success'), null, {
           duration: 2000,
         });
