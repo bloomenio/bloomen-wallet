@@ -17,6 +17,10 @@ import * as fromMnemonicSelectors from '@stores/mnemonic/mnemonic.selectors';
 import * as fromMnemonicActions from '@stores/mnemonic/mnemonic.actions';
 import * as fromRecentUser from '@stores/recent-users/recent-users.selectors';
 
+import * as fromBurnsSelectors from '@stores/burns/burns.selectors';
+import * as fromBurnsActions from '@stores/burns/burns.actions';
+import { BurnModel } from '@core/models/burn.model';
+
 
 const log = new Logger('burn-cash.component');
 
@@ -37,6 +41,12 @@ export class BurnCashComponent implements OnInit, OnDestroy {
   public dapps$: Subscription;
   private currentUser$: Subscription;
 
+  private burns$: Subscription;
+  public burnsArray: BurnModel[];
+  private burnsPageCount$: Subscription;
+  private burnsPageCount: number;
+  public currentPageBurns: number;
+
 
   constructor(
     private store: Store<any>,
@@ -46,7 +56,7 @@ export class BurnCashComponent implements OnInit, OnDestroy {
     public snackBar: MatSnackBar,
     private location: Location,
     private web3Service: Web3Service,
-    public dialog: MatDialog
+    public dialfromBurnsSelectorsfromBurnsSelectorsog: MatDialog
   ) { }
 
   public ngOnInit() {
@@ -75,11 +85,22 @@ export class BurnCashComponent implements OnInit, OnDestroy {
       }
     );
 
+    this.burnsPageCount$ = this.store.select(fromBurnsSelectors.getPageCount).subscribe(pageCount => {
+      this.burnsPageCount = pageCount;
+    });
+    this.burns$ = this.store.select(fromBurnsSelectors.selectAllBurns).subscribe((burnsArray) => {
+      this.burnsArray = burnsArray;
+      this.currentPageBurns = this.burnsPageCount + fromBurnsActions.FIRST_PAGE_INDEX
+        - Math.ceil(burnsArray.length / fromBurnsActions.PAGE_SIZE);
+    });
+
   }
 
   public ngOnDestroy() {
     this.mnemonics$.unsubscribe();
     this.currentUser$.unsubscribe();
+    this.burns$.unsubscribe();
+    this.burnsPageCount$.unsubscribe();
   }
 
   public burnTransaction() {
@@ -101,6 +122,11 @@ export class BurnCashComponent implements OnInit, OnDestroy {
 
   public onSubmit() {
     this.burnTransaction();
+  }
+
+  public moreBurns() {
+    this.store.dispatch(new fromBurnsActions.UpdateBurns({
+      page: Math.max(fromBurnsActions.FIRST_PAGE_INDEX, --this.currentPageBurns)}));
   }
 
   public hideKeyboard(event: Event) {

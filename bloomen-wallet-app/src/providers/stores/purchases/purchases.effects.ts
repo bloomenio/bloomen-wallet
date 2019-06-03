@@ -26,7 +26,7 @@ export class DevicesEffects {
         private web3Service: Web3Service
     ) { }
 
-    @Effect({ dispatch: false }) public initDevices = this.actions$.pipe(
+    @Effect({ dispatch: false }) public initPurchases = this.actions$.pipe(
         ofType(
             fromActions.PurchasesActionTypes.INIT_PURCHASES
         ),

@@ -46,6 +46,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { devToolsConfig } from '@config/devtools.config';
 import { TxActivityStoreModule } from '@stores/tx-activity/tx-activity.module';
 import { DevicesStoreModule } from '@stores/devices/devices.module';
+import { BurnsStoreModule } from '@stores/burns/burns.module';
 import { PurchasesStoreModule } from '@stores/purchases/purchases.module';
 import { RecentUsersStoreModule } from '@stores/recent-users/recent-users.module';
 
@@ -98,6 +99,7 @@ export function onAppInit(store: Store<any>): () => Promise<any> {
     BalanceStoreModule,
     MnemonicStoreModule,
     DevicesStoreModule,
+    BurnsStoreModule,
     PurchasesStoreModule,
     TxActivityStoreModule,
     StoreDevtoolsModule.instrument(devToolsConfig),

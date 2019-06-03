@@ -13,6 +13,7 @@ import * as fromBalanceAction from '@stores/balance/balance.actions';
 import * as fromTxActivityAction from '@stores/tx-activity/tx-activity.actions';
 import * as fromDevicesAction from '@stores/devices/devices.actions';
 import * as fromPurchasesAction from '@stores/purchases/purchases.actions';
+import * as fromBurnsAction from '@stores/burns/burns.actions';
 
 import { MnemonicDatabaseService } from '@db/mnemonic-database.service';
 import { from } from 'rxjs';
@@ -79,6 +80,7 @@ export class MnemonicEffects {
                 this.web3Service.changeWallet(action.payload.randomSeed).then(() => {
                     this.store.dispatch(new fromBalanceAction.InitBalanceEvents());
                     this.store.dispatch(new fromTxActivityAction.InitTxActivity({ page: 1 }));
+                    this.store.dispatch(new fromBurnsAction.InitBurns());
                     if (action.payload.dappId) {
                         this.store.dispatch(new fromDevicesAction.InitDevices({ dappId: action.payload.dappId }));
                         this.store.dispatch(new fromPurchasesAction.InitPurchases({ dappId: action.payload.dappId }));

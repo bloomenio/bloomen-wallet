@@ -18,6 +18,26 @@
             <button [disabled]="!burnCashForm.valid" type="submit" color="accent" mat-flat-button fxLayout="row" fxLayoutAlign="center center">
                 <div fxFlex>{{ 'dapp.profile.burn_cash' | translate | uppercase }}</div>
             </button>
+            
+            <div class='recent-burns'>
+                <ng-container *ngIf='burnsArray'>
+                    <div class='row-burn mat-card' 
+                        *ngFor='let burn of burnsArray;'
+                        fxLayout='row'>
+                        <div class='data-burn' fxFlex='1 1 auto' >
+                            <div fxFlex='1 1 auto' fxLayoutAlign='center center'>#{{ burn.id }}</div>
+                            <div fxFlex='1 1 auto' fxLayoutAlign='center center'>{{ burn.amount }}$</div>
+                            <div fxFlex='1 1 auto' fxLayoutAlign='center center'>{{ burn.date | date: 'short' }}</div>
+                        </div>
+                    </div>
+                    <button type="button" mat-button color='accent' (click)='moreBurns()' *ngIf='burnsArray.length && currentPageBurns > 1'>
+                        {{ 'common.show_more' | translate | uppercase }}
+                    </button>
+                </ng-container>
+            </div>
+
         </form>
+       
+
     </div>
 </div>
