@@ -9,7 +9,7 @@ import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 })
 export class DappsMnmonicsComponent {
 
-  private dappsWithMnemonics: any;
+  public dappsWithMnemonics: any;
 
   constructor(public dialogRef: MatDialogRef<DappsMnmonicsComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any ) {

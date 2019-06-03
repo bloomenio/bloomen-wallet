@@ -54,7 +54,7 @@ export class DappProfileComponent implements OnInit, OnDestroy {
   @Input() public dapp: Dapp;
 
   @Input() public mnemonic: MnemonicModel;
-  private addressList$: Observable<UserAlias[]>;
+  public addressList$: Observable<UserAlias[]>;
 
   /**
    * Constructor to declare all the necesary to initialize the component.

@@ -13,6 +13,7 @@ export const environment = {
   serverUrl: '/api',
   defaultLanguage: 'en',
   supportedLanguages: [ 'en', 'el'],
+  loaderTime: 2000,
   eth: {
     ethRpcUrl: 'https://0x.bloomen.io/rpc/telsius/wallet',
     ethBlockPollingTime: 4000,
