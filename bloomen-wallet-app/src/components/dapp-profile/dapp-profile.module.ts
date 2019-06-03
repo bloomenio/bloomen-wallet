@@ -15,7 +15,7 @@ import { DappCreditHeaderModule } from '@components/dapp-credit-header/dapp-cred
 
 // Components
 import { DappProfileComponent } from './dapp-profile.component';
-import { ChangeRecentUserComponent } from './change-recent-user/change-recent-user.component';
+import { ChangeRecentUserComponent } from '@components/change-recent-user/change-recent-user.component';
 
 /**
  * Module to import and export all the components for the dapp-profile component.

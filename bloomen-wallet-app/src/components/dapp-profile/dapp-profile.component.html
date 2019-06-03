@@ -17,6 +17,7 @@
                 <div class='send-cash-action' fxLayout='column' fxLayoutAlign='center center'>
                     <button [disabled]='outOfCash' mat-flat-button color='accent' (click)='goToSendCash()'>{{ 'dapp.profile.send_cash' | translate | uppercase }}</button>
                 </div>
+               
                 <div class='recent-users'>
                     <ng-container *ngIf='!outOfCash && addressList$ | async as addressList'>
                         <div class='button-users mat-card' 
@@ -30,6 +31,10 @@
                             <div class='icon-users' fxFlex='0 1 auto' fxLayoutAlign='center center' (click)='onDelete(user.address)'> <mat-icon>delete</mat-icon> </div>
                         </div>
                     </ng-container>
+                </div>
+
+                <div class='send-cash-action' fxLayout='column' fxLayoutAlign='center center'>
+                    <button [disabled]='outOfCash' mat-flat-button color='accent' (click)='goToBurnCash()'>{{ 'dapp.profile.burn_cash' | translate | uppercase }}</button>
                 </div>
             </div>
         </div>

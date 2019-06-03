@@ -39,6 +39,20 @@ export class ERC223Contract extends Contract {
     });
   }
 
+  public burn(amount: number) {
+    return this.transactionService.addTransaction(this.args.gas, () => {
+      return this.contract.methods.burn(amount).send(this.args);
+    });
+  }
+
+  public getBurns(page: number) {
+    return this.contract.methods.getBurns(page).call(this.args);
+  }
+
+  public getBurnsPageCount() {
+    return this.contract.methods.getBurnsPageCount().call(this.args);
+  }
+
   public buy( assetId: number, schemaId: number, amount: number, dappId: string, description: string) {
     return this.transactionService.addTransaction(this.args.gas, () => {
       const data = [];

@@ -71,7 +71,7 @@ export class SendCashComponent implements OnInit, OnDestroy {
     });
 
     this.sendCashForm = new FormGroup({
-      address: new FormControl('', Validators.required),
+      address: new FormControl('', Validators.required ),
       amount: new FormControl('', Validators.required),
     });
 
@@ -96,7 +96,7 @@ export class SendCashComponent implements OnInit, OnDestroy {
 
   public async openQR(event: Event) {
     this.barCodeScannerService.scan().then(result => {
-      this.recoverMnemonic(result);
+      this.recoverAddress(result);
     });
   }
 
@@ -131,7 +131,7 @@ export class SendCashComponent implements OnInit, OnDestroy {
     }
   }
 
-  private recoverMnemonic(inputValue: string) {
+  private recoverAddress(inputValue: string) {
     if (inputValue.includes(QR_VALIDATOR.ID, 0)) {
       this.sendCashForm.get('address').setValue(inputValue.replace(QR_VALIDATOR.ID, ''));
     } else {

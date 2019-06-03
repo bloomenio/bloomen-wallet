@@ -36,7 +36,8 @@ menuCommands['UB1'] = {name: '[UB1] Balance Dashboard', value: utils.ub1 };
 menuCommands['UB2'] = {name: '[UB2] Balance for address', value: utils.ub2 };
 menuCommands['UB3'] = {name: '[UB3] Mint for address', value: utils.ub3 };
 menuCommands['UB4'] = {name: '[UB4] Burn', value: utils.ub4 };
-menuCommands['UB5'] = {name: '[UB4] My Burns', value: utils.ub5 };
+menuCommands['UB5'] = {name: '[UB5] My Burns', value: utils.ub5 };
+menuCommands['UB6'] = {name: '[UB6] Burns for Address', value: utils.ub6 };
 menuCommands['U1'] = {name: '[U1] Test of device access to an asset', value: utils.u1 };
 menuCommands['U2'] = {name: '[U2] Purge all prepaid card', value: utils.u2 };                
 menuCommands['U3'] = {name: '[U3] Generate 10 random PPC', value: utils.u3 };
@@ -205,6 +206,7 @@ async function balanceMenu() {
         menuCommands['UB3'],
         menuCommands['UB4'],
         menuCommands['UB5'],
+        menuCommands['UB6'],
         menuCommands['BACK_MAIN_MENU'],
         menuCommands['EXIT']
     ];

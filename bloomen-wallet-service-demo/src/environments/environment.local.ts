@@ -16,6 +16,7 @@ export const environment = {
   eth: {
     ethRpcUrl: 'https://0x.bloomen.io/rpc/telsius/bloodemo',
     ethBlockPollingTime: 4000,
+    ethBalancePollingTime: 1000,
     transactionStatusPollingTime: 1000,
     transactionCallDelayTime: 2000,
     hdMagicKey: 'xxXX_MAGIC_XXxx',

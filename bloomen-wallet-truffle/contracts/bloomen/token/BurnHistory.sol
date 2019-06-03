@@ -6,6 +6,7 @@ import "../../../node_modules/openzeppelin-solidity/contracts/access/roles/White
 contract BurnHistory is WhitelistedRole {
 
   struct Burn {
+    uint256 id;
     address owner;
     address from;
     uint256 amount;
@@ -16,8 +17,8 @@ contract BurnHistory is WhitelistedRole {
 
   uint256 constant private PAGE_SIZE = 10;
 
-  function addBurn(uint256 _amount, address _from, uint date) onlyWhitelisted public {
-    burnsMap_[_from].push(Burn(msg.sender, _from, _amount, now));
+  function addBurn(uint256 _amount, address _from) onlyWhitelisted public {
+    burnsMap_[_from].push(Burn(burnsMap_[_from].length, msg.sender, _from, _amount, now));
   }
 
   function getBurnsPageCount() public returns (uint256) {

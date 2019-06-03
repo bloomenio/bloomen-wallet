@@ -46,9 +46,10 @@ export class Web3Service {
     const engine = new Web3ProviderEngine();
 
     const web3Options = {
-      transactionConfirmationBlocks: 2,
-      transactionPollingTimeout: 1000,
+      transactionConfirmationBlocks: environment.eth.web3Options.transactionConfirmationBlocks,
+      transactionPollingTimeout: environment.eth.web3Options.transactionPollingTimeout,
     };
+
 
     this.web3 = new Web3(engine, null, web3Options);
 

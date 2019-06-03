@@ -25,7 +25,7 @@ import * as fromUserActions from '@stores/recent-users/recent-users.actions';
 import {filter, find, map} from 'rxjs/operators';
 
 import { MatDialog } from '@angular/material';
-import { ChangeRecentUserComponent } from './change-recent-user/change-recent-user.component';
+import { ChangeRecentUserComponent } from '@components/change-recent-user/change-recent-user.component';
 
 import { ClipboardService } from 'ngx-clipboard';
 import {DappGeneralDialogComponent} from '@components/dapp-general-dialog/dapp-general-dialog.component';
@@ -104,6 +104,11 @@ export class DappProfileComponent implements OnInit, OnDestroy {
   public goToSendCash() {
     this.store.dispatch(new fromUserActions.CleanUser());
     this.router.navigate([`dapp/${this.dapp.address}/send-cash`]);
+  }
+
+  public goToBurnCash() {
+    this.store.dispatch(new fromUserActions.CleanUser());
+    this.router.navigate([`dapp/${this.dapp.address}/burn-cash`]);
   }
 
   public share() {
