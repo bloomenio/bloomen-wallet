@@ -20,7 +20,7 @@ async function _ub1() {
     for (i=0;i<address.length;i++){
         try{
             let balance = await ctx.erc223.methods.balanceOf(address[i].address).call(ctx.transactionObject)
-            console.log(address[i].name, address[i].address,' balance:',balance);
+            console.log(address[i].name, address[i].address,' balance:',balance.toString());
         } catch(e){
             console.log('Error:',e);
         }      
@@ -36,7 +36,7 @@ async function _ub2() {
     let answer = await inquirer.prompt(questions);
     try{
         let response =  await ctx.erc223.methods.balanceOf(answer.address).call(ctx.transactionObject);       
-        console.log('Balance for '+ answer.address + ' :' + response);
+        console.log('Balance for '+ answer.address + ' :' + response.toString());
     } catch(e){
         console.log('Error:',e);
     }

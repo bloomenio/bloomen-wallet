@@ -26,10 +26,13 @@ const Web3 = require('web3');
 function _contextSetup(type, mnemonic) {
     const _context = {type:type, mnemonic:mnemonic};
 
-    var hdprovider =new HDWalletProvider(mnemonic, process.env.ALASTRIA_URL);
+    var hdprovider = provider = new HDWalletProvider(mnemonic, process.env.ALASTRIA_URL, 0, 1, 'm/44\'/60\'/0\'/0');
+    
+    //var hdprovider =new HDWalletProvider(mnemonic, process.env.ALASTRIA_URL);
     
     _context.web3=new Web3(hdprovider);
     _context.address=hdprovider.getAddress(0);
+    console.log(type, _context.address);
     _context.transactionObject={
             from: _context.address,
             gas: GAS,
