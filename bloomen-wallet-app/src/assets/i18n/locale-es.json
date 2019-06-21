@@ -98,6 +98,7 @@
     "options_shell": {
       "change_instance": "Cambiar instancia",
       "refresh_dapp": "Refrescar Dapp",
+      "burn_cash": "Quemar dinero",
       "last_updated": "Última actualización {{date}}"
     },
     "credit_header": {
@@ -125,6 +126,10 @@
     "clean_data": {
       "title": "¿Estás seguro?",
       "description": "Limpiarás el mnemonic para esta Dapp"
+    },
+    "burn_cash": {
+      "amount": "Cantidad",
+      "burn_cash": "Quemar dinero"
     }
   },
   "network_status": {

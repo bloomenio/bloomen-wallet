@@ -98,6 +98,7 @@
     "options_shell": {
       "change_instance": "Canviar instància",
       "refresh_dapp": "Refrescar Dapp",
+      "burn_cash": "Cremar diners",
       "last_updated": "Darrera actualització {{date}}"
     },
     "credit_header": {
@@ -125,6 +126,10 @@
     "clean_data": {
       "title": "Estàs segur?",
       "description": "Netejaràs el teu mnemonic per aquesta Dapp"
+    },
+    "burn_cash": {
+      "amount": "Quantitat",
+      "burn_cash": "Cremar diners"
     }
   },
   "network_status": {

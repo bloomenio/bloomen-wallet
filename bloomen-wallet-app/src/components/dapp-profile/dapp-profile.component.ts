@@ -5,31 +5,30 @@ import { Logger } from '@services/logger/logger.service.js';
 import { MatSnackBar } from '@angular/material';
 import { TranslateService } from '@ngx-translate/core';
 
-import {Observable, Subscription} from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Web3Service } from '@services/web3/web3.service';
 
 import { QR_VALIDATOR } from '@constants/qr-validator.constants';
 import { Router } from '@angular/router';
 import { SocialSharingService } from '@services/social-sharing/social-sharing.service';
 
-import {select, Store} from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import * as fromSelectors from '@stores/balance/balance.selectors';
 import { BalanceModel } from '@core/models/balance.model';
 
 import { MnemonicModel } from '@core/models/mnemonic.model';
 import { Dapp } from '@core/models/dapp.model';
-import {UserAlias} from '@models/recent-user.model';
+import { UserAlias } from '@models/recent-user.model';
 
 import * as fromAddressSelector from '@stores/recent-users/recent-users.selectors';
 import * as fromUserActions from '@stores/recent-users/recent-users.actions';
-import {filter, find, map} from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 import { MatDialog } from '@angular/material';
 import { ChangeRecentUserComponent } from '@components/change-recent-user/change-recent-user.component';
 
 import { ClipboardService } from 'ngx-clipboard';
-import {DappGeneralDialogComponent} from '@components/dapp-general-dialog/dapp-general-dialog.component';
-import * as fromDevicesActions from '@stores/devices/devices.actions';
+import { DappGeneralDialogComponent } from '@components/dapp-general-dialog/dapp-general-dialog.component';
 
 
 const log = new Logger('dapp-profile.component');
@@ -45,7 +44,7 @@ const log = new Logger('dapp-profile.component');
 export class DappProfileComponent implements OnInit, OnDestroy {
   public userAddress: string;
   public prefixDapp: string;
-  public outOfCash = true;
+  public outOfCash: boolean;
   public balance$: Subscription;
   public idDapp: string;
 
@@ -70,6 +69,7 @@ export class DappProfileComponent implements OnInit, OnDestroy {
     private clipboardService: ClipboardService
   ) {
     this.prefixDapp = QR_VALIDATOR.ID;
+    this.outOfCash = true;
   }
 
   public ngOnInit() {
@@ -84,9 +84,9 @@ export class DappProfileComponent implements OnInit, OnDestroy {
     });
 
     this.addressList$ = this.store.select(fromAddressSelector.selectAllAddress).pipe(
-        map(users =>
-            users.filter(user => user.idDapp === this.dapp.address)
-        )
+      map(users =>
+        users.filter(user => user.idDapp === this.dapp.address)
+      )
     );
   }
 
@@ -104,11 +104,6 @@ export class DappProfileComponent implements OnInit, OnDestroy {
   public goToSendCash() {
     this.store.dispatch(new fromUserActions.CleanUser());
     this.router.navigate([`dapp/${this.dapp.address}/send-cash`]);
-  }
-
-  public goToBurnCash() {
-    this.store.dispatch(new fromUserActions.CleanUser());
-    this.router.navigate([`dapp/${this.dapp.address}/burn-cash`]);
   }
 
   public share() {
@@ -138,7 +133,7 @@ export class DappProfileComponent implements OnInit, OnDestroy {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.store.dispatch(new fromUserActions.DeleteAlias({id : address}));
+        this.store.dispatch(new fromUserActions.DeleteAlias({ id: address }));
       }
     });
   }
@@ -146,7 +141,7 @@ export class DappProfileComponent implements OnInit, OnDestroy {
   public openDialog(user: UserAlias): Observable<any> {
     const dialogRef = this.dialog.open(ChangeRecentUserComponent, {
       width: '250px',
-      data: {user: user}
+      data: { user: user }
     });
 
     return dialogRef.afterClosed();

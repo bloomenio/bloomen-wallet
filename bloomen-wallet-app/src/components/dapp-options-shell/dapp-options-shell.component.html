@@ -4,6 +4,7 @@
     </button>
     <mat-menu #menu="matMenu">
         <button mat-menu-item (click)="refreshDapp()">{{ 'dapp.options_shell.refresh_dapp' | translate }}</button>
+        <button mat-menu-item [disabled]='outOfCash' (click)='goToBurnCash()'>{{ 'dapp.options_shell.burn_cash' | translate }}</button>
         <button mat-menu-item (click)="goToHome()">{{ 'dapp.options_shell.change_instance' | translate }}</button>
         <div class="version">{{ version }}</div>
         <div class="last_updated" fxFlex
