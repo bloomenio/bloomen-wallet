@@ -37,9 +37,7 @@ export class DappOptionsShellComponent implements OnInit, OnDestroy {
     private router: Router,
     private store: Store<Dapp>,
     private activatedRoute: ActivatedRoute
-  ) {
-    this.outOfCash = true;
-  }
+  ) { }
 
   public ngOnInit() {
     this.address = this.activatedRoute.firstChild.snapshot.paramMap.get('address');

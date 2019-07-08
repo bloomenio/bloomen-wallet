@@ -7,13 +7,17 @@ import { dappReducer } from './dapp.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { DappEffects } from './dapp.effects';
 
+
+import { DappGeneralDialogModule } from '@components/dapp-general-dialog/dapp-general-dialog.module';
+
 @NgModule({
     imports: [
         SharedModule,
         StoreModule.forFeature('dapps', dappReducer),
         EffectsModule.forFeature([
             DappEffects
-        ])
+        ]),
+        DappGeneralDialogModule
     ]
 })
 

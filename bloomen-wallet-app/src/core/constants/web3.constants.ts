@@ -6,5 +6,6 @@ export const WEB3_CONSTANTS = {
     RANDOM_SEED: 'randomSeed',
     HD_PATH_STRING: 'm/44\'/60\'/0\'/0',
     BALANCE_TYPE: 'balance',
-    DATA_LOADED: 'data_loaded'
+    DATA_LOADED: 'data_loaded',
+    REFRESH_DAPP_INTERVAL: 60000
 };

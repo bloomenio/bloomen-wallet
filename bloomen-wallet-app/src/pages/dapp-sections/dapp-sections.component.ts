@@ -10,14 +10,16 @@ import * as fromDappSelectors from '@stores/dapp/dapp.selectors';
 import * as fromMnemonicSelectors from '@stores/mnemonic/mnemonic.selectors';
 import * as fromMnemonicActions from '@stores/mnemonic/mnemonic.actions';
 
+import * as fromDappActions from '@stores/dapp/dapp.actions';
 import * as fromDevicesActions from '@stores/devices/devices.actions';
 import * as fromPurchasesActions from '@stores/purchases/purchases.actions';
 
 import * as fromApplicationDataActions from '@stores/application-data/application-data.actions';
 
-import { Subscription } from 'rxjs';
+import { Subscription, interval } from 'rxjs';
 import { Logger } from '@services/logger/logger.service';
 import { MnemonicModel } from '@core/models/mnemonic.model';
+import { WEB3_CONSTANTS } from '@core/constants/web3.constants';
 
 
 
@@ -40,6 +42,7 @@ export class DappSectionsComponent implements OnInit, OnDestroy {
   private mnemonics$: Subscription;
 
   public dapps$: Subscription;
+  public interval$: Subscription;
 
   public currentTabIndex: string;
 
@@ -57,6 +60,12 @@ export class DappSectionsComponent implements OnInit, OnDestroy {
 
     this.dapps$ = this.store.select(fromDappSelectors.selectAllDapp).subscribe((dapps) => {
       this.dapp = dapps.find(dapp => dapp.address === address);
+      if (this.dapp && !this.interval$) {
+        this.interval$ = interval(WEB3_CONSTANTS.REFRESH_DAPP_INTERVAL).subscribe(() => {
+          this.store.dispatch(new fromDappActions.RefreshDapp({ address }));
+        });
+
+      }
     });
 
     this.mnemonics$ = this.store.select(fromMnemonicSelectors.selectAllMnemonics).subscribe((mnemonics) => {
