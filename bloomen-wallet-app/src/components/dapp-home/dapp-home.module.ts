@@ -13,6 +13,8 @@ import { DappCreditHeaderModule } from '@components/dapp-credit-header/dapp-cred
 import { DappHomeComponent } from './dapp-home.component';
 import { DappInputDialogModule } from '@components/dapp-input-dialog/dapp-input-dialog.module';
 
+import { LottieAnimationViewModule } from 'ng-lottie';
+
 /**
  * Module to import and export all the components for the dapp-home component.
  */
@@ -24,7 +26,8 @@ import { DappInputDialogModule } from '@components/dapp-input-dialog/dapp-input-
     FlexLayoutModule,
     MaterialModule,
     DappCreditHeaderModule,
-    DappInputDialogModule
+    DappInputDialogModule,
+    LottieAnimationViewModule
   ],
   declarations: [DappHomeComponent],
   exports: [DappHomeComponent]

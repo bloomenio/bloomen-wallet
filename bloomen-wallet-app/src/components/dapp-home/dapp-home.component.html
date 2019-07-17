@@ -7,7 +7,8 @@
                 <div class='new-content-text'>{{ dapp?.address + '.home.title' | translate }}</div>
             </div>
             <mat-card-actions class='new-content-actions' fxLayoutAlign='space-between center'>
-                <mat-card-subtitle class='recent-activity-title'>{{ 'dapp.home.recent_activity' | translate | uppercase }}</mat-card-subtitle>
+                <mat-card-subtitle class='recent-activity-title'>
+                    {{ 'dapp.home.recent_activity' | translate | uppercase }}</mat-card-subtitle>
                 <button class='qrbutton' color='accent' mat-flat-button fxLayout='row' fxLayoutAlign='center center'
                     (click)='buyOrAllow()'>
                     <div class='qr-icon'></div>
@@ -15,37 +16,38 @@
             </mat-card-actions>
         </mat-card>
 
-
-        <mat-card #recentActivity class='recent-activity-card'>
+        <div #recentActivity>
             <div class='loader-recent-activity-card' fxFlexLayout='center' *ngIf='isLoading$ | async; else loaded'>
-                <div class='loading-spinner'></div>
+                <lottie-animation-view [options]="loadingMovementsConfig" [width]="300" [height]="300">
+                </lottie-animation-view>
             </div>
             <ng-template #loaded>
-                <mat-card-content class='recent-activity-content' *ngIf='txActivityArray.length'>
-                    <mat-list *ngFor='let txActivity of txActivityArray;'>
-                        <mat-divider></mat-divider>
-                        <mat-list-item>
-                            <div fxFlex fxLayout='column'>
-                                <div class='activity-title'>{{ txActivity.txName }}</div>
-                                <div fxLayout='row' fxLayoutAlign='space-between end'>
-                                    <div class='activity-date'>{{ txActivity.epoch | date: 'medium' }}</div>
-                                    <div class='activity-points'>{{ txActivity.amount }} PT</div>
+                <mat-card class='recent-activity-card' *ngIf='txActivityArray.length'>
+                    <mat-card-content class='recent-activity-content' >
+                        <mat-list *ngFor='let txActivity of txActivityArray;'>
+                            <mat-divider></mat-divider>
+                            <mat-list-item>
+                                <div fxFlex fxLayout='column'>
+                                    <div class='activity-title'>{{ txActivity.txName }}</div>
+                                    <div fxLayout='row' fxLayoutAlign='space-between end'>
+                                        <div class='activity-date'>{{ txActivity.epoch | date: 'medium' }}</div>
+                                        <div class='activity-points'>{{ txActivity.amount }} PT</div>
+                                    </div>
                                 </div>
-                            </div>
-                        </mat-list-item>
-                    </mat-list>
-                </mat-card-content>
-                <mat-card-content class='no-data-content' *ngIf='!txActivityArray.length' fxLayout='column'
-                    fxLayoutAlign='center'>
+                            </mat-list-item>
+                        </mat-list>
+                    </mat-card-content>
+                    <mat-card-actions *ngIf='txActivityArray.length && txActivityArray.length === currentPage * 10'
+                        class='recent-activity-actions' fxLayoutAlign='center center'>
+                        <button mat-button color='primary'
+                            (click)='clickMoreActivity()'>{{ 'common.show_more' | translate | uppercase }}</button>
+                    </mat-card-actions>
+                </mat-card>
+                <div class='no-data-content' *ngIf='!txActivityArray.length' fxLayout='column' fxLayoutAlign='center'>
                     <div class='no-data-image'></div>
                     <div class='no-data-text'>{{ 'common.no_data' | translate | uppercase }}</div>
-                </mat-card-content>
-                <mat-card-actions *ngIf='txActivityArray.length && txActivityArray.length === currentPage * 10'
-                    class='recent-activity-actions' fxLayoutAlign='center center'>
-                    <button mat-button color='primary'
-                        (click)='clickMoreActivity()'>{{ 'common.show_more' | translate | uppercase }}</button>
-                </mat-card-actions>
+                </div>
             </ng-template>
-        </mat-card>
+        </div>
     </div>
 </div>

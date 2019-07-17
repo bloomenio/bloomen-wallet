@@ -55,6 +55,8 @@ export class DappHomeComponent implements OnInit, OnDestroy {
 
   public isLoading$: Observable<boolean>;
 
+  public loadingMovementsConfig: any;
+
 
   @Input() public dapp: Dapp;
 
@@ -72,6 +74,12 @@ export class DappHomeComponent implements OnInit, OnDestroy {
     private dialog: MatDialog,
     private render: Renderer2
   ) {
+    this.loadingMovementsConfig = {
+      path: 'assets/animation/animationMovements.json',
+      renderer: 'svg',
+      autoplay: true,
+      loop: true
+    };
   }
 
   public onResize() {
