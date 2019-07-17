@@ -48,7 +48,9 @@ export class DappOptionsShellComponent implements OnInit, OnDestroy {
     });
 
     this.balance$ = this.store.select(fromBalanceSelectors.getBalance).subscribe((balance) => {
-      this.outOfCash = !parseInt(balance, 10);
+      setTimeout(() => {
+        this.outOfCash = !parseInt(balance, 10);
+      });
     });
   }
 

@@ -1,0 +1,18 @@
+{
+  "android": {
+    "debug": {
+      "keystore": "my-release-key.keystore",
+      "storePassword": "bloomen-2019",
+      "alias": "bloomenApp",
+      "password" : "bloomen-2019",
+      "keystoreType": "jks"
+  },
+    "release": {
+      "keystore": "my-release-key.keystore",
+      "storePassword": "bloomen-2019",
+      "alias": "bloomenApp",
+      "password": "bloomen-2019",
+      "keystoreType": "jks"
+    }
+  }
+}

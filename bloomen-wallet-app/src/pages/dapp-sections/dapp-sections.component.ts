@@ -82,6 +82,7 @@ export class DappSectionsComponent implements OnInit, OnDestroy {
   public ngOnDestroy() {
     this.mnemonics$.unsubscribe();
     this.dapps$.unsubscribe();
+    this.interval$.unsubscribe();
   }
 
   public onTabClick(event: any, refreshData = true) {

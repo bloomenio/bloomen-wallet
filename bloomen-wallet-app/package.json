@@ -35,7 +35,8 @@
     "prepare:ios:prod": "nps prepare.ios.prod",
     "start:android:local": "nps start.android.local",
     "build:android:local": "nps build.android.local",
-    "build:android:prod": "nps build.android.prod"
+    "build:android:prod": "nps build.android.prod",
+    "archive:android:prod": "nps archive.android.prod"
   },
   "dependencies": {
     "@angular/animations": "^7.0.0",
@@ -65,18 +66,18 @@
     "@ngx-translate/core": "^10.0.1",
     "angularx-qrcode": "^1.5.1",
     "bitcore-mnemonic": "1.5.0",
-    "cordova-android": "^7.1.4",
-    "cordova-clipboard": "^1.2.1",
-    "cordova-custom-config": "^5.0.3",
-    "cordova-ios": "^4.5.5",
-    "cordova-plugin-device": "^2.0.2",
+    "cordova-android": "^8.0.0",
+    "cordova-clipboard": "^1.3.0",
+    "cordova-custom-config": "^5.1.0",
+    "cordova-ios": "^5.0.0",
+    "cordova-plugin-device": "^2.0.3",
     "cordova-plugin-ionic-keyboard": "^2.1.3",
-    "cordova-plugin-ionic-webview": "^2.4.0",
-    "cordova-plugin-network-information": "^2.0.1",
-    "cordova-plugin-splashscreen": "^5.0.2",
-    "cordova-plugin-statusbar": "^2.4.2",
-    "cordova-plugin-whitelist": "^1.3.3",
-    "cordova-plugin-x-socialsharing": "^5.4.4",
+    "cordova-plugin-ionic-webview": "^2.5.1",
+    "cordova-plugin-network-information": "^2.0.2",
+    "cordova-plugin-splashscreen": "^5.0.3",
+    "cordova-plugin-statusbar": "^2.4.3",
+    "cordova-plugin-whitelist": "^1.3.4",
+    "cordova-plugin-x-socialsharing": "^5.4.7",
     "core-js": "^2.5.6",
     "crypto-js": "^3.1.9-1",
     "es6-promise-plugin": "^4.2.2",
@@ -88,7 +89,7 @@
     "ng-lottie": "^0.3.2",
     "ngforage": "^4.0.1",
     "ngx-clipboard": "^11.1.9",
-    "phonegap-plugin-barcodescanner": "^8.0.1",
+    "phonegap-plugin-barcodescanner": "^8.1.0",
     "rlp": "^2.2.3",
     "roboto-fontface": "^0.10.0",
     "rxjs": "^6.3.1",
@@ -144,8 +145,8 @@
   },
   "cordova": {
     "platforms": [
-      "android",
-      "ios"
+      "ios",
+      "android"
     ],
     "plugins": {
       "cordova-custom-config": {},
@@ -154,11 +155,11 @@
       "cordova-plugin-statusbar": {},
       "cordova-plugin-whitelist": {},
       "cordova-plugin-ionic-webview": {
-        "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
+        "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "28.+"
       },
       "cordova-plugin-ionic-keyboard": {},
       "phonegap-plugin-barcodescanner": {
-        "ANDROID_SUPPORT_V4_VERSION": "27.+"
+        "ANDROID_SUPPORT_V4_VERSION": "28.+"
       },
       "cordova-plugin-network-information": {},
       "cordova-plugin-x-socialsharing": {

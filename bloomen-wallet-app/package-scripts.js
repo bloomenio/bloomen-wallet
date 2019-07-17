@@ -280,6 +280,15 @@ module.exports = {
       }
     },
 
+    archive: {
+      android: {
+        prod: {
+          description: 'Archive an Android Sign application to be upload in Google Play',
+          script: 'ngx-scripts cordova build android --configuration production --release --copy dist -- --buildConfig=config/cordova/build.json'
+        }
+      }
+    },
+
     /**
      * DEPLOY APPLICATION
      */
