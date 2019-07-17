@@ -8,9 +8,6 @@
 
 ::ng-deep div[class$="theme-light"] {
   blo-dapp-home {
-    .no-data-image {
-      background-image: url("assets/placeholder/img_placeholder_add_black.png");    
-    }
     .new-content-text {
       text-shadow: 1px 1px white;
     }
@@ -19,9 +16,6 @@
 
 ::ng-deep div[class$="theme-dark"] {
   blo-dapp-home {
-    .no-data-image {
-      background-image: url("assets/placeholder/img_placeholder_add_white.png");
-    }
     .new-content-text {
       text-shadow: 1px 1px black;
     }
@@ -156,11 +150,8 @@
   
   .no-data-image {
     width: 100%;
-    height: 25vh;
-    min-height: 25vw;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
+    height: 20vh;
+    min-height: 20vw;
   }
 
   .no-data-text {

@@ -4,7 +4,7 @@
     "transaction_error": "Error with the transaction",
     "transaction_success": "Transaction success",
     "qr_invalid": "Invalid QR",
-    "no_data": "No data",
+    "no_data": "No data available",
     "show_more": "Show more",
     "back": "Back",
     "invalid_mnemonic": "Invalid mnemonic",

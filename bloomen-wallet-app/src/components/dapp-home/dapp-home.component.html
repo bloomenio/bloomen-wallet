@@ -23,7 +23,7 @@
             </div>
             <ng-template #loaded>
                 <mat-card class='recent-activity-card' *ngIf='txActivityArray.length'>
-                    <mat-card-content class='recent-activity-content' >
+                    <mat-card-content class='recent-activity-content'>
                         <mat-list *ngFor='let txActivity of txActivityArray;'>
                             <mat-divider></mat-divider>
                             <mat-list-item>
@@ -44,8 +44,8 @@
                     </mat-card-actions>
                 </mat-card>
                 <div class='no-data-content' *ngIf='!txActivityArray.length' fxLayout='column' fxLayoutAlign='center'>
-                    <div class='no-data-image'></div>
-                    <div class='no-data-text'>{{ 'common.no_data' | translate | uppercase }}</div>
+                    <mat-icon class="no-data-image" svgIcon="movements-no-data"></mat-icon>
+                    <div class='no-data-text'>{{ 'common.no_data' | translate | titlecase }}</div>
                 </div>
             </ng-template>
         </div>

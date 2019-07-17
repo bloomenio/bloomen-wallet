@@ -12,7 +12,7 @@
         </div>
         <div class='no-notifications-content' *ngIf='!dapp?.news?.length' fxLayout='column' fxLayoutAlign='center'>
             <div class='no-notifications-image'></div>
-            <div class='no-notifications-text'>{{ 'common.no_data' | translate | uppercase }}</div>
+            <div class='no-notifications-text'>{{ 'common.no_data' | translate | titlecase }}</div>
         </div>
     </div>
 </div>

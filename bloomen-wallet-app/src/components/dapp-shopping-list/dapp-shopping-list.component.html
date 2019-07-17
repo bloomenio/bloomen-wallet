@@ -34,7 +34,7 @@
                     </button>
                 <div class='no-purchases-content' *ngIf='!purchaseArray?.length' fxLayout='column' fxLayoutAlign='center'>
                     <div class='no-purchases-image'></div>
-                    <div class='no-purchases-text'>{{ 'common.no_data' | translate | uppercase }}</div>
+                    <div class='no-purchases-text'>{{ 'common.no_data' | translate | titlecase }}</div>
                 </div>
             </ng-container>
             <ng-container *ngSwitchCase='"devices"'>
@@ -60,7 +60,7 @@
                 </button>
                 <div class='no-devices-content' *ngIf='!deviceArray?.length' fxLayout='column' fxLayoutAlign='center'>
                     <div class='no-devices-image'></div>
-                    <div class='no-devices-text'>{{ 'common.no_data' | translate | uppercase }}</div>
+                    <div class='no-devices-text'>{{ 'common.no_data' | translate | titlecase }}</div>
                 </div>
             </ng-container>
         </div>

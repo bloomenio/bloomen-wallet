@@ -5,7 +5,7 @@ import { Dapp } from '@core/models/dapp.model.js';
 
 import { Logger } from '@services/logger/logger.service.js';
 
-import { MatSnackBar, MatDialog } from '@angular/material';
+import { MatSnackBar, MatDialog, MatIconRegistry } from '@angular/material';
 
 import { Store } from '@ngrx/store';
 
@@ -21,6 +21,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { DappGeneralDialogComponent } from '@components/dapp-general-dialog/dapp-general-dialog.component';
 
 import { AllowAndBuy } from '@models/operations.model';
+import { DomSanitizer } from '@angular/platform-browser';
 
 const log = new Logger('dapp-home.component');
 
@@ -72,7 +73,9 @@ export class DappHomeComponent implements OnInit, OnDestroy {
     private barCodeScannerService: BarCodeScannerService,
     private translate: TranslateService,
     private dialog: MatDialog,
-    private render: Renderer2
+    private render: Renderer2,
+    private iconRegistry: MatIconRegistry,
+    private sanitizer: DomSanitizer
   ) {
     this.loadingMovementsConfig = {
       path: 'assets/animation/animationMovements.json',
@@ -80,6 +83,10 @@ export class DappHomeComponent implements OnInit, OnDestroy {
       autoplay: true,
       loop: true
     };
+
+    this.iconRegistry.addSvgIcon(
+      'movements-no-data',
+      this.sanitizer.bypassSecurityTrustResourceUrl('/../assets/icons/baseline-image_search-24px.svg'));
   }
 
   public onResize() {
