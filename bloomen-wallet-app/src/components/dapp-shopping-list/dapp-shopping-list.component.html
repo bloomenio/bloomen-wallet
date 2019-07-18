@@ -16,10 +16,10 @@
                     <mat-list-item [ngClass]="{'purchase-container': checkDate(purchase.expirationDate)}">
                         <div fxFlex fxLayout='column'>
                             <div class='purchase-id'>{{ purchase.assetId }}</div>
-                            <div fxLayout='row' fxLayoutAlign='space-between end'>
-                                <div class='purchase-description' fxFlex='50'>{{ purchase.description }}</div>
-                                <div class='purchase-date' fxFlex='50'>{{ purchase.expirationDate | date: 'medium' }}</div>
-                                <div class='purchase-actions' fxFlex='10'>
+                            <div class='purchase-description'>{{ purchase.description }}</div>
+                            <div fxLayout='row' class="actions-wrapper" fxLayoutAlign='space-between center'>
+                                <div class='purchase-date purchase-container'>{{ purchase.expirationDate | date: 'medium' }}</div>
+                                <div class='purchase-actions purchase-container'>
                                     <button mat-icon-button (click)='removePurchase(purchase)'>
                                         <mat-icon>delete</mat-icon>
                                     </button>                            
@@ -42,10 +42,10 @@
                     <mat-list-item [ngClass]="{'purchase-container': checkDate(device.expirationDate)}">
                         <div fxFlex fxLayout='column'>
                             <div class='device-id'>{{ device.assetId }}</div>
-                            <div fxLayout='row' fxLayoutAlign='space-between end'>
-                                <div class='device-description' fxFlex>{{ device.description }}</div>
-                                <div class='device-date' fxFlex='50'>{{ device.expirationDate | date: 'medium' }}</div>
-                                <div class='device-actions' fxFlex='10'>
+                            <div class='device-description'>{{ device.description }}</div>
+                            <div fxLayout='row' class="actions-wrapper" fxLayoutAlign='space-between center'>
+                                <div class='device-date purchase-container'>{{ device.expirationDate | date: 'medium' }}</div>
+                                <div class='device-actions purchase-container'>
                                     <button mat-icon-button (click)='removeDevice(device)'>
                                         <mat-icon>delete</mat-icon>
                                     </button>                            
