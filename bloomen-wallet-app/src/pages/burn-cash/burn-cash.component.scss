@@ -13,13 +13,13 @@
 
 ::ng-deep div[class$="theme-light"] {
   .burn-cash-image {
-    background-image: url("assets/img_send_cash_hands_black.png");
+    background-image: url("assets/img_burn_cash_hands_black.png");
   }
 }
 
 ::ng-deep div[class$="theme-dark"] {
   .burn-cash-image {
-    background-image: url("assets/img_send_cash_hands_white.png");
+    background-image: url("assets/img_burn_cash_hands_white.png");
   }
 }
 
@@ -35,8 +35,8 @@
     
     .dapp-logo {
       position: absolute;
-      top: 10px;
-      height: 12vw;
+      top: 7vh;
+      height: 15vw;
       width: 100%;
       background-repeat: no-repeat;
       background-position: center;
@@ -47,7 +47,7 @@
       width: 100%;
       height: 40vw;
       background-repeat: no-repeat;
-      background-size: cover;
+      background-size: contain;
       background-position: bottom; 
     }
   }

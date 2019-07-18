@@ -17,7 +17,7 @@
     text-align: center;
     margin: 10px 5px;
   }
-  
+
   .actions {
     width: 100%;
   }
@@ -41,27 +41,28 @@
     }
   }
 
-  .recent-users{
+  .recent-users {
     margin: 10px 0px 0px;
-    .button-users{
-      color: $white;
-      background-color: $grey;
-      border-radius: 4px;
-      padding: 5px 0px;
-      margin-bottom: 10px;
-      .icon-users{
-        margin: 0px 15px;
+
+    .item-wrapper {
+      width: 100%;
+      .alias-wrapper {
+        width: 50%;
+      }
+      .actions-wrapper {
+        .icon-users {
+          margin: 0px 5px;
+        }
       }
     }
   }
-
 }
 
-:host ::ng-deep div.mat-expansion-panel-body{
+:host ::ng-deep div.mat-expansion-panel-body {
   padding: 0 7px 5px !important;
 }
-:host ::ng-deep button.mat-flat-button{
+
+:host ::ng-deep button.mat-flat-button {
   width: 100% !important;
   margin-bottom: 10px !important;
-
 }
