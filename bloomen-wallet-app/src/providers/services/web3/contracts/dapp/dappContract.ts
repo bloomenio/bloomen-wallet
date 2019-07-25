@@ -29,8 +29,9 @@ export class DappContract extends Contract {
   public static get ABI() { return JSON.abi; }
   public static get ADDRESS() { return 0; }
 
-  public getData() {
-    return this.transactionService.addTransaction(0, () => {
+  public getData(silent?: boolean) {
+
+    const f = () => {
       return this.contract.methods.getData().call(this.args).then((result) => {
         const storedJsonPathPairs = [];
         let i;
@@ -48,7 +49,9 @@ export class DappContract extends Contract {
 
         return jsonPath.unMarshall(storedJsonPathPairs);
       });
-    });
+    };
+
+    return (silent) ? f() : this.transactionService.addTransaction(0, f);
   }
 
 }

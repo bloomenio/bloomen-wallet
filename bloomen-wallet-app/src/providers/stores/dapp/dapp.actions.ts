@@ -10,6 +10,7 @@ export enum DappActionTypes {
     REMOVE_DAPP_SUCCESS = '[Dapp] remove dapp success',
     REFRESH_DAPPS = '[Dapp] refresh dapps',
     REFRESH_DAPP = '[Dapp] refresh dapp',
+    REFRESH_DAPP_SILENT = '[Dapp] refresh dapp silent',
     REFRESH_DAPP_SUCCESS = '[Dapp] refresh dapps success',
 }
 
@@ -28,6 +29,10 @@ export class RefreshDapp implements Action {
     constructor(public readonly payload: { address: string }) { }
 }
 
+export class RefreshDappSilent implements Action {
+    public readonly type = DappActionTypes.REFRESH_DAPP_SILENT;
+    constructor(public readonly payload: { address: string }) { }
+}
 
 export class RefreshDappSuccess implements Action {
     public readonly type = DappActionTypes.REFRESH_DAPP_SUCCESS;
@@ -60,4 +65,4 @@ export class RemoveDapp implements Action {
 }
 
 export type DappActions = InitDapps | AddDapp | AddDappSuccess | RemoveDapp | RemoveDappSuccess | RefreshDapps | RefreshDappSuccess |
-    RefreshDapp;
+    RefreshDapp | RefreshDappSilent;

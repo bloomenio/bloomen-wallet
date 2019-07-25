@@ -34,11 +34,11 @@
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscin vel ornare nibh. Duis scelerisque suscipit arcu, sit amet malesuada orci feugiat sit amet. Vestibulum at efficitur arcu, et tincidunt nunc. Maecenas non ornare lacus, ac egestas magna. In eu mattis neque, at consectetur nunc.",
         "i18n":{
           "en":{
-            "title": "EN-News #2",
+            "title": "EN-News #3",
             "description": "Lorem ipsum dolngue velit mi, vitae sodales ligula fermentum ut. Donec vel ornare nibh. Duis scelerisque suscipit arcu, sit amet malesuada orci feugiat sit amet. Vestibulum at efficitur arcu, et tincidunt nunc. Maecenas non ornare lacus, ac egestas magna. In eu mattis neque, at consectetur nunc."
           },
           "el":{
-            "title": "EL-News #2",
+            "title": "EL-News #3",
             "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.h. Duis scelerisque suscipit arcu, sit amet malesuada orci feugiat s" 
           }
         },

@@ -106,6 +106,26 @@ export class DappEffects {
         })
     );
 
+
+    @Effect({ dispatch: false }) public updateDappSilent = this.actions$.pipe(
+        ofType(
+            fromActions.DappActionTypes.REFRESH_DAPP_SILENT
+        ),
+        map((action) => {
+            this.web3Service.ready(() => {
+                const address = action.payload.address;
+                this.loadDapp(address, false, false, true).then((dapp: DappCache) => {
+                    const updatedDapp: Update<DappCache> = {
+                        id: dapp.address,
+                        changes: dapp
+                    };
+                    this.store.dispatch(new fromActions.RefreshDappSuccess(updatedDapp));
+                    this.store.dispatch(new fromAppActions.ChangeTheme({ theme: dapp.laf.theme }));
+                });
+            });
+        })
+    );
+
     @Effect({ dispatch: false }) public addDapp = this.actions$.pipe(
         ofType(fromActions.DappActionTypes.ADD_DAPP),
         map((action) => {
@@ -127,12 +147,12 @@ export class DappEffects {
         })
     );
 
-    private loadDapp(address: string, fromService?: boolean, isGeneral?: boolean): Promise<DappCache> {
+    private loadDapp(address: string, fromService?: boolean, isGeneral?: boolean, silent?: boolean ): Promise<DappCache> {
         const dbDappPromise = this.dappDatabaseService.get(address).toPromise();
 
         const mycontract = this.web3Service.createContract(DappContract.ABI, address);
         const dappContract = new DappContract(address, mycontract, this.web3Service, this.transactionService);
-        const bloomenDappPromise = dappContract.getData() as Promise<Dapp>;
+        const bloomenDappPromise = dappContract.getData(silent) as Promise<Dapp>;
         return Promise.all([dbDappPromise, bloomenDappPromise])
             .then(([cachedDapp, serverDapp]) => this.storeDapp(address, serverDapp, cachedDapp, fromService, isGeneral));
     }
