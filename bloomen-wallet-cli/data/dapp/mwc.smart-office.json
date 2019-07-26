@@ -23,7 +23,7 @@
     { "img" : "https://alastria1.wlilab.eu/bloo-demo/assets/smart-office/img_background_printer.png",
       "i18n":{
         "en":{
-          "title": "Office printer 2",
+          "title": "Office printer",
           "description": "Get this facility office"
         },
         "el":{

@@ -130,6 +130,10 @@
     "burn_cash": {
       "amount": "Quantitat",
       "burn_cash": "Cremar diners"
+    },
+    "dialog_refresh_dapp": {
+      "title": "Dapp {{dappTitle}} Actualitzada!",
+      "description": "Una nova actualització de la dapp ha sigut trovada, vols aplicar-la?"
     }
   },
   "network_status": {

@@ -130,6 +130,10 @@
     "burn_cash": {
       "amount": "Amount",
       "burn_cash": "Burn cash"
+    },
+    "dialog_refresh_dapp": {
+      "title": "Dapp {{dappTitle}} Updated!",
+      "description": "A new update of the dapp has been found, do you want apply it?"
     }
   },
   "network_status": {

@@ -152,8 +152,11 @@ export class DappEffects {
                         width: '250px',
                         height: '200px',
                         data: {
-                            title: this.translate.instant(`Dapp ${this.translate.instant(cachedDapp.address + '.home.title')} Updated!`),
-                            description: this.translate.instant('A new update of the dapp has been found, do you want apply it?'),
+                            title: this.translate.instant('dapp.dialog_refresh_dapp.title',
+                                {
+                                    dappTitle: this.translate.instant(cachedDapp.address + '.home.title')
+                                }),
+                            description: this.translate.instant('dapp.dialog_refresh_dapp.description'),
                             buttonAccept: this.translate.instant('common.accept'),
                             buttonCancel: this.translate.instant('common.cancel')
                         }
