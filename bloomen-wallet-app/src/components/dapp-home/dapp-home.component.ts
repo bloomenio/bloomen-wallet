@@ -58,8 +58,12 @@ export class DappHomeComponent implements OnInit, OnDestroy {
 
   public loadingMovementsConfig: any;
 
+  private _dapp: any;
 
-  @Input() public dapp: Dapp;
+
+  @Input() public set dapp(value: any) {
+    this._dapp = value;
+  }
 
   @ViewChild('recentActivity', { read: ElementRef }) public recentActivity: ElementRef;
   @ViewChild('newContent', { read: ElementRef }) public newContent: ElementRef;
@@ -101,6 +105,11 @@ export class DappHomeComponent implements OnInit, OnDestroy {
       );
     }
   }
+
+  public get dapp() {
+    return this._dapp;
+  }
+
 
   public ngOnInit() {
     this.txActivity$ = this.store.select(fromTxActivitySelectors.selectAllTxActivity).subscribe((txActivityArray) => {

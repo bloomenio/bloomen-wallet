@@ -30,6 +30,8 @@ const log = new Logger('contracts.effects');
 @Injectable()
 export class DappEffects {
 
+    private updateDappDialog: any;
+
     constructor(
         private actions$: Actions<fromActions.DappActions>,
         private bloomen: BloomenContract,
@@ -89,36 +91,20 @@ export class DappEffects {
 
     @Effect({ dispatch: false }) public updateDapp = this.actions$.pipe(
         ofType(
-            fromActions.DappActionTypes.REFRESH_DAPP
-        ),
-        map((action) => {
-            this.web3Service.ready(() => {
-                const address = action.payload.address;
-                this.loadDapp(address).then((dapp: DappCache) => {
-                    const updatedDapp: Update<DappCache> = {
-                        id: dapp.address,
-                        changes: dapp
-                    };
-                    this.store.dispatch(new fromActions.RefreshDappSuccess(updatedDapp));
-                    this.store.dispatch(new fromAppActions.ChangeTheme({ theme: dapp.laf.theme }));
-                });
-            });
-        })
-    );
-
-
-    @Effect({ dispatch: false }) public updateDappSilent = this.actions$.pipe(
-        ofType(
+            fromActions.DappActionTypes.REFRESH_DAPP,
             fromActions.DappActionTypes.REFRESH_DAPP_SILENT
         ),
         map((action) => {
             this.web3Service.ready(() => {
                 const address = action.payload.address;
-                this.loadDapp(address, false, false, true).then((dapp: DappCache) => {
+                const isSilent = action.type === fromActions.DappActionTypes.REFRESH_DAPP_SILENT;
+                this.loadDapp(address, false, false, isSilent).then((dapp: DappCache) => {
                     const updatedDapp: Update<DappCache> = {
                         id: dapp.address,
                         changes: dapp
                     };
+                    this.updateDappDialog = undefined;
+                    this.loadDappAssets(dapp);
                     this.store.dispatch(new fromActions.RefreshDappSuccess(updatedDapp));
                     this.store.dispatch(new fromAppActions.ChangeTheme({ theme: dapp.laf.theme }));
                 });
@@ -147,57 +133,60 @@ export class DappEffects {
         })
     );
 
-    private loadDapp(address: string, fromService?: boolean, isGeneral?: boolean, silent?: boolean ): Promise<DappCache> {
+    private async loadDapp(address: string, fromService?: boolean, isGeneral?: boolean, silent?: boolean): Promise<DappCache> {
         const dbDappPromise = this.dappDatabaseService.get(address).toPromise();
-
         const mycontract = this.web3Service.createContract(DappContract.ABI, address);
         const dappContract = new DappContract(address, mycontract, this.web3Service, this.transactionService);
         const bloomenDappPromise = dappContract.getData(silent) as Promise<Dapp>;
-        return Promise.all([dbDappPromise, bloomenDappPromise])
-            .then(([cachedDapp, serverDapp]) => this.storeDapp(address, serverDapp, cachedDapp, fromService, isGeneral));
+        const [cachedDapp, serverDapp] = await Promise.all([dbDappPromise, bloomenDappPromise]);
+        return this.storeDapp(address, serverDapp, cachedDapp, fromService, isGeneral);
     }
 
     private storeDapp(address: string,
         serverDapp: Dapp, cachedDapp?: DappCache,
         fromService = cachedDapp ? cachedDapp.fromService : true, isGeneral?: boolean) {
-        if (!isGeneral && cachedDapp && !this.isDappEqual(cachedDapp, serverDapp)) {
-            const dialog = this.dialog.open(DappGeneralDialogComponent, {
-                width: '250px',
-                height: '200px',
-                data: {
-                    title: this.translate.instant(`Dapp ${this.translate.instant(serverDapp.address + '.home.title')} Updated!`),
-                    description: this.translate.instant('A new update of the dapp has been found, do you want apply it?'),
-                    buttonAccept: this.translate.instant('common.accept'),
-                    buttonCancel: this.translate.instant('common.cancel')
+        return new Promise<DappCache>((resolve, reject) => {
+            if (!isGeneral && cachedDapp && !this.isDappEqual(cachedDapp, serverDapp)) {
+                if (!this.updateDappDialog) {
+                    this.updateDappDialog = this.dialog.open(DappGeneralDialogComponent, {
+                        width: '250px',
+                        height: '200px',
+                        data: {
+                            title: this.translate.instant(`Dapp ${this.translate.instant(cachedDapp.address + '.home.title')} Updated!`),
+                            description: this.translate.instant('A new update of the dapp has been found, do you want apply it?'),
+                            buttonAccept: this.translate.instant('common.accept'),
+                            buttonCancel: this.translate.instant('common.cancel')
+                        }
+                    });
+
+                    this.updateDappDialog.afterClosed().subscribe(result => {
+                        if (result) {
+                            const dapp: DappCache = {
+                                ...(cachedDapp || {}),
+                                ...serverDapp,
+                                address,
+                                fromService,
+                                lastUpdated: new Date()
+                            };
+
+                            this.dappDatabaseService.set(address, dapp);
+                            resolve(dapp);
+                        }
+                    });
                 }
-            });
+            } else {
+                const dapp: DappCache = {
+                    ...(cachedDapp || {}),
+                    ...serverDapp,
+                    address,
+                    fromService,
+                    lastUpdated: new Date()
+                };
 
-            dialog.afterClosed().subscribe(result => {
-                if (result) {
-                    const dapp: DappCache = {
-                        ...(cachedDapp || {}),
-                        ...serverDapp,
-                        address,
-                        fromService,
-                        lastUpdated: new Date()
-                    };
-
-                    this.dappDatabaseService.set(address, dapp);
-                    return dapp;
-                }
-            });
-        } else {
-            const dapp: DappCache = {
-                ...(cachedDapp || {}),
-                ...serverDapp,
-                address,
-                fromService,
-                lastUpdated: new Date()
-            };
-
-            this.dappDatabaseService.set(address, dapp);
-            return dapp;
-        }
+                this.dappDatabaseService.set(address, dapp);
+                resolve(dapp);
+            }
+        });
     }
 
     private isDappEqual(cachedDapp, serverDapp): boolean {

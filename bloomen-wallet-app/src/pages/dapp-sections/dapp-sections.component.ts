@@ -1,5 +1,5 @@
 // Basic
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ApplicationRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Dapp } from '@core/models/dapp.model.js';

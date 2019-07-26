@@ -1,7 +1,7 @@
 <div fxFlex class='has-dapp-credit-header'>
     <div class='dapp-notifications' fxFlex fxLayout='column' fxLayoutAlign='center center'>
         <div *ngIf='dapp?.news' class='notification-list'>
-            <div *ngFor='let notification of dapp.news; let i = index' (click)='goToNotificationDetail(i)'>
+            <div *ngFor='let notification of dapp.news; let i = index; trackBy: customTB.bind(this)' (click)='goToNotificationDetail(i)'>
                 <div class='notification-list-item' fxFlex fxLayout='row'>
                     <div class='notification-image' fxFlex='40' [ngStyle]="{'background-image': 'url(' + notification.img +')'}"></div>
                     <div class='notification-info' fxFlex fxLayout='column'>

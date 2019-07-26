@@ -19,17 +19,31 @@ const log = new Logger('dapp-notifications.component');
   styleUrls: ['dapp-notifications.component.scss']
 })
 export class DappNotificationsComponent {
-  @Input() public dapp: Dapp;
+
+  @Input() public set dapp(value: any) {
+    this._dapp = value;
+  }
+
+  private _dapp: any;
 
   /**
    * Constructor to declare all the necesary to initialize the component.
    */
   constructor(
     public snackBar: MatSnackBar,
-    private router: Router
+    private router: Router,
   ) { }
 
   public goToNotificationDetail(index: number) {
     this.router.navigate([`dapp/${this.dapp.address}/notifications/${this.dapp.news[index].payment.asset}`]);
+  }
+
+  public get dapp() {
+    return this._dapp;
+  }
+
+  public customTB(index, notification) {
+
+    return `${this._dapp.lastUpdated}-${index}`;
   }
 }
