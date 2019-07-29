@@ -103,7 +103,6 @@ export class DappEffects {
                         id: dapp.address,
                         changes: dapp
                     };
-                    this.updateDappDialog = undefined;
                     this.loadDappAssets(dapp);
                     this.store.dispatch(new fromActions.RefreshDappSuccess(updatedDapp));
                     this.store.dispatch(new fromAppActions.ChangeTheme({ theme: dapp.laf.theme }));
@@ -163,6 +162,7 @@ export class DappEffects {
                     });
 
                     this.updateDappDialog.afterClosed().subscribe(result => {
+                        this.updateDappDialog = undefined;
                         if (result) {
                             const dapp: DappCache = {
                                 ...(cachedDapp || {}),
@@ -174,6 +174,8 @@ export class DappEffects {
 
                             this.dappDatabaseService.set(address, dapp);
                             resolve(dapp);
+                        } else {
+                            resolve(cachedDapp);
                         }
                     });
                 }
