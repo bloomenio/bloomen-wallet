@@ -89,6 +89,10 @@
       "remove_device": {
         "title": "¿Estás seguro?",
         "text": "No tendrás acceso a tu contenido desde ese dispositivo"
+      },
+      "remove_asset": {
+        "title": "¿Estás seguro?",
+        "text": "No tendrás acceso a esa compra"
       }
     },
     "scanQR": {

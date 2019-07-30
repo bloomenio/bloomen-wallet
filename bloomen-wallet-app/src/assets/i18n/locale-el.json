@@ -1,16 +1,16 @@
 {
   "common": {
     "to_be_implemented": "To be implemented",
-    "transaction_error": "Error with the transaction",
-    "transaction_success": "Transaction success",
-    "qr_invalid": "Invalid QR",
-    "no_data": "No data available",
-    "show_more": "Show more",
-    "back": "Back",
-    "invalid_mnemonic": "Invalid mnemonic",
-    "remove": "Remove",
-    "cancel": "Cancel",
-    "accept": "Accept",
+    "transaction_error": "Παρουσιάστηκε πρόβλημα με τη συναλλαγή",
+    "transaction_success": "Επιτυχής συναλλαγή",
+    "qr_invalid": "Πρόβλημα με το QR",
+    "no_data": "Δεν υπάρχουν δεδομένα",
+    "show_more": "Περισσότερα",
+    "back": "Πίσω",
+    "invalid_mnemonic": "Προβληματικό μνημονικό",
+    "remove": "Αφαίρεση",
+    "cancel": "Ακύρωση",
+    "accept": "Αποδοχή",
     "noitemfound_nowbuy": "No item found, proceeding to purchase",
     "itemfounded": "Item founded"
   },
@@ -89,6 +89,10 @@
       "remove_device": {
         "title": "Are you sure?",
         "text": "You will no longer have access to your data from that device"
+      },
+      "remove_asset": {
+        "title": "Are you sure?",
+        "text": "You will no longer have access to that purchase"
       }
     },
     "scanQR": {

@@ -89,6 +89,10 @@
       "remove_device": {
         "title": "Are you sure?",
         "text": "You will no longer have access to your data from that device"
+      },
+      "remove_asset": {
+        "title": "Are you sure?",
+        "text": "You will no longer have access to that purchase"
       }
     },
     "scanQR": {

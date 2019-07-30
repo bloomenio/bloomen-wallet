@@ -29,7 +29,6 @@ export class LanguageSelectorComponent implements OnInit {
 
 
   public setLanguage(language: string) {
-    language = 'en';
     this.i18nService.language = language;
     if (this.isFirstRun) {
       this.router.navigate(['tutorial']);
