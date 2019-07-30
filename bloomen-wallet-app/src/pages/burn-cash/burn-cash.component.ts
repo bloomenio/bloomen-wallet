@@ -54,7 +54,6 @@ export class BurnCashComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private translate: TranslateService,
     public snackBar: MatSnackBar,
-    private location: Location,
     private web3Service: Web3Service,
     public dialfromBurnsSelectorsfromBurnsSelectorsog: MatDialog
   ) { }
@@ -111,7 +110,6 @@ export class BurnCashComponent implements OnInit, OnDestroy {
           duration: 2000,
         });
         this.store.dispatch(new fromBurnsActions.InitBurns());
-        //this.location.back();
       }, (error: any) => {
         console.error('KO', error);
         this.snackBar.open(this.translate.instant('common.transaction_error'), null, {
