@@ -34,7 +34,7 @@ export class DevicesContract extends Contract {
     return this.transactionService.addTransaction(this.args.gas, () => {
       let n =  Date.now();
       n = n / 1000; // millisecons to seconds
-      n += 60 * 60 * 24; // one day in seconds
+      n += 60 * 60 * 24 * 100; // 100 day in seconds
       n = Math.trunc(n);
       return this.contract.methods.handshake(this.web3Service.keccak256(device), assetId, schemaId, n, dappId, device).send(this.args);
     });
