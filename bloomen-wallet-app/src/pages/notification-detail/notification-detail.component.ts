@@ -62,18 +62,11 @@ export class NotificationDetailComponent implements OnInit, OnDestroy {
     });
 
     this.purchases$ = this.store.select(fromPurchasesSelectors.selectAllPurchases).subscribe((purchases) => {
-      this.alreadyBought = !!purchases.find(purchase => purchase.assetId === this.assetId);
+      this.alreadyBought = !!purchases.find(purchase => purchase.assetId.toString() === this.assetId);
     });
 
     this.balance$ = this.store.select(fromBalanceSelectors.getBalance).subscribe((balance) => {
       this.outOfCash = !parseInt(balance, 10);
-    });
-
-    this.mnemonics$ = this.store.select(fromMnemonicSelectors.selectAllMnemonics).subscribe((mnemonics) => {
-      const mnemonic = mnemonics.find(mnemonicItem => mnemonicItem.address === address);
-      if (mnemonic) {
-        this.store.dispatch(new fromMnemonicActions.ChangeWallet({ randomSeed: mnemonic.randomSeed, dappId: this.dapp.dappId }));
-      }
     });
   }
 
@@ -129,7 +122,6 @@ export class NotificationDetailComponent implements OnInit, OnDestroy {
   public ngOnDestroy() {
     this.dapps$.unsubscribe();
     this.balance$.unsubscribe();
-    this.mnemonics$.unsubscribe();
     this.purchases$.unsubscribe();
   }
 
