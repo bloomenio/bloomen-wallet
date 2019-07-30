@@ -31,7 +31,11 @@
                         </div>
                     </mat-list-item>
                     <mat-divider></mat-divider>
+                    
                 </mat-list>
+                <button type="button" mat-button color='accent' (click)='moreBurns()' *ngIf='burnsArray.length && currentPageBurns > 1'>
+                    {{ 'common.show_more' | translate | uppercase }}
+                </button>
             </div>
 
         </form>

@@ -110,7 +110,8 @@ export class BurnCashComponent implements OnInit, OnDestroy {
         this.snackBar.open(this.translate.instant('common.transaction_success'), null, {
           duration: 2000,
         });
-        this.location.back();
+        this.store.dispatch(new fromBurnsActions.InitBurns());
+        //this.location.back();
       }, (error: any) => {
         console.error('KO', error);
         this.snackBar.open(this.translate.instant('common.transaction_error'), null, {
