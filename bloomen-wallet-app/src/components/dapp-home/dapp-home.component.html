@@ -28,7 +28,7 @@
                             <mat-divider></mat-divider>
                             <mat-list-item>
                                 <div fxFlex fxLayout='column'>
-                                    <div class='activity-title'>{{ txActivity.txName }}</div>
+                                    <div class='activity-title'>{{ 'common.' + txActivity.txName | translate }}</div>
                                     <div fxLayout='row' fxLayoutAlign='space-between end'>
                                         <div class='activity-date'>{{ txActivity.epoch | date: 'medium' }}</div>
                                         <div class='activity-points'>{{ txActivity.amount }} PT</div>

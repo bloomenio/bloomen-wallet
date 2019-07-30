@@ -12,7 +12,10 @@
     "cancel": "Cancelar",
     "accept": "Aceptar",
     "noitemfound_nowbuy": "Ítem no encontrado, se procede a comprar",
-    "itemfounded": "ítem encontrado"
+    "itemfounded": "ítem encontrado",
+    "send": "send",
+    "receive": "receive",
+    "burn": "burn"
   },
   "language": {
     "en": "English",

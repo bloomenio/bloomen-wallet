@@ -12,7 +12,10 @@
     "cancel": "Ακύρωση",
     "accept": "Αποδοχή",
     "noitemfound_nowbuy": "No item found, proceeding to purchase",
-    "itemfounded": "Item founded"
+    "itemfounded": "Item founded",
+    "send": "send",
+    "receive": "receive",
+    "burn": "burn"
   },
   "language": {
     "en": "English",
