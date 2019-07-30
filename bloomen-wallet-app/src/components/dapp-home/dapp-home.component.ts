@@ -181,7 +181,7 @@ export class DappHomeComponent implements OnInit, OnDestroy {
           break;
       }
     } else {
-      log.error('KO', 'Eny QR prefix');
+      log.error('KO', 'Bad QR prefix');
       this.snackBar.open(this.translate.instant('common.qr_invalid'), null, {
         duration: 2000,
       });
@@ -190,38 +190,45 @@ export class DappHomeComponent implements OnInit, OnDestroy {
 
   private async processRequest(action: QR_ACTION, request: AllowAndBuy) {
 
-    const isowner = await this.assets.checkOwnership(request.assetId, request.schemaId, request.dappId);
+    if (this.dapp.dappId === request.dappId) {
+      const isowner = await this.assets.checkOwnership(request.assetId, request.schemaId, request.dappId);
 
-    switch (action) {
-      case QR_ACTION.ALLOW:
-        if (isowner || request.assetId === 0) {
-          await this.generateAllow(request);
-        } else {
-          this.snackBar.open(this.translate.instant('common.noitemfound_nowbuy'), null, {
-            duration: 2000,
-          });
-        }
-        break;
-      case QR_ACTION.BUY:
-        if (!isowner) {
-          await this.generatePurchase(request);
-        } else {
-          this.snackBar.open(this.translate.instant('common.itemfounded'), null, {
-            duration: 2000,
-          });
-        }
-        break;
-      case QR_ACTION.ALLOW_BUY:
-        if (!isowner) {
-          // ask for buy
-          const purchased = await this.generatePurchase(request);
-          if ( purchased ) {
+      switch (action) {
+        case QR_ACTION.ALLOW:
+          if (isowner || request.assetId === 0) {
+            await this.generateAllow(request);
+          } else {
+            this.snackBar.open(this.translate.instant('common.noitemfound_nowbuy'), null, {
+              duration: 2000,
+            });
+          }
+          break;
+        case QR_ACTION.BUY:
+          if (!isowner) {
+            await this.generatePurchase(request);
+          } else {
+            this.snackBar.open(this.translate.instant('common.itemfounded'), null, {
+              duration: 2000,
+            });
+          }
+          break;
+        case QR_ACTION.ALLOW_BUY:
+          if (!isowner) {
+            // ask for buy
+            const purchased = await this.generatePurchase(request);
+            if ( purchased ) {
+              this.generateAllow(request);
+            }
+          } else {
             this.generateAllow(request);
           }
-        } else {
-          this.generateAllow(request);
-        }
-        break;
+          break;
+      }
+    } else {
+      // not same dapp
+      this.snackBar.open(this.translate.instant('common.qr_invalid'), null, {
+        duration: 2000,
+      });
     }
   }
 
