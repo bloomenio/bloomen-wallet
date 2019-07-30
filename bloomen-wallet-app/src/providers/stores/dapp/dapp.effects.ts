@@ -181,7 +181,7 @@ export class DappEffects {
                 }
             } else {
                 const dapp: DappCache = {
-                    ...(cachedDapp || {}),
+                    ...{},
                     ...serverDapp,
                     address,
                     fromService,
