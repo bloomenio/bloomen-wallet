@@ -24362,12 +24362,12 @@
         }
       },
       "links": {},
-      "address": "0x6AbdBcc187365E19404AF0d8810ef179bFfb77f8",
-      "transactionHash": "0xb2b803446ef89bbb8a72e1bf2a248aef438dd4b12273fcf943b5e89d41dacfbc"
+      "address": "0x7f1ad90be9E40534732876AE9C6Ddb021a247Bc1",
+      "transactionHash": "0xd7f51c3dfcc0bf0e26f53a5a30c3b15f820166197149a862603f16269c255d67"
     }
   },
   "schemaVersion": "3.0.6",
-  "updatedAt": "2019-05-30T07:02:14.454Z",
+  "updatedAt": "2019-07-31T06:40:17.425Z",
   "devdoc": {
     "methods": {}
   },

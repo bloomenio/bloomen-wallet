@@ -96,7 +96,9 @@
       "remove_asset": {
         "title": "Are you sure?",
         "text": "You will no longer have access to that purchase"
-      }
+      },
+      "handshake": "handshake",
+      "assetId": "assetId"
     },
     "scanQR": {
       "increase_balance": "To increase your balance, scan the QR code of the card.",

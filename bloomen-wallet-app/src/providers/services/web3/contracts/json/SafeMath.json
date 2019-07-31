@@ -3278,12 +3278,12 @@
     "83584648538": {
       "events": {},
       "links": {},
-      "address": "0x6c605EFe1C3e085fBDba5F816de9F916a0188E8e",
-      "transactionHash": "0xd88a72944eb7613319abaabc464f514df24e7f7799b8cca15f63ec40f506acf4"
+      "address": "0xe45625787e72eD6Cd704236D0D9956dEf5383d04",
+      "transactionHash": "0x593c58d26c685f6d8a723d7d4e2c1f33e8c85fd8aee580d74f69445c63c963a3"
     }
   },
   "schemaVersion": "3.0.6",
-  "updatedAt": "2019-05-30T07:02:06.914Z",
+  "updatedAt": "2019-07-31T06:40:09.930Z",
   "devdoc": {
     "details": "Unsigned math operations with safety checks that revert on error",
     "methods": {},

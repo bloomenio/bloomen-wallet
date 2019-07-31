@@ -96,7 +96,9 @@
       "remove_asset": {
         "title": "Estàs segur?",
         "text": "You will no longer have access to that purchase"
-      }
+      },
+      "handshake": "handshake",
+      "assetId": "assetId"
     },
     "scanQR": {
       "increase_balance": "Per incrementar el teu saldo escaneja el codi QR de la targeta.",

@@ -15,7 +15,7 @@
                 <mat-list *ngFor='let purchase of purchaseArray;'>
                     <mat-list-item [ngClass]="{'purchase-container': checkDate(purchase.expirationDate)}">
                         <div fxFlex fxLayout='column'>
-                            <div class='purchase-id'>{{ purchase.assetId }}</div>
+                            <div class='purchase-id'> {{ purchase.assetId }}</div>
                             <div class='purchase-description'>{{ purchase.description }}</div>
                             <div fxLayout='row' class="actions-wrapper" fxLayoutAlign='space-between center'>
                                 <div class='purchase-date purchase-container'>{{ purchase.expirationDate | date: 'medium' }}</div>
@@ -41,7 +41,7 @@
                 <mat-list *ngFor='let device of deviceArray;'>
                     <mat-list-item [ngClass]="{'purchase-container': checkDate(device.expirationDate)}">
                         <div fxFlex fxLayout='column'>
-                            <div class='device-id'>{{ device.assetId }}</div>
+                            <div class='device-id'>{{ ((device.assetId=='0')?'dapp.shopping_list.handshake' :''+device.assetId)  | translate  }}</div>
                             <div class='device-description'>{{ device.description }}</div>
                             <div fxLayout='row' class="actions-wrapper" fxLayoutAlign='space-between center'>
                                 <div class='device-date purchase-container'>{{ device.expirationDate | date: 'medium' }}</div>

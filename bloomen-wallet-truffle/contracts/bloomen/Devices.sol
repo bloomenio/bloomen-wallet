@@ -52,13 +52,20 @@ contract Devices {
   function checkOwnershipMultipleAssetsForDevice(bytes32 _deviceHash, uint256[] memory _assetIds, string memory dappId) public  returns (bool[] memory) {
     DappCtx storage ctx = _getDappCtx(dappId);
     //require(ctx.deviceHashes_[_deviceHash] != address(0), "not exist");
-    if (ctx.deviceHashes_[_deviceHash] == address(0)) {
+    
+    if (ctx.deviceHashes_[_deviceHash] == address(0)){
       bool[] memory empty  = new bool[](0); 
       return empty;
     }
     require(_assetIds.length > 0, "empty assets");
   
     Device memory device = ctx.userDevices_[ctx.deviceHashes_[_deviceHash]].devices[_deviceHash];
+
+    if (device.assetId != 0) {
+      // method not allowed for one asset device
+      bool[] memory empty  = new bool[](0); 
+      return empty;
+    }
 
     return _assets.checkOwnershipMultipleAssetsForAddress(ctx.deviceHashes_[_deviceHash],_assetIds,device.schemaId,device.dappId);
   }
@@ -67,11 +74,15 @@ contract Devices {
     DappCtx storage ctx = _getDappCtx(dappId);
     //require(ctx.deviceHashes_[_deviceHash] != address(0), "not exist");
     // require returns true on failured validation.
-    if (ctx.deviceHashes_[_deviceHash] == address(0)) {
+    if (ctx.deviceHashes_[_deviceHash] == address(0)){
       return false;
     }
     
-    Device storage device = ctx.userDevices_[ctx.deviceHashes_[_deviceHash]].devices[_deviceHash];
+    Device memory device = ctx.userDevices_[ctx.deviceHashes_[_deviceHash]].devices[_deviceHash];
+
+    if ((device.assetId != 0) && (device.assetId != _assetId)) {
+      return false;
+    }
 
     return _assets.checkOwnershipOneAssetForAddress(ctx.deviceHashes_[_deviceHash],_assetId,device.schemaId,device.dappId);
   }

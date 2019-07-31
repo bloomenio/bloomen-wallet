@@ -14614,12 +14614,12 @@
         }
       },
       "links": {},
-      "address": "0xdFEf6CF9F8F01eE961da43F0fF40efa22DDBcCfe",
-      "transactionHash": "0xe892f5df639851f38a88bfba4e7cf6491e1065b0cc5b7e483ad8a6ad64d5d9c4"
+      "address": "0x11E1d6eBB8C982FA12f9FE2d4C961DFF8285c420",
+      "transactionHash": "0x181258b2fcc6be06be57fbe3c202658faf857fa15e7cef3a921e8b52c7712f55"
     }
   },
   "schemaVersion": "3.0.6",
-  "updatedAt": "2019-05-30T07:02:06.934Z",
+  "updatedAt": "2019-07-31T06:40:09.941Z",
   "devdoc": {
     "methods": {}
   },

@@ -66,8 +66,9 @@
 
     .device-id,
     .purchase-id {
-      font-size: $font-size-l;
+      font-size: $font-size-xl;
       font-weight: $font-bold;
+      padding-bottom: 5px;
     }
 
     .device-description, .device-date,

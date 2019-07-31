@@ -6804,12 +6804,12 @@
         }
       },
       "links": {},
-      "address": "0x32aeA98612aff224cA6210b25467a7C0E305c500",
-      "transactionHash": "0x2fb6efcad909b20c6467df64a138d7bca4c29efb743d944f0bf04b583934efc8"
+      "address": "0xEF866bb4323347201DDfE1E711d37be438770640",
+      "transactionHash": "0xba5064331ef330467592c3e86ad0f46c7badda29be64236e3dfbe47ce9211f96"
     }
   },
   "schemaVersion": "3.0.6",
-  "updatedAt": "2019-05-30T07:02:06.917Z",
+  "updatedAt": "2019-07-31T06:40:09.933Z",
   "devdoc": {
     "methods": {
       "allowance(address,address)": {
