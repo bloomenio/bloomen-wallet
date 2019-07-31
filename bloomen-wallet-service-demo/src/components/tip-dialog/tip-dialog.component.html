@@ -4,7 +4,7 @@
   <mat-slider class="slider-wrapper" [max]="schema?.topPrice" min="1" [displayWith]="formatLabel" thumbLabel
     [(ngModel)]="value" (ngModelChange)="onChange($event)"></mat-slider>
   <p>2. Scan the QR</p>
-  <div fxLayout="row" fxLayoutAlign="center" ngxClipboard [cbContent]="tipQR">
-    <qrcode [qrdata]="tipQR" [size]="150" [level]="'Q'"></qrcode>
+  <div style="background-color: white" fxLayout="row" fxLayoutAlign="center" ngxClipboard [cbContent]="tipQR">
+    <qrcode style="padding-bottom: 10px;padding-top: 10px;"[qrdata]="tipQR" [size]="150" [level]="'Q'"></qrcode>
   </div>
 </div>
