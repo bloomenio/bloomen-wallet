@@ -1,6 +1,6 @@
 {
   "common": {
-    "to_be_implemented": "To be implemented",
+    "to_be_implemented": "Θα υλοποιηθεί σύντομα...",
     "transaction_error": "Παρουσιάστηκε πρόβλημα με τη συναλλαγή",
     "transaction_success": "Επιτυχής συναλλαγή",
     "qr_invalid": "Πρόβλημα με το QR",
@@ -11,11 +11,11 @@
     "remove": "Αφαίρεση",
     "cancel": "Ακύρωση",
     "accept": "Αποδοχή",
-    "noitemfound_nowbuy": "No item found, proceeding to purchase",
-    "itemfounded": "Item founded",
-    "send": "send",
-    "receive": "receive",
-    "burn": "burn"
+    "noitemfound_nowbuy": "Δεν βρέθηκε, προχωρήστε στην αγορά.",
+    "itemfounded": "Βρέθηκε.",
+    "send": "Στείλτε",
+    "receive": "Λάβετε",
+    "burn": "Εξαργυρώστε"
   },
   "language": {
     "en": "English",
@@ -26,141 +26,141 @@
   },
   "tutorial": {
     "0": {
-      "title": "Can a complex technology make our life simpler?",
+      "title": "Μπορεί μια περίπλοκη τεχνολογία να απλοποιήσει την καθημερινότητα μας;",
       "text": "This is a blockchain-based wallet to access Bloomen decentralized applications (Dapps)"
     },
     "1": {
-      "title": "Discovery & Enrollment",
-      "text": "Search for Bloomen Dapps and aggregate them easily with a simple, anonymous sign in"
+      "title": "Ανακαλύψτε και εγγραφείτε",
+      "text": "Αναζητήστε εφαρμογές του Bloomen και αποκτήστε πρόσβαση με μια απλή διαδικασία, διατηρώντας την ανωνυμία σας."
     },
     "2": {
-      "title": "Get some Tokens",
-      "text": "Buy utility crypto-tokens for every Dapp to access their products and services"
+      "title": "Αποκτήστε μερικές μάρκες.",
+      "text": "Αποκτήστε μάρκες που προορίζονται για χρήση αποκεντρωμένων εφαρμογών"
     },
     "3": {
-      "title": "Purchase process",
-      "text": "Initiate payments with a simple QR scan"
+      "title": "Διαδικασία αγοράς.",
+      "text": "Προχωρήστε σε συναλλαγές με μια απλή σάρωση κώδικα QR"
     },
     "4": {
-      "title": "Access Authorization",
-      "text": "Allow any of your devices to access the purchased content or service"
+      "title": "Εξουσιοδότηση πρόσβασης",
+      "text": "Επιτρέψτε σε οποιαδήποτε από τις συσκευές σας να έχει πρόσβαση στο περιεχόμενο που αγοράσατε."
     },
     "5": {
-      "title": "P2P exchange",
-      "text": "Use your wallet to transfer your tokens with other peers"
+      "title": "Ανταλλαγή τύπου P2P",
+      "text": "Χρησιμοποιήστε το πορτοφόλι σας για να μεταφέρετε μάρκες σε φίλους ή οικογένεια."
     },
-    "skip": "Skip",
-    "enter": "Enter"
+    "skip": "Παράλειψη",
+    "enter": "Εισαγωγή"
   },
   "home": {
-    "open": "Open",
-    "cleanData": "Clean data",
-    "removeDapp": "Remove",
+    "open": "Άνοιξε",
+    "cleanData": "Εκκαθάριση δεδομένων",
+    "removeDapp": "Αφαίρεση",
     "options_shell": {
-      "tutorial": "Tutorial",
-      "refreshDapps": "Refresh Dapps",
-      "changeLanguage": "Change language"
+      "tutorial": "Οδηγός",
+      "refreshDapps": "Ανανέωση εφαρμογών",
+      "changeLanguage": "Αλλαγή γλώσσας"
     }
   },
   "login": {
-    "message": "Please indicate if you want to create a new account, or if you already have an account and you prefer restore it.",
+    "message": "Παρακαλούμε επιλέξτε κατά πόσο θέλετε να δημιουργήσετε νέο λογαριασμό, ή έχετε ήδη κάποιο και θέλετε να τον επαναφέρετε.",
     "account": {
-      "create": "Create a new account",
-      "restore": "Restore an account"
+      "create": "Δημιουργία νέου λογαριασμού",
+      "restore": "Επαναφορά λογαριασμού"
     }
   },
   "dapp": {
     "home": {
-      "buy_content": "Buy content or Allow",
-      "data": "Put the date into the input field",
-      "recent_activity": "Recent activity"
+      "buy_content": "Αγορά ή προβολή περιεχομένου",
+      "data": "Προσδιορίστε την ημερομηνία",
+      "recent_activity": "Πρόσφατη δραστηριότητα"
     },
     "profile": {
-      "code_copied": "The code has been copied",
-      "send_cash": "Send cash"
+      "code_copied": "Ο κωδικός έχει αντιγραφεί",
+      "send_cash": "Στείλτε μάρκες"
     },
     "notifications": {
-      "buy_now": "Buy now",
+      "buy_now": "Αγοράστε τώρα",
       "dialog_buy": {
-        "title": "Are you sure?",
-        "description": "You will buy \"{{title}}\" ({{id}}) for {{price}} PT"
+        "title": "Είστε σίγουροι;",
+        "description": "Πρόκειται να αγοράσετε το \"{{title}}\" ({{id}}) για {{price}} PT"
       }
     },
     "shopping_list": {
-      "devices": "Devices",
-      "purchases": "Purchases",
+      "devices": "Συσκευές",
+      "purchases": "Αγορές",
       "remove_device": {
-        "title": "Are you sure?",
-        "text": "You will no longer have access to your data from that device"
+        "title": "Είστε σίγουροι;",
+        "text": "Δεν θα έχετε πλέον πρόσβαση στα δεδομένα σας από αυτή την συσκευή"
       },
       "remove_asset": {
-        "title": "Are you sure?",
-        "text": "You will no longer have access to that purchase"
+        "title": "Είστε σίγουροι;",
+        "text": "Δεν θα έχετε πλέον πρόσβαση σε αυτή την αγορά"
       },
-      "handshake": "handshake",
-      "assetId": "assetId"
+      "handshake": "Χειραψία",
+      "assetId": "Αριθμός εγγραφής περιεχομένου"
     },
     "scanQR": {
-      "increase_balance": "To increase your balance, scan the QR code of the card.",
-      "scan_qr_code": "Scan qr code"
+      "increase_balance": "Για να πιστώσετε το πορτοφόλι σας, σαρώστε τον κώδικα QR από την κάρτα.",
+      "scan_qr_code": "Σαρώστε τον κώδικα QR"
     },
     "options_shell": {
-      "change_instance": "Change instance",
-      "refresh_dapp": "Refresh dapp",
-      "burn_cash": "Burn cash",
-      "last_updated": "Last updated {{date}}"
+      "change_instance": "Αλλαγή εκδοχής",
+      "refresh_dapp": "Ανανέωση εφαρμογής",
+      "burn_cash": "Εξαργυρώστε τις μάρκες σας.",
+      "last_updated": "Τελευταία ενημέρωση {{date}}"
     },
     "credit_header": {
-      "points": "Your credit is {{balance}} points",
-      "loading": "Your credit is"
+      "points": "Το υπόλοιπο σας είναι {{balance}} μάρκες",
+      "loading": "Το υπόλοιπο σας είναι"
     },
     "restore_account": {
-      "mnemonic": "Mnemonic",
-      "restore": "Restore",
-      "placeholder_message": "Tap here to paste",
-      "copy_from_other": "Copy from other Dapp",
-      "available_mnemonics": "Available mnemonics",
-      "no_mnemonics": "No mnemonics saved"
+      "mnemonic": "Μνημονικό",
+      "restore": "Επαναφορά",
+      "placeholder_message": "Πατήστε εδώ για να επικολλήσετε",
+      "copy_from_other": "Αντιγραφή από άλλη εφαρμογή",
+      "available_mnemonics": "Διαθέσιμα μνημονικά",
+      "no_mnemonics": "Δεν αποθηκεύτηκαν μνημονικά"
     },
     "send_cash": {
-      "to": "To",
-      "address": "Address",
-      "amount": "Amount",
+      "to": "Σε",
+      "address": "Διεύθυνση",
+      "amount": "Ποσό",
       "points": "PT"
     },
     "remove_dapp": {
-      "title": "Are you sure?",
-      "description": "This will remove your dapp and clean your mnemonic"
+      "title": "Είστε σίγουροι;",
+      "description": "Η εφαρμογή θα διαγραφεί όπως επίσης και το μνημονικό"
     },
     "clean_data": {
-      "title": "Are you sure?",
-      "description": "You will clean the mnemonic for this dapp"
+      "title": "Είστε σίγουροι;",
+      "description": "Θα καθαρίσετε το μνημονικό για αυτή την εφαρμογή"
     },
     "burn_cash": {
-      "amount": "Amount",
-      "burn_cash": "Burn cash"
+      "amount": "Ποσό",
+      "burn_cash": "Εξαργυρώστε τις μάρκες"
     },
     "dialog_refresh_dapp": {
-      "title": "Dapp {{dappTitle}} Updated!",
-      "description": "A new update of the dapp has been found, do you want apply it?"
+      "title": "Η εφαρμογή {{dappTitle}} ανανεώθηκε!",
+      "description": "Βρέθηκε ανανεωμένη έκδοση της εφαρμογής. Θέλετε να προχωρήσετε με την αναβάθμιση;"
     }
   },
   "network_status": {
-    "title": "Internet connection not available",
-    "message": "Please connect your device to the internet to use the app."
+    "title": "Δεν βρέθηκε σύνδεση με το διαδίκτυο",
+    "message": "Παρακαλούμε συνδέστε την συσκευή με το διαδίκτυο για να είναι επιτυχής η πρόσβαση σας στην εφαρμογή."
   },
   "address_popup": {
     "change_alias": {
-      "title": "Hey!",
-      "message": "Do you want to rename this alias?"
+      "title": "Γεια!",
+      "message": "Μήπως θα θέλατε να αλλάξετε το ψευδώνυμο;"
     },
     "add_recent_user": {
-      "title": "Hey!",
-      "message": "Do you want to save this new address with an alias?"
+      "title": "Γεια!",
+      "message": "Θέλετε να αποθηκεύσετε την νέα διεύθυνση με κάποιο ψευδώνυμο;"
     },
     "delete_alias": {
-      "title": "Hey!",
-      "message": "Are you sure?"
+      "title": "Γεια!",
+      "message": "Είστε σίγουροι;"
     }
   }
 }
