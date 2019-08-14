@@ -1,5 +1,5 @@
 <div fxFlex fxLayoutAlign="center start" fxLayout="row wrap">
-    <mat-card class="card-wrapper" [routerLink]="['/videos']">
+    <mat-card class="card-wrapper" >
         <img mat-card-image src="assets/img_home_video.png" alt="video">
         <mat-card-content>
             <h1>Video</h1>
@@ -7,19 +7,28 @@
                 The Bloomen video streaming marketplace offers media creators the opportunity to distribute their content to consumers in pay-per-view mode and get automated compensation to all the participating stakeholders once the media asset is consumed.
             </p>
         </mat-card-content>
+        <mat-card-actions>
+            <button mat-button [routerLink]="['/videos']">Enter</button> 
+            <button mat-button (click)='videosQRClick()'>Show QR</button>            
+        </mat-card-actions>
     </mat-card>
 
-    <mat-card class="card-wrapper" [routerLink]="['/mobility']">
+    <mat-card class="card-wrapper" >
         <img mat-card-image src="assets/img_home_mobility.png" alt="Photo of a Shiba Inu">
         <mat-card-content>
                 <h1>Mobility</h1>
             <p>
                 The Bloomen Mobility Dapp offers tourists and casual city commuters with a decentralized access to city transport rental services by unblocking parked electrical vehicles with  Bloomen tokens.
             </p>
+            &nbsp;
         </mat-card-content>
+        <mat-card-actions>
+            <button mat-button [routerLink]="['/mobility']">Enter</button> 
+            <button mat-button (click)='mobilityQRClick()'>Show QR</button>            
+        </mat-card-actions>
     </mat-card>
 
-    <mat-card class="card-wrapper" [routerLink]="['/smart-office']">
+    <mat-card class="card-wrapper" >
         <img mat-card-image src="assets/img_home_smartoffice.png" alt="Photo of a Shiba Inu">
         <mat-card-content>
                 <h1>Smart Office</h1>
@@ -27,5 +36,9 @@
                 The Bloomen Smart Office Dapp leverages on the power of IoT applied to the digital workplace. Get your Bloomen tokens to book and open lock meeting rooms, unlock the printer, get priority access to office special facilities and services…
             </p>
         </mat-card-content>
+        <mat-card-actions>
+            <button mat-button [routerLink]="['/smart-office']">Enter</button> 
+            <button mat-button (click)='smartOfficeQRClick()'>Show QR</button>            
+        </mat-card-actions>
     </mat-card>
 </div>

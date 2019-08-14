@@ -16,6 +16,8 @@ import { HomeComponent } from './home.component';
 import { HomeGuardRouteService } from '@services/home-guard-route/home-guard-route.service';
 import { MenuModule } from '@components/menu/menu.module';
 
+import { DappQRDialogModule } from '@components/dapp-qr-dialog/dapp-qr-dialog.module';
+
 /**
  * Module to import and export all the components for the home page.
  */
@@ -27,6 +29,7 @@ import { MenuModule } from '@components/menu/menu.module';
     FlexLayoutModule,
     MaterialModule,
     HomeRoutingModule,
+    DappQRDialogModule,
     MenuModule
   ],
   declarations: [HomeComponent],
