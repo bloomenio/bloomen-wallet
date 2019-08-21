@@ -14,6 +14,7 @@ import { Store } from '@ngrx/store';
 import * as fromDeviceSelectors from '@stores/device-identity/device-identity.selectors';
 import { Web3Service } from '@services/web3/web3.service.js';
 
+
 const log = new Logger('video.component');
 
 

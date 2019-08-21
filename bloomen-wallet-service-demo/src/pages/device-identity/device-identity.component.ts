@@ -26,6 +26,7 @@ export class DeviceIdentityComponent implements OnInit, OnDestroy {
 
   public deviceIdentity$: Subscription;
   public qrDevice: string;
+  public deviceId: string;
 
 
   constructor(
@@ -34,7 +35,8 @@ export class DeviceIdentityComponent implements OnInit, OnDestroy {
   ) { }
 
   public ngOnInit() {
-    this.deviceIdentity$ = this.store.select(fromDeviceIdentitySelectors.getIdentity).subscribe((device: any) => {
+    this.deviceIdentity$ = this.store.select(fromDeviceIdentitySelectors.getIdentity).subscribe((device: string) => {
+      this.deviceId = device;
       this.qrDevice = `allow://${encodeURI(device)}#0#201#MWC-VIDEO`;
     });
 
