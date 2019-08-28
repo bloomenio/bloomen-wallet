@@ -1,4 +1,4 @@
-import { default as JSON } from '../json/ERC223.json';
+import { default as JSON } from 'bloomen-token/build/contracts/ERC223.json';
 import { Contract, Listener } from '../contract';
 
 // Environment

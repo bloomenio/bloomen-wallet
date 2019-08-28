@@ -13,6 +13,7 @@
     "figlet": "1.2.1",
     "inquirer": "5.2.0",
     "json-path-value": "0.0.1-beta8",
+    "bloomen-token": "~0.9.0",
     "prettyjson": "^1.2.1",
     "qrcode-terminal": "^0.12.0",
     "truffle-hdwallet-provider": "1.0.10",

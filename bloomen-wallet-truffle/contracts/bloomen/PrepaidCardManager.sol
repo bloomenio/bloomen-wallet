@@ -1,11 +1,11 @@
 pragma solidity ^0.5.2;
 pragma experimental ABIEncoderV2;
 
-import "../../node_modules/openzeppelin-solidity/contracts/math/SafeMath.sol";
-import "../../node_modules/openzeppelin-solidity/contracts/access/roles/SignerRole.sol";
-import "../../node_modules/openzeppelin-solidity/contracts/access/roles/WhitelistedRole.sol";
+import "openzeppelin-solidity/contracts/math/SafeMath.sol";
+import "openzeppelin-solidity/contracts/access/roles/SignerRole.sol";
+import "openzeppelin-solidity/contracts/access/roles/WhitelistedRole.sol";
+import "bloomen-token/contracts/ERC223.sol";
 import "./Devices.sol";
-import "./token/ERC223.sol";
 
 contract PrepaidCardManager is SignerRole, WhitelistedRole {
   using SafeMath for uint256;

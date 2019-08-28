@@ -1,4 +1,4 @@
-import { default as JSON } from '../json/MovementHistory.json';
+import { default as JSON } from 'bloomen-token/build/contracts/MovementHistory.json';
 import { Contract } from '../contract';
 
 // Environment

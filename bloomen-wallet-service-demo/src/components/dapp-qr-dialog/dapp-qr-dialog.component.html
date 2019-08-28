@@ -1,7 +1,7 @@
 <h1 mat-dialog-title>{{ data.title }}</h1>
 <div mat-dialog-content fxLayout="column">
   <p>{{ data.description }}</p>
-  <div style="background-color: white; height: 100%;" fxLayout="row" fxLayoutAlign="center" ngxClipboard >
+  <div style="background-color: white; height: 100%;" fxLayout="row" fxLayoutAlign="center" ngxClipboard [cbContent]="data.qrData" >
     <qrcode style="padding-bottom: 10px;padding-top: 10px;"[qrdata]="data.qrData" [size]="150" [level]="'Q'"></qrcode>
   </div>
 </div>

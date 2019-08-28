@@ -6,11 +6,11 @@ const DappsContract = require('../contracts/DappContainerFactory.json');
 
 const ContainerContract = require('../contracts/DappContainer.json');
 
-const MovementHistoryContract = require('../contracts/MovementHistory.json');
+const MovementHistoryContract = require('bloomen-token/build/contracts/MovementHistory.json');
 
-const BurnHistoryContract = require('../contracts/BurnHistory.json');
+const BurnHistoryContract = require('bloomen-token/build/contracts/BurnHistory.json');
 
-const ERC223Contract = require('../contracts/ERC223.json');
+const ERC223Contract = require('bloomen-token/build/contracts/ERC223.json');
 
 const PrepaidCardManager = require('../contracts/PrepaidCardManager.json');
 

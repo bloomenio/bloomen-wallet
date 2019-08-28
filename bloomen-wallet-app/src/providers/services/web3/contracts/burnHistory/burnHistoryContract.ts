@@ -1,4 +1,5 @@
-import { default as JSON } from '../json/BurnHistory.json';
+import { default as JSON } from 'bloomen-token/build/contracts/BurnHistory.json';
+
 import { Contract } from '../contract';
 
 // Environment

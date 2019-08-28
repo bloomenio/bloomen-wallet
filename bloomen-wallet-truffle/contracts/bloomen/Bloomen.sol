@@ -1,6 +1,6 @@
 pragma solidity ^0.5.2;
 
-import "../../node_modules/openzeppelin-solidity/contracts/access/roles/WhitelistedRole.sol";
+import "openzeppelin-solidity/contracts/access/roles/WhitelistedRole.sol";
 
 contract Bloomen is WhitelistedRole{
 

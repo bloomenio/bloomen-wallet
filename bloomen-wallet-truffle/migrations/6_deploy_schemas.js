@@ -1,5 +1,5 @@
 
-var RLPReader = artifacts.require("../node_modules/solidity-rlp/contracts/RLPReader.sol");
+var RLPReader = artifacts.require("solidity-rlp/contracts/RLPReader.sol");
 var Schemas = artifacts.require("./bloomen/Schemas");
 
 module.exports = function(deployer,network) {

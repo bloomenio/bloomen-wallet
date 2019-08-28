@@ -1,14 +1,14 @@
 pragma solidity ^0.5.2;
 pragma experimental ABIEncoderV2;
 
+import "bloomen-token/contracts/ERC223ReceivingContract.sol";
+import "bloomen-token/contracts/ERC223.sol";
+import "solidity-rlp/contracts/RLPReader.sol";
+import "openzeppelin-solidity/contracts/math/SafeMath.sol";
 import "./Schemas.sol";
-import "./token/ERC223ReceivingContract.sol";
-import "./token/ERC223.sol";
-import "../../node_modules/solidity-rlp/contracts/RLPReader.sol";
-import "../../node_modules/openzeppelin-solidity/contracts/math/SafeMath.sol";
 import "./dapp/lib/Strings.sol";
 
-contract  Assets is ERC223ReceivingContract{
+contract  Assets is ERC223ReceivingContract, WhitelistedRole {
   
   using Strings for *;
   using SafeMath for uint256;
@@ -99,7 +99,7 @@ contract  Assets is ERC223ReceivingContract{
     return (assetsPage);
   }
 
-  function tokenFallback(address _user, uint _amount, bytes memory _data) public {
+  function tokenFallback(address _user, uint _amount, bytes memory _data) onlyWhitelisted public {
 
     RLPReader.RLPItem memory item = _data.toRlpItem();
     RLPReader.RLPItem[] memory itemList = item.toList();

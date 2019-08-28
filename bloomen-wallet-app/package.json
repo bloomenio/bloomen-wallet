@@ -97,6 +97,7 @@
     "web3": "1.0.0-beta.53",
     "web3-eth-contract": "1.0.0-beta.53",
     "web3-provider-engine": "^15.0.0",
+    "bloomen-token": "~0.9.0",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {

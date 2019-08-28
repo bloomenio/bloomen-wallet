@@ -1,8 +1,8 @@
 pragma solidity ^0.5.2;
 pragma experimental ABIEncoderV2;
 
-import "../../node_modules/solidity-rlp/contracts/RLPReader.sol";
-import "../../node_modules/openzeppelin-solidity/contracts/access/roles/WhitelistedRole.sol";
+import "solidity-rlp/contracts/RLPReader.sol";
+import "openzeppelin-solidity/contracts/access/roles/WhitelistedRole.sol";
 
 contract Schemas is WhitelistedRole {
 

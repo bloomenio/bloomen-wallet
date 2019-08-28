@@ -1,10 +1,10 @@
 
-var SafeMath = artifacts.require("../node_modules/openzeppelin-solidity/contracts/math/SafeMath.sol");
-var RLPReader = artifacts.require("../node_modules/solidity-rlp/contracts/RLPReader.sol");
-var ERC223 = artifacts.require("./bloomen/token/ERC223");
-var Schemas = artifacts.require("./bloomen/Schemas");
-var Strings = artifacts.require("./dapp/lib/Strings.sol");
+var SafeMath = artifacts.require("openzeppelin-solidity/contracts/math/SafeMath.sol");
+var RLPReader = artifacts.require("solidity-rlp/contracts/RLPReader.sol");
+var ERC223 = artifacts.require("bloomen-token/ERC223");
 
+var Strings = artifacts.require("./dapp/lib/Strings.sol");
+var Schemas = artifacts.require("./bloomen/Schemas");
 var Assets = artifacts.require("./bloomen/Assets");
 
  module.exports = function(deployer) {
@@ -20,6 +20,8 @@ var Assets = artifacts.require("./bloomen/Assets");
     }).then((instance) => {
       _schemas = instance;
       return deployer.deploy(Assets, _schemas.address, _erc223.address);
+    }).then((assets) => {
+      return assets.addWhitelisted(_erc223.address);    
     });
  };
 

@@ -11,12 +11,15 @@
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "truffle-hdwallet-provider": "^1.0.17"
+  },
   "devDependencies": {
     "nps": "^5.9.3",
     "copyfiles": "^2.1.0",
     "dotenv": "6.0.0",
     "openzeppelin-solidity": "2.2.0",
+    "bloomen-token": "~0.9.0",
     "rlp": "2.1.0",
     "solidity-rlp": "2.0.0",
     "truffle": "5.0.12",
