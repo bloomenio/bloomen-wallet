@@ -21,6 +21,8 @@ import { THEMES } from '@core/constants/themes.constants';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { PreloadImages } from '@services/preload-images/preload-images.service';
+import { environment } from '@env/environment';
+import { I18nService } from '@services/i18n/i18n.service';
 
 const log = new Logger('application-data.effects');
 
@@ -33,7 +35,8 @@ export class ApplicationDataEffects {
         private store: Store<ApplicationDataStateModel>,
         private applicationDataDatabase: ApplicationDataDatabaseService,
         private statusBar: StatusBar,
-        private preloadImages: PreloadImages
+        private preloadImages: PreloadImages,
+        private i18nService: I18nService,
     ) { }
 
     @Effect({ dispatch: false }) public preloadImage = this.actions$.pipe(
@@ -57,6 +60,15 @@ export class ApplicationDataEffects {
         withLatestFrom(this.store.pipe(select(fromSelectors.getTheme))),
         tap(([action, theme]) => {
             this.applicationDataDatabase.set(APPLICATION_DATA_CONSTANTS.THEME, theme);
+        })
+    );
+
+    @Effect({ dispatch: false }) public persistLanguage = this.actions$.pipe(
+        ofType(fromActions.ApplicationDataActionTypes.CHANGE_LANGUAGE),
+        withLatestFrom(this.store.pipe(select(fromSelectors.getLanguage))),
+        tap(([action, language]) => {
+            this.i18nService.language = language;
+            this.applicationDataDatabase.set(APPLICATION_DATA_CONSTANTS.LANGUAGE, language);
         })
     );
 
@@ -96,7 +108,17 @@ export class ApplicationDataEffects {
                     };
                 })
             );
-            return merge(firstRun$, theme$, currentDapp$).pipe(
+
+            const currentLanguage$ = this.applicationDataDatabase.get(APPLICATION_DATA_CONSTANTS.LANGUAGE).pipe(
+                map((value) => {
+                    return {
+                        type: APPLICATION_DATA_CONSTANTS.LANGUAGE,
+                        value
+                    };
+                })
+            );
+
+            return merge(firstRun$, theme$, currentDapp$, currentLanguage$).pipe(
                 map((element) => {
                     switch (element.type) {
                         case APPLICATION_DATA_CONSTANTS.FIRST_RUN: {
@@ -109,6 +131,10 @@ export class ApplicationDataEffects {
                         }
                         case APPLICATION_DATA_CONSTANTS.CURRENT_DAPP: {
                             return new fromActions.ChangeInitialDapp({ currentDappAddress: element.value });
+                        }
+                        case APPLICATION_DATA_CONSTANTS.LANGUAGE: {
+                            const language = element.value ? element.value : environment.defaultLanguage;
+                            return new fromActions.ChangeLanguage({ language });
                         }
                     }
                 }),

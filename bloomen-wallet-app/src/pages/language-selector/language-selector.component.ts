@@ -5,6 +5,7 @@ import { I18nService } from '@services/i18n/i18n.service';
 
 import { Store } from '@ngrx/store';
 import * as fromSelectors from '@stores/application-data/application-data.selectors';
+import * as fromActions from '@stores/application-data/application-data.actions';
 
 @Component({
   selector: 'blo-language-selector',
@@ -29,7 +30,7 @@ export class LanguageSelectorComponent implements OnInit {
 
 
   public setLanguage(language: string) {
-    this.i18nService.language = language;
+    this.store.dispatch(new fromActions.ChangeLanguage({ language }));
     if (this.isFirstRun) {
       this.router.navigate(['tutorial']);
     } else {
