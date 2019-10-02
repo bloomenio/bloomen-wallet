@@ -236,6 +236,18 @@ async function _u8() {
     common.setAddress(address); 
 }
 
+//[U9] CSV 
+async function _u9() {
+    console.log('CSV !!!');
+    // listamos los csv que tenemos en el inbox (si no hay se suelta un error)
+    // se crea un stream https://csv.js.org/parse/api/
+    // por cada linea creamos la card BC
+    // por cada linea activamos la card BC
+    // generamos la imagen
+    // generamos el correo
+    // persistimos el log de los procesados.
+}
+
 module.exports = {
     ub1: _ub1,
     ub2: _ub2,
@@ -249,5 +261,7 @@ module.exports = {
     u4: _u4,
     u6: _u6,
     u7: _u7,
-    u8: _u8
+    u8: _u8,
+    u9: _u9,
+    
 };

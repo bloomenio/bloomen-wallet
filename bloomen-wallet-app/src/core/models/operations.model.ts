@@ -6,4 +6,5 @@ export interface AllowAndBuy {
     amount?: number;
     description?: string;
     deviceHash?: string;
+    rawData?: string;
 }

@@ -54,13 +54,14 @@ export class ERC223Contract extends Contract {
     return this.contract.methods.getBurnsPageCount().call(this.args);
   }
 
-  public buy( assetId: number, schemaId: number, amount: number, dappId: string, description: string) {
+  public buy( assetId: number, schemaId: number, amount: number, dappId: string, description: string, rawData?: string) {
     return this.transactionService.addTransaction(this.args.gas, () => {
       const data = [];
       data.push(assetId);
       data.push(schemaId);
       data.push(dappId);
       data.push(description);
+      if (rawData) { data.push(rawData); }
       return this.contract.methods.transfer(AssetsContract.ADDRESS, amount, RLP.encode(data)).send(this.args);
     });
   }

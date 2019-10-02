@@ -149,7 +149,8 @@ export class DappHomeComponent implements OnInit, OnDestroy {
             schemaId: parseInt(params[1], 10),
             amount: parseInt(params[2], 10),
             dappId: params[3],
-            description: decodeURI(params[4])
+            description: decodeURI(params[4]),
+            rawData: (params[5]) ? decodeURI(params[5]) : undefined
           };
           this.processRequest(QR_ACTION.BUY, buyObject);
           break;
@@ -169,7 +170,8 @@ export class DappHomeComponent implements OnInit, OnDestroy {
             schemaId: parseInt(params[1], 10),
             amount: parseInt(params[2], 10),
             description: decodeURI(params[4]),
-            deviceHash: decodeURI(params[5])
+            deviceHash: decodeURI(params[5]),
+            rawData: (params[6]) ? decodeURI(params[6]) : undefined
           };
           this.processRequest(QR_ACTION.ALLOW_BUY, allowBuyObject);
           break;
@@ -251,7 +253,7 @@ export class DappHomeComponent implements OnInit, OnDestroy {
     return new Promise<boolean>((resolve, reject) => {
       dialogRef.afterClosed().subscribe(value => {
         if (value) {
-          this.erc223.buy(buyObject.assetId, buyObject.schemaId, buyObject.amount, buyObject.dappId, buyObject.description)
+          this.erc223.buy(buyObject.assetId, buyObject.schemaId, buyObject.amount, buyObject.dappId, buyObject.description, buyObject.rawData)
           .then((result: any) => {
             log.debug('OK', result);
             this.snackBar.open(this.translate.instant('common.transaction_success'), null, {

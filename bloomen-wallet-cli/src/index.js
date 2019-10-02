@@ -45,6 +45,7 @@ menuCommands['U4'] = {name: '[U4] Re-activate all cards', value: utils.u4 };
 menuCommands['U6'] = {name: '[U6] List user addresses', value: utils.u6 };
 menuCommands['U7'] = {name: '[U7] Add address', value: utils.u7 };
 menuCommands['U8'] = {name: '[U8] Delete address', value: utils.u8 };
+menuCommands['U9'] = {name: '[U9] CSV', value: utils.u9 };
      
 menuCommands['EXIT'] = {name: 'Exit', value: () => {process.exit()} };  
 menuCommands['BACK_MAIN_MENU'] = {name:'Back', value: 0};     
@@ -234,6 +235,7 @@ async function utilsMenu() {
         menuCommands['U6'],
         menuCommands['U7'],
         menuCommands['U8'],
+        menuCommands['U9'],
         menuCommands['BACK_MAIN_MENU'],
         menuCommands['EXIT']
     ];
