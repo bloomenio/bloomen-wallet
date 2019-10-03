@@ -18,8 +18,17 @@ const { createCanvas, Image } = require('canvas')
 const sharp = require('sharp');
 const qr = require('qr-image');
 const mergeImages = require( 'merge-images');
-const SimpleNodeLogger = require('simple-node-logger');
 
+const opts = {
+    errorEventName:'error',
+        logDirectory: path.join(__dirname, '..', '..', 'csv', 'outbox'), // NOTE: folder must exist and be writable...
+        fileNamePattern:'csv-process-<DATE>.log',
+        dateFormat:'YYYY.MM.DD'
+};
+
+const log = require('simple-node-logger').createRollingFileLogger( opts );
+
+let _mailer;
 
 function getRandomId() {
     return Math.floor(Math.random() * (Math.pow(2, 50) - 1)) + 1;
@@ -252,23 +261,16 @@ async function _u8() {
     common.setAddress(address); 
 }
 
-const opts = {
-    errorEventName:'error',
-        logDirectory: path.join(__dirname, '..', '..', 'csv', 'outbox'), // NOTE: folder must exist and be writable...
-        fileNamePattern:'csv-process-<DATE>.log',
-        dateFormat:'YYYY.MM.DD'
-};
-const log = require('simple-node-logger').createRollingFileLogger( opts );
 
 //[U9] CSV 
 async function _u9() {
 
-    log.info('Import users from CSV ');
+    log.info('START - Import users from CSV ');
     const ctx = web3Ctx.getCurrentContext();
     const files = fs.readdirSync('./csv/inbox/').filter( (file) => file.toLowerCase().endsWith('.csv'));
 
     if (files.length == 0 ) { 
-        log.info('no files found');
+        log.info('END - no files found');
         return;
     }
 
@@ -276,7 +278,7 @@ async function _u9() {
         { type: 'list', name: 'file', message: 'Select a file', choices: files }
     ];
     let answer = await inquirer.prompt(questions);
-    log.info('Process file --> ' + answer.file);
+    log.info('Process file ', answer.file);
     const execDate = new Date().toUTCString();
 
     fs.createReadStream('./csv/inbox/' +  answer.file)
@@ -303,23 +305,21 @@ async function _u9() {
         const qrCardFileName = await generateQRCard(cardId,cardSecret,1000);
 
         // persistimos el log de los procesados.
-        log.info(`Process row ${data.email} ${qrCardFileName}`);
+        log.info(`Process row ${data.email} ${data.firstName} ${data.lastName} ${data.lang} ${qrCardFileName}`);
 
         await generateEmail(data.email, data.lang, data.firstName, data.lastName, qrCardFileName);
-
-        
     }).on('end', () => {
         // movemos el fichero csv a procesado
         fs.rename('./csv/inbox/' +  answer.file, path.join(__dirname, '..', '..', 'csv', 'outbox', `[${execDate}]_${answer.file}`) , (err) => {
             if (err) throw err;
-            log.info('Rename complete!');
+            log.info('[END] File rename complete! ', `[${execDate}]_${answer.file}`);
           });
-        log.info('CSV File processed'); 
+        log.info('[END] CSV File processed ',answer.file); 
     });
 
 }
 
-let _mailer;
+
 
 function setupMailer(){
 
@@ -394,12 +394,16 @@ async function generateEmail(email, lang, firstName, lastName, cardFileName){
             filename: 'app-store-badge.png',
             path: path.join(__dirname, '..', '..', 'img', `${lang}-app-store-badge.png`),
             cid: 'app-store-badge.png' 
-        }
-        ,
+        },
         {
             filename: 'google-play-badge.png',
             path: path.join(__dirname, '..', '..', 'img', `${lang}-google-play-badge.png`),
             cid: 'google-play-badge.png' 
+        },
+        {
+            filename: 'eu-flag.jpg',
+            path: path.join(__dirname, '..', '..', 'img', 'flag_yellow_low-300x201.jpg'),
+            cid: 'eu-flag.jpg' 
         }
     ];
 
@@ -420,12 +424,12 @@ async function generateEmail(email, lang, firstName, lastName, cardFileName){
 
     _mailer.sendMail(msg).then(
         () => { //success
-            log.info('OK-EMAIL');
+            log.info('OK-EMAIL ',email);
             // eliminamos la imagen generada
             fs.unlinkSync(cardFileName);
         },
         (error) => { //error
-            log.info('KO-EMAIL',error);
+            log.info('KO-EMAIL ',email,error);
             // eliminamos la imagen generada
             fs.unlinkSync(cardFileName);
         }
