@@ -4,6 +4,22 @@ const uuidv4 = require('uuid/v4');
 const inquirer = require('inquirer');
 const _ = require( 'underscore');
 const fs = require('fs');
+const csv = require('csv-parser');
+const text2png = require('text2png');
+
+const nodemailer = require('nodemailer');
+const hbs = require('nodemailer-express-handlebars');
+const handlebars = require('express-handlebars');
+const i18n = require('i18n');
+const path = require('path');
+
+//const Canvas  = require('canvas');
+const { createCanvas, Image } = require('canvas')
+const sharp = require('sharp');
+const qr = require('qr-image');
+const mergeImages = require( 'merge-images');
+const SimpleNodeLogger = require('simple-node-logger');
+
 
 function getRandomId() {
     return Math.floor(Math.random() * (Math.pow(2, 50) - 1)) + 1;
@@ -236,16 +252,219 @@ async function _u8() {
     common.setAddress(address); 
 }
 
+const opts = {
+    errorEventName:'error',
+        logDirectory: path.join(__dirname, '..', '..', 'csv', 'outbox'), // NOTE: folder must exist and be writable...
+        fileNamePattern:'csv-process-<DATE>.log',
+        dateFormat:'YYYY.MM.DD'
+};
+const log = require('simple-node-logger').createRollingFileLogger( opts );
+
 //[U9] CSV 
 async function _u9() {
-    console.log('CSV !!!');
-    // listamos los csv que tenemos en el inbox (si no hay se suelta un error)
-    // se crea un stream https://csv.js.org/parse/api/
-    // por cada linea creamos la card BC
-    // por cada linea activamos la card BC
-    // generamos la imagen
-    // generamos el correo
-    // persistimos el log de los procesados.
+
+    log.info('Import users from CSV ');
+    const ctx = web3Ctx.getCurrentContext();
+    const files = fs.readdirSync('./csv/inbox/').filter( (file) => file.toLowerCase().endsWith('.csv'));
+
+    if (files.length == 0 ) { 
+        log.info('no files found');
+        return;
+    }
+
+    questions = [
+        { type: 'list', name: 'file', message: 'Select a file', choices: files }
+    ];
+    let answer = await inquirer.prompt(questions);
+    log.info('Process file --> ' + answer.file);
+    const execDate = new Date().toUTCString();
+
+    fs.createReadStream('./csv/inbox/' +  answer.file)
+    .pipe(csv({ separator: ';' }))
+    .on('data', async (data) => {
+        const cardId = getRandomId();
+        const cardSecret = 'card://' + uuidv4();
+        
+        // INFO: por cada linea creamos la card BC
+        // await ctx.business.methods.addCard(cardId, amount,ctx.web3.utils.keccak256(cardSecret)).send(ctx.transactionObject)
+        // .then((tx) => {
+        //     console.log('Transaction sent.');
+        //     return web3Ctx.checkTransaction(tx.transactionHash);
+        // });
+        
+        // INFO: por cada linea activamos la card BC
+        // await ctx.business.methods.activateCard(randomId).send(ctx.transactionObject)
+        // .then((tx) => {
+        //     console.log('Transaction sent.');
+        //     return web3Ctx.checkTransaction(tx.transactionHash);
+        // });
+
+        // generamos la imagen
+        const qrCardFileName = await generateQRCard(cardId,cardSecret,1000);
+
+        // persistimos el log de los procesados.
+        log.info(`Process row ${data.email} ${qrCardFileName}`);
+
+        await generateEmail(data.email, data.lang, data.firstName, data.lastName, qrCardFileName);
+
+        
+    }).on('end', () => {
+        // movemos el fichero csv a procesado
+        fs.rename('./csv/inbox/' +  answer.file, path.join(__dirname, '..', '..', 'csv', 'outbox', `[${execDate}]_${answer.file}`) , (err) => {
+            if (err) throw err;
+            log.info('Rename complete!');
+          });
+        log.info('CSV File processed'); 
+    });
+
+}
+
+let _mailer;
+
+function setupMailer(){
+
+    i18n.configure({
+        locales: process.env.LOCALES,
+        directory: path.join(__dirname, '..', '..', 'locales'),
+      });
+
+    _mailer = nodemailer.createTransport({
+        host: process.env.MAIL_HOST,
+        port: process.env.MAIL_PORT,
+        secure: false,
+        auth: {
+            user: process.env.MAIL_USER,
+            pass: process.env.MAIL_PASSWORD,
+        },
+        tls: { rejectUnauthorized: false },
+    });
+    const viewEngineCfg = {
+        extname: '.hbs',
+        layoutsDir: path.join(__dirname, '..', '..', 'templates', 'emails', 'layouts'),
+        defaultLayout : 'default',
+        partialsDir : path.join(__dirname, '..', '..', 'templates', 'emails', 'partials'),
+        helpers: {
+            __: (...args) => {
+                const options = args.pop();
+                return Reflect.apply(i18n.__, options.data.root, args);
+              },
+            __n:  (...args) => {
+                const options = args.pop();
+                return Reflect.apply(i18n.__n, options.data.root, args);
+                },
+            concat: (...args) => {
+              const options = args.pop();
+              return args.join('');
+              },
+        },
+    };
+
+    const viewEngine = handlebars.create(viewEngineCfg);
+
+    const hbsCfg = {
+      viewEngine,
+      viewPath: path.join(__dirname, '..', '..', 'templates', 'emails'),
+      extName: '.hbs',
+    };
+
+    const hbsInstance = hbs(hbsCfg);
+
+    _mailer.use('compile', hbsInstance);
+}
+
+
+async function generateEmail(email, lang, firstName, lastName, cardFileName){
+    
+    if( !_mailer) {
+        setupMailer();
+    }
+
+    const attachments = [
+        {
+          filename: 'bloomenCardCid.png',
+          path: path.join(__dirname, '..', '..', cardFileName),
+          cid: 'bloomenCardCid.png' 
+        },
+        {
+            filename: 'bloomenCard.png',
+            path: path.join(__dirname, '..', '..', cardFileName),
+            cid: 'bloomenCard.png' 
+        },
+        {
+            filename: 'app-store-badge.png',
+            path: path.join(__dirname, '..', '..', 'img', `${lang}-app-store-badge.png`),
+            cid: 'app-store-badge.png' 
+        }
+        ,
+        {
+            filename: 'google-play-badge.png',
+            path: path.join(__dirname, '..', '..', 'img', `${lang}-google-play-badge.png`),
+            cid: 'google-play-badge.png' 
+        }
+    ];
+
+
+    const msg =  {
+        from: process.env.MAIL_FROM,
+        to: email,
+        subject: i18n.__({phrase: 'email.enrollment.subject', locale: lang}),
+        template: 'email_base',
+        context: {
+            template: 'enrollment',
+            locale: lang,
+            firstName: firstName,
+            lastName: lastName
+        },
+        attachments
+        };
+
+    _mailer.sendMail(msg).then(
+        () => { //success
+            log.info('OK-EMAIL');
+            // eliminamos la imagen generada
+            fs.unlinkSync(cardFileName);
+        },
+        (error) => { //error
+            log.info('KO-EMAIL',error);
+            // eliminamos la imagen generada
+            fs.unlinkSync(cardFileName);
+        }
+    );
+}
+
+
+async function generateQRCard(id,secret,points){
+    
+    const qr_png = qr.imageSync(secret, { type: 'png' , ec_level: 'H',margin: 2 });
+    await sharp(qr_png).resize(185, 185).toFile(`./data/tmp/tmp_${id}_qr_resized.png`);
+
+    fs.writeFileSync(`./data/tmp/tmp_${id}_points.png`, text2png(points + '', {color: 'white',font:'90px Roboto', localFontPath: 'fonts/roboto/Roboto-Regular.ttf',
+    localFontName: 'Roboto' }));
+
+    fs.writeFileSync(`./data/tmp/tmp_${id}_units.png`, text2png('CR', {color: 'white',font:'40px Roboto', localFontPath: 'fonts/roboto/Roboto-Regular.ttf',
+    localFontName: 'Roboto'}));
+
+    const cfgCard=[
+        { src: './img/bloomen_card.png', x: 0, y: 0 },
+        { src: `./data/tmp/tmp_${id}_qr_resized.png`, x: 290, y: 5 },
+        { src: `./data/tmp/tmp_${id}_points.png`, x: 170, y: 205 },
+        { src: `./data/tmp/tmp_${id}_units.png`, x: 400, y: 240 },
+      ];
+      createCanvas.Image =Image;
+    let data = await mergeImages(cfgCard, {
+    Canvas: createCanvas
+    });
+    
+    data = data.replace(/^data:image\/png;base64,/, '');
+
+    fs.writeFileSync('./data/cards/'+id+'.png', data, 'base64', function(err) {
+        if (err) throw err;
+    });
+    
+    fs.unlinkSync(cfgCard[1].src);
+    fs.unlinkSync(cfgCard[2].src);
+    fs.unlinkSync(cfgCard[3].src);
+    return './data/cards/'+id+'.png';
 }
 
 module.exports = {
@@ -262,6 +481,5 @@ module.exports = {
     u6: _u6,
     u7: _u7,
     u8: _u8,
-    u9: _u9,
-    
+    u9: _u9,   
 };
