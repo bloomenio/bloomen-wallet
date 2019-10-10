@@ -83,7 +83,7 @@
       "buy_now": "Buy now",
       "dialog_buy": {
         "title": "Are you sure?",
-        "description": "You will buy \"{{title}}\" ({{id}}) for {{price}} PT"
+        "description": "You will buy \"{{title}}\" for {{price}} PT"
       }
     },
     "shopping_list": {

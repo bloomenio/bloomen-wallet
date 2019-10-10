@@ -83,7 +83,7 @@
       "buy_now": "Comprar ara",
       "dialog_buy": {
         "title": "Estàs segur?",
-        "description": "Compraràs \"{{title}}\" ({{id}}) per {{price}} PT"
+        "description": "Compraràs \"{{title}}\" per {{price}} PT"
       }
     },
     "shopping_list": {

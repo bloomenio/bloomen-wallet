@@ -28,6 +28,7 @@ const log = new Logger('dapp-home.component');
 enum QR_ACTION {
   BUY ,
   ALLOW,
+  RAW ,
   ALLOW_BUY
 }
 
@@ -143,14 +144,22 @@ export class DappHomeComponent implements OnInit, OnDestroy {
       const params = inputValue.slice(valueCut).split('#');
 
       switch (operation) {
+        case QR_VALIDATOR.RAW:
+          const rawBuyObject: AllowAndBuy = {
+            to:  params[0],
+            amount: parseInt(params[1], 10),
+            description: decodeURI(params[2]),
+            params: params.slice(3).map((item) => decodeURI(item)),
+          };
+          this.processRequest(QR_ACTION.RAW, rawBuyObject);
+          break;
         case QR_VALIDATOR.BUY:
           const buyObject: AllowAndBuy = {
             assetId: parseInt(params[0], 10),
             schemaId: parseInt(params[1], 10),
             amount: parseInt(params[2], 10),
             dappId: params[3],
-            description: decodeURI(params[4]),
-            rawData: (params[5]) ? decodeURI(params[5]) : undefined
+            description: decodeURI(params[4])
           };
           this.processRequest(QR_ACTION.BUY, buyObject);
           break;
@@ -170,8 +179,7 @@ export class DappHomeComponent implements OnInit, OnDestroy {
             schemaId: parseInt(params[1], 10),
             amount: parseInt(params[2], 10),
             description: decodeURI(params[4]),
-            deviceHash: decodeURI(params[5]),
-            rawData: (params[6]) ? decodeURI(params[6]) : undefined
+            deviceHash: decodeURI(params[5])
           };
           this.processRequest(QR_ACTION.ALLOW_BUY, allowBuyObject);
           break;
@@ -192,9 +200,11 @@ export class DappHomeComponent implements OnInit, OnDestroy {
 
   private async processRequest(action: QR_ACTION, request: AllowAndBuy) {
 
-    if (this.dapp.dappId === request.dappId) {
+    // TODO: adaptar a RAW sin DAPP
+    if (action === QR_ACTION.RAW) {
+      await this.generatePurchase(request);
+    } else if ((request.dappId) && (this.dapp.dappId === request.dappId)) {
       const isowner = await this.assets.checkOwnership(request.assetId, request.schemaId, request.dappId);
-
       switch (action) {
         case QR_ACTION.ALLOW:
           if (isowner || request.assetId === 0) {
@@ -227,21 +237,22 @@ export class DappHomeComponent implements OnInit, OnDestroy {
           break;
       }
     } else {
-      // not same dapp
-      this.snackBar.open(this.translate.instant('common.qr_invalid'), null, {
-        duration: 2000,
-      });
-    }
+        // not same dapp
+        this.snackBar.open(this.translate.instant('common.qr_invalid'), null, {
+          duration: 2000,
+        });
+      }
   }
 
   private  generatePurchase( buyObject: AllowAndBuy ): Promise<boolean> {
+
     const dialogRef = this.dialog.open(DappGeneralDialogComponent, {
       width: '250px',
       height: '200px',
       data: {
         title: this.translate.instant('dapp.notifications.dialog_buy.title'),
         description: this.translate.instant('dapp.notifications.dialog_buy.description', {
-          id: buyObject.assetId,
+          // id: buyObject.assetId,
           title: buyObject.description,
           price: buyObject.amount
         }),
@@ -253,7 +264,7 @@ export class DappHomeComponent implements OnInit, OnDestroy {
     return new Promise<boolean>((resolve, reject) => {
       dialogRef.afterClosed().subscribe(value => {
         if (value) {
-          this.erc223.buy(buyObject.assetId, buyObject.schemaId, buyObject.amount, buyObject.dappId, buyObject.description, buyObject.rawData)
+          this.erc223.buy(buyObject)
           .then((result: any) => {
             log.debug('OK', result);
             this.snackBar.open(this.translate.instant('common.transaction_success'), null, {

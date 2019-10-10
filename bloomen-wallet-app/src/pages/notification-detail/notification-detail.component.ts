@@ -10,8 +10,6 @@ import { TranslateService } from '@ngx-translate/core';
 import { Web3Service } from '@services/web3/web3.service';
 
 import * as fromDappSelectors from '@stores/dapp/dapp.selectors';
-import * as fromMnemonicSelectors from '@stores/mnemonic/mnemonic.selectors';
-import * as fromMnemonicActions from '@stores/mnemonic/mnemonic.actions';
 import * as fromBalanceSelectors from '@stores/balance/balance.selectors';
 import * as fromPurchasesSelectors from '@stores/purchases/purchases.selectors';
 import { DappGeneralDialogComponent } from '@components/dapp-general-dialog/dapp-general-dialog.component';
@@ -104,7 +102,7 @@ export class NotificationDetailComponent implements OnInit, OnDestroy {
 
   private _buyContent(buyObject) {
     this.web3Service.ready(() => {
-      this.erc223.buy(buyObject.assetId, buyObject.schemaId, buyObject.amount, buyObject.dappId, buyObject.description).then((result: any) => {
+      this.erc223.buy(buyObject).then((result: any) => {
         log.debug('OK', result);
         this.location.back();
         this.snackBar.open(this.translate.instant('common.transaction_success'), null, {

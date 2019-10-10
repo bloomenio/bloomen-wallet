@@ -234,14 +234,14 @@
     "absolutePath": "/home/jordi/ws/bloomenio/bloomen-wallet/bloomen-wallet-truffle/contracts/bloomen/Bloomen.sol",
     "exportedSymbols": {
       "Bloomen": [
-        1060
+        1069
       ]
     },
-    "id": 1061,
+    "id": 1070,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 976,
+        "id": 985,
         "literals": [
           "solidity",
           "^",
@@ -254,10 +254,10 @@
       {
         "absolutePath": "openzeppelin-solidity/contracts/access/roles/WhitelistedRole.sol",
         "file": "openzeppelin-solidity/contracts/access/roles/WhitelistedRole.sol",
-        "id": 977,
+        "id": 986,
         "nodeType": "ImportDirective",
-        "scope": 1061,
-        "sourceUnit": 6283,
+        "scope": 1070,
+        "sourceUnit": 6292,
         "src": "25:74:2",
         "symbolAliases": [],
         "unitAlias": ""
@@ -268,43 +268,43 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 978,
+              "id": 987,
               "name": "WhitelistedRole",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 6282,
+              "referencedDeclaration": 6291,
               "src": "121:15:2",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_WhitelistedRole_$6282",
+                "typeIdentifier": "t_contract$_WhitelistedRole_$6291",
                 "typeString": "contract WhitelistedRole"
               }
             },
-            "id": 979,
+            "id": 988,
             "nodeType": "InheritanceSpecifier",
             "src": "121:15:2"
           }
         ],
         "contractDependencies": [
-          6173,
-          6282
+          6182,
+          6291
         ],
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 1060,
+        "id": 1069,
         "linearizedBaseContracts": [
-          1060,
-          6282,
-          6173
+          1069,
+          6291,
+          6182
         ],
         "name": "Bloomen",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 982,
+            "id": 991,
             "name": "_dapps",
             "nodeType": "VariableDeclaration",
-            "scope": 1060,
+            "scope": 1069,
             "src": "141:24:2",
             "stateVariable": true,
             "storageLocation": "default",
@@ -314,7 +314,7 @@
             },
             "typeName": {
               "baseType": {
-                "id": 980,
+                "id": 989,
                 "name": "address",
                 "nodeType": "ElementaryTypeName",
                 "src": "141:7:2",
@@ -324,7 +324,7 @@
                   "typeString": "address"
                 }
               },
-              "id": 981,
+              "id": 990,
               "length": null,
               "nodeType": "ArrayTypeName",
               "src": "141:9:2",
@@ -338,7 +338,7 @@
           },
           {
             "body": {
-              "id": 995,
+              "id": 1004,
               "nodeType": "Block",
               "src": "232:36:2",
               "statements": [
@@ -348,11 +348,11 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 992,
+                        "id": 1001,
                         "name": "_dappAddress",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 984,
+                        "referencedDeclaration": 993,
                         "src": "250:12:2",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -369,18 +369,18 @@
                       ],
                       "expression": {
                         "argumentTypes": null,
-                        "id": 989,
+                        "id": 998,
                         "name": "_dapps",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 982,
+                        "referencedDeclaration": 991,
                         "src": "238:6:2",
                         "typeDescriptions": {
                           "typeIdentifier": "t_array$_t_address_$dyn_storage",
                           "typeString": "address[] storage ref"
                         }
                       },
-                      "id": 991,
+                      "id": 1000,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -394,7 +394,7 @@
                         "typeString": "function (address) returns (uint256)"
                       }
                     },
-                    "id": 993,
+                    "id": 1002,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -408,27 +408,27 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 994,
+                  "id": 1003,
                   "nodeType": "ExpressionStatement",
                   "src": "238:25:2"
                 }
               ]
             },
             "documentation": null,
-            "id": 996,
+            "id": 1005,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
                 "arguments": null,
-                "id": 987,
+                "id": 996,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 986,
+                  "id": 995,
                   "name": "onlyWhitelisted",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 6203,
+                  "referencedDeclaration": 6212,
                   "src": "209:15:2",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -442,15 +442,15 @@
             "name": "addDapp",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 985,
+              "id": 994,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 984,
+                  "id": 993,
                   "name": "_dappAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 996,
+                  "scope": 1005,
                   "src": "187:20:2",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -459,7 +459,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 983,
+                    "id": 992,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "187:7:2",
@@ -476,12 +476,12 @@
               "src": "186:22:2"
             },
             "returnParameters": {
-              "id": 988,
+              "id": 997,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "232:0:2"
             },
-            "scope": 1060,
+            "scope": 1069,
             "src": "170:98:2",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -489,20 +489,20 @@
           },
           {
             "body": {
-              "id": 1033,
+              "id": 1042,
               "nodeType": "Block",
               "src": "328:115:2",
               "statements": [
                 {
                   "body": {
-                    "id": 1026,
+                    "id": 1035,
                     "nodeType": "Block",
                     "src": "380:38:2",
                     "statements": [
                       {
                         "expression": {
                           "argumentTypes": null,
-                          "id": 1024,
+                          "id": 1033,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -511,25 +511,25 @@
                             "argumentTypes": null,
                             "baseExpression": {
                               "argumentTypes": null,
-                              "id": 1016,
+                              "id": 1025,
                               "name": "_dapps",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 982,
+                              "referencedDeclaration": 991,
                               "src": "388:6:2",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_array$_t_address_$dyn_storage",
                                 "typeString": "address[] storage ref"
                               }
                             },
-                            "id": 1018,
+                            "id": 1027,
                             "indexExpression": {
                               "argumentTypes": null,
-                              "id": 1017,
+                              "id": 1026,
                               "name": "i",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 1004,
+                              "referencedDeclaration": 1013,
                               "src": "395:1:2",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_uint256",
@@ -553,36 +553,36 @@
                             "argumentTypes": null,
                             "baseExpression": {
                               "argumentTypes": null,
-                              "id": 1019,
+                              "id": 1028,
                               "name": "_dapps",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 982,
+                              "referencedDeclaration": 991,
                               "src": "400:6:2",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_array$_t_address_$dyn_storage",
                                 "typeString": "address[] storage ref"
                               }
                             },
-                            "id": 1023,
+                            "id": 1032,
                             "indexExpression": {
                               "argumentTypes": null,
                               "commonType": {
                                 "typeIdentifier": "t_uint256",
                                 "typeString": "uint256"
                               },
-                              "id": 1022,
+                              "id": 1031,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": false,
                               "lValueRequested": false,
                               "leftExpression": {
                                 "argumentTypes": null,
-                                "id": 1020,
+                                "id": 1029,
                                 "name": "i",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 1004,
+                                "referencedDeclaration": 1013,
                                 "src": "407:1:2",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_uint256",
@@ -594,7 +594,7 @@
                               "rightExpression": {
                                 "argumentTypes": null,
                                 "hexValue": "31",
-                                "id": 1021,
+                                "id": 1030,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": true,
@@ -632,7 +632,7 @@
                             "typeString": "address"
                           }
                         },
-                        "id": 1025,
+                        "id": 1034,
                         "nodeType": "ExpressionStatement",
                         "src": "388:23:2"
                       }
@@ -644,18 +644,18 @@
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     },
-                    "id": 1012,
+                    "id": 1021,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
                       "argumentTypes": null,
-                      "id": 1007,
+                      "id": 1016,
                       "name": "i",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1004,
+                      "referencedDeclaration": 1013,
                       "src": "356:1:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -670,7 +670,7 @@
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       },
-                      "id": 1011,
+                      "id": 1020,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -679,18 +679,18 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 1008,
+                          "id": 1017,
                           "name": "_dapps",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 982,
+                          "referencedDeclaration": 991,
                           "src": "360:6:2",
                           "typeDescriptions": {
                             "typeIdentifier": "t_array$_t_address_$dyn_storage",
                             "typeString": "address[] storage ref"
                           }
                         },
-                        "id": 1009,
+                        "id": 1018,
                         "isConstant": false,
                         "isLValue": true,
                         "isPure": false,
@@ -709,7 +709,7 @@
                       "rightExpression": {
                         "argumentTypes": null,
                         "hexValue": "31",
-                        "id": 1010,
+                        "id": 1019,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -736,18 +736,18 @@
                       "typeString": "bool"
                     }
                   },
-                  "id": 1027,
+                  "id": 1036,
                   "initializationExpression": {
                     "assignments": [
-                      1004
+                      1013
                     ],
                     "declarations": [
                       {
                         "constant": false,
-                        "id": 1004,
+                        "id": 1013,
                         "name": "i",
                         "nodeType": "VariableDeclaration",
-                        "scope": 1027,
+                        "scope": 1036,
                         "src": "339:6:2",
                         "stateVariable": false,
                         "storageLocation": "default",
@@ -756,7 +756,7 @@
                           "typeString": "uint256"
                         },
                         "typeName": {
-                          "id": 1003,
+                          "id": 1012,
                           "name": "uint",
                           "nodeType": "ElementaryTypeName",
                           "src": "339:4:2",
@@ -769,14 +769,14 @@
                         "visibility": "internal"
                       }
                     ],
-                    "id": 1006,
+                    "id": 1015,
                     "initialValue": {
                       "argumentTypes": null,
-                      "id": 1005,
+                      "id": 1014,
                       "name": "_index",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 998,
+                      "referencedDeclaration": 1007,
                       "src": "348:6:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -789,7 +789,7 @@
                   "loopExpression": {
                     "expression": {
                       "argumentTypes": null,
-                      "id": 1014,
+                      "id": 1023,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -800,11 +800,11 @@
                       "src": "376:3:2",
                       "subExpression": {
                         "argumentTypes": null,
-                        "id": 1013,
+                        "id": 1022,
                         "name": "i",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1004,
+                        "referencedDeclaration": 1013,
                         "src": "376:1:2",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -816,7 +816,7 @@
                         "typeString": "uint256"
                       }
                     },
-                    "id": 1015,
+                    "id": 1024,
                     "nodeType": "ExpressionStatement",
                     "src": "376:3:2"
                   },
@@ -826,7 +826,7 @@
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1031,
+                    "id": 1040,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -839,18 +839,18 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 1028,
+                        "id": 1037,
                         "name": "_dapps",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 982,
+                        "referencedDeclaration": 991,
                         "src": "423:6:2",
                         "typeDescriptions": {
                           "typeIdentifier": "t_array$_t_address_$dyn_storage",
                           "typeString": "address[] storage ref"
                         }
                       },
-                      "id": 1030,
+                      "id": 1039,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
@@ -869,27 +869,27 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 1032,
+                  "id": 1041,
                   "nodeType": "ExpressionStatement",
                   "src": "423:15:2"
                 }
               ]
             },
             "documentation": null,
-            "id": 1034,
+            "id": 1043,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
                 "arguments": null,
-                "id": 1001,
+                "id": 1010,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 1000,
+                  "id": 1009,
                   "name": "onlyWhitelisted",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 6203,
+                  "referencedDeclaration": 6212,
                   "src": "305:15:2",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -903,15 +903,15 @@
             "name": "deleteDapp",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 999,
+              "id": 1008,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 998,
+                  "id": 1007,
                   "name": "_index",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1034,
+                  "scope": 1043,
                   "src": "292:11:2",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -920,7 +920,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 997,
+                    "id": 1006,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "292:4:2",
@@ -936,12 +936,12 @@
               "src": "291:13:2"
             },
             "returnParameters": {
-              "id": 1002,
+              "id": 1011,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "328:0:2"
             },
-            "scope": 1060,
+            "scope": 1069,
             "src": "272:171:2",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -949,14 +949,14 @@
           },
           {
             "body": {
-              "id": 1049,
+              "id": 1058,
               "nodeType": "Block",
               "src": "521:37:2",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1047,
+                    "id": 1056,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -965,25 +965,25 @@
                       "argumentTypes": null,
                       "baseExpression": {
                         "argumentTypes": null,
-                        "id": 1043,
+                        "id": 1052,
                         "name": "_dapps",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 982,
+                        "referencedDeclaration": 991,
                         "src": "527:6:2",
                         "typeDescriptions": {
                           "typeIdentifier": "t_array$_t_address_$dyn_storage",
                           "typeString": "address[] storage ref"
                         }
                       },
-                      "id": 1045,
+                      "id": 1054,
                       "indexExpression": {
                         "argumentTypes": null,
-                        "id": 1044,
+                        "id": 1053,
                         "name": "_index",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1036,
+                        "referencedDeclaration": 1045,
                         "src": "534:6:2",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -1005,11 +1005,11 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 1046,
+                      "id": 1055,
                       "name": "_newAddress",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1038,
+                      "referencedDeclaration": 1047,
                       "src": "542:11:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -1022,27 +1022,27 @@
                       "typeString": "address"
                     }
                   },
-                  "id": 1048,
+                  "id": 1057,
                   "nodeType": "ExpressionStatement",
                   "src": "527:26:2"
                 }
               ]
             },
             "documentation": null,
-            "id": 1050,
+            "id": 1059,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
                 "arguments": null,
-                "id": 1041,
+                "id": 1050,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 1040,
+                  "id": 1049,
                   "name": "onlyWhitelisted",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 6203,
+                  "referencedDeclaration": 6212,
                   "src": "498:15:2",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -1056,15 +1056,15 @@
             "name": "setDapp",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1039,
+              "id": 1048,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1036,
+                  "id": 1045,
                   "name": "_index",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1050,
+                  "scope": 1059,
                   "src": "464:11:2",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1073,7 +1073,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1035,
+                    "id": 1044,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "464:4:2",
@@ -1087,10 +1087,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 1038,
+                  "id": 1047,
                   "name": "_newAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1050,
+                  "scope": 1059,
                   "src": "477:19:2",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1099,7 +1099,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1037,
+                    "id": 1046,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "477:7:2",
@@ -1116,12 +1116,12 @@
               "src": "463:34:2"
             },
             "returnParameters": {
-              "id": 1042,
+              "id": 1051,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "521:0:2"
             },
-            "scope": 1060,
+            "scope": 1069,
             "src": "447:111:2",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -1129,54 +1129,54 @@
           },
           {
             "body": {
-              "id": 1058,
+              "id": 1067,
               "nodeType": "Block",
               "src": "620:24:2",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1056,
+                    "id": 1065,
                     "name": "_dapps",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 982,
+                    "referencedDeclaration": 991,
                     "src": "633:6:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_array$_t_address_$dyn_storage",
                       "typeString": "address[] storage ref"
                     }
                   },
-                  "functionReturnParameters": 1055,
-                  "id": 1057,
+                  "functionReturnParameters": 1064,
+                  "id": 1066,
                   "nodeType": "Return",
                   "src": "626:13:2"
                 }
               ]
             },
             "documentation": null,
-            "id": 1059,
+            "id": 1068,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "getDapps",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1051,
+              "id": 1060,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "579:2:2"
             },
             "returnParameters": {
-              "id": 1055,
+              "id": 1064,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1054,
+                  "id": 1063,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1059,
+                  "scope": 1068,
                   "src": "602:16:2",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -1186,7 +1186,7 @@
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 1052,
+                      "id": 1061,
                       "name": "address",
                       "nodeType": "ElementaryTypeName",
                       "src": "602:7:2",
@@ -1196,7 +1196,7 @@
                         "typeString": "address"
                       }
                     },
-                    "id": 1053,
+                    "id": 1062,
                     "length": null,
                     "nodeType": "ArrayTypeName",
                     "src": "602:9:2",
@@ -1211,14 +1211,14 @@
               ],
               "src": "601:18:2"
             },
-            "scope": 1060,
+            "scope": 1069,
             "src": "562:82:2",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 1061,
+        "scope": 1070,
         "src": "101:546:2"
       }
     ],
@@ -1228,14 +1228,14 @@
     "absolutePath": "/home/jordi/ws/bloomenio/bloomen-wallet/bloomen-wallet-truffle/contracts/bloomen/Bloomen.sol",
     "exportedSymbols": {
       "Bloomen": [
-        1060
+        1069
       ]
     },
-    "id": 1061,
+    "id": 1070,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 976,
+        "id": 985,
         "literals": [
           "solidity",
           "^",
@@ -1248,10 +1248,10 @@
       {
         "absolutePath": "openzeppelin-solidity/contracts/access/roles/WhitelistedRole.sol",
         "file": "openzeppelin-solidity/contracts/access/roles/WhitelistedRole.sol",
-        "id": 977,
+        "id": 986,
         "nodeType": "ImportDirective",
-        "scope": 1061,
-        "sourceUnit": 6283,
+        "scope": 1070,
+        "sourceUnit": 6292,
         "src": "25:74:2",
         "symbolAliases": [],
         "unitAlias": ""
@@ -1262,43 +1262,43 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 978,
+              "id": 987,
               "name": "WhitelistedRole",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 6282,
+              "referencedDeclaration": 6291,
               "src": "121:15:2",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_WhitelistedRole_$6282",
+                "typeIdentifier": "t_contract$_WhitelistedRole_$6291",
                 "typeString": "contract WhitelistedRole"
               }
             },
-            "id": 979,
+            "id": 988,
             "nodeType": "InheritanceSpecifier",
             "src": "121:15:2"
           }
         ],
         "contractDependencies": [
-          6173,
-          6282
+          6182,
+          6291
         ],
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 1060,
+        "id": 1069,
         "linearizedBaseContracts": [
-          1060,
-          6282,
-          6173
+          1069,
+          6291,
+          6182
         ],
         "name": "Bloomen",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 982,
+            "id": 991,
             "name": "_dapps",
             "nodeType": "VariableDeclaration",
-            "scope": 1060,
+            "scope": 1069,
             "src": "141:24:2",
             "stateVariable": true,
             "storageLocation": "default",
@@ -1308,7 +1308,7 @@
             },
             "typeName": {
               "baseType": {
-                "id": 980,
+                "id": 989,
                 "name": "address",
                 "nodeType": "ElementaryTypeName",
                 "src": "141:7:2",
@@ -1318,7 +1318,7 @@
                   "typeString": "address"
                 }
               },
-              "id": 981,
+              "id": 990,
               "length": null,
               "nodeType": "ArrayTypeName",
               "src": "141:9:2",
@@ -1332,7 +1332,7 @@
           },
           {
             "body": {
-              "id": 995,
+              "id": 1004,
               "nodeType": "Block",
               "src": "232:36:2",
               "statements": [
@@ -1342,11 +1342,11 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 992,
+                        "id": 1001,
                         "name": "_dappAddress",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 984,
+                        "referencedDeclaration": 993,
                         "src": "250:12:2",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -1363,18 +1363,18 @@
                       ],
                       "expression": {
                         "argumentTypes": null,
-                        "id": 989,
+                        "id": 998,
                         "name": "_dapps",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 982,
+                        "referencedDeclaration": 991,
                         "src": "238:6:2",
                         "typeDescriptions": {
                           "typeIdentifier": "t_array$_t_address_$dyn_storage",
                           "typeString": "address[] storage ref"
                         }
                       },
-                      "id": 991,
+                      "id": 1000,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -1388,7 +1388,7 @@
                         "typeString": "function (address) returns (uint256)"
                       }
                     },
-                    "id": 993,
+                    "id": 1002,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1402,27 +1402,27 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 994,
+                  "id": 1003,
                   "nodeType": "ExpressionStatement",
                   "src": "238:25:2"
                 }
               ]
             },
             "documentation": null,
-            "id": 996,
+            "id": 1005,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
                 "arguments": null,
-                "id": 987,
+                "id": 996,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 986,
+                  "id": 995,
                   "name": "onlyWhitelisted",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 6203,
+                  "referencedDeclaration": 6212,
                   "src": "209:15:2",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -1436,15 +1436,15 @@
             "name": "addDapp",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 985,
+              "id": 994,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 984,
+                  "id": 993,
                   "name": "_dappAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 996,
+                  "scope": 1005,
                   "src": "187:20:2",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1453,7 +1453,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 983,
+                    "id": 992,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "187:7:2",
@@ -1470,12 +1470,12 @@
               "src": "186:22:2"
             },
             "returnParameters": {
-              "id": 988,
+              "id": 997,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "232:0:2"
             },
-            "scope": 1060,
+            "scope": 1069,
             "src": "170:98:2",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -1483,20 +1483,20 @@
           },
           {
             "body": {
-              "id": 1033,
+              "id": 1042,
               "nodeType": "Block",
               "src": "328:115:2",
               "statements": [
                 {
                   "body": {
-                    "id": 1026,
+                    "id": 1035,
                     "nodeType": "Block",
                     "src": "380:38:2",
                     "statements": [
                       {
                         "expression": {
                           "argumentTypes": null,
-                          "id": 1024,
+                          "id": 1033,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -1505,25 +1505,25 @@
                             "argumentTypes": null,
                             "baseExpression": {
                               "argumentTypes": null,
-                              "id": 1016,
+                              "id": 1025,
                               "name": "_dapps",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 982,
+                              "referencedDeclaration": 991,
                               "src": "388:6:2",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_array$_t_address_$dyn_storage",
                                 "typeString": "address[] storage ref"
                               }
                             },
-                            "id": 1018,
+                            "id": 1027,
                             "indexExpression": {
                               "argumentTypes": null,
-                              "id": 1017,
+                              "id": 1026,
                               "name": "i",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 1004,
+                              "referencedDeclaration": 1013,
                               "src": "395:1:2",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_uint256",
@@ -1547,36 +1547,36 @@
                             "argumentTypes": null,
                             "baseExpression": {
                               "argumentTypes": null,
-                              "id": 1019,
+                              "id": 1028,
                               "name": "_dapps",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 982,
+                              "referencedDeclaration": 991,
                               "src": "400:6:2",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_array$_t_address_$dyn_storage",
                                 "typeString": "address[] storage ref"
                               }
                             },
-                            "id": 1023,
+                            "id": 1032,
                             "indexExpression": {
                               "argumentTypes": null,
                               "commonType": {
                                 "typeIdentifier": "t_uint256",
                                 "typeString": "uint256"
                               },
-                              "id": 1022,
+                              "id": 1031,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": false,
                               "lValueRequested": false,
                               "leftExpression": {
                                 "argumentTypes": null,
-                                "id": 1020,
+                                "id": 1029,
                                 "name": "i",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 1004,
+                                "referencedDeclaration": 1013,
                                 "src": "407:1:2",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_uint256",
@@ -1588,7 +1588,7 @@
                               "rightExpression": {
                                 "argumentTypes": null,
                                 "hexValue": "31",
-                                "id": 1021,
+                                "id": 1030,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": true,
@@ -1626,7 +1626,7 @@
                             "typeString": "address"
                           }
                         },
-                        "id": 1025,
+                        "id": 1034,
                         "nodeType": "ExpressionStatement",
                         "src": "388:23:2"
                       }
@@ -1638,18 +1638,18 @@
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     },
-                    "id": 1012,
+                    "id": 1021,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
                       "argumentTypes": null,
-                      "id": 1007,
+                      "id": 1016,
                       "name": "i",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1004,
+                      "referencedDeclaration": 1013,
                       "src": "356:1:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -1664,7 +1664,7 @@
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       },
-                      "id": 1011,
+                      "id": 1020,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -1673,18 +1673,18 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 1008,
+                          "id": 1017,
                           "name": "_dapps",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 982,
+                          "referencedDeclaration": 991,
                           "src": "360:6:2",
                           "typeDescriptions": {
                             "typeIdentifier": "t_array$_t_address_$dyn_storage",
                             "typeString": "address[] storage ref"
                           }
                         },
-                        "id": 1009,
+                        "id": 1018,
                         "isConstant": false,
                         "isLValue": true,
                         "isPure": false,
@@ -1703,7 +1703,7 @@
                       "rightExpression": {
                         "argumentTypes": null,
                         "hexValue": "31",
-                        "id": 1010,
+                        "id": 1019,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -1730,18 +1730,18 @@
                       "typeString": "bool"
                     }
                   },
-                  "id": 1027,
+                  "id": 1036,
                   "initializationExpression": {
                     "assignments": [
-                      1004
+                      1013
                     ],
                     "declarations": [
                       {
                         "constant": false,
-                        "id": 1004,
+                        "id": 1013,
                         "name": "i",
                         "nodeType": "VariableDeclaration",
-                        "scope": 1027,
+                        "scope": 1036,
                         "src": "339:6:2",
                         "stateVariable": false,
                         "storageLocation": "default",
@@ -1750,7 +1750,7 @@
                           "typeString": "uint256"
                         },
                         "typeName": {
-                          "id": 1003,
+                          "id": 1012,
                           "name": "uint",
                           "nodeType": "ElementaryTypeName",
                           "src": "339:4:2",
@@ -1763,14 +1763,14 @@
                         "visibility": "internal"
                       }
                     ],
-                    "id": 1006,
+                    "id": 1015,
                     "initialValue": {
                       "argumentTypes": null,
-                      "id": 1005,
+                      "id": 1014,
                       "name": "_index",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 998,
+                      "referencedDeclaration": 1007,
                       "src": "348:6:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -1783,7 +1783,7 @@
                   "loopExpression": {
                     "expression": {
                       "argumentTypes": null,
-                      "id": 1014,
+                      "id": 1023,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -1794,11 +1794,11 @@
                       "src": "376:3:2",
                       "subExpression": {
                         "argumentTypes": null,
-                        "id": 1013,
+                        "id": 1022,
                         "name": "i",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1004,
+                        "referencedDeclaration": 1013,
                         "src": "376:1:2",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -1810,7 +1810,7 @@
                         "typeString": "uint256"
                       }
                     },
-                    "id": 1015,
+                    "id": 1024,
                     "nodeType": "ExpressionStatement",
                     "src": "376:3:2"
                   },
@@ -1820,7 +1820,7 @@
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1031,
+                    "id": 1040,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1833,18 +1833,18 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 1028,
+                        "id": 1037,
                         "name": "_dapps",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 982,
+                        "referencedDeclaration": 991,
                         "src": "423:6:2",
                         "typeDescriptions": {
                           "typeIdentifier": "t_array$_t_address_$dyn_storage",
                           "typeString": "address[] storage ref"
                         }
                       },
-                      "id": 1030,
+                      "id": 1039,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
@@ -1863,27 +1863,27 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 1032,
+                  "id": 1041,
                   "nodeType": "ExpressionStatement",
                   "src": "423:15:2"
                 }
               ]
             },
             "documentation": null,
-            "id": 1034,
+            "id": 1043,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
                 "arguments": null,
-                "id": 1001,
+                "id": 1010,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 1000,
+                  "id": 1009,
                   "name": "onlyWhitelisted",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 6203,
+                  "referencedDeclaration": 6212,
                   "src": "305:15:2",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -1897,15 +1897,15 @@
             "name": "deleteDapp",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 999,
+              "id": 1008,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 998,
+                  "id": 1007,
                   "name": "_index",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1034,
+                  "scope": 1043,
                   "src": "292:11:2",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1914,7 +1914,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 997,
+                    "id": 1006,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "292:4:2",
@@ -1930,12 +1930,12 @@
               "src": "291:13:2"
             },
             "returnParameters": {
-              "id": 1002,
+              "id": 1011,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "328:0:2"
             },
-            "scope": 1060,
+            "scope": 1069,
             "src": "272:171:2",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -1943,14 +1943,14 @@
           },
           {
             "body": {
-              "id": 1049,
+              "id": 1058,
               "nodeType": "Block",
               "src": "521:37:2",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1047,
+                    "id": 1056,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1959,25 +1959,25 @@
                       "argumentTypes": null,
                       "baseExpression": {
                         "argumentTypes": null,
-                        "id": 1043,
+                        "id": 1052,
                         "name": "_dapps",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 982,
+                        "referencedDeclaration": 991,
                         "src": "527:6:2",
                         "typeDescriptions": {
                           "typeIdentifier": "t_array$_t_address_$dyn_storage",
                           "typeString": "address[] storage ref"
                         }
                       },
-                      "id": 1045,
+                      "id": 1054,
                       "indexExpression": {
                         "argumentTypes": null,
-                        "id": 1044,
+                        "id": 1053,
                         "name": "_index",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1036,
+                        "referencedDeclaration": 1045,
                         "src": "534:6:2",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -1999,11 +1999,11 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 1046,
+                      "id": 1055,
                       "name": "_newAddress",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1038,
+                      "referencedDeclaration": 1047,
                       "src": "542:11:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -2016,27 +2016,27 @@
                       "typeString": "address"
                     }
                   },
-                  "id": 1048,
+                  "id": 1057,
                   "nodeType": "ExpressionStatement",
                   "src": "527:26:2"
                 }
               ]
             },
             "documentation": null,
-            "id": 1050,
+            "id": 1059,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
                 "arguments": null,
-                "id": 1041,
+                "id": 1050,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 1040,
+                  "id": 1049,
                   "name": "onlyWhitelisted",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 6203,
+                  "referencedDeclaration": 6212,
                   "src": "498:15:2",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -2050,15 +2050,15 @@
             "name": "setDapp",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1039,
+              "id": 1048,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1036,
+                  "id": 1045,
                   "name": "_index",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1050,
+                  "scope": 1059,
                   "src": "464:11:2",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2067,7 +2067,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1035,
+                    "id": 1044,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "464:4:2",
@@ -2081,10 +2081,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 1038,
+                  "id": 1047,
                   "name": "_newAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1050,
+                  "scope": 1059,
                   "src": "477:19:2",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2093,7 +2093,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1037,
+                    "id": 1046,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "477:7:2",
@@ -2110,12 +2110,12 @@
               "src": "463:34:2"
             },
             "returnParameters": {
-              "id": 1042,
+              "id": 1051,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "521:0:2"
             },
-            "scope": 1060,
+            "scope": 1069,
             "src": "447:111:2",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -2123,54 +2123,54 @@
           },
           {
             "body": {
-              "id": 1058,
+              "id": 1067,
               "nodeType": "Block",
               "src": "620:24:2",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1056,
+                    "id": 1065,
                     "name": "_dapps",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 982,
+                    "referencedDeclaration": 991,
                     "src": "633:6:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_array$_t_address_$dyn_storage",
                       "typeString": "address[] storage ref"
                     }
                   },
-                  "functionReturnParameters": 1055,
-                  "id": 1057,
+                  "functionReturnParameters": 1064,
+                  "id": 1066,
                   "nodeType": "Return",
                   "src": "626:13:2"
                 }
               ]
             },
             "documentation": null,
-            "id": 1059,
+            "id": 1068,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "getDapps",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1051,
+              "id": 1060,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "579:2:2"
             },
             "returnParameters": {
-              "id": 1055,
+              "id": 1064,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1054,
+                  "id": 1063,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1059,
+                  "scope": 1068,
                   "src": "602:16:2",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -2180,7 +2180,7 @@
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 1052,
+                      "id": 1061,
                       "name": "address",
                       "nodeType": "ElementaryTypeName",
                       "src": "602:7:2",
@@ -2190,7 +2190,7 @@
                         "typeString": "address"
                       }
                     },
-                    "id": 1053,
+                    "id": 1062,
                     "length": null,
                     "nodeType": "ArrayTypeName",
                     "src": "602:9:2",
@@ -2205,14 +2205,14 @@
               ],
               "src": "601:18:2"
             },
-            "scope": 1060,
+            "scope": 1069,
             "src": "562:82:2",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 1061,
+        "scope": 1070,
         "src": "101:546:2"
       }
     ],
@@ -2279,12 +2279,12 @@
         }
       },
       "links": {},
-      "address": "0x25618ae68312D6e4e821bF26F633315cA47d1c66",
-      "transactionHash": "0xb5fc5c17917f4770a212b024d64c383f2e73b7b4240ffb894441fb70e0669732"
+      "address": "0xDd33Be4D95cB69611B027732b2957fFE32B67354",
+      "transactionHash": "0x0ac2b74ec523b98b37ff3ac1ffc28693d28a227ed23a2c36447a9333653b39b1"
     }
   },
   "schemaVersion": "3.0.6",
-  "updatedAt": "2019-08-28T07:24:41.930Z",
+  "updatedAt": "2019-10-10T07:28:25.494Z",
   "devdoc": {
     "methods": {}
   },

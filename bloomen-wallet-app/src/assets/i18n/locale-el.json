@@ -83,7 +83,7 @@
       "buy_now": "Αγοράστε τώρα",
       "dialog_buy": {
         "title": "Είστε σίγουροι;",
-        "description": "Πρόκειται να αγοράσετε το \"{{title}}\" ({{id}}) για {{price}} PT"
+        "description": "Πρόκειται να αγοράσετε το \"{{title}}\" για {{price}} PT"
       }
     },
     "shopping_list": {

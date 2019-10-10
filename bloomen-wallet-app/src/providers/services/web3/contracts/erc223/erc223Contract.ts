@@ -12,6 +12,7 @@ import { Logger } from '@services/logger/logger.service';
 import { Web3Service } from '@services/web3/web3.service';
 import { TransactionService } from '@services/web3/transactions/transaction.service';
 import { AssetsContract } from '@services/web3/contracts/assets/assetsContract';
+import { AllowAndBuy } from '@core/models/operations.model';
 
 const log = new Logger('erc223.contract');
 
@@ -54,15 +55,18 @@ export class ERC223Contract extends Contract {
     return this.contract.methods.getBurnsPageCount().call(this.args);
   }
 
-  public buy( assetId: number, schemaId: number, amount: number, dappId: string, description: string, rawData?: string) {
+  public buy( buyObject: AllowAndBuy) {
+    // TODO : adapatar a RAW
     return this.transactionService.addTransaction(this.args.gas, () => {
-      const data = [];
-      data.push(assetId);
-      data.push(schemaId);
-      data.push(dappId);
-      data.push(description);
-      if (rawData) { data.push(rawData); }
-      return this.contract.methods.transfer(AssetsContract.ADDRESS, amount, RLP.encode(data)).send(this.args);
+      let data = [];
+      if (buyObject.assetId) { data.push(buyObject.assetId); }
+      if (buyObject.schemaId) { data.push(buyObject.schemaId); }
+      if (buyObject.dappId) { data.push(buyObject.dappId); }
+      if (buyObject.description) { data.push(buyObject.description); }
+      if (buyObject.params) {
+        data = data.concat(buyObject.params);
+      }
+      return this.contract.methods.transfer( buyObject.to ? buyObject.to : AssetsContract.ADDRESS, buyObject.amount, RLP.encode(data)).send(this.args);
     });
   }
 

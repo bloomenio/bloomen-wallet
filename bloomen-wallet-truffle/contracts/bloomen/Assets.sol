@@ -198,16 +198,17 @@ contract  Assets is ERC223ReceivingContract, WhitelistedRole {
   function _removeAsset(address _owner, uint256 assetId, string memory _dappId) internal {
     DappCtx storage ctx = _getDappCtx(_dappId);
     require(ctx.userAssets_[_owner].assets.length>0, "empty user");
-    
     uint assetIdx = ctx.userAssets_[_owner].assetsIdx[assetId];
     delete ctx.userAssets_[_owner].assetsIdx[assetId];
 
     delete ctx.userAssets_[_owner].assets[assetIdx];
 
-    for (uint i = assetIdx; i < ctx.userAssets_[_owner].assets.length -1 ; i++) {
+    for (uint i = assetIdx; i < ctx.userAssets_[_owner].assets.length-1 ; i++) {
       ctx.userAssets_[_owner].assets[i] = ctx.userAssets_[_owner].assets[i+1];
+      // update the new index
+      ctx.userAssets_[_owner].assetsIdx[ctx.userAssets_[_owner].assets[i].assetId] = i;
     }
-    ctx.userAssets_[_owner].assets.length--;
+    if (ctx.userAssets_[_owner].assets.length > 0) ctx.userAssets_[_owner].assets.length--;
   }
 
 }

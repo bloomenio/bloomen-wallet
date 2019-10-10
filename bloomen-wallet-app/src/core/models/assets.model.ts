@@ -1,6 +1,6 @@
 export interface AssetModel {
     expirationDate: number;
-    assetId: string;
+    assetId: number;
     schemaId: string;
     dappId: string;
     description: string;

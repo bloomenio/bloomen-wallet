@@ -1,10 +1,11 @@
 
 export interface AllowAndBuy {
-    dappId: string;
-    assetId: number;
-    schemaId: number;
+    dappId?: string;
+    assetId?: number;
+    schemaId?: number;
     amount?: number;
     description?: string;
     deviceHash?: string;
-    rawData?: string;
+    params?: string[];
+    to?: string;
 }

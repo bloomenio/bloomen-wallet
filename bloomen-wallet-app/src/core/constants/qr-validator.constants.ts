@@ -4,5 +4,6 @@ export const QR_VALIDATOR = {
     ALLOW_BUY: 'allow_buy://',
     ALLOW: 'allow://',
     CARD: 'card://',
-    ID: 'id://'
+    ID: 'id://',
+    RAW: 'raw://',
 };

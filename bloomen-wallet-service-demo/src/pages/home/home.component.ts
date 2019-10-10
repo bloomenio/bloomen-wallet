@@ -60,7 +60,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         videoId: 1,
         title: 'Video',
         description: 'Add Video Dapp scanning the QR code.',
-        qrData: 'dapp://0x59dDd952d8fb16313943d69E8535F354Eef049ec'
+        qrData: 'dapp://0xCd23049d5190bc8a635671D3f857BEC1FDf923E8'
       }
     });
   }
@@ -72,7 +72,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         videoId: 1,
         title: 'Mobility',
         description: 'Add Mobility Dapp scanning the QR code.',
-        qrData: 'dapp://0x7F68C65545C81fa980D670FbB45C4B2BDcEba3af'
+        qrData: 'dapp://0xFbCE6D21fe5C3c62a0Bd1aBAd7A10685C509aA86'
       }
     });
   }
@@ -84,7 +84,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         videoId: 1,
         title: 'Smart Office',
         description: 'Add Smart Office Dapp scanning the QR code.',
-        qrData: 'dapp://0xB044AACCA54ff4eeE2Def4e197213Aa809f8d813'
+        qrData: 'dapp://0xa8eb63b28607c5d3D1F4F873f54aBA524778E233'
       }
     });
   }

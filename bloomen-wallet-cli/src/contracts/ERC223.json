@@ -6809,7 +6809,7 @@
     }
   },
   "schemaVersion": "3.0.6",
-  "updatedAt": "2019-08-28T07:24:16.911Z",
+  "updatedAt": "2019-10-10T07:28:00.478Z",
   "devdoc": {
     "methods": {
       "allowance(address,address)": {

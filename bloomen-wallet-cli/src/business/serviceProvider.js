@@ -140,7 +140,7 @@ async function _sp4() {
     const ctx = web3Ctx.getCurrentContext();
     try {
         let schemas = await ctx.schemas.methods.getSchemas().call(ctx.transactionObject);
-        console.log('Schemas:',schemas);
+        console.log('Schemas:',schemas.map( item => Number(item)));
     } catch(e) {
         console.log('Error:',e);
     }   
