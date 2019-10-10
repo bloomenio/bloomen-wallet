@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-versionCode="20190711" id="com.tempos21.bloomen" ios-CFBundleVersion="20190711" version="1.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>bloomenApp</name>
+<widget android-versionCode="20191010" id="com.tempos21.bloomen" ios-CFBundleVersion="20191010" version="1.1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Bloomen Wallet</name>
     <description>A mobile app based on Ionic and Cordova.</description>
     <author email="dev@company.com" href="http://company.com">Development Team</author>
     <content src="index.html" />
@@ -55,6 +55,9 @@
                 <string>UIInterfaceOrientationLandscapeLeft</string>
                 <string>UIInterfaceOrientationLandscapeRight</string>
             </array>
+        </config-file>
+        <config-file parent="UIUserInterfaceStyle" platform="ios" target="*-Info.plist">
+            <string>Light</string>
         </config-file>
         <icon height="57" src="resources/ios/icon/icon.png" width="57" />
         <icon height="114" src="resources/ios/icon/icon@2x.png" width="114" />
