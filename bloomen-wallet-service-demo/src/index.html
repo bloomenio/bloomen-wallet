@@ -10,6 +10,13 @@
   <link rel="manifest" href="manifest.json"/>
   <link rel="icon" type="image/x-icon" href="favicon.ico"/>
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"/>
+   <!-- [START] hack bug chrome-->
+   <script>
+    window.TransformStream = null;
+    window.WritableStream = null;
+    window.ReadableStream = null;
+  </script>
+  <!-- [END] hack bug chrome-->
 </head>
 <body>
   <!--[if lt IE 10]>
