@@ -9,7 +9,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { MatDialog, MatDialogRef } from '@angular/material';
 
 import { environment } from '@env/environment';
-import { I18nService } from '@services/i18n/i18n.service';
 import { Logger } from '@services/logger/logger.service';
 import { NetworkStatus } from '@services/network-status/network-status.service';
 
@@ -20,6 +19,7 @@ import * as fromActions from '@stores/application-data/application-data.actions'
 import { ApplicationDataStateModel } from '@core/models/application-data-state.model';
 
 import { NetworkStatusAlertComponent } from '@components/network-status-alert/network-status-alert.component';
+import { en, el } from '@i18n/locales';
 
 const log = new Logger('App');
 
@@ -42,7 +42,6 @@ export class AppComponent implements OnInit {
     private zone: NgZone,
     private statusBar: StatusBar,
     private splashScreen: SplashScreen,
-    private i18nService: I18nService,
     private networkStatus: NetworkStatus,
     private store: Store<ApplicationDataStateModel>,
     private dialog: MatDialog
@@ -56,15 +55,14 @@ export class AppComponent implements OnInit {
 
     this.theme$ = this.store.pipe(select(fromSelectors.getTheme));
 
-    // Setup translations
-    this.i18nService.init(
-      environment.defaultLanguage,
-      environment.supportedLanguages
-    );
-
     const onNavigationEnd = this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     );
+
+    // Publish the languages and set default en just for the translateService.
+    this.translateService.setTranslation('en', en);
+    this.translateService.setTranslation('el', el);
+    this.translateService.setDefaultLang('en');
 
     // Change page title on navigation or language change, based on route data
     merge(this.translateService.onLangChange, onNavigationEnd)

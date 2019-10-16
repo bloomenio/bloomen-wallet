@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { extract } from '@services/i18n/i18n.service';
 import { BurnCashComponent } from './burn-cash.component';
 
 const routes: Routes = [
@@ -10,7 +9,7 @@ const routes: Routes = [
     path: '',
     component: BurnCashComponent,
     data: {
-      title: extract('Burn cash'),
+      title: 'Burn cash',
       shellOptions: {
         hasBackButton: true
       }

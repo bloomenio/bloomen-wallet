@@ -22,7 +22,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { PreloadImages } from '@services/preload-images/preload-images.service';
 import { environment } from '@env/environment';
-import { I18nService } from '@services/i18n/i18n.service';
+import { TranslateService } from '@ngx-translate/core';
 
 const log = new Logger('application-data.effects');
 
@@ -36,7 +36,7 @@ export class ApplicationDataEffects {
         private applicationDataDatabase: ApplicationDataDatabaseService,
         private statusBar: StatusBar,
         private preloadImages: PreloadImages,
-        private i18nService: I18nService,
+        private translateService: TranslateService,
     ) { }
 
     @Effect({ dispatch: false }) public preloadImage = this.actions$.pipe(
@@ -67,7 +67,7 @@ export class ApplicationDataEffects {
         ofType(fromActions.ApplicationDataActionTypes.CHANGE_LANGUAGE),
         withLatestFrom(this.store.pipe(select(fromSelectors.getLanguage))),
         tap(([action, language]) => {
-            this.i18nService.language = language;
+            this.translateService.use(language);
             this.applicationDataDatabase.set(APPLICATION_DATA_CONSTANTS.LANGUAGE, language);
         })
     );
@@ -133,7 +133,7 @@ export class ApplicationDataEffects {
                             return new fromActions.ChangeInitialDapp({ currentDappAddress: element.value });
                         }
                         case APPLICATION_DATA_CONSTANTS.LANGUAGE: {
-                            const language = element.value ? element.value : environment.defaultLanguage;
+                            const language = element.value;
                             return new fromActions.ChangeLanguage({ language });
                         }
                     }

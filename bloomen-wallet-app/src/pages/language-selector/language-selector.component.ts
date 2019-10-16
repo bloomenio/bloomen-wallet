@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { I18nService } from '@services/i18n/i18n.service';
-
 import { Store } from '@ngrx/store';
 import * as fromSelectors from '@stores/application-data/application-data.selectors';
 import * as fromActions from '@stores/application-data/application-data.actions';
+import { environment } from '@env/environment';
 
 @Component({
   selector: 'blo-language-selector',
@@ -17,7 +16,6 @@ export class LanguageSelectorComponent implements OnInit {
   private isFirstRun: Boolean;
 
   constructor(
-    private i18nService: I18nService,
     private router: Router,
     private store: Store<any>
   ) { }
@@ -39,7 +37,7 @@ export class LanguageSelectorComponent implements OnInit {
   }
 
   get languages(): string[] {
-    return this.i18nService.supportedLanguages;
+    return environment.supportedLanguages;
   }
 
   /**

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { extract } from '@services/i18n/i18n.service';
 import { TutorialComponent } from './tutorial.component';
 
 const routes: Routes = [
@@ -9,7 +8,7 @@ const routes: Routes = [
   {
     path: '',
     component: TutorialComponent,
-    data: { title: extract('Tutorial') }
+    data: { title: 'Tutorial' }
   }
 ];
 

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { extract } from '@services/i18n/i18n.service';
 import { HomeComponent } from './home.component';
 import { Shell } from '@shell/shell.service';
 import { HomeGuardRouteService } from '@services/home-guard-route/home-guard-route.service';
@@ -15,7 +14,7 @@ const routes: Routes = [
       path: 'home',
       component: HomeComponent,
       data: {
-        title: extract('Home'),
+        title: 'Home',
         shellOptions: {
           hasBackButton: false,
           auxiliarOptionsComponent: HomeOptionsShellComponent

@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { extract } from '@services/i18n/i18n.service';
 import { LanguageSelectorComponent } from './language-selector.component';
 
 const routes: Routes = [
   {
     path: '',
     component: LanguageSelectorComponent,
-    data: { title: extract('Language selector') }
+    data: {
+      title: 'Language selector'
+    }
   }
 ];
 
@@ -17,4 +18,4 @@ const routes: Routes = [
   exports: [RouterModule],
   providers: []
 })
-export class LanguageSelectorRoutingModule {}
+export class LanguageSelectorRoutingModule { }

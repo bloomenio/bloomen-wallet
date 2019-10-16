@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { extract } from '@services/i18n/i18n.service';
 import { DappSectionsComponent } from './dapp-sections.component';
 
 import { DappOptionsShellComponent } from '@components/dapp-options-shell/dapp-options-shell.component';
@@ -11,7 +10,7 @@ const routes: Routes = [
     path: '',
     component: DappSectionsComponent,
     data: {
-      title: extract('Dapp'),
+      title: 'Dapp',
       shellOptions: {
         hasBackButton: false,
         auxiliarOptionsComponent: DappOptionsShellComponent

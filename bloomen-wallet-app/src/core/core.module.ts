@@ -12,7 +12,6 @@ import { CustomSerializer } from './router/custom-serializer';
 
 import { RouteReuseStrategy, RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import { I18nService } from '@services/i18n/i18n.service';
 import { HttpService } from './http/http.service';
 import { HttpCacheService } from './http/http-cache.service';
 import { ApiPrefixInterceptor } from './http/api-prefix.interceptor';
@@ -51,7 +50,6 @@ import { reducers, metaReducers } from './core.state';
       useClass: TransactionService,
       deps: [Web3Service]
     },
-    I18nService,
     HttpCacheService,
     ApiPrefixInterceptor,
     ErrorHandlerInterceptor,
