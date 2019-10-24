@@ -114,12 +114,17 @@ export class DappProfileComponent implements OnInit, OnDestroy {
     }
   }
 
-  public sendCashToUser(address: UserAlias) {
-    this.store.dispatch(new fromUserActions.SetCurrentAlias(address));
-    this.router.navigate([`dapp/${this.dapp.address}/send-cash`]);
+  public sendCashToUser(user: UserAlias) {
+    this.store.dispatch(new fromUserActions.SetCurrentAlias(user));
+    this.router.navigate([`dapp/${this.dapp.address}/send-cash`], {
+      queryParams: {
+        address: user.address
+      }
+    });
   }
 
-  public onDelete(address: string): void {
+  public onDelete($event: MouseEvent, address: string): void {
+    $event.stopPropagation();
     const dialogRef = this.dialog.open(DappGeneralDialogComponent, {
       width: '250px',
       height: '200px',
@@ -138,7 +143,8 @@ export class DappProfileComponent implements OnInit, OnDestroy {
     });
   }
 
-  public openDialog(user: UserAlias): Observable<any> {
+  public openDialog($event: MouseEvent, user: UserAlias): Observable<any> {
+    $event.stopPropagation();
     const dialogRef = this.dialog.open(ChangeRecentUserComponent, {
       width: '250px',
       data: { user: user }

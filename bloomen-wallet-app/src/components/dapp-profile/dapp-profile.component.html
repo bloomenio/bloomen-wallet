@@ -22,14 +22,14 @@
                 <div class='recent-users'>
                     <mat-list *ngFor="let user of (addressList$ | async); first as isFirst;">
                         <mat-divider *ngIf="isFirst"></mat-divider>
-                        <mat-list-item>
+                        <mat-list-item (click)="sendCashToUser(user)">
                             <div class="item-wrapper" fxLayout="row" fxLayoutAlign="space-between center">
                                 <div class="alias-wrapper">{{ user.alias }}</div>
                                 <div class="actions-wrapper" fxLayout="row" fxLayoutAlign="end center">
-                                    <div class='icon-users' (click)='openDialog(user)'>
+                                    <div class='icon-users' (click)='openDialog($event, user)'>
                                         <mat-icon>edit</mat-icon>
                                     </div>
-                                    <div class='icon-users' (click)='onDelete(user.address)'>
+                                    <div class='icon-users' (click)='onDelete($event, user.address)'>
                                         <mat-icon>delete</mat-icon>
                                     </div>
                                 </div>

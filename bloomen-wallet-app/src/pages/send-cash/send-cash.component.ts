@@ -20,7 +20,7 @@ import { BarCodeScannerService } from '@services/barcode-scanner/barcode-scanner
 import { QR_VALIDATOR } from '@core/constants/qr-validator.constants';
 
 import { RecentUsersComponent } from '@components/recent-users/recent-users.component';
-import {UserAlias} from '@models/recent-user.model';
+import { UserAlias } from '@models/recent-user.model';
 
 
 const log = new Logger('send-cash.component');
@@ -36,6 +36,7 @@ export class SendCashComponent implements OnInit, OnDestroy {
   public dapp: Dapp;
   public sendCashForm: FormGroup;
   public address: string;
+  public destinationAddress: string;
 
   private mnemonics$: Subscription;
 
@@ -58,6 +59,7 @@ export class SendCashComponent implements OnInit, OnDestroy {
 
   public ngOnInit() {
     const address = this.activatedRoute.snapshot.paramMap.get('address');
+    this.destinationAddress = this.activatedRoute.snapshot.queryParamMap.get('address');
 
     this.dapps$ = this.store.select(fromDappSelectors.selectAllDapp).subscribe((dapps) => {
       this.dapp = dapps.find(dapp => dapp.address === address);
@@ -71,12 +73,17 @@ export class SendCashComponent implements OnInit, OnDestroy {
     });
 
     this.sendCashForm = new FormGroup({
-      address: new FormControl('', Validators.required ),
+      address: new FormControl('', Validators.required),
       amount: new FormControl('', Validators.required),
     });
 
+    if (this.destinationAddress) {
+      this.sendCashForm.get('address').setValue(this.destinationAddress);
+      //this.sendCashForm.get('address').disable();
+    }
+
     this.currentUser$ = this.store.pipe(
-        select(fromRecentUser.selectCurrentUser)
+      select(fromRecentUser.selectCurrentUser)
     ).subscribe(
       recentUser => {
         if (recentUser) { this.sendCashForm.setValue({ address: recentUser.address, amount: null }); }
@@ -84,7 +91,7 @@ export class SendCashComponent implements OnInit, OnDestroy {
     );
 
     this.store.pipe(
-        select(fromRecentUser.selectAllAddress)
+      select(fromRecentUser.selectAllAddress)
     ).subscribe(value => this.listOfAddress = value);
 
   }
@@ -122,11 +129,11 @@ export class SendCashComponent implements OnInit, OnDestroy {
     const exist = this.listOfAddress.find(value => value.address === this.sendCashForm.get('address').value);
     if (exist) { this.sendTransaction(); } else {
       this.openDialog().subscribe(
-          (result: boolean) => {
-            if (result) {
-              this.sendTransaction();
-            }
+        (result: boolean) => {
+          if (result) {
+            this.sendTransaction();
           }
+        }
       );
     }
   }
@@ -151,8 +158,10 @@ export class SendCashComponent implements OnInit, OnDestroy {
   public openDialog(): Observable<any> {
     const dialogRef = this.dialog.open(RecentUsersComponent, {
       width: '250px',
-      data: {address: this.sendCashForm.get('address').value,
-             idDapp: this.dapp.address }
+      data: {
+        address: this.sendCashForm.get('address').value,
+        idDapp: this.dapp.address
+      }
     });
     return dialogRef.afterClosed();
   }

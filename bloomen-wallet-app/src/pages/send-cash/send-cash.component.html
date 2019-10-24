@@ -10,8 +10,8 @@
         <form class="form-wrapper" [formGroup]="sendCashForm" fxLayout="column" fxLayoutAlign="start center" (ngSubmit)="onSubmit()">
             <mat-form-field color="primary" appearance="outline">
                 <mat-label>{{ 'dapp.send_cash.to' | translate }}</mat-label>
-                <input matInput formControlName="address" placeholder="{{ 'dapp.send_cash.address' | translate }}">
-                <div (click)="openQR($event)" matSuffix class="qr-icon"></div>
+                <input [readonly]="destinationAddress" matInput formControlName="address" placeholder="{{ 'dapp.send_cash.address' | translate }}">
+                <div *ngIf="!destinationAddress" (click)="openQR($event)" matSuffix class="qr-icon"></div>
             </mat-form-field>
 
             <mat-form-field color="primary" appearance="outline">
