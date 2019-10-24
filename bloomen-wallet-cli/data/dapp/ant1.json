@@ -11,8 +11,8 @@
     "i18n":{
       "en":{
         "home": {
-          "title": "Antenna",
-          "subtitle": "Cyprus"
+          "title": "ANT1",
+          "subtitle": "We are one!"
         },
         "login": {
           "title": "Antenna instance"
@@ -20,8 +20,8 @@
       },
       "el":{
         "home": {
-          "title": "Antenna",
-          "subtitle": "Cyprus"
+          "title": "ANT1",
+          "subtitle": "Είμαστε ένα!"
         },
         "login": {
           "title": "Antenna instance"
@@ -29,22 +29,20 @@
       }
     },
     "news": [
-      { "img" : "https://ant1media.azureedge.net/imgHandler/380/1a6495eb-36a0-4c56-8c95-1a097572eab6.jpg",
-        "title": "News #2",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscin vel ornare nibh. Duis scelerisque suscipit arcu, sit amet malesuada orci feugiat sit amet. Vestibulum at efficitur arcu, et tincidunt nunc. Maecenas non ornare lacus, ac egestas magna. In eu mattis neque, at consectetur nunc.",
+      { "img" : "https://www.ant1.com.cy/files/temp/8D22661CBF21C2D1A893ED0E864F7915.jpg",
         "i18n":{
           "en":{
-            "title": "EN-News #3",
-            "description": "Lorem ipsum dolngue velit mi, vitae sodales ligula fermentum ut. Donec vel ornare nibh. Duis scelerisque suscipit arcu, sit amet malesuada orci feugiat sit amet. Vestibulum at efficitur arcu, et tincidunt nunc. Maecenas non ornare lacus, ac egestas magna. In eu mattis neque, at consectetur nunc."
+            "title": "Future Episodes for: La Pasta Pomilori",
+            "description": "Watch the future episodes of the series, before they air on TV! Buy this package once and enjoy all future episodes for the remaining of the season."
           },
           "el":{
-            "title": "EL-News #3",
-            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.h. Duis scelerisque suscipit arcu, sit amet malesuada orci feugiat s" 
+            "title": "Επεισόδια Μπροστά: La Pasta Pomilώri",
+            "description": "Δες τα επόμενα επεισόδια της σειράς, πριν παίξουν στην τηλεόραση! Αγόρασε το πακέτο μια φορά για να απολαμβάνεις όλα τα επεισόδια της τρίτης σεζόν." 
           }
         },
         "payment" : {
           "asset": "2002",
-          "schema": "101",
+          "schema": "99999",
           "price": "100"
         }
       }
