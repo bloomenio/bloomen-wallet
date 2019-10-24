@@ -19,7 +19,7 @@
                         (click)='goToSendCash()'>{{ 'dapp.profile.send_cash' | translate | uppercase }}</button>
                 </div>
 
-                <div class='recent-users' *ngIf='!outOfCash'>
+                <div class='recent-users'>
                     <mat-list *ngFor="let user of (addressList$ | async); first as isFirst;">
                         <mat-divider *ngIf="isFirst"></mat-divider>
                         <mat-list-item>

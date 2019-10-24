@@ -22,6 +22,7 @@ export class ChangeRecentUserComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any) {
     this.newUser.address = this.data.user.address;
     this.newUser.idDapp = this.data.user.idDapp;
+    this.newUser.alias = this.data.user.alias;
   }
 
   public ngOnInit() {
@@ -33,7 +34,8 @@ export class ChangeRecentUserComponent implements OnInit {
   }
 
   public onChangeAlias() {
-    if (this.newUser.alias !== '') {
+    if (this.newAlias !== '') {
+      this.newUser.alias = this.newAlias;
       this.store.dispatch(new fromRecentUsersAction.ChangeAlias({ user: this.newUser }));
     }
     this.dialogRef.close();
