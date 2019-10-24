@@ -216,8 +216,8 @@ export class DappEffects {
             const transObj = {};
             const translation: Dapp.I18nDapp.Translation = dapp.i18n[lang];
             transObj[`${dapp.address}.home.title`] = translation.home.title;
-            transObj[`${dapp.address}.home.subtitle`] = translation.home.title;
-            transObj[`${dapp.address}.login.title`] = translation.home.title;
+            transObj[`${dapp.address}.home.subtitle`] = translation.home.subtitle;
+            transObj[`${dapp.address}.login.title`] = translation.login.title;
 
             this.translate.setTranslation(lang, transObj, true);
         });
