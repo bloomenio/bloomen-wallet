@@ -79,7 +79,6 @@ export class SendCashComponent implements OnInit, OnDestroy {
 
     if (this.destinationAddress) {
       this.sendCashForm.get('address').setValue(this.destinationAddress);
-      //this.sendCashForm.get('address').disable();
     }
 
     this.currentUser$ = this.store.pipe(
