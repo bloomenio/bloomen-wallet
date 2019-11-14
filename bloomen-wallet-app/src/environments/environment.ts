@@ -16,8 +16,8 @@ export const environment = {
   loaderTime: 2000,
   eth: {
     ethRpcUrl: 'https://0x.bloomen.io/rpc/telsius/wallet',
-    ethBlockPollingTime: 4000,
-    transactionStatusPollingTime: 2000,
+    ethBlockPollingTime: 5000,
+    transactionStatusPollingTime: 4000,
     transactionCallDelayTime: 2000,
     hdMagicKey: 'H2020_Bloomen',
     generalSeed: 'kit mother damage noise monkey appear peanut come razor vacant story water',
