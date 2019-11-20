@@ -1,10 +1,10 @@
 {
-	"email.enrollment.subject": "email.enrollment.subject",
-	"email_enrollment_preview": "email_enrollment_preview",
-	"email_enrollment_logo_alt": "email_enrollment_logo_alt",
-	"email_enrollment_image_alt": "email_enrollment_image_alt",
-	"email_enrollment_title": "email_enrollment_title",
-	"email_enrollment_body": "email_enrollment_body",
-	"email_enrollment_bloomen_description": "email_enrollment_bloomen_description",
-	"email_eu_footer": "email_eu_footer"
+	"email.enrollment.subject": "Η δωρεάν προπληρωμένη σας κάρτα από τον ΑΝΤ1.",
+	"email_enrollment_preview": "Η νέα πιλοτική υπηρεσία του ΑΝΤΕΝΝΑ είναι διαθέσιμη!",
+	"email_enrollment_logo_alt": "logo",
+	"email_enrollment_image_alt": "image",
+	"email_enrollment_title": "Η δωρεάν προπληρωμένη σας κάρτα από τον ΑΝΤ1.",
+	"email_enrollment_body": "Η νέα πιλοτική υπηρεσία του ΑΝΤΕΝΝΑ είναι διαθέσιμη! Μπορείτε από τώρα κιόλας να δείτε τα πρώτα 10 επεισόδια της σειράς «Ξαφνικά…μπαμπάς!» αρκεί να διαβάσετε πρώτα τις οδηγίες χρήσης της υπηρεσίας <a href='https://www.ant1.com.cy/ant1life/life/article/357404/premiera-simera-gia-to-pap-a-toda-madre-sto-ant1comcy-pos-tha-to-deite/?expandedarticle=true'>πατώντας εδώ.</a>",
+	"email_enrollment_bloomen_description": "Κάντε SCAN την προπληρωμένη κάρτα για να έχετε πρόσβαση δωρεάν στο περιεχόμενο. Μην ξεχάσετε πρώτα να διαβάσετε τον οδηγό χρήσης αφού απαιτούνται ορισμένα βήματα για να μπορείτε να δείτε το περιεχόμενο.",
+	"email_eu_footer": "Copyright ANTENNA Limited 2019. In collaboration with Worldline and the Bloomen consortium which is co-funded by the European Commission."
 }

@@ -284,25 +284,31 @@ async function _u9() {
     fs.createReadStream('./csv/inbox/' +  answer.file)
     .pipe(csv({ separator: ';' }))
     .on('data', async (data) => {
+
         const cardId = getRandomId();
         const cardSecret = 'card://' + uuidv4();
-        
-        // INFO: por cada linea creamos la card BC
-        // await ctx.business.methods.addCard(cardId, amount,ctx.web3.utils.keccak256(cardSecret)).send(ctx.transactionObject)
-        // .then((tx) => {
-        //     console.log('Transaction sent.');
-        //     return web3Ctx.checkTransaction(tx.transactionHash);
-        // });
-        
-        // INFO: por cada linea activamos la card BC
-        // await ctx.business.methods.activateCard(randomId).send(ctx.transactionObject)
-        // .then((tx) => {
-        //     console.log('Transaction sent.');
-        //     return web3Ctx.checkTransaction(tx.transactionHash);
-        // });
+        const AMOUNT = 1000;
 
+        const GEN_CARD = true;
+        
+        if (GEN_CARD){
+            // INFO: por cada linea creamos la card BC
+            await ctx.prepaidCardManager.methods.addCard(cardId, AMOUNT,ctx.web3.utils.keccak256(cardSecret)).send(ctx.transactionObject)
+            .then((tx) => {
+                console.log('Transaction sent.');
+                return web3Ctx.checkTransaction(tx.transactionHash);
+            });
+            
+            // INFO: por cada linea activamos la card BC
+            await ctx.prepaidCardManager.methods.activateCard(cardId).send(ctx.transactionObject)
+            .then((tx) => {
+                console.log('Transaction sent.');
+                return web3Ctx.checkTransaction(tx.transactionHash);
+            });
+        }
+        
         // generamos la imagen
-        const qrCardFileName = await generateQRCard(cardId,cardSecret,1000);
+        const qrCardFileName = await generateQRCard(cardId,cardSecret,AMOUNT);
 
         // persistimos el log de los procesados.
         log.info(`Process row ${data.email} ${data.firstName} ${data.lastName} ${data.lang} ${qrCardFileName}`);
@@ -318,8 +324,6 @@ async function _u9() {
     });
 
 }
-
-
 
 function setupMailer(){
 
