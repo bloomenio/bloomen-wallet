@@ -15,7 +15,7 @@
           "subtitle": "We are one!"
         },
         "login": {
-          "title": "Antenna instance"
+          "title": "Antenna WebTV"
         }
       },
       "el":{
@@ -24,25 +24,25 @@
           "subtitle": "Είμαστε ένα!"
         },
         "login": {
-          "title": "Antenna instance"
+          "title": "Το WebTV του ΑΝΤ1"
         }
       }
     },
     "news": [
-      { "img" : "https://www.ant1.com.cy/files/temp/8D22661CBF21C2D1A893ED0E864F7915.jpg",
+      { "img" : "https://www.ant1.com.cy/files/temp//03BC68A12FEC8D11EB904A463272E69B.jpg",
         "i18n":{
           "en":{
-            "title": "Future Episodes for: La Pasta Pomilori",
+            "title": "Future Episodes for: Papá a toda madre",
             "description": "Watch the future episodes of the series, before they air on TV! Buy this package once and enjoy all future episodes for the remaining of the season."
           },
           "el":{
-            "title": "Επεισόδια Μπροστά: La Pasta Pomilώri",
-            "description": "Δες τα επόμενα επεισόδια της σειράς, πριν παίξουν στην τηλεόραση! Αγόρασε το πακέτο μια φορά για να απολαμβάνεις όλα τα επεισόδια της τρίτης σεζόν." 
+            "title": "Επεισόδια Μπροστά: Ξαφνικά...Μπαμπάς!",
+            "description": "Δες την αγαπημένη σειρά, πριν παίξειστην τηλεόραση! Αγόρασε το πακέτο μια φορά για να απολαμβάνεις όλα τα επεισόδια της σεζόν." 
           }
         },
         "payment" : {
-          "asset": "2002",
-          "schema": "99999",
+          "asset": "998250001",
+          "schema": "103",
           "price": "100"
         }
       }
