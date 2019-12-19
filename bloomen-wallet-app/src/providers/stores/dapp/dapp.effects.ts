@@ -98,7 +98,7 @@ export class DappEffects {
             this.web3Service.ready(() => {
                 const address = action.payload.address;
                 const isSilent = action.type === fromActions.DappActionTypes.REFRESH_DAPP_SILENT;
-                this.loadDapp(address, false, false, isSilent).then((dapp: DappCache) => {
+                this.loadDapp(address, undefined , false, isSilent).then((dapp: DappCache) => {
                     const updatedDapp: Update<DappCache> = {
                         id: dapp.address,
                         changes: dapp
