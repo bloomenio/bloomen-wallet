@@ -1,7 +1,7 @@
 // Angular Material custom theme
 // The mixins below must be included once so we separated them from the variables
 @import "~@angular/material/theming";
-
+$material-design-icons-font-directory-path: "~material-design-icons-iconfont/dist/fonts/";
 /*
  * Grey palette
  */

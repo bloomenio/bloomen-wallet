@@ -36,8 +36,8 @@ export class ShellComponent implements OnInit, OnDestroy {
 
 
 
-  @ViewChild(BloButtonsHostDirective) public bloButtons: BloButtonsHostDirective;
-  @ViewChild(BloBackButtonHostDirective) public bloBackButton: BloBackButtonHostDirective;
+  @ViewChild(BloButtonsHostDirective, {static: true}) public bloButtons: BloButtonsHostDirective;
+  @ViewChild(BloBackButtonHostDirective, {static: true}) public bloBackButton: BloBackButtonHostDirective;
 
   constructor(
     private titleService: Title,

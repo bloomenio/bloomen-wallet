@@ -66,8 +66,8 @@ export class DappHomeComponent implements OnInit, OnDestroy {
     this._dapp = value;
   }
 
-  @ViewChild('recentActivity', { read: ElementRef }) public recentActivity: ElementRef;
-  @ViewChild('newContent', { read: ElementRef }) public newContent: ElementRef;
+  @ViewChild('recentActivity', { read: ElementRef, static: true }) public recentActivity: ElementRef;
+  @ViewChild('newContent', { read: ElementRef, static: true }) public newContent: ElementRef;
 
   constructor(
     public snackBar: MatSnackBar,
