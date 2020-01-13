@@ -8,13 +8,19 @@ export enum MnemonicActionTypes {
     ADD_MNEMONIC_SUCCESS = '[Mnemonic] add mnemonic success',
     REMOVE_MNEMONIC = '[Mnemonic] remove mnemonic',
     REMOVE_MNEMONIC_SUCCESS = '[Mnemonic] remove mnemonic success',
-    CHANGE_WALLET = '[Mnemonic] change wallet'
+    CHANGE_WALLET = '[Mnemonic] change wallet',
+    REFRESH_WALLET = '[Mnemonic] refresh wallet',
 
 }
 
 export class ChangeWallet implements Action {
     public readonly type = MnemonicActionTypes.CHANGE_WALLET;
     constructor(public readonly payload: { randomSeed: string, dappId: string }) { }
+}
+
+export class RefreshWallet implements Action {
+    public readonly type = MnemonicActionTypes.REFRESH_WALLET;
+    constructor() { }
 }
 
 export class AddMnemonic implements Action {

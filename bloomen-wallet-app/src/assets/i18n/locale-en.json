@@ -15,7 +15,8 @@
     "itemfounded": "Item founded",
     "send": "send",
     "receive": "receive",
-    "burn": "burn"
+    "burn": "burn",
+    "default": "default"
   },
   "language": {
     "en": "English",
@@ -59,7 +60,9 @@
     "options_shell": {
       "tutorial": "Tutorial",
       "refreshDapps": "Refresh Dapps",
-      "changeLanguage": "Change language"
+      "changeLanguage": "Change language",
+      "changeRpc":"Alastria endpoint",
+      "resumeWallet":"Resume"
     }
   },
   "login": {
@@ -161,6 +164,12 @@
     "delete_alias": {
       "title": "Hey!",
       "message": "Are you sure?"
+    }
+  },
+  "rpc_popup": {
+    "change_rpc": {
+      "title": "Hey!",
+      "message": "Do you want to change your Blockchain endpoint?"
     }
   }
 }

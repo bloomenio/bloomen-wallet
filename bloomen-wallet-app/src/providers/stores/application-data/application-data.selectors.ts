@@ -17,5 +17,7 @@ export const getTheme = createSelector(getApplicationData, fromReducer.getTheme)
 
 export const getLanguage = createSelector(getApplicationData, fromReducer.getLanguage);
 
+export const getRpc = createSelector(getApplicationData, fromReducer.getRpc);
+
 // getTheme
 export const getCurrentDappAddress = createSelector(getApplicationData, fromReducer.getCurrentDappAddress);

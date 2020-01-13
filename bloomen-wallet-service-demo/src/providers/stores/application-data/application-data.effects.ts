@@ -37,7 +37,7 @@ export class ApplicationDataEffects {
         ofType(fromActions.ApplicationDataActionTypes.PRELOAD_IMAGE)
     ).pipe(
         map((img) => {
-            this.preloadImages.preload(img.imatgePath);
+            this.preloadImages.preload(img.imagePath);
         })
     );
 

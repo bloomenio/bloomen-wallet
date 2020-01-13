@@ -4,11 +4,17 @@ export enum ApplicationDataActionTypes {
     INIT_APP_DATA = '[Application Data] init application data async initialState',
     CHANGE_FIRST_RUN = '[Application Data] change first run',
     CHANGE_THEME = '[Application Data] change theme',
+    CHANGE_RPC = '[Application Data] change rpc',
     CHANGE_LANGUAGE = '[Application Data] change language',
     PRELOAD_IMAGE = '[Application Data] preload image',
     CHANGE_INITIAL_DAPP = '[Application Data] change initial dapp'
 }
 
+
+export class ChangeRpc implements Action {
+    public readonly type = ApplicationDataActionTypes.CHANGE_RPC;
+    constructor(public readonly payload: { rpc: string }) { }
+}
 export class ChangeTheme implements Action {
     public readonly type = ApplicationDataActionTypes.CHANGE_THEME;
     constructor(public readonly payload: { theme: string }) { }
@@ -29,7 +35,7 @@ export class InitAppData implements Action {
 
 export class PreloadImage implements Action {
     public readonly type = ApplicationDataActionTypes.PRELOAD_IMAGE;
-    constructor(public readonly imatgePath: string) { }
+    constructor(public readonly imagePath: string) { }
 }
 
 export class ChangeInitialDapp implements Action {
@@ -37,4 +43,4 @@ export class ChangeInitialDapp implements Action {
     constructor(public readonly payload: { currentDappAddress: string }) { }
 }
 
-export type ApplicationDataActions = ChangeTheme | ChangeFirstRun | InitAppData | PreloadImage | ChangeInitialDapp | ChangeLanguage;
+export type ApplicationDataActions = ChangeRpc | ChangeTheme | ChangeFirstRun | InitAppData | PreloadImage | ChangeInitialDapp | ChangeLanguage;

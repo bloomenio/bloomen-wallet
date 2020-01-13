@@ -40,7 +40,6 @@ export class NetworkStatus {
       false
     );
 
-
   }
 
   private _onCordovaReady() {

@@ -11,6 +11,8 @@ import { withLatestFrom, tap, map, switchMap, catchError } from 'rxjs/operators'
 
 // Actions
 import * as fromActions from './application-data.actions';
+import * as fromMnemonicsActions from '@stores/mnemonic/mnemonic.actions';
+
 import { Logger } from '@services/logger/logger.service';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { ApplicationDataStateModel } from '@core/models/application-data-state.model';
@@ -43,7 +45,7 @@ export class ApplicationDataEffects {
         ofType(fromActions.ApplicationDataActionTypes.PRELOAD_IMAGE)
     ).pipe(
         map((img) => {
-            this.preloadImages.preload(img.imatgePath);
+            this.preloadImages.preload(img.imagePath);
         })
     );
 
@@ -60,6 +62,14 @@ export class ApplicationDataEffects {
         withLatestFrom(this.store.pipe(select(fromSelectors.getTheme))),
         tap(([action, theme]) => {
             this.applicationDataDatabase.set(APPLICATION_DATA_CONSTANTS.THEME, theme);
+        })
+    );
+
+    @Effect({ dispatch: false }) public persistRpc = this.actions$.pipe(
+        ofType(fromActions.ApplicationDataActionTypes.CHANGE_RPC)
+    ).pipe(
+        map((action) => {
+            this.applicationDataDatabase.set(APPLICATION_DATA_CONSTANTS.RPC, action.payload.rpc);
         })
     );
 
@@ -118,7 +128,17 @@ export class ApplicationDataEffects {
                 })
             );
 
-            return merge(firstRun$, theme$, currentDapp$, currentLanguage$).pipe(
+
+            const currentRpc$ = this.applicationDataDatabase.get(APPLICATION_DATA_CONSTANTS.RPC).pipe(
+                map((value) => {
+                    return {
+                        type: APPLICATION_DATA_CONSTANTS.RPC,
+                        value
+                    };
+                })
+            );
+
+            return merge(firstRun$, theme$, currentDapp$, currentLanguage$, currentRpc$).pipe(
                 map((element) => {
                     switch (element.type) {
                         case APPLICATION_DATA_CONSTANTS.FIRST_RUN: {
@@ -136,6 +156,10 @@ export class ApplicationDataEffects {
                             const language = element.value;
                             return new fromActions.ChangeLanguage({ language });
                         }
+                        case APPLICATION_DATA_CONSTANTS.RPC: {
+                            const rpc = element.value || environment.eth.ethRpcUrl ;
+                            return new fromActions.ChangeRpc({ rpc });
+                        }
                     }
                 }),
                 catchError((err) => {
@@ -145,8 +169,6 @@ export class ApplicationDataEffects {
             );
         })
     );
-
-
 
     @Effect({ dispatch: false }) public updateTheme = merge(
         this.actions$.pipe(ofType(fromActions.ApplicationDataActionTypes.CHANGE_THEME))

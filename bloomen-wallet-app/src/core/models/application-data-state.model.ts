@@ -5,6 +5,7 @@ export interface ApplicationDataStateModel {
     theme: string;
     currentDappAddress: string;
     language: string;
+    rpc: string;
 }
 
 export interface State extends AppState {

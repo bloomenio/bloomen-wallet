@@ -9,8 +9,9 @@ const Mnemonic = require('bitcore-mnemonic');
 
 import Web3 from 'web3';
 import * as Web3ProviderEngine from 'web3-provider-engine';
-import * as RpcSource from 'web3-provider-engine/subproviders/rpc';
 import * as HookedWalletSubprovider from 'web3-provider-engine/subproviders/hooked-wallet';
+
+import {RpcSubprovider} from '@services/web3/rpc-subprovider';
 
 // Environment
 import { environment } from '@env/environment';
@@ -20,6 +21,7 @@ import { Logger } from '@services/logger/logger.service';
 
 // Constants
 import { WEB3_CONSTANTS } from '@core/constants/web3.constants';
+import { take, filter } from 'rxjs/operators';
 
 const log = new Logger('web3.service');
 
@@ -34,7 +36,7 @@ export class Web3Service {
   private watiningCallbacks: Array<any>;
   private myAddress: BehaviorSubject<string>;
 
-  constructor() {
+  constructor(private rpcSubprovider: RpcSubprovider ) {
 
     this.blockRange = new Subject<any>();
     this.lastBlockNumber = -1;
@@ -62,10 +64,8 @@ export class Web3Service {
       },
     }));
 
-    // data source
-    engine.addProvider(new RpcSource({
-      rpcUrl: environment.eth.ethRpcUrl,
-    }));
+
+    engine.addProvider(this.rpcSubprovider);
 
     engine.start();
 
@@ -92,7 +92,6 @@ export class Web3Service {
 
   public getAddress(): Observable<string> {
     return this.myAddress.asObservable();
-
   }
 
   public validateMnemonic(mnemonic) {
@@ -131,7 +130,6 @@ export class Web3Service {
   private bootstrapWeb3(randomSeed: string) {
     const _hdPassword = environment.eth.hdMagicKey;
     return this._setUpLightwallet(_hdPassword, randomSeed);
-
   }
 
   private _setUpLightwallet(password: string, randomSeed: string): Promise<any> {
@@ -154,13 +152,19 @@ export class Web3Service {
             this.globalKeystore.generateNewAddress(pwDerivedKey, 1);
             const addresses = this.globalKeystore.getAddresses();
             this.myAddress.next(addresses[0]);
-            this.isReady = true;
-            this.watiningCallbacks.forEach((element: any) => {
-              element();
-            });
-            this.watiningCallbacks = [];
-            this._doTick();
-            resolve();
+
+            const errorStateObserver$ = this.rpcSubprovider.errorStateObserver().pipe(
+             filter((errorState) => !errorState),
+             take(1)
+            ).subscribe((errorState) => {
+                this.isReady = true;
+                this.watiningCallbacks.forEach((element: any) => {
+                  element();
+                });
+                this.watiningCallbacks = [];
+                this._doTick();
+                resolve();
+            } );
           }
         });
       });

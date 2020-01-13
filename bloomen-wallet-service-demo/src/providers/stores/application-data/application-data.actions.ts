@@ -23,7 +23,7 @@ export class InitAppData implements Action {
 
 export class PreloadImage implements Action {
     public readonly type = ApplicationDataActionTypes.PRELOAD_IMAGE;
-    constructor(public readonly imatgePath: string) { }
+    constructor(public readonly imagePath: string) { }
 }
 
 export type ApplicationDataActions = ChangeTheme | ChangeFirstRun | InitAppData | PreloadImage;

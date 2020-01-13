@@ -22,13 +22,14 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { RouterStateSerializer } from '@ngrx/router-store';
-
+import { RpcSubprovider } from '@services/web3/rpc-subprovider';
 import { Web3Service } from '@services/web3/web3.service';
 import { TransactionService } from '@services/web3/transactions/transaction.service';
 import { BloomenContract, PrepaidCardManagerContract, ERC223Contract, MovementHistoryContract,
   AssetsContract, DevicesContract, BurnHistoryContract } from '@services/web3/contracts';
 
 import { reducers, metaReducers } from './core.state';
+
 
 @NgModule({
   imports: [
@@ -45,6 +46,7 @@ import { reducers, metaReducers } from './core.state';
   ],
   providers: [
     Web3Service,
+    RpcSubprovider,
     {
       provide: TransactionService,
       useClass: TransactionService,

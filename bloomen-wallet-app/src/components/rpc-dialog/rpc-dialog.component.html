@@ -1,0 +1,16 @@
+<h1 mat-dialog-title>{{ 'rpc_popup.change_rpc.title'| translate }}</h1>
+<div mat-dialog-content >
+  <p>{{ 'rpc_popup.change_rpc.message'| translate }}</p>
+  <div>
+    <mat-form-field>
+          <input matInput cdkFocusInitial [(ngModel)]="rpc">
+    </mat-form-field>
+    <div style="width: 100%;text-align: end; padding-right: 25px;text-decoration: underline;"> <a (click)="reset()">{{ 'common.default'| translate }}</a></div>
+    
+  </div>
+  
+</div>
+<div mat-dialog-actions fxLayout="row" fxLayoutAlign="space-around center">
+  <button mat-button  (click)="onNoClick()">{{ 'common.cancel'| translate }}</button>
+  <button mat-button  (click)="onYesClick()">{{ 'common.accept'| translate }}</button>
+</div>

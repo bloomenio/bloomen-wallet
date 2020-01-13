@@ -15,7 +15,8 @@
     "itemfounded": "Βρέθηκε.",
     "send": "Στείλτε",
     "receive": "λάβατε",
-    "burn": "Εξαργυρώστε"
+    "burn": "Εξαργυρώστε",
+    "default": "Προκαθορισμένο"
   },
   "language": {
     "en": "English",
@@ -59,7 +60,9 @@
     "options_shell": {
       "tutorial": "Οδηγός",
       "refreshDapps": "Ανανέωση εφαρμογών",
-      "changeLanguage": "Αλλαγή γλώσσας"
+      "changeLanguage": "Αλλαγή γλώσσας",
+      "changeRpc":"Καταληκτικό σημείο της Alastria",
+      "resumeWallet":"Προσπαθησε ξανα"
     }
   },
   "login": {
@@ -161,6 +164,12 @@
     "delete_alias": {
       "title": "Γεια!",
       "message": "Είστε σίγουροι;"
+    }
+  },
+  "rpc_popup": {
+    "change_rpc": {
+      "title": "Γεια!",
+      "message": "Θέλετε να αλλάξετε το τελικό σημείο Blockchain;"
     }
   }
 }

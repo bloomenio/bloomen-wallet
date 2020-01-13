@@ -7,6 +7,10 @@
                 <div class="message">{{ 'network_status.message' | translate }}</div>        
             </div>
             <div class="network-status-image"></div>
+            <div class="dialog-buttons" fxFlex fxLayout="row" fxLayoutAlign="space-between end" >
+                <button mat-button  (click)="changeRpcDialog()">{{ 'home.options_shell.changeRpc'| translate }}</button>
+                <button mat-button  (click)="resumeWallet()">{{ 'home.options_shell.resumeWallet'| translate }}</button>
+            </div>
         </div>
     </div>
 </div>

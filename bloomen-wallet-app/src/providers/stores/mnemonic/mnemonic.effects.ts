@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Effect, Actions, ofType } from '@ngrx/effects';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 
 // Constants
-import { map, switchMap } from 'rxjs/operators';
+import { map, switchMap, withLatestFrom, tap } from 'rxjs/operators';
 
 // Actions
 import * as fromActions from './mnemonic.actions';
@@ -14,6 +14,8 @@ import * as fromTxActivityAction from '@stores/tx-activity/tx-activity.actions';
 import * as fromDevicesAction from '@stores/devices/devices.actions';
 import * as fromPurchasesAction from '@stores/purchases/purchases.actions';
 import * as fromBurnsAction from '@stores/burns/burns.actions';
+
+import * as fromApplicationDataSelectors from '@stores/application-data/application-data.selectors';
 
 import { MnemonicDatabaseService } from '@db/mnemonic-database.service';
 import { from } from 'rxjs';
@@ -87,6 +89,20 @@ export class MnemonicEffects {
                     }
                 });
             });
+        })
+    );
+
+    @Effect({ dispatch: false }) public refreshWallet = this.actions$.pipe(
+        ofType(fromActions.MnemonicActionTypes.REFRESH_WALLET),
+        withLatestFrom(this.store.pipe(select(fromApplicationDataSelectors.getCurrentDappAddress))),
+        tap(([action, currentDappAddress]) => {
+            this.store.dispatch(new fromBalanceAction.InitBalanceEvents());
+            this.store.dispatch(new fromTxActivityAction.InitTxActivity({ page: 1 }));
+            this.store.dispatch(new fromBurnsAction.InitBurns());
+            if (currentDappAddress) {
+                this.store.dispatch(new fromDevicesAction.InitDevices({ dappId: currentDappAddress }));
+                this.store.dispatch(new fromPurchasesAction.InitPurchases({ dappId: currentDappAddress }));
+            }
         })
     );
 }

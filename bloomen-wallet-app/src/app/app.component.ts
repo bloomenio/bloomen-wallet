@@ -11,11 +11,14 @@ import { MatDialog, MatDialogRef } from '@angular/material';
 import { environment } from '@env/environment';
 import { Logger } from '@services/logger/logger.service';
 import { NetworkStatus } from '@services/network-status/network-status.service';
+import {RpcSubprovider} from '@services/web3/rpc-subprovider';
 
 import { Store, select } from '@ngrx/store';
 
 import * as fromSelectors from '@stores/application-data/application-data.selectors';
 import * as fromActions from '@stores/application-data/application-data.actions';
+import * as fromMnemonicActions from '@stores/mnemonic/mnemonic.actions';
+
 import { ApplicationDataStateModel } from '@core/models/application-data-state.model';
 
 import { NetworkStatusAlertComponent } from '@components/network-status-alert/network-status-alert.component';
@@ -32,7 +35,8 @@ export class AppComponent implements OnInit {
 
   public theme$: Observable<string>;
   private _dialogRef: MatDialogRef<NetworkStatusAlertComponent>;
-
+  private _rpcOnline = true;
+  private _online = true;
 
   constructor(
     private router: Router,
@@ -43,6 +47,7 @@ export class AppComponent implements OnInit {
     private statusBar: StatusBar,
     private splashScreen: SplashScreen,
     private networkStatus: NetworkStatus,
+    private rpcSubprovider: RpcSubprovider,
     private store: Store<ApplicationDataStateModel>,
     private dialog: MatDialog
   ) { }
@@ -102,6 +107,11 @@ export class AppComponent implements OnInit {
       },
       false
     );
+
+    this.rpcSubprovider.errorStateObserver().subscribe(isOffline => {
+      this._rpcOnline = ! isOffline;
+      this.checkOnline();
+    });
   }
 
   private _onCordovaReady() {
@@ -118,29 +128,36 @@ export class AppComponent implements OnInit {
       }, false);
     }
     this.networkStatus.onlineObserver().subscribe(isOnline => {
-      isOnline ? this._isOnline() : this._isOffline();
+      this._online = isOnline;
+      this.checkOnline();
     });
+
   }
 
-  private _isOnline() {
+  private checkOnline() {
+     (this._online && this._rpcOnline) ? this._showOnline() : this._showOffline();
+  }
+
+  private _showOnline() {
     if (this._dialogRef) {
       this._dialogRef.close();
+      this._dialogRef = null;
+      this.store.dispatch(new fromMnemonicActions.RefreshWallet());
     }
   }
 
-  /**
-   * Method to show network-status-alert if the app is offline
-   */
-  private _isOffline() {
-    this._dialogRef = this.dialog.open(NetworkStatusAlertComponent, {
-      width: '100vw',
-      height: '100vh',
-      maxWidth: '100vw',
-      panelClass: 'fullscreen-dialog',
-      disableClose: true,
-      hasBackdrop: false,
-      autoFocus: false
-    });
-
+  private _showOffline() {
+    if ((!this._online || !this._rpcOnline) && !this._dialogRef) {
+      this._dialogRef = this.dialog.open(NetworkStatusAlertComponent, {
+        width: '100vw',
+        height: '100vh',
+        maxWidth: '100vw',
+        panelClass: 'fullscreen-dialog',
+        disableClose: true,
+        hasBackdrop: false,
+        autoFocus: false
+      });
+    }
   }
+
 }
