@@ -6,6 +6,7 @@ import { CredentialDialogComponent } from '@components/credential-dialog/credent
 import { ActivatedRoute } from '@angular/router';
 
 import MediaMock from '../../assets/mock/media.json';
+import PkMock from '../../assets/mock/pk.json';
 import { ASSETS_CONSTANTS } from '@core/constants/assets.constants.js';
 
 import * as fromDeviceSelector from '@stores/device-identity/device-identity.selectors';
@@ -71,7 +72,8 @@ export class SmartOfficeExchangeComponent implements OnInit, OnDestroy {
         smartOfficeId: this.smartOfficeId,
         deviceId: this.device,
         iconBuy: this.smartOfficeServices[this.smartOfficeId].dialogContent.iconBuy,
-        textAllowBuy: this.smartOfficeServices[this.smartOfficeId].dialogContent.textAllowBuy
+        textAllowBuy: this.smartOfficeServices[this.smartOfficeId].dialogContent.textAllowBuy,
+        pk: PkMock[ASSETS_CONSTANTS.SMART_OFFICE].pk,
       }
     });
 

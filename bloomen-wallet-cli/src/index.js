@@ -6,6 +6,8 @@ const customer = require('./business/customer');
 const vendor = require('./business/vendor');
 const serviceProvider = require('./business/serviceProvider');
 const utils = require('./business/utils');
+const crypto = require('./business/crypto');
+
 
 const figlet = require('figlet');
 const inquirer = require('inquirer');
@@ -46,6 +48,10 @@ menuCommands['U6'] = {name: '[U6] List user addresses', value: utils.u6 };
 menuCommands['U7'] = {name: '[U7] Add address', value: utils.u7 };
 menuCommands['U8'] = {name: '[U8] Delete address', value: utils.u8 };
 menuCommands['U9'] = {name: '[U9] CSV', value: utils.u9 };
+menuCommands['X1'] = {name: '[X1] Create Key pair', value: crypto.x1 };
+menuCommands['X2'] = {name: '[X2] Delete Key pair', value: crypto.x2 };
+menuCommands['X3'] = {name: '[X3] Sign', value: crypto.x3 };
+menuCommands['X4'] = {name: '[X4] Verify', value: crypto.x4 };
      
 menuCommands['EXIT'] = {name: 'Exit', value: () => {process.exit()} };  
 menuCommands['BACK_MAIN_MENU'] = {name:'Back', value: 0};     
@@ -156,6 +162,28 @@ async function serviceProviderMenu() {
     return;
 }
 
+async function cryptoMenu() {
+    web3Ctx.setContext(web3Ctx.contexts.CUSTOMER);
+    let options = [
+        menuCommands['X1'],
+        menuCommands['X2'],
+        menuCommands['X3'],
+        menuCommands['X4'],
+        menuCommands['BACK_MAIN_MENU'],
+        menuCommands['EXIT']     
+    ];
+    let questions = [
+        { type: 'list', name: 'operation', message: 'Main -> Vendor:', choices: options }
+    ];
+    let answer = {operation:()=>{return;}};
+    while( answer.operation != 0  ) {
+        await answer.operation();        
+        answer = await inquirer.prompt(questions);
+    }
+    return;
+}
+
+
 async function vendorMenu() {
 
     web3Ctx.setContext(web3Ctx.contexts.VENDOR);
@@ -256,6 +284,7 @@ async function mainMenu() {
         { name: "Vendor(V)", value: vendorMenu },
         { name: "Customer(C)", value: customerMenu },
         { name: "Utils(U)", value: utilsMenu },
+        { name: "Crypto(X)", value: cryptoMenu },
         menuCommands['EXIT']
     ];
     let questions = [

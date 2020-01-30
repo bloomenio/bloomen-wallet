@@ -51,11 +51,13 @@
     "@ngx-translate/core": "10.0.1",
     "angularx-qrcode": "1.5.1",
     "bitcore-mnemonic": "1.5.0",
+    "bloomen-token": "~0.9.0",
     "core-js": "2.5.6",
     "crypto-js": "3.1.9-1",
     "eth-lightwallet": "3.0.1",
     "ethjs-provider-signer": "0.1.4",
     "hammerjs": "2.0.8",
+    "hybrid-crypto-js": "^0.2.2",
     "localforage": "1.7.3",
     "lodash": "4.17.10",
     "material-design-icons-iconfont": "3.0.3",
@@ -71,7 +73,6 @@
     "web3": "1.0.0-beta.53",
     "web3-eth-contract": "1.0.0-beta.53",
     "web3-provider-engine": "^15.0.0",
-    "bloomen-token": "~0.9.0",
     "zone.js": "0.8.26"
   },
   "devDependencies": {

@@ -1,6 +1,6 @@
 // Basic
 import { Component, Inject, OnInit, OnDestroy } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatSlideToggleChange } from '@angular/material';
 import { Logger } from '@services/logger/logger.service';
 
 import MockData from '../../assets/mock/assets.json';
@@ -15,6 +15,8 @@ import { interval, Subscription } from 'rxjs';
 import { takeWhile } from 'rxjs/operators';
 import { Web3Service } from '@services/web3/web3.service.js';
 
+import { Crypt, RSA } from 'hybrid-crypto-js';
+
 const log = new Logger('credential-dialog.component');
 
 
@@ -27,12 +29,13 @@ export class CredentialDialogComponent implements OnInit, OnDestroy {
 
   public asset: AssetModel;
   public media: MediaModel;
-
   public qrAllowBuy: string;
-
+  public origQrAllowBuy: string;
+  public secQrAllowBuy: string;
   private allowed: boolean;
-
   private interval$: Subscription;
+  private crypt: Crypt;
+
 
   constructor(
     public dialogRef: MatDialogRef<CredentialDialogComponent>,
@@ -40,9 +43,13 @@ export class CredentialDialogComponent implements OnInit, OnDestroy {
     public location: Location,
     public devicesContract: DevicesContract,
     public web3Service: Web3Service
-  ) { }
+  ) {
+        // Basic initialization
+        this.crypt = new Crypt({ md: 'sha512' });
+  }
 
   public ngOnInit() {
+
     this.allowed = false;
 
     if (this.data.videoId) {
@@ -60,7 +67,7 @@ export class CredentialDialogComponent implements OnInit, OnDestroy {
       const allowed = await this.devicesContract.isAllowed(this.data.deviceId, this.asset.dappId);
       if (allowed) {
 
-        this.qrAllowBuy = `buy://${this.asset.assetKey}#${this.asset.schemaId}#` +
+        this.origQrAllowBuy = `buy://${this.asset.assetKey}#${this.asset.schemaId}#` +
           `${this.asset.amount}#${this.asset.dappId}#${encodeURI(this.asset.description)}`;
 
         this.interval$ = interval(1000).pipe(
@@ -76,7 +83,7 @@ export class CredentialDialogComponent implements OnInit, OnDestroy {
 
         const deviceId = `one-time-device-for-${this.asset.assetKey}-${new Date().getTime()}`;
 
-        this.qrAllowBuy = `allow_buy://${this.asset.assetKey}#${this.asset.schemaId}#` +
+        this.origQrAllowBuy = `allow_buy://${this.asset.assetKey}#${this.asset.schemaId}#` +
           `${this.asset.amount}#${this.asset.dappId}#${encodeURI(this.asset.description)}#${encodeURI(deviceId)}`;
 
         this.interval$ = interval(1000).pipe(
@@ -90,6 +97,11 @@ export class CredentialDialogComponent implements OnInit, OnDestroy {
         });
       }
 
+      if (this.data.pk) {
+        const signature = this.crypt.signature(this.data.pk, this.origQrAllowBuy);
+        this.secQrAllowBuy = JSON.parse(signature).signature;
+      }
+      this.qrAllowBuy = this.origQrAllowBuy;
     });
   }
 
@@ -100,5 +112,14 @@ export class CredentialDialogComponent implements OnInit, OnDestroy {
   public cancelDialog() {
     this.dialogRef.close(false);
     this.location.back();
+  }
+
+  public secureChange(event: MatSlideToggleChange) {
+    console.log('Toggle fired');
+    if (event.checked) {
+      this.qrAllowBuy = `${this.origQrAllowBuy}##${this.secQrAllowBuy}`;
+    } else {
+      this.qrAllowBuy = this.origQrAllowBuy;
+    }
   }
 }

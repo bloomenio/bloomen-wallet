@@ -1,73 +1,76 @@
 {
-  "dappId": "MWC-VIDEO",
-  "laf":{
-    "theme": "bloomen-blue-theme-light",
-    "backgroundImage": "assets/dapps/img_bg_blue_geometrical.png",
-    "prepaidCardImage": "assets/instances/img_prepaid_card_qr_demo.png",
-    "landingImage": "assets/dapps/img_landing_blue_geometrical.png",
-    "homeImage": "assets/dapps/img_home_blue_geometrical.png",    
-    "logo": "https://alastria1.wlilab.eu/video/play.svg"
-  },
-  "i18n":{
-    "en":{
-      "home": {
-        "title": "Videos",
-        "subtitle": "Try out a new experience in media"
-      },
-      "login": {
-        "title": "Videos"
-      }
+    "dappId": "MWC-VIDEO",
+    "laf": {
+        "theme": "bloomen-blue-theme-light",
+        "backgroundImage": "assets/dapps/img_bg_blue_geometrical.png",
+        "prepaidCardImage": "assets/instances/img_prepaid_card_qr_demo.png",
+        "landingImage": "assets/dapps/img_landing_blue_geometrical.png",
+        "homeImage": "assets/dapps/img_home_blue_geometrical.png",
+        "logo": "https://alastria1.wlilab.eu/video/play.svg"
     },
-    "el":{
-      "home": {
-        "title": "Videos",
-        "subtitle": "Try a complete experience"
-      },
-      "login": {
-        "title": "Videos"
-      }
+    "i18n": {
+        "en": {
+            "home": {
+                "title": "Videos",
+                "subtitle": "Try out a new experience in media"
+            },
+            "login": {
+                "title": "Videos"
+            }
+        },
+        "el": {
+            "home": {
+                "title": "Videos",
+                "subtitle": "Try a complete experience"
+            },
+            "login": {
+                "title": "Videos"
+            }
+        },
+        "es": {
+            "home": {
+                "title": "Videos",
+                "subtitle": "Try a complete experience"
+            },
+            "login": {
+                "title": "Videos"
+            }
+        },
+        "de": {
+            "home": {
+                "title": "Videos",
+                "subtitle": "Try a complete experience"
+            },
+            "login": {
+                "title": "Videos"
+            }
+        },
+        "ca": {
+            "home": {
+                "title": "Videos",
+                "subtitle": "Try a complete experience"
+            },
+            "login": {
+                "title": "Videos"
+            }
+        }
     },
-    "es":{
-      "home": {
-        "title": "Videos",
-        "subtitle": "Try a complete experience"
-      },
-      "login": {
-        "title": "Videos"
-      }
-    },
-    "de":{
-      "home": {
-        "title": "Videos",
-        "subtitle": "Try a complete experience"
-      },
-      "login": {
-        "title": "Videos"
-      }
-    },
-    "ca":{
-      "home": {
-        "title": "Videos",
-        "subtitle": "Try a complete experience"
-      },
-      "login": {
-        "title": "Videos"
-      }
-    }
-  },
-  "news": [
-    { "img" : "https://alastria1.wlilab.eu/bloo-demo/assets/videos/wearlumb.png",
-      "i18n":{
-        "en":{
-          "title": "Wearlumb",
-          "description": "Know this project buying this video."
-        }       
-      },
-      "payment" : {
-        "asset": "1005",
-        "schema": "202",
-        "price": "100"
-      }
-    }
-  ]
+    "news": [
+        {
+            "img": "https://alastria1.wlilab.eu/bloo-demo/assets/videos/wearlumb.png",
+            "i18n": {
+                "en": {
+                    "title": "Wearlumb",
+                    "description": "Know this project buying this video."
+                }
+            },
+            "payment": {
+                "asset": "1005",
+                "schema": "202",
+                "price": "100"
+            }
+        }
+    ],
+    "secure": "true",
+    "publicKey": "-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDWP9Z7HQZSFWOGILrCkxm3023l\nu8Rgj9RplUJzkLPVGHbYHCRvxlQNGckLddTA6fVyZuH1KgD+pEucyJgt5u8bW7ky\nxo2lxfA96Ju0FcwTKDzD6IjtXUqdZ6ZOsD9slAMHqU99isdjqPTxLuM+j4YL/ztA\n58TuBWfFvyJyxfSHywIDAQAB\n-----END PUBLIC KEY-----\n"
 }

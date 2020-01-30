@@ -2,9 +2,21 @@
 <div mat-dialog-content >
   <p>{{ 'rpc_popup.change_rpc.message'| translate }}</p>
   <div>
+    
+    <mat-slide-toggle style="margin-bottom: 16px;" [(ngModel)]="httpsToggle" >
+      {{ 'rpc_popup.change_rpc.https'| translate }}
+    </mat-slide-toggle>
+
     <mat-form-field>
-          <input matInput cdkFocusInitial [(ngModel)]="rpc">
+      <mat-label>{{ 'rpc_popup.change_rpc.host'| translate }}</mat-label>
+      <input matInput cdkFocusInitial placeholder="{{ 'rpc_popup.change_rpc.host' | translate }}" [(ngModel)]="host" required>
     </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>{{ 'rpc_popup.change_rpc.path'| translate }}</mat-label>
+      <input matInput cdkFocusInitial placeholder="{{ 'rpc_popup.change_rpc.path' | translate }}" [(ngModel)]="pathname">
+    </mat-form-field>
+
     <div style="width: 100%;text-align: end; padding-right: 25px;text-decoration: underline;"> <a (click)="reset()">{{ 'common.default'| translate }}</a></div>
     
   </div>

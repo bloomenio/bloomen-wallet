@@ -61,7 +61,7 @@
       "tutorial": "Tutorial",
       "refreshDapps": "Refresh Dapps",
       "changeLanguage": "Change language",
-      "changeRpc":"Alastria endpoint",
+      "changeRpc":"Endpoint",
       "resumeWallet":"Resume"
     }
   },
@@ -169,7 +169,10 @@
   "rpc_popup": {
     "change_rpc": {
       "title": "Hey!",
-      "message": "Do you want to change your Blockchain endpoint?"
+      "message": "Do you want to change your Blockchain endpoint?",
+      "https":"HTTPS",
+      "host":"Host",
+      "path":"Path"
     }
   }
 }

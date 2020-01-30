@@ -15,7 +15,7 @@ export const environment = {
   supportedLanguages: [ 'en', 'el'],
   loaderTime: 2000,
   eth: {
-    ethRpcUrl: 'https://0x.wlilab.eu/rpc/telsius/bloomenwallet',
+    ethRpcUrl: 'https://0x.bloomen.io/rpc/telsius/wallet',
     ethBlockPollingTime: 5000,
     transactionStatusPollingTime: 4000,
     transactionCallDelayTime: 2000,

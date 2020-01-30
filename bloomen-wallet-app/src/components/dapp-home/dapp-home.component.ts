@@ -22,6 +22,7 @@ import { DappGeneralDialogComponent } from '@components/dapp-general-dialog/dapp
 
 import { AllowAndBuy } from '@models/operations.model';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Crypt, RSA } from 'hybrid-crypto-js';
 
 const log = new Logger('dapp-home.component');
 
@@ -61,6 +62,8 @@ export class DappHomeComponent implements OnInit, OnDestroy {
 
   private _dapp: any;
 
+  private crypt: Crypt;
+
 
   @Input() public set dapp(value: any) {
     this._dapp = value;
@@ -82,6 +85,9 @@ export class DappHomeComponent implements OnInit, OnDestroy {
     private iconRegistry: MatIconRegistry,
     private sanitizer: DomSanitizer
   ) {
+    // Basic initialization
+    this.crypt = new Crypt({ md: 'sha512' });
+
     this.loadingMovementsConfig = {
       path: 'assets/animation/animationMovements.json',
       renderer: 'svg',
@@ -132,13 +138,46 @@ export class DappHomeComponent implements OnInit, OnDestroy {
 
   public async buyOrAllow() {
     this.barCodeScannerService.scan().then(result => {
-      console.log(result);
-      this.doOperation(result);
+      log.debug(result);
+      if (this.validSignature(result, (this._dapp.secure === 'true') ? this._dapp.publicKey : undefined)) {
+        this.doOperation(result);
+      } else {
+        log.error('KO', 'Bad QR signature');
+        this.snackBar.open(this.translate.instant('common.qr_invalid'), null, {
+          duration: 2000,
+        });
+      }
+
     });
+  }
+
+  private validSignature(signedData, publicKey): boolean {
+    if (publicKey) {
+      const valueCut = signedData.indexOf('##');
+      if (valueCut > 0) {
+        const signature = signedData.slice(valueCut + 2);
+        try {
+          return this.crypt.verify(
+            publicKey,
+            JSON.stringify({signature, md: 'sha512'}),
+            signedData.slice(0, valueCut)
+          );
+        } catch (error) {
+          log.error(error);
+          return false;
+        }
+
+      } else {
+        return false;
+      }
+    } else {
+      return true;
+    }
   }
 
   private doOperation(inputValue: string) {
     if (inputValue !== null) {
+
       const valueCut = inputValue.indexOf('//') + 2;
       const operation = inputValue.slice(0, valueCut);
       const params = inputValue.slice(valueCut).split('#');

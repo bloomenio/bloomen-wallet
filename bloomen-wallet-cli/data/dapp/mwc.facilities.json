@@ -1,50 +1,52 @@
 {
-  "dappId": "MWC-FACILITIES",
-  "laf":{
-    "theme": "bloomen-green-theme-light",
-    "backgroundImage": "assets/dapps/img_bg_green_geometrical.png",
-    "prepaidCardImage": "assets/instances/img_prepaid_card_qr_demo.png",
-    "landingImage": "assets/dapps/img_landing_green_geometrical.png",
-    "homeImage": "assets/dapps/img_home_green_geometrical.png",    
-    "logo": "https://alastria1.wlilab.eu/video/bus.svg"
-  },
-  "i18n":{
-    "en":{
-      "home": {
-        "title": "Facilities",
-        "subtitle": "Try out a new experience in facilities"
-      },
-      "login": {
-        "title": "Facilities"
-      }
+    "dappId": "MWC-FACILITIES",
+    "laf": {
+        "theme": "bloomen-green-theme-light",
+        "backgroundImage": "assets/dapps/img_bg_green_geometrical.png",
+        "prepaidCardImage": "assets/instances/img_prepaid_card_qr_demo.png",
+        "landingImage": "assets/dapps/img_landing_green_geometrical.png",
+        "homeImage": "assets/dapps/img_home_green_geometrical.png",
+        "logo": "https://alastria1.wlilab.eu/video/bus.svg"
     },
-    "el":{
-      "home": {
-        "title": "Facilities",
-        "subtitle": "Try a complete experience"
-      },
-      "login": {
-        "title": "Facilities"
-      }
-    }
-  },
-  "news": [
-    { "img" : "https://alastria1.wlilab.eu/bloo-demo/assets/mobility/img_background_motorcycle.png",
-      "i18n":{
-        "en":{
-          "title": "Motorcycle",
-          "description": "Get this motorcycle"
+    "i18n": {
+        "en": {
+            "home": {
+                "title": "Facilities",
+                "subtitle": "Try out a new experience in facilities"
+            },
+            "login": {
+                "title": "Facilities"
+            }
         },
-        "el":{
-          "title": "EL-News #1",
-          "description": "EL-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed congue velit mi, vitae sodales ligula fermentum ut. Donec vel ornare nibh. Duis scelerisque suscipit arcu, sit amet malesuada orci feugiat sit amet. Vestibulum at efficitur arcu, et tincidunt nunc. Maecenas non ornare lacus, ac egestas magna. In eu mattis neque." 
+        "el": {
+            "home": {
+                "title": "Facilities",
+                "subtitle": "Try a complete experience"
+            },
+            "login": {
+                "title": "Facilities"
+            }
         }
-      },
-      "payment" : {
-        "asset": "2002",
-        "schema": "301",
-        "price": "100"
-      }
-    }
-  ]
+    },
+    "news": [
+        {
+            "img": "https://alastria1.wlilab.eu/bloo-demo/assets/mobility/img_background_motorcycle.png",
+            "i18n": {
+                "en": {
+                    "title": "Motorcycle",
+                    "description": "Get this motorcycle"
+                },
+                "el": {
+                    "title": "EL-News #1",
+                    "description": "EL-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed congue velit mi, vitae sodales ligula fermentum ut. Donec vel ornare nibh. Duis scelerisque suscipit arcu, sit amet malesuada orci feugiat sit amet. Vestibulum at efficitur arcu, et tincidunt nunc. Maecenas non ornare lacus, ac egestas magna. In eu mattis neque."
+                }
+            },
+            "payment": {
+                "asset": "2002",
+                "schema": "301",
+                "price": "100"
+            }
+        }
+    ],
+    "publicKey": "-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCzZu8LETtORYtPOPhQeTAiVHbZ\nncq7XbZ4qBLU7D5eoDrNcQR1Mn3IrT68BI8VzOySicJERQzq5dgBAcoO1VtRph+l\nAsoQJou3qx8dg7HI+kun28D2CUJHj0dx5gerOv3c+MlcqUPp5GPbxMHbk6Cj40pT\nMOIPytxfBGzd8RWYNQIDAQAB\n-----END PUBLIC KEY-----\n"
 }

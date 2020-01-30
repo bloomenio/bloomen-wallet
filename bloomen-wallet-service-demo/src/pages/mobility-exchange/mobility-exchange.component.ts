@@ -7,6 +7,8 @@ import { CredentialDialogComponent } from '@components/credential-dialog/credent
 import { ActivatedRoute } from '@angular/router';
 
 import MediaMock from '../../assets/mock/media.json';
+import PkMock from '../../assets/mock/pk.json';
+
 import { ASSETS_CONSTANTS } from '@core/constants/assets.constants.js';
 import { DevicesContract } from '@core/core.module.js';
 import { Store } from '@ngrx/store';
@@ -76,6 +78,7 @@ export class MobilityExchangeComponent  implements OnInit, OnDestroy {
         deviceId: this.device,
         iconBuy: this.mobilities[this.mobilityId].dialogContent.iconBuy,
         textAllowBuy: this.mobilities[this.mobilityId].dialogContent.textAllowBuy,
+        pk: PkMock[ASSETS_CONSTANTS.MOBILITY].pk
       }
     });
 

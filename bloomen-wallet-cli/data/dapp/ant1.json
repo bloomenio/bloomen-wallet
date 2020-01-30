@@ -1,50 +1,51 @@
 {
     "dappId": "ANT1",
-    "laf":{
-      "theme": "bloomen-ant1-theme-light",
-      "backgroundImage": "assets/dapps/img_bg_orange_circles.png",
-      "prepaidCardImage": "assets/instances/img_prepaid_card_qr_demo.png",
-      "landingImage": "assets/dapps/img_landing_orange_circles.png",
-      "homeImage": "assets/dapps/img_home_orange_circles.png",
-      "logo": "assets/ant1.png"
+    "laf": {
+        "theme": "bloomen-ant1-theme-light",
+        "backgroundImage": "assets/dapps/img_bg_orange_circles.png",
+        "prepaidCardImage": "assets/instances/img_prepaid_card_qr_demo.png",
+        "landingImage": "assets/dapps/img_landing_orange_circles.png",
+        "homeImage": "assets/dapps/img_home_orange_circles.png",
+        "logo": "assets/ant1.png"
     },
-    "i18n":{
-      "en":{
-        "home": {
-          "title": "ANT1",
-          "subtitle": "We are one!"
+    "i18n": {
+        "en": {
+            "home": {
+                "title": "ANT1",
+                "subtitle": "We are one!"
+            },
+            "login": {
+                "title": "Antenna WebTV"
+            }
         },
-        "login": {
-          "title": "Antenna WebTV"
+        "el": {
+            "home": {
+                "title": "ANT1",
+                "subtitle": "Είμαστε ένα!"
+            },
+            "login": {
+                "title": "Το WebTV του ΑΝΤ1"
+            }
         }
-      },
-      "el":{
-        "home": {
-          "title": "ANT1",
-          "subtitle": "Είμαστε ένα!"
-        },
-        "login": {
-          "title": "Το WebTV του ΑΝΤ1"
-        }
-      }
     },
     "news": [
-      { "img" : "https://www.ant1.com.cy/files/temp//03BC68A12FEC8D11EB904A463272E69B.jpg",
-        "i18n":{
-          "en":{
-            "title": "Future Episodes for: Papá a toda madre",
-            "description": "Watch the future episodes of the series, before they air on TV! Buy this package once and enjoy all future episodes for the remaining of the season."
-          },
-          "el":{
-            "title": "Επεισόδια Μπροστά: Ξαφνικά...Μπαμπάς!",
-            "description": "Δες την αγαπημένη σειρά, πριν παίξειστην τηλεόραση! Αγόρασε το πακέτο μια φορά για να απολαμβάνεις όλα τα επεισόδια της σεζόν." 
-          }
-        },
-        "payment" : {
-          "asset": "998250001",
-          "schema": "103",
-          "price": "100"
+        {
+            "img": "https://www.ant1.com.cy/files/temp//03BC68A12FEC8D11EB904A463272E69B.jpg",
+            "i18n": {
+                "en": {
+                    "title": "Future Episodes for: Papá a toda madre",
+                    "description": "Watch the future episodes of the series, before they air on TV! Buy this package once and enjoy all future episodes for the remaining of the season."
+                },
+                "el": {
+                    "title": "Επεισόδια Μπροστά: Ξαφνικά...Μπαμπάς!",
+                    "description": "Δες την αγαπημένη σειρά, πριν παίξειστην τηλεόραση! Αγόρασε το πακέτο μια φορά για να απολαμβάνεις όλα τα επεισόδια της σεζόν."
+                }
+            },
+            "payment": {
+                "asset": "998250001",
+                "schema": "103",
+                "price": "100"
+            }
         }
-      }
     ]
 }

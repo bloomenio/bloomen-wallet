@@ -7,6 +7,8 @@ export interface Dapp {
     i18n: Dapp.I18n;
     news: Array<Dapp.News>;
     dappId: string;
+    secure: boolean;
+    publicKey: string;
 }
 
 export interface DappOrigin {

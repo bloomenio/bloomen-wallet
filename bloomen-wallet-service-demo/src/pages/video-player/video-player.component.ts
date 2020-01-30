@@ -11,6 +11,7 @@ import { MediaModel } from '@core/models/media.model';
 import { environment } from '@env/environment';
 
 import MediaMock from '../../assets/mock/media.json';
+import PkMock from '../../assets/mock/pk.json';
 import { ASSETS_CONSTANTS } from '@core/constants/assets.constants.js';
 import { DevicesContract } from '@core/core.module.js';
 import { Store } from '@ngrx/store';
@@ -87,7 +88,8 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
         videoId: this.videoId,
         deviceId: this.device,
         iconBuy: 'assets/icons/ic_wallet.svg',
-        textAllowBuy: 'Scan QR to view/buy the content'
+        textAllowBuy: 'Scan QR to view/buy the content',
+        pk: PkMock[ASSETS_CONSTANTS.VIDEOS].pk
       }
     });
 

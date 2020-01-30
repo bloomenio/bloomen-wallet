@@ -165,7 +165,7 @@ export class DappEffects {
                         this.updateDappDialog = undefined;
                         if (result) {
                             const dapp: DappCache = {
-                                ...(cachedDapp || {}),
+                                ... {},
                                 ...serverDapp,
                                 address,
                                 fromService,

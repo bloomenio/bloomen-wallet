@@ -61,7 +61,7 @@
       "tutorial": "Οδηγός",
       "refreshDapps": "Ανανέωση εφαρμογών",
       "changeLanguage": "Αλλαγή γλώσσας",
-      "changeRpc":"Καταληκτικό σημείο της Alastria",
+      "changeRpc":"τελικό σημείο",
       "resumeWallet":"Προσπαθησε ξανα"
     }
   },
@@ -169,7 +169,10 @@
   "rpc_popup": {
     "change_rpc": {
       "title": "Γεια!",
-      "message": "Θέλετε να αλλάξετε το τελικό σημείο Blockchain;"
+      "message": "Θέλετε να αλλάξετε το τελικό σημείο Blockchain;",
+      "https":"HTTPS",
+      "host":"Host",
+      "path":"Path"
     }
   }
 }
