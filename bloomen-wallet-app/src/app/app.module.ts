@@ -50,6 +50,8 @@ import { BurnsStoreModule } from '@stores/burns/burns.module';
 import { PurchasesStoreModule } from '@stores/purchases/purchases.module';
 import { RecentUsersStoreModule } from '@stores/recent-users/recent-users.module';
 
+import { Camera } from '@ionic-native/camera';
+
 export function onAppInit(store: Store<any>): () => Promise<any> {
   return (): Promise<any> => {
     return new Promise<any>((resolve, reject) => {
@@ -118,6 +120,7 @@ export function onAppInit(store: Store<any>): () => Promise<any> {
     SplashScreen,
     Network,
     SocialSharing,
+    Camera,
 
     // Initial data charge
     {

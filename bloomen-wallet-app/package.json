@@ -53,6 +53,7 @@
     "@angular/router": "^8.1.0",
     "@angular/service-worker": "^8.1.0",
     "@ionic-native/barcode-scanner": "^4.18.0",
+    "@ionic-native/camera": "^4.20.0",
     "@ionic-native/core": "^4.5.3",
     "@ionic-native/network": "^4.18.0",
     "@ionic-native/social-sharing": "^4.19.0",
@@ -67,10 +68,12 @@
     "angularx-qrcode": "^1.6.4",
     "bitcore-mnemonic": "1.5.0",
     "bloomen-token": "~0.9.0",
-    "cordova-android": "^8.1.0",
+    "cordova-android": "^7.1.4",
+    "cordova-android-support-gradle-release": "^3.0.1",
     "cordova-clipboard": "^1.3.0",
     "cordova-custom-config": "^5.1.0",
     "cordova-ios": "^5.0.1",
+    "cordova-plugin-camera": "^4.1.0",
     "cordova-plugin-device": "^2.0.3",
     "cordova-plugin-ionic-keyboard": "^2.2.0",
     "cordova-plugin-ionic-webview": "^2.5.3",
@@ -85,6 +88,7 @@
     "eth-lightwallet": "3.0.1",
     "hammerjs": "^2.0.8",
     "hybrid-crypto-js": "^0.2.2",
+    "jsqr": "^1.2.0",
     "localforage": "^1.7.3",
     "lodash": "^4.17.10",
     "material-design-icons-iconfont": "^3.0.3",
@@ -167,7 +171,13 @@
       "cordova-plugin-x-socialsharing": {
         "ANDROID_SUPPORT_V4_VERSION": "24.1.1+"
       },
-      "cordova-clipboard": {}
+      "cordova-clipboard": {},
+      "cordova-android-support-gradle-release": {
+        "ANDROID_SUPPORT_VERSION": "27.+"
+      },
+      "cordova-plugin-camera": {
+        "ANDROID_SUPPORT_V4_VERSION": "27.+"
+      }
     }
   }
 }

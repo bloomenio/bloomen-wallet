@@ -105,7 +105,11 @@
     },
     "scanQR": {
       "increase_balance": "To increase your balance, scan the QR code of the card.",
-      "scan_qr_code": "Scan qr code"
+      "scan_qr_code": "Scan qr code",
+      "album":{
+        "title":"Scan picture",
+        "description":"Extract QR data from an album picture."
+      }
     },
     "options_shell": {
       "change_instance": "Change instance",
