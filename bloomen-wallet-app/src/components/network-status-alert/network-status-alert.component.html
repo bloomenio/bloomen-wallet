@@ -8,8 +8,8 @@
             </div>
             <div class="network-status-image"></div>
             <div class="dialog-buttons" fxFlex fxLayout="row" fxLayoutAlign="space-between end" >
-                <button mat-button  (click)="changeRpcDialog()">{{ 'home.options_shell.changeRpc'| translate }}</button>
-                <button mat-button  (click)="resumeWallet()">{{ 'home.options_shell.resumeWallet'| translate }}</button>
+                <button style="text-transform: lowercase;" mat-raised-button  (click)="changeRpcDialog()"><mat-icon>cloud_off</mat-icon> {{ 'home.options_shell.changeRpc'| translate }}</button>
+                <button style="text-transform: uppercase;" color="accent" mat-raised-button  (click)="resumeWallet()"><mat-icon>refresh</mat-icon> {{ 'home.options_shell.resumeWallet'| translate }}</button>
             </div>
         </div>
     </div>

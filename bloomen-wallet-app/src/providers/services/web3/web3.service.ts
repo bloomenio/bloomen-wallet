@@ -67,13 +67,11 @@ export class Web3Service {
 
     engine.addProvider(this.rpcSubprovider);
 
-    engine.start();
-
     if (document.readyState === WEB3_CONSTANTS.READY_STATE.COMPLETE) {
-      this.bootstrapWeb3(environment.eth.generalSeed);
+      this.bootstrapWeb3(environment.eth.generalSeed).then(() => engine.start());
     } else {
       window.addEventListener('load', () => {
-        this.bootstrapWeb3(environment.eth.generalSeed);
+        this.bootstrapWeb3(environment.eth.generalSeed).then(() => engine.start());
       });
     }
   }
