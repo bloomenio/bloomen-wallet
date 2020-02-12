@@ -1,8 +1,6 @@
 // Basic
 import { Component, OnInit, OnDestroy, Input, ElementRef, Renderer2, ViewChild, AfterViewChecked } from '@angular/core';
 
-import { Dapp } from '@core/models/dapp.model.js';
-
 import { Logger } from '@services/logger/logger.service.js';
 
 import { MatSnackBar, MatDialog, MatIconRegistry } from '@angular/material';
@@ -22,7 +20,7 @@ import { DappGeneralDialogComponent } from '@components/dapp-general-dialog/dapp
 
 import { AllowAndBuy } from '@models/operations.model';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Crypt, RSA } from 'hybrid-crypto-js';
+import { Crypt } from 'hybrid-crypto-js';
 
 const log = new Logger('dapp-home.component');
 
@@ -58,8 +56,6 @@ export class DappHomeComponent implements OnInit, OnDestroy {
 
   public isLoading$: Observable<boolean>;
 
-  public loadingMovementsConfig: any;
-
   private _dapp: any;
 
   private crypt: Crypt;
@@ -87,13 +83,6 @@ export class DappHomeComponent implements OnInit, OnDestroy {
   ) {
     // Basic initialization
     this.crypt = new Crypt({ md: 'sha512' });
-
-    this.loadingMovementsConfig = {
-      path: 'assets/animation/animationMovements.json',
-      renderer: 'svg',
-      autoplay: true,
-      loop: true
-    };
 
     this.iconRegistry.addSvgIcon(
       'movements-no-data',

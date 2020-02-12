@@ -16,10 +16,12 @@
             </mat-card-actions>
         </mat-card>
 
-        <div #recentActivity>
-            <div class='loader-recent-activity-card' fxFlexLayout='center' *ngIf='isLoading$ | async; else loaded'>
-                <lottie-animation-view [options]="loadingMovementsConfig" [width]="300" [height]="300">
-                </lottie-animation-view>
+        <div #recentActivity class="recent-activity-card">
+            <div class='loader-recent-activity-card' fxLayout='row' fxLayoutAlign='center center' *ngIf='isLoading$ | async; else loaded' >
+                <mat-progress-spinner style="margin: 0 10px;"               
+                color="primary"
+                mode="indeterminate">
+                </mat-progress-spinner>
             </div>
             <ng-template #loaded>
                 <mat-card class='recent-activity-card' *ngIf='txActivityArray.length'>
