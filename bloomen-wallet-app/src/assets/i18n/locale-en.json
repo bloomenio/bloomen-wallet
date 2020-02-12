@@ -75,7 +75,8 @@
   "dapp": {
     "home": {
       "buy_content": "Buy content or Allow",
-      "data": "Put the date into the input field",
+      "qr_title": "QR data",
+      "qr_data": "Put the data into the input field",
       "recent_activity": "Recent activity"
     },
     "profile": {

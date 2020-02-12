@@ -75,7 +75,8 @@
   "dapp": {
     "home": {
       "buy_content": "Αγορά ή προβολή περιεχομένου",
-      "data": "Προσδιορίστε την ημερομηνία",
+      "qr_title": "QR data",
+      "qr_data": "Put the data into the input field",
       "recent_activity": "Πρόσφατη δραστηριότητα"
     },
     "profile": {

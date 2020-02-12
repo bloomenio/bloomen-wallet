@@ -127,8 +127,8 @@ export class BarCodeScannerService {
           const dialogRef = this.dialog.open(DappInputDialogComponent, {
             width: '250px',
             data: {
-              title: this.translate.instant('dapp.home.buy_content'),
-              description: this.translate.instant('dapp.home.data'),
+              title: this.translate.instant('dapp.home.qr_title'),
+              description: this.translate.instant('dapp.home.qr_data'),
               buttonAccept: this.translate.instant('common.accept'),
               buttonCancel: this.translate.instant('common.cancel')
             }
