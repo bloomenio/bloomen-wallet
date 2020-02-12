@@ -1,9 +1,9 @@
 {
   "name": "bloomen-app",
-  "version": "2.1.2",
+  "version": "2.2.1",
   "private": true,
   "engines": {
-    "node": ">=8.0.0"
+    "node": ">=10.0.0"
   },
   "husky": {
     "hooks": {

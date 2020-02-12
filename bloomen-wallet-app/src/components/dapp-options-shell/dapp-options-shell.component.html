@@ -7,9 +7,9 @@
         <button mat-menu-item [disabled]='outOfCash' (click)='goToBurnCash()'>{{ 'dapp.options_shell.burn_cash' | translate }}</button>
         <button mat-menu-item (click)="goToHome()">{{ 'dapp.options_shell.change_instance' | translate }}</button>
         <div class="version">{{ version }}</div>
-        <div class="last_updated" fxFlex
+        <!-- <div class="last_updated" fxFlex
             translate="dapp.options_shell.last_updated"
             [translateParams]="{date: dapp?.lastUpdated | date:'short'}">
-        </div>
+        </div> -->
     </mat-menu>
 </div>

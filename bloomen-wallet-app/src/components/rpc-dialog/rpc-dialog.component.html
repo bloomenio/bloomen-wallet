@@ -22,7 +22,9 @@
   </div>
   
 </div>
+&nbsp;
 <div mat-dialog-actions fxLayout="row" fxLayoutAlign="space-around center">
-  <button mat-button  (click)="onNoClick()">{{ 'common.cancel'| translate }}</button>
-  <button mat-button  (click)="onYesClick()">{{ 'common.accept'| translate }}</button>
+  <button style="text-transform: uppercase;" mat-raised-button  (click)="onNoClick()">{{ 'common.cancel'| translate }}</button>
+  <button style="text-transform: uppercase;" color="accent" mat-raised-button (click)="onYesClick()">{{ 'common.accept'| translate }}</button>
 </div>
+&nbsp;
