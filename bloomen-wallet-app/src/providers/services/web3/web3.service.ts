@@ -68,12 +68,24 @@ export class Web3Service {
     engine.addProvider(this.rpcSubprovider);
 
     if (document.readyState === WEB3_CONSTANTS.READY_STATE.COMPLETE) {
-      this.bootstrapWeb3(environment.eth.generalSeed).then(() => engine.start());
+      this.bootstrapWeb3(environment.eth.generalSeed).then(() => { engine.start(); engine.stop(); });
     } else {
       window.addEventListener('load', () => {
-        this.bootstrapWeb3(environment.eth.generalSeed).then(() => engine.start());
+        this.bootstrapWeb3(environment.eth.generalSeed).then(() => { engine.start(); engine.stop(); });
       });
     }
+
+    const errorStateObserver$ = this.rpcSubprovider.errorStateObserver().pipe(
+      filter((errorState) => !errorState),
+      take(1)
+     ).subscribe((errorState) => {
+      this.isReady = true;
+      this.watiningCallbacks.forEach((element: any) => {
+        element();
+      });
+      this.watiningCallbacks = [];
+      this._doTick();
+     });
   }
 
   public ready(callback: any) {
@@ -150,19 +162,7 @@ export class Web3Service {
             this.globalKeystore.generateNewAddress(pwDerivedKey, 1);
             const addresses = this.globalKeystore.getAddresses();
             this.myAddress.next(addresses[0]);
-
-            const errorStateObserver$ = this.rpcSubprovider.errorStateObserver().pipe(
-             filter((errorState) => !errorState),
-             take(1)
-            ).subscribe((errorState) => {
-                this.isReady = true;
-                this.watiningCallbacks.forEach((element: any) => {
-                  element();
-                });
-                this.watiningCallbacks = [];
-                this._doTick();
-                resolve();
-            } );
+            resolve();
           }
         });
       });
@@ -170,14 +170,18 @@ export class Web3Service {
   }
 
   private _doTick() {
-    this.web3.eth.getBlockNumber().then((value: any) => {
-      this.lastBlockNumber = this.currentBlockNumber + 1;
-      this.currentBlockNumber = value;
-      if (this.lastBlockNumber > 0) {
-        this.blockRange.next({ fromBlock: this.lastBlockNumber, toBlock: this.currentBlockNumber });
-      }
+    if (!this.rpcSubprovider.getErrorState()) {
+      this.web3.eth.getBlockNumber().then((value: any) => {
+        this.lastBlockNumber = this.currentBlockNumber + 1;
+        this.currentBlockNumber = value;
+        if (this.lastBlockNumber > 0) {
+          this.blockRange.next({ fromBlock: this.lastBlockNumber, toBlock: this.currentBlockNumber });
+        }
+        setTimeout(() => this._doTick(), environment.eth.ethBlockPollingTime);
+      }, () => setTimeout(() => this._doTick(), environment.eth.ethBlockPollingTime));
+    } else {
       setTimeout(() => this._doTick(), environment.eth.ethBlockPollingTime);
-    }, () => setTimeout(() => this._doTick(), environment.eth.ethBlockPollingTime));
+    }
   }
 
 }

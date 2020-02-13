@@ -38,7 +38,7 @@ export class RpcSubprovider extends Subprovider {
     public handleRequest(payload: any, next: any, end: any) {
 
         if (this._errorStateObserver.getValue()) {
-           // return end('Rpc Error state:true');
+           end('Rpc Error state:true');
            log.debug('Error state or not initialized');
            return;
         }
@@ -59,13 +59,17 @@ export class RpcSubprovider extends Subprovider {
             error => {
                 this._errorStateObserver.next(true);
                 log.error('Rpc Error', error);
-                return end('Rpc Error');
+                end('Rpc Error');
             }
         );
     }
 
     public setErrorState( newState: boolean) {
         this._errorStateObserver.next(newState);
+    }
+
+    public getErrorState() {
+        return this._errorStateObserver.getValue();
     }
 
     public errorStateObserver(): Observable<boolean> {
