@@ -68,14 +68,18 @@ export class Web3Service {
     engine.addProvider(this.rpcSubprovider);
 
     if (document.readyState === WEB3_CONSTANTS.READY_STATE.COMPLETE) {
-      this.bootstrapWeb3(environment.eth.generalSeed).then(() => { engine.start(); engine.stop(); });
+      this.bootstrapWeb3(environment.eth.generalSeed).then(() => { this._engineSetup(engine); });
     } else {
       window.addEventListener('load', () => {
-        this.bootstrapWeb3(environment.eth.generalSeed).then(() => { engine.start(); engine.stop(); });
+        this.bootstrapWeb3(environment.eth.generalSeed).then(() => { this._engineSetup(engine);  });
       });
     }
+  }
 
-    const errorStateObserver$ = this.rpcSubprovider.errorStateObserver().pipe(
+  private _engineSetup(engine: any) {
+    engine.start();
+    engine.stop();
+    this.rpcSubprovider.errorStateObserver().pipe(
       filter((errorState) => !errorState),
       take(1)
      ).subscribe((errorState) => {
@@ -139,6 +143,7 @@ export class Web3Service {
 
   private bootstrapWeb3(randomSeed: string) {
     const _hdPassword = environment.eth.hdMagicKey;
+    console.log('koko');
     return this._setUpLightwallet(_hdPassword, randomSeed);
   }
 
@@ -159,6 +164,7 @@ export class Web3Service {
             log.error(this, error);
             reject();
           } else {
+            console.log(pwDerivedKey);
             this.globalKeystore.generateNewAddress(pwDerivedKey, 1);
             const addresses = this.globalKeystore.getAddresses();
             this.myAddress.next(addresses[0]);
