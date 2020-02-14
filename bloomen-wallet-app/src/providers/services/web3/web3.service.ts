@@ -164,7 +164,6 @@ export class Web3Service {
             log.error(this, error);
             reject();
           } else {
-            console.log(pwDerivedKey);
             this.globalKeystore.generateNewAddress(pwDerivedKey, 1);
             const addresses = this.globalKeystore.getAddresses();
             this.myAddress.next(addresses[0]);
