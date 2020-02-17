@@ -177,7 +177,8 @@
       "message": "Θέλετε να αλλάξετε το τελικό σημείο Blockchain;",
       "https":"HTTPS",
       "host":"Host",
-      "path":"Path"
+      "path":"Path",
+      "secret":"Secret"
     }
   }
 }

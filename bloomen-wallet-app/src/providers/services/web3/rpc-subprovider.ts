@@ -21,6 +21,7 @@ const log = new Logger('RpcSubprovider');
 export class RpcSubprovider extends Subprovider {
     private _errorStateObserver: BehaviorSubject<boolean>;
     private _targetUrl;
+    private _targetSecret;
 
     constructor(
             private httpClient: HttpClient,
@@ -32,6 +33,11 @@ export class RpcSubprovider extends Subprovider {
                 this._targetUrl = rpc;
                 this._errorStateObserver.next(false);
             }
+        });
+
+        this.store.select(fromSelectors.getSecret).subscribe((secret) => {
+                this._targetSecret = secret || '';
+                this._errorStateObserver.next(false);
         });
     }
 
@@ -45,11 +51,17 @@ export class RpcSubprovider extends Subprovider {
 
         const newPayload = createPayload(payload);
 
+        const headers = {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        };
+
+        if ((this._targetSecret) && ( this._targetSecret !== '')) {
+            headers['Authorization'] = `Bearer ${this._targetSecret}`;
+        }
+
         this.httpClient.post(this._targetUrl, newPayload, {
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                },
+                headers,
         }).pipe(
             map((body: any) =>  body),
         ).subscribe(

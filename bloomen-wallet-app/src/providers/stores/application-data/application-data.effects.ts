@@ -69,7 +69,7 @@ export class ApplicationDataEffects {
         ofType(fromActions.ApplicationDataActionTypes.CHANGE_RPC)
     ).pipe(
         map((action) => {
-            this.applicationDataDatabase.set(APPLICATION_DATA_CONSTANTS.RPC, action.payload.rpc);
+            this.applicationDataDatabase.set(APPLICATION_DATA_CONSTANTS.RPC, {rpc: action.payload.rpc, secret: action.payload.secret});
         })
     );
 
@@ -157,8 +157,9 @@ export class ApplicationDataEffects {
                             return new fromActions.ChangeLanguage({ language });
                         }
                         case APPLICATION_DATA_CONSTANTS.RPC: {
-                            const rpc = element.value || environment.eth.ethRpcUrl ;
-                            return new fromActions.ChangeRpc({ rpc });
+                            const rpc = (element.value) ? element.value.rpc : environment.eth.ethRpcUrl;
+                            const secret = (element.value) ? element.value.secret : '';
+                            return new fromActions.ChangeRpc({ rpc, secret });
                         }
                     }
                 }),

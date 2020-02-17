@@ -13,7 +13,7 @@ export enum ApplicationDataActionTypes {
 
 export class ChangeRpc implements Action {
     public readonly type = ApplicationDataActionTypes.CHANGE_RPC;
-    constructor(public readonly payload: { rpc: string }) { }
+    constructor(public readonly payload: { rpc: string, secret: string }) { }
 }
 export class ChangeTheme implements Action {
     public readonly type = ApplicationDataActionTypes.CHANGE_THEME;

@@ -7,6 +7,7 @@ import * as fromSelectors from '@stores/application-data/application-data.select
 // Environment
 import { environment } from '@env/environment';
 import * as fromActions from '@stores/application-data/application-data.actions';
+import * as fromDappActions from '@stores/dapp/dapp.actions';
 import { take } from 'rxjs/operators';
 
 @Component({
@@ -19,6 +20,7 @@ export class RpcDialogComponent implements OnInit {
   public host;
   public pathname;
   public httpsToggle;
+  public secret;
 
   constructor( public dialogRef: MatDialogRef<RpcDialogComponent>,
     private store: Store<ApplicationDataStateModel>) {
@@ -37,6 +39,10 @@ export class RpcDialogComponent implements OnInit {
       this.host = url.host;
       this.pathname = url.pathname;
     });
+
+    this.store.select(fromSelectors.getSecret).pipe(take(1)).subscribe((secret) => {
+       this.secret = secret || '';
+    });
   }
 
   public onNoClick(): void {
@@ -45,13 +51,13 @@ export class RpcDialogComponent implements OnInit {
 
   public onYesClick(): void {
     const url = new URL(`${this.httpsToggle ? 'https:' : 'http:'}\\${this.host}${this.pathname}`);
-
-    this.store.dispatch(new fromActions.ChangeRpc({rpc: url.toString()}));
+    this.store.dispatch(new fromDappActions.RefreshDapps());
+    this.store.dispatch(new fromActions.ChangeRpc({rpc: url.toString(), secret: this.secret || ''}));
     this.dialogRef.close(true);
   }
 
   public reset(): void {
-    this.store.dispatch(new fromActions.ChangeRpc({rpc: environment.eth.ethRpcUrl}));
+    this.store.dispatch(new fromActions.ChangeRpc({rpc: environment.eth.ethRpcUrl, secret: ''}));
     this.dialogRef.close(true);
   }
 

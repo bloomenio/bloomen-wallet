@@ -177,7 +177,8 @@
       "message": "Do you want to change your Blockchain endpoint?",
       "https":"HTTPS",
       "host":"Host",
-      "path":"Path"
+      "path":"Path",
+      "secret":"Secret"
     }
   }
 }

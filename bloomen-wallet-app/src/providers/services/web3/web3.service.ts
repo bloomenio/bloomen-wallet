@@ -143,7 +143,6 @@ export class Web3Service {
 
   private bootstrapWeb3(randomSeed: string) {
     const _hdPassword = environment.eth.hdMagicKey;
-    console.log('koko');
     return this._setUpLightwallet(_hdPassword, randomSeed);
   }
 
