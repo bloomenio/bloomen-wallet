@@ -22,6 +22,10 @@ export class RpcDialogComponent implements OnInit {
   public httpsToggle;
   public secret;
 
+  private _initialURL;
+  private _initialSecret;
+
+
   constructor( public dialogRef: MatDialogRef<RpcDialogComponent>,
     private store: Store<ApplicationDataStateModel>) {
 
@@ -35,6 +39,7 @@ export class RpcDialogComponent implements OnInit {
       } else {
           url = new URL(environment.eth.ethRpcUrl);
       }
+      this._initialURL = url.toString();
       this.httpsToggle = (url.protocol === 'https:') ;
       this.host = url.host;
       this.pathname = url.pathname;
@@ -42,6 +47,7 @@ export class RpcDialogComponent implements OnInit {
 
     this.store.select(fromSelectors.getSecret).pipe(take(1)).subscribe((secret) => {
        this.secret = secret || '';
+       this._initialSecret = this.secret;
     });
   }
 
@@ -51,13 +57,18 @@ export class RpcDialogComponent implements OnInit {
 
   public onYesClick(): void {
     const url = new URL(`${this.httpsToggle ? 'https:' : 'http:'}\\${this.host}${this.pathname}`);
-    this.store.dispatch(new fromDappActions.RefreshDapps());
-    this.store.dispatch(new fromActions.ChangeRpc({rpc: url.toString(), secret: this.secret || ''}));
-    this.dialogRef.close(true);
+    this._resumeWallet( url.toString(), this.secret || '');
   }
 
   public reset(): void {
-    this.store.dispatch(new fromActions.ChangeRpc({rpc: environment.eth.ethRpcUrl, secret: ''}));
+    this._resumeWallet( environment.eth.ethRpcUrl, '');
+  }
+
+  private _resumeWallet( rpc: string, secret: string) {
+    if (( this._initialURL !== rpc) || (this._initialSecret !== secret)) {
+      this.store.dispatch(new fromDappActions.RefreshDapps());
+      this.store.dispatch(new fromActions.ChangeRpc({rpc, secret}));
+    }
     this.dialogRef.close(true);
   }
 
