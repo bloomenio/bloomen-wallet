@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { DappInputDialogComponent } from '@components/dapp-input-dialog/dapp-input-dialog.component';
 import { TranslateService } from '@ngx-translate/core';
-
+import { Logger } from '@services/logger/logger.service.js';
 import { Observable, Subject } from 'rxjs';
 
 // Ionic Native
@@ -19,6 +19,9 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 
 import { Image, getImageData } from '@canvas/image';
 import jsQR from 'jsqr';
+import { Crypt } from 'hybrid-crypto-js';
+
+const log = new Logger('dapp-home.component');
 
 /**
  * Service to create an abstract class with the barcode plugin and the application.
@@ -27,6 +30,7 @@ import jsQR from 'jsqr';
 export class BarCodeScannerService {
 
   private loader: Subject<boolean>;
+  private crypt: Crypt;
 
   /**
    * Initialize all needed from the barcode service.
@@ -38,6 +42,8 @@ export class BarCodeScannerService {
     private dialog: MatDialog,
     private translate: TranslateService) {
     this.loader = new Subject<boolean>();
+    // Basic initialization
+    this.crypt = new Crypt({ md: 'sha512' });
 
   }
 
@@ -96,7 +102,32 @@ export class BarCodeScannerService {
     });
   }
 
-  public scan(): Promise<string> {
+
+  private validSignature(signedData: string, publicKey: string): boolean {
+    if (publicKey) {
+      const valueCut = signedData.indexOf('##');
+      if (valueCut > 0) {
+        const signature = signedData.slice(valueCut + 2);
+        try {
+          return this.crypt.verify(
+            publicKey,
+            JSON.stringify({signature, md: 'sha512'}),
+            signedData.slice(0, valueCut)
+          );
+        } catch (error) {
+          log.error(error);
+          return false;
+        }
+
+      } else {
+        return false;
+      }
+    } else {
+      return true;
+    }
+  }
+
+  public scan(publicKey?: string): Promise<string> {
     this.loader.next(true);
     return new Promise((resolve, reject) => {
       setTimeout(() => {
@@ -107,7 +138,7 @@ export class BarCodeScannerService {
                   this.tryCameraRoll().then(
                     (qrData) => {
                       this.loader.next(false);
-                      resolve(qrData);
+                      resolve(this.validSignature(qrData, publicKey) ? qrData : '' );
                     },
                     (error) => {
                       this.loader.next(false);
@@ -115,7 +146,7 @@ export class BarCodeScannerService {
                     });
                 } else {
                   this.loader.next(false);
-                  resolve(scanResult.text);
+                  resolve(this.validSignature(scanResult.text, publicKey) ? scanResult.text : '' );
                 }
               },
               error => {
@@ -134,9 +165,7 @@ export class BarCodeScannerService {
             }
           });
           dialogRef.afterClosed().subscribe(result => {
-            if (result) {
-              resolve(result);
-            }
+              resolve(this.validSignature(result, publicKey) ? result : '');
           });
         }
       }, environment.loaderTime);

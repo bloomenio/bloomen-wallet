@@ -20,7 +20,8 @@ import { DappGeneralDialogComponent } from '@components/dapp-general-dialog/dapp
 
 import { AllowAndBuy } from '@models/operations.model';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Crypt } from 'hybrid-crypto-js';
+import { Dapp } from '@core/models/dapp.model';
+
 
 const log = new Logger('dapp-home.component');
 
@@ -56,9 +57,9 @@ export class DappHomeComponent implements OnInit, OnDestroy {
 
   public isLoading$: Observable<boolean>;
 
-  private _dapp: any;
+  private _dapp: Dapp;
 
-  private crypt: Crypt;
+
 
 
   @Input() public set dapp(value: any) {
@@ -81,8 +82,6 @@ export class DappHomeComponent implements OnInit, OnDestroy {
     private iconRegistry: MatIconRegistry,
     private sanitizer: DomSanitizer
   ) {
-    // Basic initialization
-    this.crypt = new Crypt({ md: 'sha512' });
 
     this.iconRegistry.addSvgIcon(
       'movements-no-data',
@@ -126,42 +125,16 @@ export class DappHomeComponent implements OnInit, OnDestroy {
   }
 
   public async buyOrAllow() {
-    this.barCodeScannerService.scan().then(result => {
-      log.debug(result);
-      if (this.validSignature(result, (this._dapp.secure === 'true') ? this._dapp.publicKey : undefined)) {
+    this.barCodeScannerService.scan((this._dapp.secure === 'true') ? this._dapp.publicKey : undefined).then(result => {
+      if (result) {
         this.doOperation(result);
       } else {
-        log.error('KO', 'Bad QR signature');
         this.snackBar.open(this.translate.instant('common.qr_invalid'), null, {
           duration: 2000,
         });
       }
 
     });
-  }
-
-  private validSignature(signedData, publicKey): boolean {
-    if (publicKey) {
-      const valueCut = signedData.indexOf('##');
-      if (valueCut > 0) {
-        const signature = signedData.slice(valueCut + 2);
-        try {
-          return this.crypt.verify(
-            publicKey,
-            JSON.stringify({signature, md: 'sha512'}),
-            signedData.slice(0, valueCut)
-          );
-        } catch (error) {
-          log.error(error);
-          return false;
-        }
-
-      } else {
-        return false;
-      }
-    } else {
-      return true;
-    }
   }
 
   private doOperation(inputValue: string) {

@@ -45,8 +45,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     private store: Store<any>,
     public snackBar: MatSnackBar,
     private barCodeScannerService: BarCodeScannerService,
-    private translate: TranslateService,
-    private dialog: MatDialog,
+    private translate: TranslateService
   ) { }
 
   public ngOnInit() {
