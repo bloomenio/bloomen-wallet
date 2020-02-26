@@ -1,7 +1,9 @@
 <div fxFlex class='has-dapp-credit-header'>
-    <div class='dapp-home' fxFlex fxLayout='column'>
-        <mat-card (window:resize)='onResize()' #newContent class='new-content-card' #mainScreen>
-            <div *ngIf='dapp' class='new-content-wrapper' fxLayout='row' fxLayoutAlign='center center'
+    <div class='dapp-home' fxFlex fxLayout='column' fxLayoutAlign='start'>
+        <div style='height: 30vh;'  >
+        </div>
+        <div class='new-content-card'  >
+                    <div *ngIf='dapp' class='new-content-wrapper' fxLayout='row' fxLayoutAlign='center center'
                 [ngStyle]="{'background-image': 'url(' + dapp.laf.homeImage +')'}">
                 <div class='new-content-logo' [ngStyle]="{'background-image': 'url(' + dapp.laf.logo +')'}"></div>
                 <div class='new-content-text'>{{ dapp?.address + '.home.title' | translate }}</div>
@@ -14,9 +16,9 @@
                     <div class='qr-icon'></div>
                 </button>
             </mat-card-actions>
-        </mat-card>
+        </div>
 
-        <div #recentActivity class="recent-activity-card">
+        <div class="recent-activity-card">
             <div class='loader-recent-activity-card' fxLayout='row' fxLayoutAlign='center center' *ngIf='isLoading$ | async; else loaded' >
                 <mat-progress-spinner style="margin: 0 10px;"               
                 color="primary"
@@ -26,9 +28,9 @@
             <ng-template #loaded>
                 <mat-card class='recent-activity-card' *ngIf='txActivityArray.length'>
                     <mat-card-content class='recent-activity-content'>
-                        <mat-list *ngFor='let txActivity of txActivityArray;'>
+                        <mat-list >
                             <mat-divider></mat-divider>
-                            <mat-list-item>
+                            <mat-list-item *ngFor='let txActivity of txActivityArray;'>
                                 <div fxFlex fxLayout='column'>
                                     <div class='activity-title'>{{ 'common.' + txActivity.txName | translate }}</div>
                                     <div fxLayout='row' fxLayoutAlign='space-between end'>
@@ -37,13 +39,14 @@
                                     </div>
                                 </div>
                             </mat-list-item>
+                            <mat-list-item *ngIf='txActivityArray.length && txActivityArray.length === currentPage * 10' >
+                                <div fxFlex fxLayout='column' fxLayoutAlign='center center' class='recent-activity-actions' >
+                                    <button mat-button color='primary'
+                                        (click)='clickMoreActivity()'>{{ 'common.show_more' | translate | uppercase }}</button>
+                                </div>
+                            </mat-list-item>
                         </mat-list>
                     </mat-card-content>
-                    <mat-card-actions *ngIf='txActivityArray.length && txActivityArray.length === currentPage * 10'
-                        class='recent-activity-actions' fxLayoutAlign='center center'>
-                        <button mat-button color='primary'
-                            (click)='clickMoreActivity()'>{{ 'common.show_more' | translate | uppercase }}</button>
-                    </mat-card-actions>
                 </mat-card>
                 <div class='no-data-content' *ngIf='!txActivityArray.length' fxLayout='column' fxLayoutAlign='center'>
                     <mat-icon class="no-data-image" svgIcon="movements-no-data"></mat-icon>

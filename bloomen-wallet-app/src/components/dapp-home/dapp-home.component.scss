@@ -30,14 +30,17 @@
   .recent-activity-card {
     width: 100%;
     border-radius: 0;
+    
     .loader-recent-activity-card{
       margin-top: 20%;
     }
   }
 
   .new-content-card {
-    position: fixed;
     z-index: 1;
+    position: absolute;
+    background-color: white;
+    
     padding: 0 0 16px;
     .qr-icon {
       background-image: url("assets/icons/ic_social_qr_code.svg");
@@ -77,6 +80,7 @@
 
     mat-card-actions.new-content-actions {
       margin: 8px 4px 0;
+      background-color: white;
       mat-card-subtitle.recent-activity-title {
         margin: 0px 0px 0px 16px;
       }

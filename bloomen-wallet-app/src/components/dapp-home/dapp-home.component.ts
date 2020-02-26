@@ -88,19 +88,6 @@ export class DappHomeComponent implements OnInit, OnDestroy {
       this.sanitizer.bypassSecurityTrustResourceUrl('/../assets/icons/baseline-image_search-24px.svg'));
   }
 
-  public onResize() {
-    if (this.recentActivity != null) {
-
-      if (!DappHomeComponent.headerOffsetHeight) {
-        DappHomeComponent.headerOffsetHeight = this.newContent.nativeElement.offsetHeight;
-      }
-
-      this.render.setStyle(
-        this.recentActivity.nativeElement, 'margin-top', DappHomeComponent.headerOffsetHeight + 'px'
-      );
-    }
-  }
-
   public get dapp() {
     return this._dapp;
   }
@@ -110,7 +97,6 @@ export class DappHomeComponent implements OnInit, OnDestroy {
     this.txActivity$ = this.store.select(fromTxActivitySelectors.selectAllTxActivity).subscribe((txActivityArray) => {
       this.txActivityArray = txActivityArray.sort((a, b) => b.epoch - a.epoch);
       this.currentPage = Math.ceil(txActivityArray.length / 10);
-      this.onResize();
     });
     this.isLoading$ = this.store.select(fromTxActivitySelectors.getIsLoading);
   }
