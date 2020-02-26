@@ -12,8 +12,12 @@ import { DappCreditHeaderModule } from '@components/dapp-credit-header/dapp-cred
 // Components
 import { DappHomeComponent } from './dapp-home.component';
 import { DappInputDialogModule } from '@components/dapp-input-dialog/dapp-input-dialog.module';
+import player from 'lottie-web';
+import { LottieModule } from 'ngx-lottie';
 
-import { LottieAnimationViewModule } from 'ng-lottie';
+export function playerFactory() {
+  return player;
+}
 
 /**
  * Module to import and export all the components for the dapp-home component.
@@ -27,7 +31,7 @@ import { LottieAnimationViewModule } from 'ng-lottie';
     MaterialModule,
     DappCreditHeaderModule,
     DappInputDialogModule,
-    LottieAnimationViewModule
+    LottieModule.forRoot({ player: playerFactory })
   ],
   declarations: [DappHomeComponent],
   exports: [DappHomeComponent]

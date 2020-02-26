@@ -6,7 +6,12 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from '@app/material.module';
 import { LoaderComponent } from './loader/loader.component';
 
-import { LottieAnimationViewModule } from 'ng-lottie';
+import { LottieModule } from 'ngx-lottie';
+import player from 'lottie-web';
+
+export function playerFactory() {
+  return player;
+}
 
 @NgModule({
   imports: [
@@ -14,7 +19,7 @@ import { LottieAnimationViewModule } from 'ng-lottie';
     MaterialModule,
     CommonModule,
     FormsModule,
-    LottieAnimationViewModule.forRoot()
+    LottieModule.forRoot({ player: playerFactory })
   ],
   declarations: [LoaderComponent],
   exports: [
