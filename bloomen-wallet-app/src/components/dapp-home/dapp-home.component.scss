@@ -41,7 +41,7 @@
     position: absolute;
     background-color: white;
     
-    padding: 0 0 16px;
+    
     .qr-icon {
       background-image: url("assets/icons/ic_social_qr_code.svg");
     }
@@ -49,6 +49,7 @@
 
 
   .new-content-card {
+    box-shadow: 0px 1px 0px 0px rgba(0,0,0,0.6);  
     .new-content-wrapper {
       height: 25vh;
       min-height: 35vw;
@@ -79,10 +80,11 @@
     }
 
     mat-card-actions.new-content-actions {
-      margin: 8px 4px 0;
+      margin: 4px 6px 0;
+      height: 6vh;
       background-color: white;
       mat-card-subtitle.recent-activity-title {
-        margin: 0px 0px 0px 16px;
+        margin: 0px 0px 0px 0px;
       }
       button.qrbutton{
         height: 115px;

@@ -1,5 +1,5 @@
 // Basic
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { Observable, Subject, BehaviorSubject } from 'rxjs';
 
 // Ethereum
@@ -36,7 +36,7 @@ export class Web3Service {
   private watiningCallbacks: Array<any>;
   private myAddress: BehaviorSubject<string>;
 
-  constructor(private rpcSubprovider: RpcSubprovider ) {
+  constructor(private rpcSubprovider: RpcSubprovider, private  ngZone: NgZone ) {
 
     this.blockRange = new Subject<any>();
     this.lastBlockNumber = -1;
@@ -88,7 +88,7 @@ export class Web3Service {
         element();
       });
       this.watiningCallbacks = [];
-      this._doTick();
+      this.ngZone.runOutsideAngular(() => { this._doTick(); });
      });
   }
 
@@ -174,18 +174,21 @@ export class Web3Service {
   }
 
   private _doTick() {
-    if (!this.rpcSubprovider.getErrorState()) {
-      this.web3.eth.getBlockNumber().then((value: any) => {
-        this.lastBlockNumber = this.currentBlockNumber + 1;
-        this.currentBlockNumber = value;
-        if (this.lastBlockNumber > 0) {
-          this.blockRange.next({ fromBlock: this.lastBlockNumber, toBlock: this.currentBlockNumber });
-        }
+    this.ngZone.runOutsideAngular(() => { 
+      if (!this.rpcSubprovider.getErrorState()) {
+        this.web3.eth.getBlockNumber().then((value: any) => {
+          this.lastBlockNumber = this.currentBlockNumber + 1;
+          this.currentBlockNumber = value;
+          if (this.lastBlockNumber > 0) {
+            this.blockRange.next({ fromBlock: this.lastBlockNumber, toBlock: this.currentBlockNumber });
+          }
+          setTimeout(() => this._doTick(), environment.eth.ethBlockPollingTime);
+        }, () => setTimeout(() => this._doTick(), environment.eth.ethBlockPollingTime));
+      } else {
         setTimeout(() => this._doTick(), environment.eth.ethBlockPollingTime);
-      }, () => setTimeout(() => this._doTick(), environment.eth.ethBlockPollingTime));
-    } else {
-      setTimeout(() => this._doTick(), environment.eth.ethBlockPollingTime);
-    }
+      }
+    });
   }
-
 }
+
+
