@@ -1,5 +1,5 @@
 // Basic
-import { Component, OnInit, OnDestroy, Input, ElementRef, Renderer2, ViewChild, AfterViewChecked } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, ElementRef, ViewChild } from '@angular/core';
 
 import { Logger } from '@services/logger/logger.service.js';
 
@@ -42,11 +42,6 @@ enum QR_ACTION {
 })
 export class DappHomeComponent implements OnInit, OnDestroy {
 
-
-
-
-  private static headerOffsetHeight: number;
-
   public dapp$: Subscription;
 
   public currentPage: number;
@@ -78,7 +73,6 @@ export class DappHomeComponent implements OnInit, OnDestroy {
     private barCodeScannerService: BarCodeScannerService,
     private translate: TranslateService,
     private dialog: MatDialog,
-    private render: Renderer2,
     private iconRegistry: MatIconRegistry,
     private sanitizer: DomSanitizer
   ) {
