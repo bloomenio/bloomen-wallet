@@ -16,7 +16,7 @@ import { THEMES } from '@core/constants/themes.constants.js';
 
 import { Subscription } from 'rxjs';
 import { skipWhile, first } from 'rxjs/operators';
-import { MatSnackBar, MatDialog } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { environment } from '@env/environment';
 import { BarCodeScannerService } from '@services/barcode-scanner/barcode-scanner.service';
 import { Logger } from '@services/logger/logger.service';
@@ -61,7 +61,9 @@ export class HomeComponent implements OnInit, OnDestroy {
       first()
     ).subscribe((theme) => {
       if (theme && theme !== THEMES.BLOOMEN) {
-        this.store.dispatch(new fromAppActions.ChangeTheme({ theme: THEMES.BLOOMEN }));
+        setTimeout ( () => {
+          this.store.dispatch(new fromAppActions.ChangeTheme({ theme: THEMES.BLOOMEN }));
+        });
       }
     });
   }

@@ -2,7 +2,7 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 
 import { Logger } from '@services/logger/logger.service.js';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslateService } from '@ngx-translate/core';
 
 import { Observable, Subscription } from 'rxjs';
@@ -24,7 +24,7 @@ import * as fromAddressSelector from '@stores/recent-users/recent-users.selector
 import * as fromUserActions from '@stores/recent-users/recent-users.actions';
 import { map } from 'rxjs/operators';
 
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { ChangeRecentUserComponent } from '@components/change-recent-user/change-recent-user.component';
 
 import { ClipboardService } from 'ngx-clipboard';

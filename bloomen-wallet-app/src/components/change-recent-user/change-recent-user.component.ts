@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UserAlias } from '@models/recent-user.model';
 import { Store } from '@ngrx/store';
 import * as fromRecentUsersAction from '@stores/recent-users/recent-users.actions';

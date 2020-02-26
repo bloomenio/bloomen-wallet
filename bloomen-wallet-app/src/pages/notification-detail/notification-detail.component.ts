@@ -5,7 +5,8 @@ import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { Dapp } from '@core/models/dapp.model';
 import { ERC223Contract } from '@core/core.module';
-import { MatSnackBar, MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslateService } from '@ngx-translate/core';
 import { Web3Service } from '@services/web3/web3.service';
 

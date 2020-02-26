@@ -3,7 +3,10 @@ import { Component, OnInit, OnDestroy, Input, ElementRef, ViewChild } from '@ang
 
 import { Logger } from '@services/logger/logger.service.js';
 
-import { MatSnackBar, MatDialog, MatIconRegistry } from '@angular/material';
+import { MatDialog} from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatIconRegistry } from '@angular/material/icon';
+
 
 import { Store } from '@ngrx/store';
 

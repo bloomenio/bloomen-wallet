@@ -120,7 +120,6 @@ module.exports = {
         sw: {
           description: 'Serve with service workers',
           script: series(
-            'nps banner.serve',
             'nps build.web.production',
             'npx http-server ./www -p 4200'
           )
@@ -128,28 +127,24 @@ module.exports = {
         local: {
           description: 'Start web application using local configuration',
           script: series(
-            'nps banner.serve',
             'nps "ng.serve --proxy-config proxy.conf.js --open --configuration=local"'
           )
         },
         devel: {
           description: 'Start web application using development configuration',
           script: series(
-            'nps banner.serve',
             'nps "ng.serve --proxy-config proxy.conf.js --open --port 4201"'
           )
         },
         pre: {
           description: 'Start web application using preproduction configuration and optimized build',
           script: series(
-            'nps banner.serve',
             'nps "ng.serve --proxy-config proxy.conf.js --open --configuration=pre"'
           )
         },
         prod: {
           description: 'Start web application using production configuration and optimized build',
           script: series(
-            'nps banner.serve',
             'nps "ng.serve --proxy-config proxy.conf.js --open --prod"'
           )
         }
@@ -239,7 +234,6 @@ module.exports = {
        */
       web: {
         devel: series(
-          'nps banner.build',
           'nps env',
           'nps ng.build'
         ),
@@ -304,27 +298,10 @@ module.exports = {
     },
 
 
-    /**
-     * This creates pretty banner to the terminal
-     */
-    banner: {
-      docs: banner('docs'),
-      build: banner('build'),
-      serve: banner('serve'),
-      clean: banner('clean')
-    }
   }
 };
 
-function banner(name) {
-  return {
-    hiddenFromHelp: true,
-    silent: true,
-    description: `Shows ${name} banners to the console`,
-    script: runFast(`./config/commands/banner.ts ${name}`),
-  };
-}
 
 function runFast(path) {
-  return `ts-node --transpileOnly ${path}`;
+  return `ts-node ${path}`;
 }

@@ -1,6 +1,6 @@
 // Basic
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { DappLoginComponent } from '@components/dapp-login/dapp-login.component';
 import { DappGeneralDialogComponent } from '@components/dapp-general-dialog/dapp-general-dialog.component';
 import { DappCache } from '@core/models/dapp.model';

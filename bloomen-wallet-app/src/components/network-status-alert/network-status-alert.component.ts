@@ -1,6 +1,6 @@
 // Basic
 import { Component } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { RpcDialogComponent } from '@components/rpc-dialog/rpc-dialog.component';
 import * as fromMnemonicActions from '@stores/mnemonic/mnemonic.actions';
 import { Store } from '@ngrx/store';

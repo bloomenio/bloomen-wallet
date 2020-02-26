@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { Dapp } from '@core/models/dapp.model.js';
 
 import { Logger } from '@services/logger/logger.service';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 const log = new Logger('dapp-notifications.component');

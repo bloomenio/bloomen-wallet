@@ -6,7 +6,7 @@ import { merge, Observable } from 'rxjs';
 import { filter, map, mergeMap } from 'rxjs/operators';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { MatDialog, MatDialogRef } from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 import { environment } from '@env/environment';
 import { Logger } from '@services/logger/logger.service';

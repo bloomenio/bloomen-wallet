@@ -6,7 +6,7 @@ import { environment } from '@env/environment';
 import * as fromDappActions from '@stores/dapp/dapp.actions';
 import { Store } from '@ngrx/store';
 import { Dapp } from '@core/models/dapp.model';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { RpcDialogComponent } from '@components/rpc-dialog/rpc-dialog.component';
 
 /**

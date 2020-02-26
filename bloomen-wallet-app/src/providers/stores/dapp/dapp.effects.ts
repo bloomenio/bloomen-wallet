@@ -22,7 +22,7 @@ import { Dapp, DappCache } from '@core/models/dapp.model';
 import { DappDatabaseService } from '@db/dapp-database.service';
 import { Update } from '@ngrx/entity';
 import { TranslateService } from '@ngx-translate/core';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { DappGeneralDialogComponent } from '@components/dapp-general-dialog/dapp-general-dialog.component';
 
 const log = new Logger('contracts.effects');
@@ -142,7 +142,7 @@ export class DappEffects {
     }
 
     private storeDapp(address: string,
-        serverDapp: Dapp, cachedDapp?: DappCache,
+        serverDapp: Dapp, cachedDapp?: any,
         fromService = cachedDapp ? cachedDapp.fromService : true, isGeneral?: boolean) {
         return new Promise<DappCache>((resolve, reject) => {
             if (!isGeneral && cachedDapp && !this.isDappEqual(cachedDapp, serverDapp)) {

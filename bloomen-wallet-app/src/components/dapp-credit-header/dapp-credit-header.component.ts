@@ -1,6 +1,6 @@
 // Basic
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 
 import { DappScanQRComponent } from '@components/dapp-scanQR/dapp-scanQR.component';
 

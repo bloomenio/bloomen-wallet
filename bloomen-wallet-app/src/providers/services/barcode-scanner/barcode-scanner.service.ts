@@ -1,7 +1,7 @@
 // Basic
 import { Injectable } from '@angular/core';
 
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { DappInputDialogComponent } from '@components/dapp-input-dialog/dapp-input-dialog.component';
 import { TranslateService } from '@ngx-translate/core';
 import { Logger } from '@services/logger/logger.service.js';

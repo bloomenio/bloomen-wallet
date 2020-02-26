@@ -1,11 +1,11 @@
 // Basic
 import { Component, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { BarCodeScannerService } from '@services/barcode-scanner/barcode-scanner.service';
 import { Logger } from '@services/logger/logger.service';
 import { Dapp } from '@core/models/dapp.model';
 import { PrepaidCardManagerContract } from '@core/core.module';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { QR_VALIDATOR } from '@core/constants/qr-validator.constants';
 import { TranslateService } from '@ngx-translate/core';
 

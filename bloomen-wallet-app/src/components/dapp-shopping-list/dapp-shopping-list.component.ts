@@ -1,6 +1,6 @@
 // Basic
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 
 import { Dapp } from '@core/models/dapp.model.js';
