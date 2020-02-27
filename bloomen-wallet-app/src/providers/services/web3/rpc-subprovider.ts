@@ -60,20 +60,22 @@ export class RpcSubprovider extends Subprovider {
             headers['Authorization'] = `Bearer ${this._targetSecret}`;
         }
 
-        this.httpClient.post(this._targetUrl, newPayload, {
+        if ( newPayload.method !== 'eth_subscribe' ) {
+            this.httpClient.post(this._targetUrl, newPayload, {
                 headers,
-        }).pipe(
-            map((body: any) =>  body),
-        ).subscribe(
-            value => {
-                end(null, value.result);
-            },
-            error => {
-                this._errorStateObserver.next(true);
-                log.error('Rpc Error', error);
-                end('Rpc Error');
-            }
-        );
+            }).pipe(
+                map((body: any) =>  body),
+            ).subscribe(
+                value => {
+                    end(null, value.result);
+                },
+                error => {
+                    this._errorStateObserver.next(true);
+                    log.error('Rpc Error', error);
+                    end('Rpc Error');
+                }
+            );
+        }
     }
 
     public setErrorState( newState: boolean) {

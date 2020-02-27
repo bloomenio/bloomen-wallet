@@ -54,7 +54,9 @@ export class DappCardComponent implements OnInit, OnDestroy {
   public openLoginDialog() {
     if (this.mnemonic) {
       this.router.navigate([`/dapp/${this.dapp.address}`]);
-      this.store.dispatch(new fromAppActions.ChangeTheme({ theme: this.dapp.laf.theme }));
+      setTimeout(() => {
+        this.store.dispatch(new fromAppActions.ChangeTheme({ theme: this.dapp.laf.theme }));
+      });
     } else {
       this.dialog.open(DappLoginComponent, {
         width: '100vw',

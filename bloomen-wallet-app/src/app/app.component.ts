@@ -1,8 +1,8 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit, NgZone, OnDestroy } from '@angular/core';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
-import { merge, Observable } from 'rxjs';
+import { merge, Observable, Subscription } from 'rxjs';
 import { filter, map, mergeMap } from 'rxjs/operators';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -31,9 +31,10 @@ const log = new Logger('App');
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
 
-  public theme$: Observable<string>;
+  public theme$: Subscription;
+  public theme: string;
   private _dialogRef: MatDialogRef<NetworkStatusAlertComponent>;
   private _rpcOnline = true;
   private _online = true;
@@ -58,7 +59,11 @@ export class AppComponent implements OnInit {
       Logger.enableProductionMode();
     }
 
-    this.theme$ = this.store.pipe(select(fromSelectors.getTheme));
+    this.theme$ = this.store.pipe(select(fromSelectors.getTheme)).subscribe((theme) => {
+      setTimeout( () => {
+        this.theme = theme;
+      });
+    });
 
     const onNavigationEnd = this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
@@ -112,6 +117,10 @@ export class AppComponent implements OnInit {
       this._rpcOnline = ! isOffline;
       this.checkOnline();
     });
+  }
+
+  public ngOnDestroy() {
+    this.theme$.unsubscribe();
   }
 
   private _onCordovaReady() {

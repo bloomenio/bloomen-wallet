@@ -7,14 +7,35 @@
 }
 
 ::ng-deep div[class$="theme-light"] {
+
+  .no-data-image path {
+    fill: black;  
+  }
+
+  mat-card-actions.new-content-actions {
+    background-color: white;
+  }
+ 
   blo-dapp-home {
     .new-content-text {
       text-shadow: 1px 1px white;
+    }
+    .new-content-card {
+      background-color: white;
     }
   }
 }
 
 ::ng-deep div[class$="theme-dark"] {
+  
+  .no-data-image path {
+    fill: white;
+  }
+
+  mat-card-actions.new-content-actions {
+    background-color: #303030;
+  }
+  
   blo-dapp-home {
     .new-content-text {
       text-shadow: 1px 1px black;
@@ -39,9 +60,6 @@
   .new-content-card {
     z-index: 1;
     position: absolute;
-    background-color: white;
-    
-    
     .qr-icon {
       background-image: url("assets/icons/ic_social_qr_code.svg");
     }
@@ -82,7 +100,6 @@
     mat-card-actions.new-content-actions {
       margin: 4px 6px 0;
       height: 6vh;
-      background-color: white;
       mat-card-subtitle.recent-activity-title {
         margin: 0px 0px 0px 0px;
       }
@@ -157,8 +174,10 @@
   .no-data-image {
     width: 100%;
     height: 20vh;
-    min-height: 20vw;
+    min-height: 20vw; 
   }
+
+ 
 
   .no-data-text {
     margin-top: 16px;

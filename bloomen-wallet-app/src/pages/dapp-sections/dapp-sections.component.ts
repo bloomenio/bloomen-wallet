@@ -77,7 +77,9 @@ export class DappSectionsComponent implements OnInit, OnDestroy {
       }
     });
 
-    this.store.dispatch(new fromApplicationDataActions.ChangeInitialDapp({ currentDappAddress: address }));
+    setTimeout( () => {
+      this.store.dispatch(new fromApplicationDataActions.ChangeInitialDapp({ currentDappAddress: address }));
+    });
   }
 
   public ngOnDestroy() {

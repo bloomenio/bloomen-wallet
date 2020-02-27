@@ -119,12 +119,6 @@ export class ShellComponent implements OnInit, OnDestroy {
     return this.titleService.getTitle();
   }
 
-  private _themeChanges(theme) {
-    if (theme) {
-      this.imgToolbar = theme.endsWith('theme-dark') ? 'logo_bloomen_white' : 'logo_bloomen_black';
-    }
-  }
-
   private register() {
     this.transactionSubscription = this.transactionService
       .getTransactions().subscribe((transactions: Transaction[]) => {

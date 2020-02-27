@@ -23,12 +23,16 @@ export class DappLoginComponent {
     public dialogRef: MatDialogRef<DappLoginComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Dapp
   ) {
-    this.store.dispatch(new fromAppActions.ChangeTheme({ theme: this.data.laf.theme }));
+    setTimeout(() => {
+      this.store.dispatch(new fromAppActions.ChangeTheme({ theme: this.data.laf.theme }));
+    });
   }
 
   public closeDialog() {
     this.dialogRef.close();
-    this.store.dispatch(new fromAppActions.ChangeTheme({ theme: THEMES.BLOOMEN }));
+    setTimeout(() => {
+      this.store.dispatch(new fromAppActions.ChangeTheme({ theme: THEMES.BLOOMEN }));
+    });
   }
 
   public createMnemonic() {

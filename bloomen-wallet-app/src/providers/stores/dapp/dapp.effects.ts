@@ -105,7 +105,9 @@ export class DappEffects {
                     };
                     this.loadDappAssets(dapp);
                     this.store.dispatch(new fromActions.RefreshDappSuccess(updatedDapp));
-                    this.store.dispatch(new fromAppActions.ChangeTheme({ theme: dapp.laf.theme }));
+                    setTimeout(() => {
+                        this.store.dispatch(new fromAppActions.ChangeTheme({ theme: dapp.laf.theme }));
+                    });
                 });
             });
         })

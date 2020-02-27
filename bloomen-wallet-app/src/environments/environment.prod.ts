@@ -21,10 +21,6 @@ export const environment = {
     transactionCallDelayTime: 2000,
     hdMagicKey: 'H2020_Bloomen',
     generalSeed: 'kit mother damage noise monkey appear peanut come razor vacant story water',
-    web3Options: {
-      transactionConfirmationBlocks: 2,
-      transactionPollingTimeout: 10000
-    },
     contractConfig: {
       default: {
         value: 0,

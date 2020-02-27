@@ -39,7 +39,11 @@ export class AssetsContract extends Contract {
 
   public removeAsset(assetId: number, dappId: string) {
     return this.transactionService.addTransaction(this.args.gas, () => {
-      return this.contract.methods.removeAsset(Number(assetId), dappId).send(this.args);
+      return new Promise( ( resolve ) => {
+        return this.contract.methods.removeAsset(Number(assetId), dappId).send(this.args,  (error , hash) => {
+          resolve(hash);
+        });
+      });
     });
 
   }

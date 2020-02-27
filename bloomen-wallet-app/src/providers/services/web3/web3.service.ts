@@ -47,13 +47,7 @@ export class Web3Service {
 
     const engine = new Web3ProviderEngine();
 
-    const web3Options = {
-      transactionConfirmationBlocks: environment.eth.web3Options.transactionConfirmationBlocks,
-      transactionPollingTimeout: environment.eth.web3Options.transactionPollingTimeout,
-    };
-
-
-    this.web3 = new Web3(engine, null, web3Options);
+    this.web3 = new Web3(engine, null);
 
     engine.addProvider(new HookedWalletSubprovider({
       getAccounts: (cb) => {

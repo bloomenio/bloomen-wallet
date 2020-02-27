@@ -102,8 +102,8 @@
     "roboto-fontface": "^0.10.0",
     "rxjs": "^6.3.1",
     "rxjs-compat": "^6.1.0",
-    "web3": "1.0.0-beta.55",
-    "web3-eth-contract": "1.0.0-beta.55",
+    "web3": "1.2.6",
+    "web3-eth-contract": "1.2.6",
     "web3-provider-engine": "^15.0.4",
     "zone.js": "^0.9.1"
   },

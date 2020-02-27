@@ -32,11 +32,16 @@ export class DevicesContract extends Contract {
 
   public handshake(device: string, assetId: number, schemaId: number, dappId: string) {
     return this.transactionService.addTransaction(this.args.gas, () => {
-      let n =  Date.now();
-      n = n / 1000; // millisecons to seconds
-      n += 60 * 60 * 24 * 100; // 100 day in seconds
-      n = Math.trunc(n);
-      return this.contract.methods.handshake(this.web3Service.keccak256(device), assetId, schemaId, n, dappId, device).send(this.args);
+      return new Promise( ( resolve ) => {
+        let n =  Date.now();
+        n = n / 1000; // millisecons to seconds
+        n += 60 * 60 * 24 * 100; // 100 day in seconds
+        n = Math.trunc(n);
+        return this.contract.methods.handshake(this.web3Service.keccak256(device), assetId, schemaId, n, dappId, device).send(this.args)
+          .on('transactionHash', (hash) => {
+          resolve(hash);
+        });
+      });
     });
   }
 
@@ -50,7 +55,11 @@ export class DevicesContract extends Contract {
 
   public removeDevice(device: string, dappId: string) {
     return this.transactionService.addTransaction(this.args.gas, () => {
-      return this.contract.methods.removeDevice(this.web3Service.keccak256(device), dappId).send(this.args);
+      return new Promise( ( resolve ) => {
+        this.contract.methods.removeDevice(this.web3Service.keccak256(device), dappId).send(this.args).on('transactionHash', (hash) => {
+          resolve(hash);
+        });
+      });
     });
 
   }

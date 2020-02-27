@@ -37,13 +37,21 @@ export class ERC223Contract extends Contract {
 
   public transfer(toAddress: string, amount: number) {
     return this.transactionService.addTransaction(this.args.gas, () => {
-      return this.contract.methods.transfer(toAddress, amount).send(this.args);
+      return new Promise( ( resolve ) => {
+        return this.contract.methods.transfer(toAddress, amount).send(this.args,  (error , hash) => {
+          resolve(hash);
+        });
+      });
     });
   }
 
   public burn(amount: number) {
     return this.transactionService.addTransaction(this.args.gas, () => {
-      return this.contract.methods.burn(amount).send(this.args);
+      return new Promise( ( resolve ) => {
+        return this.contract.methods.burn(amount).send(this.args,  (error , hash) => {
+          resolve(hash);
+        });
+      });
     });
   }
 
@@ -56,17 +64,21 @@ export class ERC223Contract extends Contract {
   }
 
   public buy( buyObject: AllowAndBuy) {
-    // TODO : adapatar a RAW
     return this.transactionService.addTransaction(this.args.gas, () => {
-      let data = [];
-      if (buyObject.assetId) { data.push(buyObject.assetId); }
-      if (buyObject.schemaId) { data.push(buyObject.schemaId); }
-      if (buyObject.dappId) { data.push(buyObject.dappId); }
-      if (buyObject.description) { data.push(buyObject.description); }
-      if (buyObject.params) {
-        data = data.concat(buyObject.params);
-      }
-      return this.contract.methods.transfer( buyObject.to ? buyObject.to : AssetsContract.ADDRESS, buyObject.amount, RLP.encode(data)).send(this.args);
+      return new Promise( ( resolve ) => {
+        let data = [];
+        if (buyObject.assetId) { data.push(buyObject.assetId); }
+        if (buyObject.schemaId) { data.push(buyObject.schemaId); }
+        if (buyObject.dappId) { data.push(buyObject.dappId); }
+        if (buyObject.description) { data.push(buyObject.description); }
+        if (buyObject.params) {
+          data = data.concat(buyObject.params);
+        }
+        return this.contract.methods.transfer( buyObject.to ? buyObject.to : AssetsContract.ADDRESS, buyObject.amount, RLP.encode(data))
+          .send(this.args,  (error , hash) => {
+            resolve(hash);
+          });
+      });
     });
   }
 
