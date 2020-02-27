@@ -31,6 +31,7 @@ const log = new Logger('contracts.effects');
 export class DappEffects {
 
     private updateDappDialog: any;
+    private dappCache = {};
 
     constructor(
         private actions$: Actions<fromActions.DappActions>,
@@ -136,9 +137,14 @@ export class DappEffects {
 
     private async loadDapp(address: string, fromService?: boolean, isGeneral?: boolean, silent?: boolean): Promise<DappCache> {
         const dbDappPromise = this.dappDatabaseService.get(address).toPromise();
-        const mycontract = this.web3Service.createContract(DappContract.ABI, address);
-        const dappContract = new DappContract(address, mycontract, this.web3Service, this.transactionService);
-        const bloomenDappPromise = dappContract.getData(silent) as Promise<Dapp>;
+
+        if (!this.dappCache[address]) {
+            const mycontract = this.web3Service.createContract(DappContract.ABI, address);
+            const dappContract = new DappContract(address, mycontract, this.web3Service, this.transactionService);
+            this.dappCache[address] = dappContract;
+        }
+
+        const bloomenDappPromise =  this.dappCache[address].getData(silent) as Promise<Dapp>;
         const [cachedDapp, serverDapp] = await Promise.all([dbDappPromise, bloomenDappPromise]);
         return this.storeDapp(address, serverDapp, cachedDapp, fromService, isGeneral);
     }
