@@ -365,7 +365,17 @@ async function _dappList() {
     dapps.forEach(dapp => { 
       dapp.mandatory = (dappsInvetory.indexOf(dapp.addr) > -1);        
     });  
-    return dapps;
+    return dapps.sort( (a, b) =>  {
+        let idxA = dappsInvetory.indexOf(a.addr);
+        let idxB = dappsInvetory.indexOf(b.addr);
+        if (idxA<0) {
+            idxA=9999999;
+        }
+        if (idxB<0){
+            idxB=9999999;
+        }
+        return idxA - idxB;
+        });
 }
 
 //[SP11] dapp add common repo
