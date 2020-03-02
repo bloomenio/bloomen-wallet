@@ -140,7 +140,9 @@ export class AppComponent implements OnInit, OnDestroy {
     }
     this.networkStatus.onlineObserver().subscribe(isOnline => {
       this._online = isOnline;
-      this.checkOnline();
+      if (! this._online) {
+        this.rpcSubprovider.setErrorState(true);
+      }
     });
 
   }
