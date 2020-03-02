@@ -42,11 +42,15 @@ export class DappScanQRComponent {
 
   private generatePrepaidCard(inputValue: string) {
     if (inputValue.includes(QR_VALIDATOR.CARD, 0)) {
-      this.prepaidCardManager.validateCard(inputValue).catch((error: any) => {
+      this.prepaidCardManager.validateCard(inputValue).then((result: any) => {
+        this.snackBar.open(this.translate.instant('common.transaction_success'), null, {
+          duration: 2000,
+        });
+      }, (error: any) => {
+        log.error('KO', error);
         this.snackBar.open(this.translate.instant('common.transaction_error'), null, {
           duration: 2000,
         });
-        log.error('KO', error);
       });
       this.dialogRef.close();
     } else {
