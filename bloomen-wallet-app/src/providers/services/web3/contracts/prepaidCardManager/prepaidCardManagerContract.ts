@@ -30,7 +30,7 @@ export class PrepaidCardManagerContract extends Contract {
     return this.transactionService.addTransaction(this.args.gas, () => {
       return new Promise( ( resolve ) => {
         return this.contract.methods.validateCard(this.web3Service.fromAscii(secret)).send(this.args,  (error , hash) => {
-          resolve(hash);
+          resolve({transactionHash : hash});
         });
       });
     });

@@ -39,7 +39,7 @@ export class ERC223Contract extends Contract {
     return this.transactionService.addTransaction(this.args.gas, () => {
       return new Promise( ( resolve ) => {
         return this.contract.methods.transfer(toAddress, amount).send(this.args,  (error , hash) => {
-          resolve(hash);
+          resolve({transactionHash : hash});
         });
       });
     });
@@ -49,7 +49,7 @@ export class ERC223Contract extends Contract {
     return this.transactionService.addTransaction(this.args.gas, () => {
       return new Promise( ( resolve ) => {
         return this.contract.methods.burn(amount).send(this.args,  (error , hash) => {
-          resolve(hash);
+          resolve({transactionHash : hash});
         });
       });
     });
@@ -76,7 +76,7 @@ export class ERC223Contract extends Contract {
         }
         return this.contract.methods.transfer( buyObject.to ? buyObject.to : AssetsContract.ADDRESS, buyObject.amount, RLP.encode(data))
           .send(this.args,  (error , hash) => {
-            resolve(hash);
+            resolve({transactionHash : hash});
           });
       });
     });

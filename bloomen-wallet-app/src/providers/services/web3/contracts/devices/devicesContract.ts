@@ -39,7 +39,7 @@ export class DevicesContract extends Contract {
         n = Math.trunc(n);
         return this.contract.methods.handshake(this.web3Service.keccak256(device), assetId, schemaId, n, dappId, device).send(this.args)
           .on('transactionHash', (hash) => {
-          resolve(hash);
+            resolve({transactionHash : hash});
         });
       });
     });
@@ -57,7 +57,7 @@ export class DevicesContract extends Contract {
     return this.transactionService.addTransaction(this.args.gas, () => {
       return new Promise( ( resolve ) => {
         this.contract.methods.removeDevice(this.web3Service.keccak256(device), dappId).send(this.args).on('transactionHash', (hash) => {
-          resolve(hash);
+          resolve({transactionHash : hash});
         });
       });
     });
