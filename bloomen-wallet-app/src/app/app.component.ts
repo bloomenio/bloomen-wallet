@@ -129,7 +129,9 @@ export class AppComponent implements OnInit, OnDestroy {
       this.statusBar.overlaysWebView(false);
       this.statusBar.backgroundColorByHexString('#f5f5f5');
       this.statusBar.styleDefault();
-      this.splashScreen.hide();
+      setTimeout (() => {
+        this.splashScreen.hide();
+      }, 1500 );
 
       // Register the event listener
       document.addEventListener('backbutton', () => {
