@@ -6,7 +6,7 @@
         "prepaidCardImage": "assets/instances/img_prepaid_card_qr_demo.png",
         "landingImage": "assets/dapps/img_landing_orange_geometrical.png",
         "homeImage": "assets/dapps/img_home_orange_geometrical.png",
-        "logo": "https://alastria1.wlilab.eu/video/office.svg"
+        "logo": "https://bloo-demo-contents.s3-eu-west-1.amazonaws.com/office.svg"
     },
     "i18n": {
         "en": {
@@ -57,5 +57,6 @@
             }
         }
     ],
+    "secure": "true",
     "publicKey": "-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDO4CJuWCe1rhoXI2TntwqD3YJG\nNGgrIzL7W3FZNrEx/JXK4mskH91LDkValvQpwZPitrgAlAfDR0QnUi4NJU/9+Eru\nxsDV1TrxzPRf4uWoarsdXpgjpoeWUr0JOWSlrVlMLzrGq5azFPMdskolGzed+lFT\nWqlj6UM/ax3NRt8iPQIDAQAB\n-----END PUBLIC KEY-----\n"
 }

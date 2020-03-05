@@ -248,7 +248,7 @@ module.exports = {
           'nps "ng.build --configuration=pre"'),
         prod: series(
           'nps env',
-          'nps "ng.build --base-href=/bloo-demo3/ --prod"'
+          'nps "ng.build --base-href=/bloo-demo/ --prod"'
         )
       },
       /**

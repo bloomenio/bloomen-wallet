@@ -11,7 +11,10 @@ const HttpsProxyAgent = require('https-proxy-agent');
 const proxyConfig = [
   {
     context: '/video/',
-    target: 'https://alastria1.wlilab.eu',
+    target: 'https://bloo-demo-contents.s3-eu-west-1.amazonaws.com',
+    pathRewrite: {
+      '^/video': ''
+    },
     changeOrigin: true,
     secure: false,
     logLevel: "debug",

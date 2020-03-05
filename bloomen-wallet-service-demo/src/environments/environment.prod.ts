@@ -5,7 +5,7 @@ export const environment = {
   production: true,
   test: false,
   version: env.npm_package_version,
-  serverUrl: 'https://alastria1.wlilab.eu/video/',
+  serverUrl: 'https://bloo-demo-contents.s3-eu-west-1.amazonaws.com/',
   defaultLanguage: 'en',
   supportedLanguages: ['ca', 'de', 'el', 'en', 'es'],
   eth: {

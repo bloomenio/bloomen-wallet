@@ -9,8 +9,7 @@ import * as fromSelectors from '@stores/application-data/application-data.select
 import { Logger } from '@services/logger/logger.service';
 
 // Environment
-import { environment } from '@env/environment';
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { map, share } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { ApplicationDataStateModel } from '@core/models/application-data-state.model';
@@ -25,7 +24,8 @@ export class RpcSubprovider extends Subprovider {
 
     constructor(
             private httpClient: HttpClient,
-            private store: Store<ApplicationDataStateModel> ) {
+            private store: Store<ApplicationDataStateModel>,
+            private  ngZone: NgZone ) {
         super();
         this._errorStateObserver = new BehaviorSubject(true);
         this.store.select(fromSelectors.getRpc).subscribe((rpc) => {
@@ -61,20 +61,22 @@ export class RpcSubprovider extends Subprovider {
         }
 
         if ( newPayload.method !== 'eth_subscribe' ) {
-            this.httpClient.post(this._targetUrl, newPayload, {
-                headers,
-            }).pipe(
-                map((body: any) =>  body),
-            ).subscribe(
-                value => {
-                    end(null, value.result);
-                },
-                error => {
-                    this._errorStateObserver.next(true);
-                    log.error('Rpc Error', error);
-                    end('Rpc Error');
-                }
-            );
+            this.ngZone.runOutsideAngular(() => {
+                this.httpClient.post(this._targetUrl, newPayload, {
+                    headers,
+                }).pipe(
+                    map((body: any) =>  body),
+                ).subscribe(
+                    value => {
+                        end(null, value.result);
+                    },
+                    error => {
+                        setTimeout( () => { this._errorStateObserver.next(true); });
+                        log.error('Rpc Error', error);
+                        end('Rpc Error');
+                    }
+                );
+            });
         }
     }
 

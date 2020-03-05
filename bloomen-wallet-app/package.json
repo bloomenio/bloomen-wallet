@@ -34,6 +34,7 @@
     "prepare:ios:dev": "nps prepare.ios.devel",
     "prepare:ios:prod": "nps prepare.ios.prod",
     "start:android:local": "nps start.android.local",
+    "start:android:prod": "nps start.android.prod",
     "build:android:local": "nps build.android.local",
     "build:android:prod": "nps build.android.prod",
     "archive:android:prod": "nps archive.android.prod"
