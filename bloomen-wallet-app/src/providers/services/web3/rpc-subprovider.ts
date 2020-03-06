@@ -9,7 +9,7 @@ import * as fromSelectors from '@stores/application-data/application-data.select
 import { Logger } from '@services/logger/logger.service';
 
 // Environment
-import { Injectable, NgZone } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { map, share } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { ApplicationDataStateModel } from '@core/models/application-data-state.model';
@@ -24,8 +24,7 @@ export class RpcSubprovider extends Subprovider {
 
     constructor(
             private httpClient: HttpClient,
-            private store: Store<ApplicationDataStateModel>,
-            private  ngZone: NgZone ) {
+            private store: Store<ApplicationDataStateModel>) {
         super();
         this._errorStateObserver = new BehaviorSubject(true);
         this.store.select(fromSelectors.getRpc).subscribe((rpc) => {
@@ -42,6 +41,8 @@ export class RpcSubprovider extends Subprovider {
     }
 
     public handleRequest(payload: any, next: any, end: any) {
+
+        log.debug('REQUEST:', payload.method);
 
         if (this._errorStateObserver.getValue()) {
            end('Rpc Error state:true');
@@ -61,22 +62,20 @@ export class RpcSubprovider extends Subprovider {
         }
 
         if ( newPayload.method !== 'eth_subscribe' ) {
-            this.ngZone.runOutsideAngular(() => {
-                this.httpClient.post(this._targetUrl, newPayload, {
-                    headers,
-                }).pipe(
-                    map((body: any) =>  body),
-                ).subscribe(
-                    value => {
-                        end(null, value.result);
-                    },
-                    error => {
-                        setTimeout( () => { this._errorStateObserver.next(true); });
-                        log.error('Rpc Error', error);
-                        end('Rpc Error');
-                    }
-                );
-            });
+            this.httpClient.post(this._targetUrl, newPayload, {
+                headers,
+            }).pipe(
+                map((body: any) =>  body),
+            ).subscribe(
+                value => {
+                    end(null, value.result);
+                },
+                error => {
+                    setTimeout( () => { this._errorStateObserver.next(true); });
+                    log.error('Rpc Error', error);
+                    end('Rpc Error');
+                }
+            );
         }
     }
 
