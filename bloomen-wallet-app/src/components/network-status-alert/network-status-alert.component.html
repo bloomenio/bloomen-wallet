@@ -1,7 +1,10 @@
 <div class="dialog">
     <div class="dialog-container" fxFlex fxLayout="column">
         <div fxFlex fxLayout="column" fxLayoutAlign="space-around center">
-            <div class="dialog-logo"></div>
+            <div class="dialog-logo">
+                <!-- maticon -->                
+                <mat-icon class="icon-arrow" (click)='openDialog()'>arrow_upward</mat-icon>                
+            </div>
             <div class="dialog-text" fxLayout="column" fxLayoutAlign="center center">
                 <div class="title">{{ 'network_status.title' | translate }}</div>
                 <div class="message">{{ 'network_status.message' | translate }}</div>        
