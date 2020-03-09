@@ -61,10 +61,13 @@
     }
 
     textarea {
-      resize: none;
-      -webkit-text-security: disc;
+      resize: none;      
     }
   
+    .text-blur {
+      filter: blur(2px);
+    }
+
     button {
       font-size: $font-size-xl;
       width: 100%;

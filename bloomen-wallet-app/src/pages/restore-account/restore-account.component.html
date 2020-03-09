@@ -17,7 +17,7 @@
                     <mat-form-field color="primary" appearance="outline">
                         <mat-label  floating>{{ 'dapp.restore_account.mnemonic' | translate }}</mat-label>
                         <!-- TODO: Add literal to rosetta -->
-                        <textarea [readonly]="isCordova" matInput formControlName="mnemonic" rows="4" (click)="paste()" placeholder="Tap here to paste">
+                        <textarea [ngClass]="{'text-blur': selectedValue}" [readonly]="isCordova" matInput formControlName="mnemonic" rows="4" (click)="paste()" placeholder="Tap here to paste">
                         </textarea>
                     </mat-form-field>
                     <button [disabled]="!restoreAccountForm.valid" type="submit" color="accent" mat-flat-button fxLayout="row" fxLayoutAlign="center center">
