@@ -33,6 +33,7 @@ export class NetworkStatusAlertComponent implements OnInit, OnDestroy {
   public dapp: Dapp;
 
   private _dialogRef: MatDialogRef<RpcDialogComponent>;
+  private _dialogMnemonic: MatDialogRef<DappsMnmonicsComponent>;
 
   constructor( private dialog: MatDialog,
     private store: Store<MnemonicModel>,
@@ -79,30 +80,31 @@ export class NetworkStatusAlertComponent implements OnInit, OnDestroy {
     this.store.dispatch(new fromMnemonicActions.RefreshWallet());
   }
 
+  public exportMnemonicDialog() {
+    if ( !this._dialogMnemonic && this.dappsWithMnemonics.length > 0) {
+        this._dialogMnemonic = this.dialog.open(DappsMnmonicsComponent, {
+          width: '300px',
+          data: {dappsWithMnemonics: this.dappsWithMnemonics }
+        });
+
+        this._dialogMnemonic.afterClosed().subscribe(value => {
+          this._dialogMnemonic = undefined;
+          if (value) {
+            this.share(value.randomSeed);
+          }
+        });
+    } else {
+      this.snackBar.open(this.translate.instant('dapp.restore_account.no_mnemonics'), null, {
+        duration: 2000,
+      });
+    }
+  }
+
   private share( mnemonic: string) {
     if (window['cordova']) {
       this.socialSharing.share(mnemonic);
     } else {
       this.clipboardService.copyFromContent(mnemonic);
-    }
-  }
-
-  public openDialog() {
-    if (this.dappsWithMnemonics.length > 0) {
-      const dialogRef = this.dialog.open(DappsMnmonicsComponent, {
-        width: '300px',
-        data: {dappsWithMnemonics: this.dappsWithMnemonics }
-      });
-
-      dialogRef.afterClosed().subscribe(value => {
-        if (value) {
-          this.share(value.randomSeed);
-        }
-      });
-    } else {
-      this.snackBar.open(this.translate.instant('dapp.restore_account.no_mnemonics'), null, {
-        duration: 2000,
-      });
     }
   }
 

@@ -10,6 +10,7 @@ import { MaterialModule } from '@app/material.module';
 
 // Components
 import { NetworkStatusAlertComponent } from './network-status-alert.component';
+import { DappsMnmonicsComponent } from '@components/dapps-mnmonics/dapps-mnmonics';
 
 @NgModule({
   imports: [
@@ -19,8 +20,8 @@ import { NetworkStatusAlertComponent } from './network-status-alert.component';
     FlexLayoutModule,
     MaterialModule
   ],
-  declarations: [NetworkStatusAlertComponent],
+  declarations: [NetworkStatusAlertComponent, DappsMnmonicsComponent],
   exports: [NetworkStatusAlertComponent],
-  entryComponents: [NetworkStatusAlertComponent]
+  entryComponents: [NetworkStatusAlertComponent, DappsMnmonicsComponent]
 })
 export class NetworkStatusAlertModule { }
