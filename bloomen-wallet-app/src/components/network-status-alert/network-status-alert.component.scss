@@ -15,6 +15,9 @@
   height: 100%;
   width: 100%;
   padding: 16px;
+  &> button {
+    align-self: flex-end;    
+  }
 }
 
 .dialog-logo {
@@ -23,7 +26,7 @@
   background-image: url("assets/logo_bloomen_black.png");
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: center;  
 }
 
 .dialog-text {
