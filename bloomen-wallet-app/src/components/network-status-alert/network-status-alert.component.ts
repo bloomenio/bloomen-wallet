@@ -84,6 +84,7 @@ export class NetworkStatusAlertComponent implements OnInit, OnDestroy {
     if ( !this._dialogMnemonic && this.dappsWithMnemonics.length > 0) {
         this._dialogMnemonic = this.dialog.open(DappsMnmonicsComponent, {
           width: '300px',
+          restoreFocus: false,
           data: {dappsWithMnemonics: this.dappsWithMnemonics }
         });
 
