@@ -4,13 +4,13 @@ import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { FormsModule } from '@angular/forms';
 
 // Modules
 import { MaterialModule } from '@app/material.module';
 
 // Components
-import { NetworkStatusAlertComponent } from './network-status-alert.component';
-import { DappsMnemonicsModule } from '@components/dapps-mnemonics/dapps-mnemonics.module';
+import { RecentUsersComponent } from './recent-users.component';
 
 @NgModule({
   imports: [
@@ -18,11 +18,11 @@ import { DappsMnemonicsModule } from '@components/dapps-mnemonics/dapps-mnemonic
     TranslateModule,
     RouterModule,
     FlexLayoutModule,
-    MaterialModule,
-    DappsMnemonicsModule
+    FormsModule,
+    MaterialModule
   ],
-  declarations: [NetworkStatusAlertComponent],
-  exports: [NetworkStatusAlertComponent],
-  entryComponents: [NetworkStatusAlertComponent]
+  declarations: [RecentUsersComponent],
+  exports: [RecentUsersComponent],
+  entryComponents: [RecentUsersComponent]
 })
-export class NetworkStatusAlertModule { }
+export class RecentUsersModule { }

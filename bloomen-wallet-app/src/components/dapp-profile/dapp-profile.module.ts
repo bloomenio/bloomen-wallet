@@ -11,11 +11,11 @@ import { FormsModule } from '@angular/forms';
 import { MaterialModule } from '@app/material.module';
 import { ClipboardModule } from 'ngx-clipboard';
 import { QRCodeModule } from 'angularx-qrcode';
-import { DappCreditHeaderModule } from '@components/dapp-credit-header/dapp-credit-header.module';
 
 // Components
 import { DappProfileComponent } from './dapp-profile.component';
-import { ChangeRecentUserComponent } from '@components/change-recent-user/change-recent-user.component';
+import { DappCreditHeaderModule } from '@components/dapp-credit-header/dapp-credit-header.module';
+import { ChangeRecentUserModule } from '@components/change-recent-user/change-recent-user.module';
 
 /**
  * Module to import and export all the components for the dapp-profile component.
@@ -30,10 +30,11 @@ import { ChangeRecentUserComponent } from '@components/change-recent-user/change
     ClipboardModule,
     QRCodeModule,
     DappCreditHeaderModule,
-    FormsModule
+    FormsModule,
+    ChangeRecentUserModule
   ],
-  declarations: [DappProfileComponent, ChangeRecentUserComponent],
+  declarations: [DappProfileComponent],
   exports: [DappProfileComponent],
-  entryComponents: [ChangeRecentUserComponent]
+  entryComponents: []
 })
 export class DappProfileModule {}

@@ -12,7 +12,7 @@ import { RestoreAccountRoutingModule } from './restore-account-routing.module';
 // Components
 import { RestoreAccountComponent } from './restore-account.component';
 import { MaterialModule } from '@app/material.module';
-import {DappsMnmonicsComponent} from '@components/dapps-mnmonics/dapps-mnmonics';
+import { DappsMnemonicsModule } from '@components/dapps-mnemonics/dapps-mnemonics.module';
 
 /**
  * Module to import and export all the components for the tutorial page.
@@ -25,10 +25,11 @@ import {DappsMnmonicsComponent} from '@components/dapps-mnmonics/dapps-mnmonics'
     TranslateModule,
     FlexLayoutModule,
     MaterialModule,
-    RestoreAccountRoutingModule
+    RestoreAccountRoutingModule,
+    DappsMnemonicsModule
   ],
-  declarations: [RestoreAccountComponent, DappsMnmonicsComponent],
+  declarations: [RestoreAccountComponent],
   exports: [RestoreAccountComponent],
-  entryComponents: [DappsMnmonicsComponent]
+  entryComponents: []
 })
 export class RestoreAccountModule { }

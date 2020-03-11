@@ -10,7 +10,9 @@ import { MaterialModule } from '@app/material.module';
 
 // Components
 import { HomeOptionsShellComponent } from './home-options-shell.component';
-import { RpcDialogComponent } from '@components/rpc-dialog/rpc-dialog.component';
+import { RpcDialogModule } from '@components/rpc-dialog/rpc-dialog.module';
+
+
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -20,10 +22,11 @@ import { FormsModule } from '@angular/forms';
     TranslateModule,
     RouterModule,
     FlexLayoutModule,
-    MaterialModule
+    MaterialModule,
+    RpcDialogModule
   ],
-  declarations: [HomeOptionsShellComponent, RpcDialogComponent],
+  declarations: [HomeOptionsShellComponent],
   exports: [HomeOptionsShellComponent],
-  entryComponents: [HomeOptionsShellComponent, RpcDialogComponent]
+  entryComponents: [HomeOptionsShellComponent]
 })
 export class HomeOptionsShellModule { }

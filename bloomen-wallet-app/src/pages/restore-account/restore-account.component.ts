@@ -16,9 +16,7 @@ import * as fromMnemonic from '@stores/mnemonic/mnemonic.selectors';
 import { Store } from '@ngrx/store';
 import * as fromMnemonicActions from '@stores/mnemonic/mnemonic.actions';
 import { Dapp } from '@core/models/dapp.model';
-import {DappsMnmonicsComponent} from '@components/dapps-mnmonics/dapps-mnmonics';
-
-
+import { DappsMnemonicsComponent } from '@components/dapps-mnemonics/dapps-mnemonics.component';
 
 const log = new Logger('restore-account.component');
 
@@ -112,7 +110,7 @@ export class RestoreAccountComponent implements OnInit, OnDestroy {
 
   public openDialog() {
     if (this.dappsWithMnemonics.length > 0) {
-      const dialogRef = this.dialog.open(DappsMnmonicsComponent, {
+      const dialogRef = this.dialog.open(DappsMnemonicsComponent, {
         width: '300px',
         data: {dappsWithMnemonics: this.dappsWithMnemonics }
       });

@@ -2,7 +2,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { RpcDialogComponent } from '@components/rpc-dialog/rpc-dialog.component';
-import {DappsMnmonicsComponent} from '@components/dapps-mnmonics/dapps-mnmonics';
+import { DappsMnemonicsComponent } from '@components/dapps-mnemonics/dapps-mnemonics.component';
 import * as fromMnemonicActions from '@stores/mnemonic/mnemonic.actions';
 import * as fromDappSelectors from '@stores/dapp/dapp.selectors';
 import * as fromMnemonic from '@stores/mnemonic/mnemonic.selectors';
@@ -33,7 +33,7 @@ export class NetworkStatusAlertComponent implements OnInit, OnDestroy {
   public dapp: Dapp;
 
   private _dialogRef: MatDialogRef<RpcDialogComponent>;
-  private _dialogMnemonic: MatDialogRef<DappsMnmonicsComponent>;
+  private _dialogMnemonic: MatDialogRef<DappsMnemonicsComponent>;
 
   constructor( private dialog: MatDialog,
     private store: Store<MnemonicModel>,
@@ -82,7 +82,7 @@ export class NetworkStatusAlertComponent implements OnInit, OnDestroy {
 
   public exportMnemonicDialog() {
     if ( !this._dialogMnemonic && this.dappsWithMnemonics.length > 0) {
-        this._dialogMnemonic = this.dialog.open(DappsMnmonicsComponent, {
+        this._dialogMnemonic = this.dialog.open(DappsMnemonicsComponent, {
           width: '300px',
           restoreFocus: false,
           data: {dappsWithMnemonics: this.dappsWithMnemonics }
