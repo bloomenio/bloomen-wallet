@@ -13,32 +13,32 @@ import { Web3Service } from '@services/web3/web3.service';
 import { TransactionService } from '@services/web3/transactions/transaction.service';
 import { AssetsContract } from '@services/web3/contracts/assets/assetsContract';
 import { AllowAndBuy } from '@core/models/operations.model';
+import { Injectable } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 const log = new Logger('erc223.contract');
 
 
+@Injectable()
 export class ERC223Contract extends Contract {
 
   constructor(
-    public contractAddress: string,
-    public contract: any,
-    public web3Service: Web3Service,
-    public transactionService: TransactionService
+    private assetsContract: AssetsContract,
+    protected web3Service: Web3Service,
+    protected transactionService: TransactionService,
+    private activatedRoute: ActivatedRoute
   ) {
-    super(contractAddress, contract, web3Service, transactionService);
+    super(web3Service, transactionService, activatedRoute, JSON.abi, JSON.networks[environment.eth.contractConfig.networkId].address);
   }
 
-  public static get ABI() { return JSON.abi; }
-  public static get ADDRESS() { return JSON.networks[environment.eth.contractConfig.networkId].address; }
-
   public getBalance() {
-    return this.contract.methods.balanceOf(this.address).call(this.args);
+    return this.getContract().methods.balanceOf(this.address).call(this.args);
   }
 
   public transfer(toAddress: string, amount: number) {
     return this.transactionService.addTransaction(this.args.gas, () => {
       return new Promise( ( resolve ) => {
-        return this.contract.methods.transfer(toAddress, amount).send(this.args,  (error , hash) => {
+        return this.getContract().methods.transfer(toAddress, amount).send(this.args,  (error , hash) => {
           resolve({transactionHash : hash});
         });
       });
@@ -48,7 +48,7 @@ export class ERC223Contract extends Contract {
   public burn(amount: number) {
     return this.transactionService.addTransaction(this.args.gas, () => {
       return new Promise( ( resolve ) => {
-        return this.contract.methods.burn(amount).send(this.args,  (error , hash) => {
+        return this.getContract().methods.burn(amount).send(this.args,  (error , hash) => {
           resolve({transactionHash : hash});
         });
       });
@@ -56,11 +56,11 @@ export class ERC223Contract extends Contract {
   }
 
   public getBurns(page: number) {
-    return this.contract.methods.getBurns(page).call(this.args);
+    return this.getContract().methods.getBurns(page).call(this.args);
   }
 
   public getBurnsPageCount() {
-    return this.contract.methods.getBurnsPageCount().call(this.args);
+    return this.getContract().methods.getBurnsPageCount().call(this.args);
   }
 
   public buy( buyObject: AllowAndBuy) {
@@ -74,7 +74,7 @@ export class ERC223Contract extends Contract {
         if (buyObject.params) {
           data = data.concat(buyObject.params);
         }
-        return this.contract.methods.transfer( buyObject.to ? buyObject.to : AssetsContract.ADDRESS, buyObject.amount, RLP.encode(data))
+        return this.getContract().methods.transfer( buyObject.to ? buyObject.to : this.assetsContract.getContractAddress(), buyObject.amount, RLP.encode(data))
           .send(this.args,  (error , hash) => {
             resolve({transactionHash : hash});
           });

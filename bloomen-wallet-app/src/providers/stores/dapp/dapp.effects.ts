@@ -139,8 +139,7 @@ export class DappEffects {
         const dbDappPromise = this.dappDatabaseService.get(address).toPromise();
 
         if (!this.dappCache[address]) {
-            const mycontract = this.web3Service.createContract(DappContract.ABI, address);
-            const dappContract = new DappContract(address, mycontract, this.web3Service, this.transactionService);
+            const dappContract = new DappContract(address, this.web3Service, this.transactionService);
             this.dappCache[address] = dappContract;
         }
 

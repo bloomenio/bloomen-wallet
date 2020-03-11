@@ -59,41 +59,13 @@ import { reducers, metaReducers } from './core.state';
     { provide: HttpClient, useClass: HttpService },
     { provide: RouteReuseStrategy, useClass: RouteReusableStrategy },
     { provide: RouterStateSerializer, useClass: CustomSerializer },
-    {
-      provide: BloomenContract,
-      useFactory: genericContractFactory(BloomenContract),
-      deps: [Web3Service, TransactionService]
-    },
-    {
-      provide: PrepaidCardManagerContract,
-      useFactory: genericContractFactory(PrepaidCardManagerContract),
-      deps: [Web3Service, TransactionService]
-    },
-    {
-      provide: ERC223Contract,
-      useFactory: genericContractFactory(ERC223Contract),
-      deps: [Web3Service, TransactionService]
-    },
-    {
-      provide: MovementHistoryContract,
-      useFactory: genericContractFactory(MovementHistoryContract),
-      deps: [Web3Service, TransactionService]
-    },
-    {
-      provide: AssetsContract,
-      useFactory: genericContractFactory(AssetsContract),
-      deps: [Web3Service, TransactionService]
-    },
-    {
-      provide: DevicesContract,
-      useFactory: genericContractFactory(DevicesContract),
-      deps: [Web3Service, TransactionService]
-    },
-    {
-      provide: BurnHistoryContract,
-      useFactory: genericContractFactory(BurnHistoryContract),
-      deps: [Web3Service, TransactionService]
-    }
+    BloomenContract,
+    PrepaidCardManagerContract,
+    ERC223Contract,
+    MovementHistoryContract,
+    AssetsContract,
+    DevicesContract,
+    BurnHistoryContract
   ]
 })
 export class CoreModule {
@@ -109,15 +81,6 @@ export class CoreModule {
       );
     }
   }
-}
-
-export function genericContractFactory(type: any) {
-  return (web3Service: Web3Service, transactionService: TransactionService) => {
-    // TODO: allow contract address per environment... or maybe network?
-    const mycontract = web3Service.createContract(type.ABI, type.ADDRESS);
-    return new type(type.ADDRESS, mycontract, web3Service, transactionService);
-  };
-
 }
 
 export * from '@services/web3/contracts';

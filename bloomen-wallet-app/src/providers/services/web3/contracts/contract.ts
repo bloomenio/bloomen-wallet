@@ -8,6 +8,7 @@ import { environment } from '@env/environment';
 import { Web3Service } from '@services/web3/web3.service';
 import { TransactionService } from '@services/web3/transactions/transaction.service';
 import { Logger } from '@services/logger/logger.service';
+import { ActivatedRoute } from '@angular/router';
 
 const log = new Logger('contract');
 
@@ -22,16 +23,16 @@ export abstract class Contract {
   protected events: Subject<any>;
   protected address: string;
   protected args: any;
+  private defaultContract: any;
 
   private listeners: Listener[];
 
-  public static get ABI(): any { return null; }
-
   constructor(
-    protected contractAddress: string,
-    protected contract: any,
     protected web3Service: Web3Service,
-    protected transactionService: TransactionService
+    protected transactionService: TransactionService,
+    private myActivatedRoute: ActivatedRoute,
+    private abi: any,
+    private defaultAddress: string
   ) {
 
     this.events = new Subject<any>();
@@ -58,7 +59,7 @@ export abstract class Contract {
           options['fromBlock'] = blockRange.fromBlock;
           options['toBlock'] = blockRange.toBlock;
 
-          this.contract.getPastEvents(listener.eventName,
+          this.getContract().getPastEvents(listener.eventName,
             options, (err: any, events: any) => {
               if (events) {
                 events.forEach((event: any) => {
@@ -72,8 +73,18 @@ export abstract class Contract {
     });
   }
 
-  public getContractAddress(): string {
-    return this.contractAddress;
+  public getContractAddress() {
+    return this.defaultAddress;
+  }
+
+  public getContract() {
+
+    console.log( 'KOKO ===>>>', this.myActivatedRoute.snapshot.paramMap.get('address'));
+
+    if (!this.defaultContract) {
+      this.defaultContract = this.web3Service.createContract(this.abi, this.getContractAddress());
+    }
+    return this.defaultContract;
   }
 
   public getEvents(): Observable<any> {

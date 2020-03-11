@@ -16,23 +16,19 @@ import * as jsonPathLibrary from 'json-path-value';
 const jsonPath = new jsonPathLibrary.JsonPath();
 
 export class DappContract extends Contract {
-
+ 
   constructor(
     public contractAddress: string,
-    public contract: any,
     public web3Service: Web3Service,
     public transactionService: TransactionService
   ) {
-    super(contractAddress, contract, web3Service, transactionService);
+    super(web3Service, transactionService, undefined , JSON.abi, contractAddress);
   }
-
-  public static get ABI() { return JSON.abi; }
-  public static get ADDRESS() { return 0; }
 
   public getData(silent?: boolean) {
 
     const f = () => {
-      return this.contract.methods.getData().call(this.args).then((result) => {
+      return this.getContract().methods.getData().call(this.args).then((result) => {
         const storedJsonPathPairs = [];
         let i;
         for (i = 0; i < result.length; i++) {

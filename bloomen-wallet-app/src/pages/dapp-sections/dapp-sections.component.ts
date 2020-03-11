@@ -15,11 +15,13 @@ import * as fromDevicesActions from '@stores/devices/devices.actions';
 import * as fromPurchasesActions from '@stores/purchases/purchases.actions';
 
 import * as fromApplicationDataActions from '@stores/application-data/application-data.actions';
+import * as fromApplicationDataSelectors from '@stores/application-data/application-data.selectors';
 
 import { Subscription, interval } from 'rxjs';
 import { Logger } from '@services/logger/logger.service';
 import { MnemonicModel } from '@core/models/mnemonic.model';
 import { WEB3_CONSTANTS } from '@core/constants/web3.constants';
+import { filter, take } from 'rxjs/operators';
 
 
 
@@ -43,7 +45,8 @@ export class DappSectionsComponent implements OnInit, OnDestroy {
 
   public dapps$: Subscription;
   public interval$: Subscription;
-
+  public currentDapp$: Subscription;
+ 
   public currentTabIndex: string;
 
   constructor(
@@ -58,34 +61,42 @@ export class DappSectionsComponent implements OnInit, OnDestroy {
     this.currentTabIndex = this.activatedRoute.snapshot.queryParamMap.get('tabIndex') || '0';
     this.onTabClick({ index: parseInt(this.currentTabIndex, 10) }, false);
 
-    this.dapps$ = this.store.select(fromDappSelectors.selectAllDapp).subscribe((dapps) => {
-      this.dapp = dapps.find(dapp => dapp.address === address);
-      if (this.dapp && !this.interval$) {
-        this.interval$ = interval(WEB3_CONSTANTS.REFRESH_DAPP_INTERVAL).subscribe(() => {
-          log.debug('refreshing...');
-          this.store.dispatch(new fromDappActions.RefreshDappSilent({ address }));
-        });
-
-      }
-    });
-
-    this.mnemonics$ = this.store.select(fromMnemonicSelectors.selectAllMnemonics).subscribe((mnemonics) => {
-      this.mnemonic = mnemonics.find(mnemonicItem => mnemonicItem.address === address);
-      if (this.mnemonic) {
-        const dappId = this.dapp ? this.dapp.dappId : undefined;
-        this.store.dispatch(new fromMnemonicActions.ChangeWallet({ randomSeed: this.mnemonic.randomSeed, dappId: dappId }));
-      }
-    });
-
     setTimeout( () => {
       this.store.dispatch(new fromApplicationDataActions.ChangeInitialDapp({ currentDappAddress: address }));
     });
+
+    this.currentDapp$ = this.store.select(fromApplicationDataSelectors.getCurrentDappAddress)
+    .pipe(
+      filter( newAddress => newAddress === address),
+      take(1)
+    ).subscribe( () => {
+      log.debug('dapp starting...');
+      this.dapps$ = this.store.select(fromDappSelectors.selectAllDapp).subscribe((dapps) => {
+        this.dapp = dapps.find(dapp => dapp.address === address);
+        if (this.dapp && !this.interval$) {
+          this.interval$ = interval(WEB3_CONSTANTS.REFRESH_DAPP_INTERVAL).subscribe(() => {
+            log.debug('refreshing...');
+            this.store.dispatch(new fromDappActions.RefreshDappSilent({ address }));
+          });
+        }
+      });
+
+      this.mnemonics$ = this.store.select(fromMnemonicSelectors.selectAllMnemonics).subscribe((mnemonics) => {
+        this.mnemonic = mnemonics.find(mnemonicItem => mnemonicItem.address === address);
+        if (this.mnemonic) {
+          const dappId = this.dapp ? this.dapp.dappId : undefined;
+          this.store.dispatch(new fromMnemonicActions.ChangeWallet({ randomSeed: this.mnemonic.randomSeed, dappId: dappId }));
+        }
+      });
+      }
+    );
   }
 
   public ngOnDestroy() {
     this.mnemonics$.unsubscribe();
     this.dapps$.unsubscribe();
     this.interval$.unsubscribe();
+    this.currentDapp$.unsubscribe();
   }
 
   public onTabClick(event: any, refreshData = true) {
