@@ -8,6 +8,13 @@
         "homeImage": "assets/dapps/img_home_blue_geometrical.png",
         "logo": "https://bloo-demo-contents.s3-eu-west-1.amazonaws.com/play.svg"
     },
+    "contractAliases":[
+        {
+         "name": "BloomenToken",
+         "bloomenContractAddress" : "0956A942B4EE8C7867E7E203f6A09E5077449dCF",
+         "newContractAddress": "0956a942b4ee8c7867e7e203f6a09e5077449dcf"  
+        }
+    ],
     "i18n": {
         "en": {
             "home": {

@@ -127,8 +127,6 @@ export class ApplicationDataEffects {
                     };
                 })
             );
-
-
             const currentRpc$ = this.applicationDataDatabase.get(APPLICATION_DATA_CONSTANTS.RPC).pipe(
                 map((value) => {
                     return {

@@ -14,7 +14,7 @@ import { TransactionService } from '@services/web3/transactions/transaction.serv
 import { AssetsContract } from '@services/web3/contracts/assets/assetsContract';
 import { AllowAndBuy } from '@core/models/operations.model';
 import { Injectable } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Store } from '@ngrx/store';
 
 const log = new Logger('erc223.contract');
 
@@ -26,9 +26,9 @@ export class ERC223Contract extends Contract {
     private assetsContract: AssetsContract,
     protected web3Service: Web3Service,
     protected transactionService: TransactionService,
-    private activatedRoute: ActivatedRoute
+    protected store: Store<any>
   ) {
-    super(web3Service, transactionService, activatedRoute, JSON.abi, JSON.networks[environment.eth.contractConfig.networkId].address);
+    super(web3Service, transactionService, JSON.abi, JSON.networks[environment.eth.contractConfig.networkId].address, store);
   }
 
   public getBalance() {

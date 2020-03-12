@@ -1,5 +1,5 @@
 // Basic
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, Subscription, combineLatest } from 'rxjs';
 
 // Environment
 import { environment } from '@env/environment';
@@ -8,7 +8,12 @@ import { environment } from '@env/environment';
 import { Web3Service } from '@services/web3/web3.service';
 import { TransactionService } from '@services/web3/transactions/transaction.service';
 import { Logger } from '@services/logger/logger.service';
-import { ActivatedRoute } from '@angular/router';
+import { Store } from '@ngrx/store';
+import * as fromApplicationDataSelectors from '@stores/application-data/application-data.selectors';
+import { filter, map } from 'rxjs/operators';
+import * as fromDappSelectors from '@stores/dapp/dapp.selectors';
+import { DappCache } from '@core/models/dapp.model';
+
 
 const log = new Logger('contract');
 
@@ -23,16 +28,17 @@ export abstract class Contract {
   protected events: Subject<any>;
   protected address: string;
   protected args: any;
-  private defaultContract: any;
+  private currentDapp: any;
+  private myContracts = {};
 
   private listeners: Listener[];
 
   constructor(
     protected web3Service: Web3Service,
     protected transactionService: TransactionService,
-    private myActivatedRoute: ActivatedRoute,
     private abi: any,
-    private defaultAddress: string
+    private defaultAddress: string,
+    private genericStore: Store<any>
   ) {
 
     this.events = new Subject<any>();
@@ -48,6 +54,25 @@ export abstract class Contract {
     this.web3Service.getAddress().subscribe((address) => {
       this.updateAddress(address);
     });
+
+    if (this.genericStore) {
+      combineLatest(
+        this.genericStore.select(fromApplicationDataSelectors.getCurrentDappAddress)
+        .pipe(filter((currentDappAddress) => (!this.currentDapp) || (this.currentDapp.address !== currentDappAddress)))
+        , this.genericStore.select(fromDappSelectors.selectAllDapp)
+        .pipe(filter((dapps) => dapps.length > 0))
+      ).pipe(
+        map((value: [string, DappCache[]] ) => {
+          const dappAddress = value[0];
+          const dapps = value[1];
+          return dapps.find(dapp => dapp.address === dappAddress);
+        }),
+        filter( (item) => item && true)
+      ).subscribe( (dapp: DappCache ) => {
+        log.debug('CHANGE DAPP ', dapp);
+        this.currentDapp = dapp;
+      });
+    }
 
     this.web3Service.getBlockRange().subscribe((blockRange: any) => {
       if ((blockRange) && (this.events.observers.length > 0)) {
@@ -74,17 +99,26 @@ export abstract class Contract {
   }
 
   public getContractAddress() {
-    return this.defaultAddress;
+    if ( this.currentDapp && this.currentDapp.contractAliases ) {
+      const alias = this.currentDapp.contractAliases.find((item) => `0x${item.bloomenContractAddress}`.toLowerCase() === this.defaultAddress.toLowerCase() );
+      if (alias) {
+        return `0x${alias.newContractAddress}`;
+      } else {
+        return this.defaultAddress;
+      }
+    } else {
+      return this.defaultAddress;
+    }
   }
 
   public getContract() {
 
-    console.log( 'KOKO ===>>>', this.myActivatedRoute.snapshot.paramMap.get('address'));
+    const contractAddress =  this.getContractAddress();
 
-    if (!this.defaultContract) {
-      this.defaultContract = this.web3Service.createContract(this.abi, this.getContractAddress());
+    if (! this.myContracts[contractAddress]) {
+      this.myContracts[contractAddress] = this.web3Service.createContract(this.abi, contractAddress);
     }
-    return this.defaultContract;
+    return this.myContracts[contractAddress];
   }
 
   public getEvents(): Observable<any> {

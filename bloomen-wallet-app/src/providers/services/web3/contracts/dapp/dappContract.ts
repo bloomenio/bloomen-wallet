@@ -22,7 +22,7 @@ export class DappContract extends Contract {
     public web3Service: Web3Service,
     public transactionService: TransactionService
   ) {
-    super(web3Service, transactionService, undefined , JSON.abi, contractAddress);
+    super(web3Service, transactionService, JSON.abi, contractAddress, undefined);
   }
 
   public getData(silent?: boolean) {
