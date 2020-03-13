@@ -15,10 +15,12 @@
   height: 100%;
   width: 100%;
   padding: 16px;
+ 
   &> button {        
-    align-self: flex-end;       
+    align-self: flex-end; 
+    margin-right: 16px;      
     .mat-icon { 
-      font-size: 36px;
+      font-size: 48px;
     }
   }  
 }
