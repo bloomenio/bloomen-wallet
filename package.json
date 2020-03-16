@@ -1,0 +1,19 @@
+{
+  "name": "bloomen-wallet",
+  "version": "1.0.0",
+  "description": "The prototype consists of four different parts that allow to have a complete and fully operational solution:",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bloomenio/bloomen-wallet.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bloomenio/bloomen-wallet/issues"
+  },
+  "homepage": "https://github.com/bloomenio/bloomen-wallet#readme"
+}
