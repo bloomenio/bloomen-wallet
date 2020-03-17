@@ -68,6 +68,7 @@
         "devicesTab": "true",
         "allow": "true",
         "buy": "true",
+        "raw":"true", 
         "transfer": "true"
     },
     "secure": "false"
