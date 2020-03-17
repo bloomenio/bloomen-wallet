@@ -69,7 +69,8 @@
         "allow": "true",
         "buy": "true",
         "raw":"true", 
-        "transfer": "true"
+        "transfer": "true",
+        "token":"BLO"
     },
     "secure": "false"
 }
