@@ -1,0 +1,74 @@
+{
+    "dappId": "JES",
+    "laf": {
+        "theme": "bloomen-blue-theme-light",
+        "backgroundImage": "assets/dapps/img_bg_blue_geometrical.png",
+        "prepaidCardImage": "assets/instances/img_prepaid_card_qr_demo.png",
+        "landingImage": "assets/dapps/img_landing_blue_geometrical.png",
+        "homeImage": "assets/dapps/img_home_blue_geometrical.png",
+        "logo": "https://bloo-demo-contents.s3-eu-west-1.amazonaws.com/play.svg"
+    },
+    "contractAliases":[
+        {
+            "name": "BloomenAssets",
+            "bloomenContractAddress" : "35a3313c62f1adaefaff2f345b823a54e4f22ee4",
+            "newContractAddress": "bCbB09F64690C7C32206d0Cb90401F98EF256006"  
+        },
+        {
+            "name": "BloomenBurnHistory",
+            "bloomenContractAddress" : "d2475298e1854cc535a0e86e21fc2be0ed2923bf",
+            "newContractAddress": "eE10B988536d629a81DdD3120962D6A09f0865B4"  
+        },
+        {
+            "name": "BloomenDevices",
+            "bloomenContractAddress" : "269b85202071f4001f6f0428bfbda8c1dd0d9a00",
+            "newContractAddress": "94B8257aE04D435Dd8DB1E660353419b5A035829"  
+        },
+        {
+            "name": "BloomenMovementHistory",
+            "bloomenContractAddress" : "8984a450dbbffc469efcded202a5fd98aa218d47",
+            "newContractAddress": "9FdFB10DFFcCD5c6FD38821B84Fc957b7DF54f42"  
+        },
+        {
+            "name": "BloomenPrepaidCardManager",
+            "bloomenContractAddress" : "7301451605a17230c595873d16812de74bf7e48a",
+            "newContractAddress": "CCdB307a623bb2a437D57aa24c5aD09CceB4bf7D"  
+        },
+        {
+            "name": "BloomenToken",
+            "bloomenContractAddress" : "0956A942B4EE8C7867E7E203f6A09E5077449dCF",
+            "newContractAddress": "4100932942c6b72d4d5cC699C2AC6AE9654C693b"  
+        }
+    ],
+    "i18n": {
+        "en": {
+            "home": {
+                "title": "JES",
+                "subtitle": "Try out a new experience in media"
+            },
+            "login": {
+                "title": "JES"
+            }
+        },
+        "el": {
+            "home": {
+                "title": "JES",
+                "subtitle": "Try a complete experience"
+            },
+            "login": {
+                "title": "JES"
+            }
+        }
+    },
+    "features": {
+        "decimals": "2",
+        "burn": "true",
+        "addTokens": "true",
+        "storeTab": "true",
+        "devicesTab": "true",
+        "allow": "true",
+        "buy": "true",
+        "transfer": "true"
+    },
+    "secure": "false"
+}

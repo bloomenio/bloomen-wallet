@@ -102,11 +102,14 @@ export abstract class Contract {
     if ( this.currentDapp && this.currentDapp.contractAliases ) {
       const alias = this.currentDapp.contractAliases.find((item) => `0x${item.bloomenContractAddress}`.toLowerCase() === this.defaultAddress.toLowerCase() );
       if (alias) {
+        log.debug(`Use contract alias ${this.defaultAddress} --> 0x${alias.newContractAddress}`);
         return `0x${alias.newContractAddress}`;
       } else {
+        log.debug(`Use default contract ${this.defaultAddress}`);
         return this.defaultAddress;
       }
     } else {
+      log.debug(`Use default contract ${this.defaultAddress}`);
       return this.defaultAddress;
     }
   }

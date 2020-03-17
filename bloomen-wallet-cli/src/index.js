@@ -25,6 +25,7 @@ menuCommands['SP61'] = {name: '[SP61] Delete Schema', value: serviceProvider.sp6
 menuCommands['SP7'] = {name: '[SP7] Create Dapp', value: serviceProvider.sp7 };
 menuCommands['SP8'] = {name: '[SP8] Show Dapp', value: serviceProvider.sp8 };
 menuCommands['SP9'] = {name: '[SP9] Update Dapp', value: serviceProvider.sp9 };
+menuCommands['SP91'] = {name: '[SP91] Clean Dapp', value: serviceProvider.sp91 };
 menuCommands['SP10'] = {name: '[SP10] dapps List', value: serviceProvider.sp10 };                
 menuCommands['SP11'] = {name: '[SP11] dapp add common repo', value: serviceProvider.sp11 };                
 menuCommands['SP12'] = {name: '[SP12] dapp delete common repo', value: serviceProvider.sp12 };                
@@ -121,6 +122,7 @@ async function dappsMenu() {
         menuCommands['SP7'], 
         menuCommands['SP8'], 
         menuCommands['SP9'], 
+        menuCommands['SP91'], 
         menuCommands['SP10'],                 
         menuCommands['SP11'],                 
         menuCommands['SP12'],                

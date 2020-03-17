@@ -318,6 +318,33 @@ async function _sp9() {
     
 }
 
+//[SP91] Clean dapp
+async function _sp91() {
+    const ctx = web3Ctx.getCurrentContext();
+    let containers = await ctx.dapps.methods.getContainers().call(ctx.transactionObject);
+    let containersMetadata = [];
+    let i;
+    for (i = 0; i < containers.length; i++) {
+        containersMetadata.push({ name: containers[i].name + " "+ containers[i].addr, value: containers[i].addr });
+    }
+    if (containersMetadata.length == 0) {
+        console.log("There are no containers.");
+        return;
+    }        
+    
+    questions = [
+        { type: 'list', name: 'container', message: 'Choose a container', choices: containersMetadata },
+    ];
+    let answer = await inquirer.prompt(questions);
+    try {
+        await _purgeContainer(answer.container); 
+        console.log('Container cleaned.');  
+    } catch(err) {
+        console.log(err);
+    }
+    
+}
+
 async function _updateContainer(json, address) {
     const ctx = web3Ctx.getCurrentContext();    
     let jsonContainerInstance = new ctx.web3.eth.Contract(ctx.containerABI, address);
@@ -337,6 +364,35 @@ async function _updateContainer(json, address) {
         pathValueDiff.push(difference.type);
         pathValueDiff.push(difference.diff);
         changes.push(pathValueDiff);
+    }
+    let encodedDataUpdate = RLP.encode(changes);
+
+    return new Promise((resolve, reject) => {
+        jsonContainerInstance.methods.update(encodedDataUpdate).send(ctx.transactionObject)
+        .on('transactionHash', (hash) => {
+            web3Ctx.checkTransaction(hash).then( () => resolve(), (err) => reject(err));
+        });
+    });
+
+}
+
+async function _purgeContainer(address) {
+    const ctx = web3Ctx.getCurrentContext();    
+    let jsonContainerInstance = new ctx.web3.eth.Contract(ctx.containerABI, address);
+    let differences = await _getDapp(address);
+    console.log(differences);
+    let i;
+    let changes = [];
+    for (i = 0; i < differences.length; i++) {
+        let pathValueDiff = [];
+        let difference = differences[i];
+        if (difference.path !== '') {
+            pathValueDiff.push(difference.path);
+            pathValueDiff.push('');
+            pathValueDiff.push('');
+            pathValueDiff.push(1);
+            changes.push(pathValueDiff);
+        }
     }
     let encodedDataUpdate = RLP.encode(changes);
 
@@ -465,6 +521,7 @@ module.exports = {
         sp7: _sp7,
         sp8: _sp8,
         sp9: _sp9,
+        sp91: _sp91,
         sp10: _sp10,
         sp11: _sp11,
         sp12: _sp12,
