@@ -50,7 +50,17 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   public ngOnInit() {
     this.dapps$ = this.store.select(fromDappSelectors.selectAllDapp).subscribe((dapps) => {
-      this.dapps = dapps.sort((dapp1, dapp2) => dapp1.address.localeCompare(dapp2.address));
+      this.dapps = dapps.sort((dapp1, dapp2) => {
+        if (dapp1.fromService) {
+          if (dapp2.fromService) {
+            return dapp1.address.localeCompare(dapp2.address);
+          } else {
+            return -1;
+          }
+        } else {
+          return dapp1.address.localeCompare(dapp2.address);
+        }
+      });
 
     });
 
