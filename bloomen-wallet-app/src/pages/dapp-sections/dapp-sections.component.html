@@ -13,13 +13,13 @@
         </ng-template>
         <blo-dapp-profile [dapp]="dapp" [mnemonic]="mnemonic"></blo-dapp-profile>
     </mat-tab>
-    <mat-tab>
+    <mat-tab *ngIf="dapp.features.storeTab">
         <ng-template mat-tab-label>
             <mat-icon color="primary">notifications</mat-icon>
         </ng-template>
         <blo-dapp-notifications [dapp]="dapp"></blo-dapp-notifications>
     </mat-tab>
-    <mat-tab>
+    <mat-tab *ngIf="dapp.features.devicesTab">
         <ng-template mat-tab-label>
             <mat-icon color="primary">shopping_cart</mat-icon>
         </ng-template>

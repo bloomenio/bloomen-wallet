@@ -74,6 +74,7 @@ export class DappSectionsComponent implements OnInit, OnDestroy {
       this.dapps$ = this.store.select(fromDappSelectors.selectAllDapp).subscribe((dapps) => {
         this.dapp = dapps.find(dapp => dapp.address === address);
         if (this.dapp && !this.interval$) {
+          console.log(`*******dapp: ${this.dapp}`);
           this.interval$ = interval(WEB3_CONSTANTS.REFRESH_DAPP_INTERVAL).subscribe(() => {
             log.debug('refreshing...');
             this.store.dispatch(new fromDappActions.RefreshDappSilent({ address }));

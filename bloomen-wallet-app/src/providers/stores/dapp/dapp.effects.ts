@@ -81,6 +81,7 @@ export class DappEffects {
                         const fromService = serverAddresses.indexOf(address) !== -1;
                         this.loadDapp(address, fromService, true)
                             .then((dapp: DappCache) => {
+                                console.log(`**** loadingDapp DappCache: ${dapp.features}`);
                                 this.loadDappAssets(dapp);
                                 this.store.dispatch(new fromActions.AddDappSuccess(dapp));
                             });
@@ -145,7 +146,28 @@ export class DappEffects {
 
         const bloomenDappPromise =  this.dappCache[address].getData(silent) as Promise<Dapp>;
         const [cachedDapp, serverDapp] = await Promise.all([dbDappPromise, bloomenDappPromise]);
+
+        this.initializeFeaturesDapp(cachedDapp);
+        this.initializeFeaturesDapp(serverDapp);
+
         return this.storeDapp(address, serverDapp, cachedDapp, fromService, isGeneral);
+    }
+
+    private initializeFeaturesDapp(dapp: Dapp) {
+        if ( !dapp.features ) {
+            dapp.features = {
+                decimals: 0,
+                burn: true,
+                addTokens: true,
+                storeTab: true,
+                devicesTab: true,
+                allow: true,
+                buy: true,
+                transfer: true,
+                raw: true,
+                token: 'BLO'
+            };
+        }
     }
 
     private storeDapp(address: string,

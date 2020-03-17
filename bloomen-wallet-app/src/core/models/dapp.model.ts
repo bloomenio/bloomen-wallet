@@ -4,6 +4,7 @@ export interface Dapp {
     logo: string;
     address: string;
     laf: Dapp.LookAndFeel;
+    features: Dapp.Features;
     i18n: Dapp.I18n;
     news: Array<Dapp.News>;
     dappId: string;
@@ -28,7 +29,18 @@ export namespace Dapp {
         homeImage: string;
         logo: string;
     }
-
+    export interface Features {
+        decimals: number;
+        burn: boolean;
+        addTokens: boolean;
+        storeTab: boolean;
+        devicesTab: boolean;
+        allow: boolean;
+        buy: boolean;
+        raw: boolean;
+        transfer: boolean;
+        token: string;
+    }
     export interface I18n {
         en: I18nDapp.Translation;
         el: I18nDapp.Translation;
