@@ -58,7 +58,11 @@ export class HomeComponent implements OnInit, OnDestroy {
             return -1;
           }
         } else {
-          return dapp1.address.localeCompare(dapp2.address);
+          if (dapp2.fromService) {
+            return 1;
+          } else {
+            return dapp1.address.localeCompare(dapp2.address);
+          }
         }
       });
 
