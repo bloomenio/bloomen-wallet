@@ -61,7 +61,7 @@
         }
     },
     "features": {
-        "decimals": "2",
+        "decimals": "0",
         "burn": "true",
         "addTokens": "true",
         "storeTab": "true",
