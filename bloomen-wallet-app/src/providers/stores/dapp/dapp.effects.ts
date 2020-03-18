@@ -81,7 +81,7 @@ export class DappEffects {
                         const fromService = serverAddresses.indexOf(address) !== -1;
                         this.loadDapp(address, fromService, true)
                             .then((dapp: DappCache) => {
-                                console.log(`**** loadingDapp DappCache: ${dapp.features}`);
+                                console.log(`**** loadingDapp DappCache: ${JSON.stringify(dapp)}`);
                                 this.loadDappAssets(dapp);
                                 this.store.dispatch(new fromActions.AddDappSuccess(dapp));
                             });
@@ -147,18 +147,22 @@ export class DappEffects {
         const bloomenDappPromise =  this.dappCache[address].getData(silent) as Promise<Dapp>;
         const [cachedDapp, serverDapp] = await Promise.all([dbDappPromise, bloomenDappPromise]);
 
-        this.initializeFeaturesDapp(cachedDapp);
-        this.initializeFeaturesDapp(serverDapp);
+        if (cachedDapp) { this.initializeFeaturesDapp(cachedDapp); }
+        if (serverDapp) { this.initializeFeaturesDapp(serverDapp); }
+
+        console.log(`**** cacheDapp loaaded: ${JSON.stringify(cachedDapp)}`);
+        console.log(`**** serverDapp loaaded: ${JSON.stringify(serverDapp)}`);
 
         return this.storeDapp(address, serverDapp, cachedDapp, fromService, isGeneral);
     }
 
     private initializeFeaturesDapp(dapp: Dapp) {
         if ( !dapp.features ) {
+            console.log(`**** dapp without features, updating: ${JSON.stringify(dapp)}`);
             dapp.features = {
                 decimals: 0,
                 burn: true,
-                addTokens: true,
+                addTokens: false,
                 storeTab: true,
                 devicesTab: true,
                 allow: true,

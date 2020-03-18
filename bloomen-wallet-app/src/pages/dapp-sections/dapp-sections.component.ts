@@ -46,14 +46,15 @@ export class DappSectionsComponent implements OnInit, OnDestroy {
   public dapps$: Subscription;
   public interval$: Subscription;
   public currentDapp$: Subscription;
- 
+
   public currentTabIndex: string;
 
   constructor(
     private store: Store<any>,
     private activatedRoute: ActivatedRoute,
     private router: Router
-  ) { }
+  ) {
+  }
 
   public ngOnInit() {
     const address = this.activatedRoute.snapshot.paramMap.get('address');
@@ -74,7 +75,7 @@ export class DappSectionsComponent implements OnInit, OnDestroy {
       this.dapps$ = this.store.select(fromDappSelectors.selectAllDapp).subscribe((dapps) => {
         this.dapp = dapps.find(dapp => dapp.address === address);
         if (this.dapp && !this.interval$) {
-          console.log(`*******dapp: ${this.dapp}`);
+          console.log(`*******dapp: ${JSON.stringify(this.dapp)}`);
           this.interval$ = interval(WEB3_CONSTANTS.REFRESH_DAPP_INTERVAL).subscribe(() => {
             log.debug('refreshing...');
             this.store.dispatch(new fromDappActions.RefreshDappSilent({ address }));

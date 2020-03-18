@@ -8,7 +8,7 @@
     <ng-template #loaded>
         <div>{{ 'dapp.credit_header.points' | translate: {'balance': balance} }}</div>
     </ng-template>
-    <button *ngIf='addCash' mat-icon-button (click)='addCreditScan()'>
+    <button *ngIf='!hideAddCash && featureAddTokens' mat-icon-button (click)='addCreditScan()'>
         <mat-icon md-36>add_circle_outline</mat-icon>
     </button>
 </mat-toolbar>

@@ -56,7 +56,8 @@ export class SendCashComponent implements OnInit, OnDestroy {
     private web3Service: Web3Service,
     private barCodeScannerService: BarCodeScannerService,
     public dialog: MatDialog
-  ) { }
+  ) {
+  }
 
   public ngOnInit() {
     const address = this.activatedRoute.snapshot.paramMap.get('address');
@@ -93,7 +94,6 @@ export class SendCashComponent implements OnInit, OnDestroy {
     this.store.pipe(
       select(fromRecentUser.selectAllAddress)
     ).subscribe(value => this.listOfAddress = value);
-
   }
 
   public ngOnDestroy() {

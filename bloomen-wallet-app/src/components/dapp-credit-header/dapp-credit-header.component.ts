@@ -1,5 +1,5 @@
 // Basic
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnChanges, OnInit, Input, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
 import { DappScanQRComponent } from '@components/dapp-scanQR/dapp-scanQR.component';
@@ -21,15 +21,16 @@ import { skip } from 'rxjs/operators';
   templateUrl: 'dapp-credit-header.component.html',
   styleUrls: ['dapp-credit-header.component.scss']
 })
-export class DappCreditHeaderComponent implements OnInit, OnDestroy {
+export class DappCreditHeaderComponent implements OnChanges, OnInit, OnDestroy {
   @Input() public dapp: Dapp;
-  @Input() public addCash = true;
+  @Input() public hideAddCash: boolean;
 
   public balance: string;
 
   public balance$: Subscription;
 
   public isLoading: boolean;
+  public featureAddTokens: boolean;
 
   /**
    * Constructor to declare all the necesary to initialize the component.
@@ -40,6 +41,8 @@ export class DappCreditHeaderComponent implements OnInit, OnDestroy {
   ) {
     this.balance = '0';
     this.isLoading = true;
+    this.featureAddTokens = false;
+    console.log(`******* constructor cabecera hide add cash value: ${this.hideAddCash}`);
   }
 
   public ngOnInit() {
@@ -51,6 +54,13 @@ export class DappCreditHeaderComponent implements OnInit, OnDestroy {
         this.isLoading = true;
       }
     });
+    console.log(`******* oninit cabecera add cash hide value: ${this.hideAddCash}`);
+    console.log(`******* dapp de la cabecera: ${this.dapp}`);
+  }
+
+  public ngOnChanges() {
+    console.log(`******* dapp de la cabecera onchanges: ${this.dapp}`);
+    this.featureAddTokens = this.dapp.features.addTokens;
   }
 
   public ngOnDestroy() {
