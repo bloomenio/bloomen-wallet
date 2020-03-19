@@ -16,6 +16,7 @@ import { barcodeScannerOptions } from '@config/barcode-scanner.config';
 import { environment } from './../../../environments/environment';
 
 import { Camera, CameraOptions } from '@ionic-native/camera';
+import { StatusBar } from '@ionic-native/status-bar';
 
 import { Image, getImageData } from '@canvas/image';
 import jsQR from 'jsqr';
@@ -40,6 +41,7 @@ export class BarCodeScannerService {
     private camera: Camera,
     private barcodeScanner: BarcodeScanner,
     private dialog: MatDialog,
+    private statusBar: StatusBar,
     private translate: TranslateService) {
     this.loader = new Subject<boolean>();
     // Basic initialization
@@ -80,6 +82,8 @@ export class BarCodeScannerService {
           };
 
           this.camera.getPicture(options).then((imageData) => {
+            this.statusBar.overlaysWebView(true);
+            this.statusBar.overlaysWebView(false);
             // imageData is either a base64 encoded string or a file URI
             const base64Image  = 'data:image/jpeg;base64,' + imageData;
             const img = new Image();
@@ -93,6 +97,8 @@ export class BarCodeScannerService {
               }
             };
           }, (err) => {
+            this.statusBar.overlaysWebView(true);
+            this.statusBar.overlaysWebView(false);
             reject(err);
           });
         } else {
