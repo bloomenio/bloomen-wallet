@@ -19,8 +19,10 @@
   &> button {        
     align-self: flex-end; 
     margin-right: 16px;      
+    height: 56px;
+    width: 56px;
     .mat-icon { 
-      font-size: 48px;
+      font-size: 36px;
     }
   }  
 }
