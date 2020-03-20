@@ -11,7 +11,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { environment } from '@env/environment';
 import { Logger } from '@services/logger/logger.service';
 import { NetworkStatus } from '@services/network-status/network-status.service';
-import {RpcSubprovider} from '@services/web3/rpc-subprovider';
+import { RpcSubprovider } from '@services/web3/rpc-subprovider';
 
 import { Store, select } from '@ngrx/store';
 

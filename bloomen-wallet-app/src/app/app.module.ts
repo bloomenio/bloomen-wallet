@@ -8,6 +8,7 @@ import { MaterialModule } from './material.module';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { Device } from '@ionic-native/device';
 import { Network } from '@ionic-native/network';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -116,6 +117,7 @@ export function onAppInit(store: Store<any>): () => Promise<any> {
 
     // Ionic native
     BarcodeScanner,
+    Device,
     StatusBar,
     SplashScreen,
     Network,

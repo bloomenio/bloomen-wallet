@@ -21,7 +21,7 @@
     },
     "news": [
         {
-            "img": "https://alastria1.wlilab.eu/bloo-demo/assets/smart-office/img_background_printer.png",
+            "img": "https://0x.wlilab.eu/bloo-demo/assets/smart-office/img_background_printer.png",
             "i18n": {
                 "en": {
                     "title": "Office printer",
@@ -39,7 +39,7 @@
             }
         },
         {
-            "img": "https://alastria1.wlilab.eu/bloo-demo/assets/smart-office/img_background_reserve_desk.png",
+            "img": "https://0x.wlilab.eu/bloo-demo/assets/smart-office/img_background_reserve_desk.png",
             "i18n": {
                 "en": {
                     "title": "Reserve desk",
