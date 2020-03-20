@@ -47,8 +47,7 @@ export class DappProfileComponent implements OnInit, OnDestroy {
   public outOfCash: boolean;
   public balance$: Subscription;
   public idDapp: string;
-  public featureSendCash: boolean;
-  
+
   public address$: Subscription;
 
   @Input() public dapp: Dapp;
@@ -71,7 +70,6 @@ export class DappProfileComponent implements OnInit, OnDestroy {
   ) {
     this.prefixDapp = QR_VALIDATOR.ID;
     this.outOfCash = true;
-    this.featureSendCash = true;
   }
 
   public ngOnInit() {
@@ -90,9 +88,6 @@ export class DappProfileComponent implements OnInit, OnDestroy {
         users.filter(user => user.idDapp === this.dapp.address)
       )
     );
-
-    this.featureSendCash = this.dapp?.features.transfer;
-    console.log(`******** sendcashfeature en profile : ${this.featureSendCash}`);
   }
 
   public ngOnDestroy() {

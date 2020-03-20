@@ -15,7 +15,7 @@
                     </div>
                 </div>
                 <div class='send-cash-action' fxLayout='column' fxLayoutAlign='center center'>
-                    <button [disabled]='!featureSendCash || outOfCash' mat-flat-button color='accent'
+                    <button *ngIf="this.dapp?.features.transfer" [disabled]='outOfCash' mat-flat-button color='accent'
                         (click)='goToSendCash()'>{{ 'dapp.profile.send_cash' | translate | uppercase }}</button>
                 </div>
 
