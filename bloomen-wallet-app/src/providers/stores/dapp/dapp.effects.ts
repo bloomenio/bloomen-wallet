@@ -167,9 +167,9 @@ export class DappEffects {
                 storeTab: true,
                 devicesTab: true,
                 allow: true,
-                buy: true,
+                buy: false,
                 transfer: true,
-                raw: true,
+                raw: false,
                 token: 'BLO'
             };
         } else {
@@ -184,14 +184,14 @@ export class DappEffects {
 
             dapp.features = {
                 decimals: +dapp.features.decimals,
-                burn: (burn === 'true'),
-                addTokens: (addTokens === 'true'),
-                storeTab: (storeTab === 'true'),
-                devicesTab: (devicesTab === 'true'),
-                allow: (allow === 'true'),
-                buy: (buy === 'true'),
-                transfer: (transfer === 'true'),
-                raw: (raw === 'true'),
+                burn: (burn.toLowerCase() === 'true'),
+                addTokens: (addTokens.toLowerCase() === 'true'),
+                storeTab: (storeTab.toLowerCase() === 'true'),
+                devicesTab: (devicesTab.toLowerCase() === 'true'),
+                allow: (allow.toLowerCase() === 'true'),
+                buy: (buy.toLowerCase() === 'true'),
+                transfer: (transfer.toLowerCase() === 'true'),
+                raw: (raw.toLowerCase() === 'true'),
                 token: dapp.features.token
             };
         }

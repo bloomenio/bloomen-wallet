@@ -129,43 +129,67 @@ export class DappHomeComponent implements OnInit, OnDestroy {
 
       switch (operation) {
         case QR_VALIDATOR.RAW:
-          const rawBuyObject: AllowAndBuy = {
-            to:  params[0],
-            amount: parseInt(params[1], 10),
-            description: decodeURI(params[2]),
-            params: params.slice(3).map((item) => decodeURI(item)),
-          };
-          this.processRequest(QR_ACTION.RAW, rawBuyObject);
+          if (this._dapp.features.raw) {
+            const rawBuyObject: AllowAndBuy = {
+              to:  params[0],
+              amount: parseInt(params[1], 10),
+              description: decodeURI(params[2]),
+              params: params.slice(3).map((item) => decodeURI(item)),
+            };
+            this.processRequest(QR_ACTION.RAW, rawBuyObject);
+          } else {
+            this.snackBar.open(this.translate.instant('common.operation_error'), null, {
+              duration: 2000,
+            });
+          }
           break;
         case QR_VALIDATOR.BUY:
-          const buyObject: AllowAndBuy = {
-            assetId: parseInt(params[0], 10),
-            schemaId: parseInt(params[1], 10),
-            amount: parseInt(params[2], 10),
-            dappId: params[3],
-            description: decodeURI(params[4])
-          };
-          this.processRequest(QR_ACTION.BUY, buyObject);
+          if (this._dapp.features.buy) {
+            const buyObject: AllowAndBuy = {
+              assetId: parseInt(params[0], 10),
+              schemaId: parseInt(params[1], 10),
+              amount: parseInt(params[2], 10),
+              dappId: params[3],
+              description: decodeURI(params[4])
+            };
+            this.processRequest(QR_ACTION.BUY, buyObject);
+          } else {
+            this.snackBar.open(this.translate.instant('common.operation_error'), null, {
+              duration: 2000,
+            });
+          }
           break;
         case QR_VALIDATOR.ALLOW:
-          const allowObject: AllowAndBuy = {
-            deviceHash: decodeURI(params[0]),
-            assetId: parseInt(params[1], 10),
-            schemaId: parseInt(params[2], 10),
-            dappId: params[3]
-          };
-          this.processRequest(QR_ACTION.ALLOW, allowObject);
+          if (this._dapp.features.allow) {
+            const allowObject: AllowAndBuy = {
+              deviceHash: decodeURI(params[0]),
+              assetId: parseInt(params[1], 10),
+              schemaId: parseInt(params[2], 10),
+              dappId: params[3]
+            };
+            this.processRequest(QR_ACTION.ALLOW, allowObject);
+          } else {
+            this.snackBar.open(this.translate.instant('common.operation_error'), null, {
+              duration: 2000,
+            });
+          }
           break;
         case QR_VALIDATOR.ALLOW_BUY:
-          const allowBuyObject: AllowAndBuy = {
-            dappId: params[3],
-            assetId: parseInt(params[0], 10),
-            schemaId: parseInt(params[1], 10),
-            amount: parseInt(params[2], 10),
-            description: decodeURI(params[4]),
-            deviceHash: decodeURI(params[5])
-          };
-          this.processRequest(QR_ACTION.ALLOW_BUY, allowBuyObject);
+          if (this._dapp.features.buy && this._dapp.features.allow) {
+            const allowBuyObject: AllowAndBuy = {
+              dappId: params[3],
+              assetId: parseInt(params[0], 10),
+              schemaId: parseInt(params[1], 10),
+              amount: parseInt(params[2], 10),
+              description: decodeURI(params[4]),
+              deviceHash: decodeURI(params[5])
+            };
+            this.processRequest(QR_ACTION.ALLOW_BUY, allowBuyObject);
+          } else {
+            this.snackBar.open(this.translate.instant('common.operation_error'), null, {
+              duration: 2000,
+            });
+          }
           break;
         default:
           log.error('KO', 'Bad QR prefix');

@@ -16,7 +16,8 @@
     "send": "Στείλτε",
     "receive": "λάβατε",
     "burn": "Εξαργυρώστε",
-    "default": "Προκαθορισμένο"
+    "default": "Προκαθορισμένο",
+    "operation_error": "Η λειτουργία δεν είναι διαθέσιμη"
   },
   "language": {
     "en": "English",
@@ -61,8 +62,8 @@
       "tutorial": "Οδηγός",
       "refreshDapps": "Ανανέωση εφαρμογών",
       "changeLanguage": "Αλλαγή γλώσσας",
-      "changeRpc":"τελικό σημείο",
-      "resumeWallet":"Προσπαθησε ξανα"
+      "changeRpc": "τελικό σημείο",
+      "resumeWallet": "Προσπαθησε ξανα"
     }
   },
   "login": {
@@ -107,9 +108,9 @@
     "scanQR": {
       "increase_balance": "Για να πιστώσετε το πορτοφόλι σας, σαρώστε τον κώδικα QR από την κάρτα.",
       "scan_qr_code": "Σαρώστε τον κώδικα QR",
-      "album":{
-        "title":"Σάρωση εικόνας",
-        "description":"Εξαγωγή δεδομένων QR από μια εικόνα άλμπουμ."
+      "album": {
+        "title": "Σάρωση εικόνας",
+        "description": "Εξαγωγή δεδομένων QR από μια εικόνα άλμπουμ"
       }
     },
     "options_shell": {
@@ -175,10 +176,10 @@
     "change_rpc": {
       "title": "Γεια!",
       "message": "Θέλετε να αλλάξετε το τελικό σημείο Blockchain;",
-      "https":"HTTPS",
-      "host":"Host",
-      "path":"Path",
-      "secret":"Secret"
+      "https": "HTTPS",
+      "host": "Host",
+      "path": "Path",
+      "secret": "Secret"
     }
   }
 }
