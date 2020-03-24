@@ -120,7 +120,7 @@
       "last_updated": "Τελευταία ενημέρωση {{date}}"
     },
     "credit_header": {
-      "points": "Το υπόλοιπο σας είναι {{balance}} μάρκες",
+      "points": "Το υπόλοιπο σας είναι {{balance}}",
       "loading": "Το υπόλοιπο σας είναι"
     },
     "restore_account": {

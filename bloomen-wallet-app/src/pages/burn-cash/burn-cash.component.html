@@ -13,7 +13,7 @@
             <mat-form-field color="primary" appearance="outline">
                 <mat-label>{{ 'dapp.burn_cash.amount' | translate }}</mat-label>
                 <input matInput formControlName="amount" pattern="^[0-9]{4,20}$" type="number">
-                <div matSuffix>{{ 'dapp.send_cash.points' | translate | uppercase }}</div>
+                <div matSuffix>{{ dapp?.features?.token | uppercase }}</div>
             </mat-form-field>
 
             <button [disabled]="!burnCashForm.valid" type="submit" color="accent" mat-flat-button fxLayout="row"
