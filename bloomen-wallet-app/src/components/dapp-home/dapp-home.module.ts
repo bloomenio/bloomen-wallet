@@ -8,6 +8,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 // Modules
 import { MaterialModule } from '@app/material.module';
 import { DappCreditHeaderModule } from '@components/dapp-credit-header/dapp-credit-header.module';
+import { PipesModule } from '@pipes/pipes.module';
 
 // Components
 import { DappHomeComponent } from './dapp-home.component';
@@ -31,6 +32,7 @@ export function playerFactory() {
     MaterialModule,
     DappCreditHeaderModule,
     DappInputDialogModule,
+    PipesModule,
     LottieModule.forRoot({ player: playerFactory })
   ],
   declarations: [DappHomeComponent],

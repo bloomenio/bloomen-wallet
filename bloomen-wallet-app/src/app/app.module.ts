@@ -21,6 +21,7 @@ import { SharedModule } from '@shared/shared.module';
 import { HomeModule } from '@pages/home/home.module';
 import { ShellModule } from '@shell/shell.module';
 import { NetworkStatusAlertModule } from '@components/network-status-alert/network-status-alert.module';
+import { PipesModule } from '@pipes/pipes.module';
 
 
 import { AppComponent } from './app.component';
@@ -94,6 +95,7 @@ export function onAppInit(store: Store<any>): () => Promise<any> {
     HomeModule,
     FlexLayoutModule,
     NetworkStatusAlertModule,
+    PipesModule,
 
     // Stores
     ApplicationDataStoreModule,

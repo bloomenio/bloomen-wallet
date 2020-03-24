@@ -6,7 +6,7 @@
         <div class='balance-spinner'></div>
     </div>
     <ng-template #loaded>
-        <div>{{ 'dapp.credit_header.points' | translate: {'balance': balance} }} {{ dapp?.features?.token | uppercase }} </div>
+        <div>{{ 'dapp.credit_header.points' | translate: {'balance': balance | applyDecimals : dapp?.features?.decimals } }} {{ dapp?.features?.token | uppercase }} </div>
     </ng-template>
     <button *ngIf='!hideAddCash && dapp?.features?.addTokens' mat-icon-button (click)='addCreditScan()'>
         <mat-icon md-36>add_circle_outline</mat-icon>

@@ -8,6 +8,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 // Modules
 import { MaterialModule } from '@app/material.module';
 import { DappScanQRModule } from '@components/dapp-scanQR/dapp-scanQR.module';
+import { PipesModule } from '@pipes/pipes.module';
 
 // Components
 import { DappCreditHeaderComponent } from './dapp-credit-header.component';
@@ -23,7 +24,8 @@ import { DappCreditHeaderComponent } from './dapp-credit-header.component';
     MaterialModule,
     TranslateModule,
     FlexLayoutModule,
-    DappScanQRModule
+    DappScanQRModule,
+    PipesModule
   ],
   declarations: [DappCreditHeaderComponent],
   exports: [DappCreditHeaderComponent]
