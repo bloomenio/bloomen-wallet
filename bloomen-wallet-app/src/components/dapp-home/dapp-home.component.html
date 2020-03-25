@@ -11,7 +11,7 @@
             <mat-card-actions class='new-content-actions' fxLayoutAlign='space-between center'>
                 <mat-card-subtitle class='recent-activity-title'>
                     {{ 'dapp.home.recent_activity' | translate | uppercase }}</mat-card-subtitle>
-                <button class='qrbutton' color='accent' mat-flat-button fxLayout='row' fxLayoutAlign='center center'
+                <button *ngIf='dapp.features.allow || dapp.features.buy || dapp.features.raw' class='qrbutton' color='accent' mat-flat-button fxLayout='row' fxLayoutAlign='center center'
                     (click)='buyOrAllow()'>
                     <div class='qr-icon'></div>
                 </button>
@@ -35,7 +35,7 @@
                                     <div class='activity-title'>{{ 'common.' + txActivity.txName | translate }}</div>
                                     <div fxLayout='row' fxLayoutAlign='space-between end'>
                                         <div class='activity-date'>{{ txActivity.epoch | date: 'medium' }}</div>
-                                        <div class='activity-points'>{{ txActivity.amount }} PT</div>
+                                        <div class='activity-points'>{{ txActivity.amount | applyDecimals : dapp?.features?.decimals }} {{ dapp?.features?.token }}</div>
                                     </div>
                                 </div>
                             </mat-list-item>

@@ -23,7 +23,7 @@ import { skip } from 'rxjs/operators';
 })
 export class DappCreditHeaderComponent implements OnInit, OnDestroy {
   @Input() public dapp: Dapp;
-  @Input() public addCash = true;
+  @Input() public hideAddCash: boolean;
 
   public balance: string;
 
@@ -40,6 +40,7 @@ export class DappCreditHeaderComponent implements OnInit, OnDestroy {
   ) {
     this.balance = '0';
     this.isLoading = true;
+    console.log(`******* constructor cabecera hide add cash value: ${this.hideAddCash}`);
   }
 
   public ngOnInit() {
@@ -51,6 +52,8 @@ export class DappCreditHeaderComponent implements OnInit, OnDestroy {
         this.isLoading = true;
       }
     });
+    console.log(`******* oninit cabecera add cash hide value: ${this.hideAddCash}`);
+    console.log(`******* dapp de la cabecera: ${JSON.stringify(this.dapp)}`);
   }
 
   public ngOnDestroy() {

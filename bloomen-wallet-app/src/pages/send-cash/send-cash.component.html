@@ -1,4 +1,4 @@
-<blo-dapp-credit-header [dapp]="dapp" [addCash]="false" ></blo-dapp-credit-header>
+<blo-dapp-credit-header [dapp]="dapp"></blo-dapp-credit-header>
 <div class="has-dapp-credit-header" (click)="hideKeyboard($event)">
     <div class="send-cash-card" fxFlex fxLayout="column">
 
@@ -16,9 +16,9 @@
 
             <mat-form-field color="primary" appearance="outline">
                 <mat-label>{{ 'dapp.send_cash.amount' | translate }}</mat-label>
-                <input matInput formControlName="amount" pattern="[0-9]*" type="number">
-                <div matSuffix>{{ 'dapp.send_cash.points' | translate | uppercase }}</div>
-            </mat-form-field>
+                <input matInput formControlName="amount" pattern="^[0-9]*\,?[0-9]*$*" type="number">
+                <div matSuffix>{{ dapp?.features?.token | uppercase }}</div>
+            </mat-form-field> 
 
             <button [disabled]="!sendCashForm.valid" type="submit" color="accent" mat-flat-button fxLayout="row" fxLayoutAlign="center center">
                 <div fxFlex>{{ 'dapp.profile.send_cash' | translate | uppercase }}</div>

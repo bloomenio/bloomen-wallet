@@ -16,7 +16,8 @@
     "send": "send",
     "receive": "receive",
     "burn": "burn",
-    "default": "default"
+    "default": "default",
+    "operation_error": "Operation no available"
   },
   "language": {
     "en": "English",
@@ -61,8 +62,8 @@
       "tutorial": "Tutorial",
       "refreshDapps": "Refresh Dapps",
       "changeLanguage": "Change language",
-      "changeRpc":"Endpoint",
-      "resumeWallet":"Resume"
+      "changeRpc": "Endpoint",
+      "resumeWallet": "Resume"
     }
   },
   "login": {
@@ -107,9 +108,9 @@
     "scanQR": {
       "increase_balance": "To increase your balance, scan the QR code of the card.",
       "scan_qr_code": "Scan qr code",
-      "album":{
-        "title":"Scan picture",
-        "description":"Extract QR data from an album picture."
+      "album": {
+        "title": "Scan picture",
+        "description": "Extract QR data from an album picture"
       }
     },
     "options_shell": {
@@ -119,7 +120,7 @@
       "last_updated": "Last updated {{date}}"
     },
     "credit_header": {
-      "points": "Your credit is {{balance}} points",
+      "points": "Your credit is {{balance}}",
       "loading": "Your credit is"
     },
     "restore_account": {
@@ -175,10 +176,10 @@
     "change_rpc": {
       "title": "Hey!",
       "message": "Do you want to change your Blockchain endpoint?",
-      "https":"HTTPS",
-      "host":"Host",
-      "path":"Path",
-      "secret":"Secret"
+      "https": "HTTPS",
+      "host": "Host",
+      "path": "Path",
+      "secret": "Secret"
     }
   }
 }

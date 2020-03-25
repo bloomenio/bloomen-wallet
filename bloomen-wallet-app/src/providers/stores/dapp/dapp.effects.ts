@@ -81,6 +81,7 @@ export class DappEffects {
                         const fromService = serverAddresses.indexOf(address) !== -1;
                         this.loadDapp(address, fromService, true)
                             .then((dapp: DappCache) => {
+                                console.log(`**** loadingDapp DappCache: ${JSON.stringify(dapp)}`);
                                 this.loadDappAssets(dapp);
                                 this.store.dispatch(new fromActions.AddDappSuccess(dapp));
                             });
@@ -145,8 +146,56 @@ export class DappEffects {
 
         const bloomenDappPromise =  this.dappCache[address].getData(silent) as Promise<Dapp>;
         const [cachedDapp, serverDapp] = await Promise.all([dbDappPromise, bloomenDappPromise]);
+
+        if (cachedDapp) { this.initializeFeaturesDapp(cachedDapp); }
+        if (serverDapp) { this.initializeFeaturesDapp(serverDapp); }
+
+        // console.log(`**** cacheDapp loaaded: ${JSON.stringify(cachedDapp)}`);
+        // console.log(`**** serverDapp loaaded: ${JSON.stringify(serverDapp)}`);
+
         return this.storeDapp(address, serverDapp, cachedDapp, fromService, isGeneral);
     }
+
+    private initializeFeaturesDapp(dapp: Dapp) {
+        console.log(`**** dapp loaaded before initialize: ${JSON.stringify(dapp)}`);
+        if ( !dapp.features ) {
+            console.log(`**** dapp without features, updating: ${JSON.stringify(dapp)}`);
+            dapp.features = {
+                decimals: 2,
+                burn: true,
+                addTokens: true,
+                storeTab: true,
+                devicesTab: true,
+                allow: true,
+                buy: true,
+                transfer: true,
+                raw: true,
+                token: 'BLO'
+            };
+        } else {
+            const burn: string = String(dapp.features.burn);
+            const addTokens: string = String(dapp.features.addTokens);
+            const storeTab:  string = String(dapp.features.storeTab);
+            const devicesTab:  string = String(dapp.features.devicesTab);
+            const allow:  string = String(dapp.features.allow);
+            const buy:  string = String(dapp.features.buy);
+            const transfer:  string = String(dapp.features.transfer);
+            const raw:  string = String(dapp.features.raw);
+
+            dapp.features = {
+                decimals: +dapp.features.decimals,
+                burn: (burn.toLowerCase() === 'true'),
+                addTokens: (addTokens.toLowerCase() === 'true'),
+                storeTab: (storeTab.toLowerCase() === 'true'),
+                devicesTab: (devicesTab.toLowerCase() === 'true'),
+                allow: (allow.toLowerCase() === 'true'),
+                buy: (buy.toLowerCase() === 'true'),
+                transfer: (transfer.toLowerCase() === 'true'),
+                raw: (raw.toLowerCase() === 'true'),
+                token: dapp.features.token
+            };
+        }
+        console.log(`**** dapp loaaded after initialize: ${JSON.stringify(dapp)}`);    }
 
     private storeDapp(address: string,
         serverDapp: Dapp, cachedDapp?: any,
