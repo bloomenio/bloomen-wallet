@@ -10,7 +10,7 @@
     <div class="detail-wrapper" fxLayout="row" fxLayoutAlign="start">
         <div fxFlex="35" class="balance-wrapper" fxLayout="row" fxLayoutAlign="center center">
             <div *ngIf="balance && balance !== -1">
-                {{ balance | applyDecimals : dapp?.features?.decimals }} {{ dapp?.features?.token }}
+                {{ balance }} PT
             </div>
             <div *ngIf="balance && balance === -1">
                 <div class="loading-spinner"></div>

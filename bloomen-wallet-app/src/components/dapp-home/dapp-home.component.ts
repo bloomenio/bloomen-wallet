@@ -24,6 +24,7 @@ import { DappGeneralDialogComponent } from '@components/dapp-general-dialog/dapp
 import { AllowAndBuy } from '@models/operations.model';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Dapp } from '@core/models/dapp.model';
+import { ApplyDecimalsPipe } from '@pipes/apply-decimals.pipe';
 
 
 const log = new Logger('dapp-home.component');
@@ -77,6 +78,7 @@ export class DappHomeComponent implements OnInit, OnDestroy {
     private translate: TranslateService,
     private dialog: MatDialog,
     private iconRegistry: MatIconRegistry,
+    private applyDecimalsPipe: ApplyDecimalsPipe,
     private sanitizer: DomSanitizer
   ) {
 
@@ -260,9 +262,9 @@ export class DappHomeComponent implements OnInit, OnDestroy {
       data: {
         title: this.translate.instant('dapp.notifications.dialog_buy.title'),
         description: this.translate.instant('dapp.notifications.dialog_buy.description', {
-          // id: buyObject.assetId,
           title: buyObject.description,
-          price: buyObject.amount
+          price: this.applyDecimalsPipe.transform( `${buyObject.amount}`, `${this.dapp.features.decimals}`),
+          token: this._dapp.features.token
         }),
         buttonAccept: this.translate.instant('common.accept'),
         buttonCancel: this.translate.instant('common.cancel')

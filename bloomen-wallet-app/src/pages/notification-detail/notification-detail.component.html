@@ -7,6 +7,6 @@
     </div>
     
     <button [disabled]="outOfCash || alreadyBought" (click)="dialogBuyContent()" color="accent" mat-flat-button fxLayout="row" fxLayoutAlign="center center">
-        {{ 'dapp.notifications.buy_now' | translate | uppercase }} - {{ notification.payment.price }} PT
+        {{ 'dapp.notifications.buy_now' | translate | uppercase }} - {{ notification.payment.price  | applyDecimals : dapp?.features?.decimals }} {{this.dapp?.features?.token}}
     </button>
 </div>

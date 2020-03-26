@@ -88,7 +88,7 @@
       "buy_now": "Buy now",
       "dialog_buy": {
         "title": "Are you sure?",
-        "description": "You will buy \"{{title}}\" for {{price}} PT"
+        "description": "You will buy \"{{title}}\" for {{price}} {{token}}"
       }
     },
     "shopping_list": {
@@ -134,8 +134,7 @@
     "send_cash": {
       "to": "To",
       "address": "Address",
-      "amount": "Amount",
-      "points": "PT"
+      "amount": "Amount"
     },
     "remove_dapp": {
       "title": "Are you sure?",

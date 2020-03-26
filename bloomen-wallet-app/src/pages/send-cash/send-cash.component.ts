@@ -111,7 +111,13 @@ export class SendCashComponent implements OnInit, OnDestroy {
   public sendTransaction() {
     const values = this.sendCashForm.value;
     this.web3Service.ready(() => {
-      this.erc223.transfer(values.address, values.amount.replace(',', '')).then((result: any) => {
+      let amount: number = values.amount;
+
+      if (this.dapp.features.decimals) {
+        amount = amount * (10 ** this.dapp.features.decimals);
+      }
+
+      this.erc223.transfer(values.address, Math.trunc(amount)).then((result: any) => {
         this.snackBar.open(this.translate.instant('common.transaction_success'), null, {
           duration: 2000,
         });

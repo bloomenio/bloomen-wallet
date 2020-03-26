@@ -69,7 +69,7 @@
         "allow": "false",
         "buy": "false",
         "raw":"false", 
-        "transfer": "false",
+        "transfer": "true",
         "token":"JES"
     },
     "secure": "false"

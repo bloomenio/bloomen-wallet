@@ -15,6 +15,7 @@ import { DappHomeComponent } from './dapp-home.component';
 import { DappInputDialogModule } from '@components/dapp-input-dialog/dapp-input-dialog.module';
 import player from 'lottie-web';
 import { LottieModule } from 'ngx-lottie';
+import { ApplyDecimalsPipe } from '@pipes/apply-decimals.pipe';
 
 export function playerFactory() {
   return player;
@@ -34,6 +35,9 @@ export function playerFactory() {
     DappInputDialogModule,
     PipesModule,
     LottieModule.forRoot({ player: playerFactory })
+  ],
+  providers: [
+    ApplyDecimalsPipe
   ],
   declarations: [DappHomeComponent],
   exports: [DappHomeComponent]

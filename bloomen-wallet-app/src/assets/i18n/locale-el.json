@@ -88,7 +88,7 @@
       "buy_now": "Αγοράστε τώρα",
       "dialog_buy": {
         "title": "Είστε σίγουροι;",
-        "description": "Πρόκειται να αγοράσετε το \"{{title}}\" για {{price}} PT"
+        "description": "Πρόκειται να αγοράσετε το \"{{title}}\" για {{price}} {{token}}"
       }
     },
     "shopping_list": {
@@ -134,8 +134,7 @@
     "send_cash": {
       "to": "Σε",
       "address": "Διεύθυνση",
-      "amount": "Ποσό",
-      "points": "PT"
+      "amount": "Ποσό"
     },
     "remove_dapp": {
       "title": "Είστε σίγουροι;",

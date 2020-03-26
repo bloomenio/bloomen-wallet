@@ -12,6 +12,8 @@ import { NotificationDetailRoutingModule } from './notification-detail-routing.m
 // Components
 import { NotificationDetailComponent } from './notification-detail.component';
 import { MaterialModule } from '@app/material.module';
+import { PipesModule } from '@pipes/pipes.module';
+import { ApplyDecimalsPipe } from '@pipes/apply-decimals.pipe';
 
 /**
  * Module to import and export all the components for the notification detail page.
@@ -24,7 +26,11 @@ import { MaterialModule } from '@app/material.module';
     TranslateModule,
     FlexLayoutModule,
     MaterialModule,
-    NotificationDetailRoutingModule
+    NotificationDetailRoutingModule,
+    PipesModule
+  ],
+  providers: [
+    ApplyDecimalsPipe
   ],
   declarations: [NotificationDetailComponent],
   exports: [NotificationDetailComponent]

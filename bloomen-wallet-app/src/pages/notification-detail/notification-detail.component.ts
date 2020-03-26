@@ -15,6 +15,7 @@ import * as fromBalanceSelectors from '@stores/balance/balance.selectors';
 import * as fromPurchasesSelectors from '@stores/purchases/purchases.selectors';
 import { DappGeneralDialogComponent } from '@components/dapp-general-dialog/dapp-general-dialog.component';
 import { Location } from '@angular/common';
+import { ApplyDecimalsPipe } from '@pipes/apply-decimals.pipe';
 
 const log = new Logger('notification-detail.component');
 
@@ -45,6 +46,7 @@ export class NotificationDetailComponent implements OnInit, OnDestroy {
     private translate: TranslateService,
     private web3Service: Web3Service,
     private dialog: MatDialog,
+    private applyDecimalsPipe: ApplyDecimalsPipe,
     private location: Location
   ) { }
 
@@ -87,7 +89,8 @@ export class NotificationDetailComponent implements OnInit, OnDestroy {
         description: this.translate.instant('dapp.notifications.dialog_buy.description', {
           id: buyObject.assetId,
           title: buyObject.description,
-          price: buyContent.price
+          price: this.applyDecimalsPipe.transform( buyContent.price, `${this.dapp.features.decimals}`),
+          token: this.dapp.features.token
         }),
         buttonAccept: this.translate.instant('common.accept'),
         buttonCancel: this.translate.instant('common.cancel')

@@ -1,5 +1,5 @@
 // Basic
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, OnChanges } from '@angular/core';
 
 import { Logger } from '@services/logger/logger.service.js';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -41,7 +41,7 @@ const log = new Logger('dapp-profile.component');
   templateUrl: 'dapp-profile.component.html',
   styleUrls: ['dapp-profile.component.scss']
 })
-export class DappProfileComponent implements OnInit, OnDestroy {
+export class DappProfileComponent implements OnInit, OnDestroy, OnChanges {
   public userAddress: string;
   public prefixDapp: string;
   public outOfCash: boolean;
@@ -83,16 +83,29 @@ export class DappProfileComponent implements OnInit, OnDestroy {
       this.outOfCash = !parseInt(balance, 10);
     });
 
-    this.addressList$ = this.store.select(fromAddressSelector.selectAllAddress).pipe(
-      map(users =>
-        users.filter(user => user.idDapp === this.dapp.address)
-      )
-    );
   }
 
+  public ngOnChanges() {
+    if (this.dapp) {
+      this.addressList$ = this.store.select(fromAddressSelector.selectAllAddress).pipe(
+        map(users =>
+          users.filter(user =>  user.idDapp === this.dapp.address)
+        )
+      );
+    }
+  }
+
+
   public ngOnDestroy() {
-    this.address$.unsubscribe();
-    this.balance$.unsubscribe();
+
+    if (this.address$) {
+      this.address$.unsubscribe();
+    }
+
+    if (this.balance$) {
+      this.balance$.unsubscribe();
+    }
+
   }
 
   public stringCodeCopy() {

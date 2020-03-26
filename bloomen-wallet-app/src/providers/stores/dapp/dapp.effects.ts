@@ -161,7 +161,7 @@ export class DappEffects {
         if ( !dapp.features ) {
             console.log(`**** dapp without features, updating: ${JSON.stringify(dapp)}`);
             dapp.features = {
-                decimals: 2,
+                decimals: 0,
                 burn: true,
                 addTokens: true,
                 storeTab: true,
