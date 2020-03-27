@@ -38,6 +38,7 @@ export class SendCashComponent implements OnInit, OnDestroy {
   public sendCashForm: FormGroup;
   public address: string;
   public destinationAddress: string;
+  public pattern: string;
 
   private mnemonics$: Subscription;
 
@@ -65,6 +66,11 @@ export class SendCashComponent implements OnInit, OnDestroy {
 
     this.dapps$ = this.store.select(fromDappSelectors.selectAllDapp).subscribe((dapps) => {
       this.dapp = dapps.find(dapp => dapp.address === address);
+      if (this.dapp.features.decimals > 0) {
+        this.pattern='[0-9]*\\.?[0-9]*';
+      } else {
+        this.pattern='[0-9]*';
+      }
     });
 
     this.mnemonics$ = this.store.select(fromMnemonicSelectors.selectAllMnemonics).subscribe((mnemonics) => {

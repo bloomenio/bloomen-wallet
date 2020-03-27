@@ -8,6 +8,10 @@ mat-tab-group {
   height: 100%;
 }
 
+::ng-deep .mat-tab-header-pagination {
+  display: none !important;
+}
+
 div[class$="theme-dark"] {
   .mat-tab-group {
     background-color: $black;

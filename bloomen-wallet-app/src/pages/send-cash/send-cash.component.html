@@ -16,7 +16,7 @@
 
             <mat-form-field color="primary" appearance="outline">
                 <mat-label>{{ 'dapp.send_cash.amount' | translate }}</mat-label>
-                <input matInput formControlName="amount" pattern="[0-9]*\.?[0-9]*" type="number" decimal="true" >
+                <input matInput formControlName="amount" pattern="{{pattern}}" type="number"  >
                 <div matSuffix>{{ dapp?.features?.token | uppercase }}</div>
             </mat-form-field> 
 
