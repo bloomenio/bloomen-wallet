@@ -64,7 +64,7 @@
         "decimals": "0",
         "burn": "true",
         "addTokens": "true",
-        "storeTab": "true",
+        "storeTab": "false",
         "devicesTab": "true",
         "allow": "true",
         "buy": "true",
