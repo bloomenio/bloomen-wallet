@@ -54,6 +54,7 @@ export class DappEffects {
                 } else {
                     dapps.forEach(dapp => {
                         this.loadDappAssets(dapp);
+                        if (dapp) { this.initializeFeaturesDapp(dapp); }
                         this.store.dispatch(new fromActions.AddDappSuccess(dapp));
                     });
                 }
