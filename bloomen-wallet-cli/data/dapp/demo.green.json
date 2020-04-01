@@ -26,33 +26,6 @@
       "login": {
         "title": "Green Demo instance"
       }
-    },
-    "es":{
-      "home": {
-        "title": "Green Demo",
-        "subtitle": "Try a complete experience"
-      },
-      "login": {
-        "title": "Green Demo instance"
-      }
-    },
-    "de":{
-      "home": {
-        "title": "Green Demo",
-        "subtitle": "Try a complete experience"
-      },
-      "login": {
-        "title": "Green Demo instance"
-      }
-    },
-    "ca":{
-      "home": {
-        "title": "Green Demo",
-        "subtitle": "Try a complete experience"
-      },
-      "login": {
-        "title": "Green Demo instance"
-      }
     }
   }
 }
